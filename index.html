@@ -101,7 +101,7 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
 .btn--ghost:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
 
 /* ---------- HERO ---------- */
-.hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 120px clamp(20px,5vw,56px) 80px; overflow: hidden; }
+.hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px clamp(20px,5vw,56px) 70px; overflow: hidden; }
 .hero__bg {
   position: absolute; inset: 0; z-index: 0;
   background:
@@ -123,7 +123,7 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
   color: var(--cyan); margin-bottom: 22px; padding: 7px 14px; border: 1px solid rgba(0,212,255,.3);
   border-radius: 999px; background: rgba(0,212,255,.06);
 }
-.hero__title { font-size: clamp(2.3rem, 5vw, 3.9rem); font-weight: 900; margin-bottom: 22px; }
+.hero__title { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 900; margin-bottom: 22px; max-width: 15ch; }
 .hero__sub { color: var(--gray); font-size: clamp(1rem, 1.5vw, 1.18rem); max-width: 560px; margin-bottom: 34px; }
 .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
 .hero__meta { display: flex; gap: 24px; }
@@ -199,6 +199,9 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
 .psi__block:first-child .psi__label { color: #F87171; }
 .psi__block:nth-child(2) .psi__label { color: var(--cyan); }
 .psi__block:last-child .psi__label { color: #34D399; }
+.badge--role { color: var(--bg); background: var(--grad); border-color: transparent; font-weight: 800; }
+.feature__link { display: inline-block; margin-top: 18px; color: var(--cyan); font-weight: 700; font-size: .92rem; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.feature__link:hover { border-color: var(--cyan); }
 
 /* About */
 .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
@@ -487,14 +490,15 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
           </div>
           <div class="psi__block">
             <span class="psi__label">La solución</span>
-            <p>Una <strong>IA híbrida</strong> que valida pagos y detecta intentos de fraude en tiempo real, dentro
-            del mismo chat de WhatsApp donde ocurre la transacción. La <strong>primera solución de IA híbrida en
-            WhatsApp para prevención de fraude bancario en Colombia</strong>.</p>
+            <p>Un ecosistema de <strong>IA híbrida</strong> sobre WhatsApp que <strong>verifica identidad, valida
+            pagos, controla reputación y gestiona planes de pago</strong>, detectando operaciones sospechosas en
+            tiempo real. La <strong>primera solución de IA híbrida en WhatsApp para prevención de fraude bancario
+            en Colombia</strong>.</p>
           </div>
           <div class="psi__block">
             <span class="psi__label">El impacto</span>
-            <p>Frena el fraude <strong>antes</strong> de que golpee, protege al cliente y a la entidad, y convierte
-            un canal de riesgo en uno verificado.</p>
+            <p>Frena el fraude <strong>antes</strong> de que golpee y le da <strong>trazabilidad a cada
+            transacción</strong>: convierte un canal de riesgo en uno verificado y auditable.</p>
           </div>
         </div>
         <ul class="tags">
@@ -507,11 +511,11 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
     <article class="feature reveal">
       <div class="feature__media">
         <span class="feature__num">03</span>
-        <div class="feature__badges"><span class="badge">SaaS multi-cliente</span><span class="badge">Voz + WhatsApp</span></div>
+        <div class="feature__badges"><span class="badge badge--role">Co-Founder y Arquitecto Principal</span><span class="badge">SaaS · Voz + WhatsApp</span></div>
       </div>
       <div class="feature__body">
         <h3>ALMA Solutions</h3>
-        <p class="feature__tagline">Tu mejor vendedor, clonado en IA, atendiendo a todos a la vez.</p>
+        <p class="feature__tagline">Tu mejor vendedor, clonado en IA, atendiendo a todos a la vez — por voz y WhatsApp.</p>
         <div class="psi">
           <div class="psi__block">
             <span class="psi__label">El problema</span>
@@ -520,19 +524,59 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
           </div>
           <div class="psi__block">
             <span class="psi__label">La solución</span>
-            <p>Un <strong>empleado virtual de ventas</strong> que <strong>habla por voz</strong> (Retell AI) y
-            <strong>escribe por WhatsApp</strong>: atiende, califica, agenda y hace seguimiento solo. SaaS
-            <strong>multi-cliente</strong>, listo para escalar a varios negocios.</p>
+            <p>Un <strong>empleado virtual de ventas</strong> que <strong>llama por teléfono con voz natural</strong>
+            (Retell AI) y <strong>conversa por WhatsApp</strong>: atiende, califica, responde objeciones y agenda solo,
+            para clínicas, inmobiliarias, restaurantes y e-commerce. Cada conversación queda
+            <strong>transcrita, resumida y clasificada</strong>.</p>
           </div>
           <div class="psi__block">
             <span class="psi__label">El impacto</span>
-            <p>Vende y atiende <strong>24/7 sin sumar personal</strong>. Ningún lead se queda sin respuesta y cada
-            oportunidad recibe seguimiento.</p>
+            <p>Vende y atiende <strong>24/7 sin sumar personal</strong>. El dueño ve en un <strong>tablero</strong>
+            cuántos clientes entran, cuántos convierten y por qué se pierden. SaaS multi-cliente, listo para instalarse
+            <strong>plug &amp; play</strong>.</p>
           </div>
         </div>
         <ul class="tags">
-          <li>Retell AI (voz)</li><li>WhatsApp</li><li>SaaS</li><li>CRM</li><li>Agendamiento</li><li>Seguimiento</li>
+          <li>Retell AI (voz)</li><li>WhatsApp + IA</li><li>n8n</li><li>NocoDB</li><li>Looker Studio</li><li>SaaS multi-cliente</li>
         </ul>
+        <a class="feature__link" href="https://almavirtualsolutions.com" target="_blank" rel="noopener">almavirtualsolutions.com ↗</a>
+      </div>
+    </article>
+
+    <!-- FEATURE 4: ALMA Restaurantes -->
+    <article class="feature reveal">
+      <div class="feature__media">
+        <span class="feature__num">04</span>
+        <div class="feature__badges"><span class="badge badge--hot">Restaurantes</span><span class="badge">Visión + Voz</span></div>
+      </div>
+      <div class="feature__body">
+        <h3>ALMA — Asistente de Ventas para Restaurantes</h3>
+        <p class="feature__tagline">Toma el pedido, cobra, verifica el pago con visión y lo manda a la cocina. Solo.</p>
+        <div class="psi">
+          <div class="psi__block">
+            <span class="psi__label">El problema</span>
+            <p>En horas pico los restaurantes <strong>pierden ventas</strong> por no alcanzar a responder WhatsApp,
+            se equivocan tomando pedidos por audio, y reciben <strong>comprobantes de pago falsos</strong> que nadie
+            alcanza a verificar.</p>
+          </div>
+          <div class="psi__block">
+            <span class="psi__label">La solución</span>
+            <p>Un agente de IA que gestiona el <strong>ciclo completo de venta por WhatsApp</strong>, 100% autónomo:
+            conversa natural, <strong>entiende notas de voz</strong>, envía el menú, toma el pedido, calcula
+            <strong>costos dinámicos</strong> (envíos o recargos por lluvia) y <strong>audita con visión artificial
+            la foto del comprobante bancario</strong> —valida monto y cuenta— antes de mandar la orden a la cocina.</p>
+          </div>
+          <div class="psi__block">
+            <span class="psi__label">El impacto</span>
+            <p>Atención inmediata sin esperas, <strong>cero ventas perdidas</strong> en pico, experiencia natural
+            (el cliente manda audios o cambia el pedido y no se confunde) y <strong>prevención de fraude</strong> en
+            cada pago. Solo escala a un humano ante quejas o casos especiales.</p>
+          </div>
+        </div>
+        <ul class="tags">
+          <li>WhatsApp</li><li>Visión artificial</li><li>Notas de voz</li><li>Anti-fraude</li><li>Costos dinámicos</li><li>n8n</li>
+        </ul>
+        <a class="feature__link" href="https://almavirtualsolutions.com" target="_blank" rel="noopener">almavirtualsolutions.com ↗</a>
       </div>
     </article>
 
@@ -540,35 +584,27 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
     <div class="section__sub reveal"><h3>Más soluciones en operación</h3></div>
     <div class="proj-grid">
       <article class="proj reveal">
-        <div class="proj__top"><span class="proj__num">04</span><span class="badge badge--live">En producción</span></div>
+        <div class="proj__top"><span class="proj__num">05</span><span class="badge badge--live">En producción</span></div>
         <h3>Dental SDR</h3>
         <p class="proj__tag">Recepcionista digital con IA para clínicas.</p>
         <p><b>Problema:</b> las clínicas pierden pacientes porque no contestan a tiempo WhatsApp/Messenger ni agendan bien.</p>
-        <p><b>Solución → impacto:</b> atiende, responde y agenda sola por WhatsApp/Messenger → cada paciente atendido al instante y agenda llena.</p>
-      </article>
-
-      <article class="proj reveal">
-        <div class="proj__top"><span class="proj__num">05</span><span class="badge">Restaurantes</span></div>
-        <h3>ALMA Restaurantes</h3>
-        <p class="proj__tag">Agente de ventas por WhatsApp de punta a punta.</p>
-        <p><b>Problema:</b> se pierden pedidos por WhatsApp y hay errores al tomar la orden y verificar el pago.</p>
-        <p><b>Solución → impacto:</b> lleva el flujo <i>pedido → cobro → cocina</i> y usa visión para leer comprobantes → pedidos sin fricción y cobro verificado.</p>
+        <p><b>Solución → impacto:</b> atiende, resuelve preguntas (precios, horarios, cobertura), agenda en el calendario y envía recordatorios → agenda llena, menos ausencias y derivación a humano solo en urgencias.</p>
       </article>
 
       <article class="proj reveal">
         <div class="proj__top"><span class="proj__num">06</span><span class="badge">ERP · Fintech</span></div>
         <h3>Clazz / Dropi — ERP financiero</h3>
         <p class="proj__tag">Back-office contable automatizado.</p>
-        <p><b>Problema:</b> facturas, conciliación y pagos consumen horas y se llenan de errores manuales.</p>
-        <p><b>Solución → impacto:</b> OCR de facturas, conciliación automática y pagos ACH → contabilidad ordenada y cierre más rápido.</p>
+        <p><b>Problema:</b> facturas, conciliación y pagos masivos consumen horas y se llenan de errores manuales.</p>
+        <p><b>Solución → impacto:</b> OCR de facturas, conciliación, conversión de divisas y archivos de pago ACH/COBRE → <i>redujo la auditoría un 70%</i> y aceleró los pagos.</p>
       </article>
 
       <article class="proj reveal">
         <div class="proj__top"><span class="proj__num">07</span><span class="badge">E-commerce</span></div>
         <h3>Proyecto Fénix</h3>
         <p class="proj__tag">Ecosistema e-commerce con soporte y datos.</p>
-        <p><b>Problema:</b> una tienda online necesita soporte 24/7 y visibilidad real de su operación.</p>
-        <p><b>Solución → impacto:</b> soporte 24/7 + motor de reportes → atención continua y decisiones basadas en datos.</p>
+        <p><b>Problema:</b> una tienda online necesita soporte 24/7 y visibilidad real de su logística.</p>
+        <p><b>Solución → impacto:</b> agente que resuelve consultas + motor de reportes (operativos, cierre mensual, <i>detección de envíos sin movimiento</i>) → soporte continuo y logística bajo control.</p>
       </article>
 
       <article class="proj reveal">
@@ -576,7 +612,7 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
         <h3>Innovart</h3>
         <p class="proj__tag">Captación y valoración de inmuebles.</p>
         <p><b>Problema:</b> captar y valorar propiedades es manual, lento y disperso.</p>
-        <p><b>Solución → impacto:</b> sistema multi-agente con orquestador → pipeline inmobiliario automatizado y valoración ágil.</p>
+        <p><b>Solución → impacto:</b> varios agentes coordinados por un orquestador dan la bienvenida, capturan datos y hacen una <i>valoración virtual</i> → al asesor solo le llegan oportunidades listas.</p>
       </article>
 
       <article class="proj reveal">
@@ -584,7 +620,7 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
         <h3>Cotización Inteligente Multi-Agente</h3>
         <p class="proj__tag">Cotiza productos técnicos complejos.</p>
         <p><b>Problema:</b> cotizar productos técnicos es lento y depende de expertos escasos.</p>
-        <p><b>Solución → impacto:</b> varios agentes arman la cotización compleja → cotizaciones rápidas y consistentes.</p>
+        <p><b>Solución → impacto:</b> agentes que leen catálogos y consultan un <i>motor de precios propio</i> → cotizaciones exactas en minutos; el experto solo aprueba.</p>
       </article>
 
       <article class="proj reveal">
