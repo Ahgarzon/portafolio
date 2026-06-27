@@ -185,15 +185,16 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
 }
 .feature:hover { border-color: rgba(0,212,255,.4); box-shadow: 0 26px 70px rgba(0,0,0,.5); transform: translateY(-3px); }
 .feature__media {
-  position: relative; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px;
+  position: relative; min-width: 0; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px;
   background:
     radial-gradient(220px 180px at 30% 20%, rgba(0,212,255,.18), transparent 70%),
     linear-gradient(160deg, var(--surface-2), var(--surface));
   border-right: 1px solid var(--line);
 }
 .feature__num { font-size: 3.4rem; font-weight: 900; line-height: 1; color: rgba(0,212,255,.3); }
-.feature__badges { display: flex; flex-wrap: wrap; gap: 8px; }
-.feature__body { padding: 30px 34px; }
+.feature__badges { display: flex; flex-wrap: wrap; gap: 8px; min-width: 0; }
+.feature__body { padding: 30px 34px; min-width: 0; }
+.feature__body h3, .feature__tagline, .psi__block p { overflow-wrap: anywhere; }
 .feature__body h3 { font-size: 1.7rem; margin-bottom: 8px; }
 .feature__tagline { color: var(--cyan); font-weight: 600; font-size: 1.05rem; margin-bottom: 22px; }
 .psi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 22px; }
@@ -288,9 +289,10 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
 .tl { display: grid; grid-template-columns: 90px 1fr; gap: 24px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px 26px; transition: border-color .25s, transform .25s; }
 .tl:hover { border-color: rgba(0,212,255,.35); transform: translateX(5px); }
 .tl__year { font-weight: 900; font-size: 1.2rem; color: var(--cyan); }
+.tl__body { min-width: 0; }
 .tl__body h4 { font-size: 1.1rem; margin-bottom: 4px; }
 .tl__body p { color: var(--gray); font-size: .94rem; }
-.tl__ref { color: var(--cyan); font-weight: 600; white-space: nowrap; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.tl__ref { color: var(--cyan); font-weight: 600; border-bottom: 1px solid transparent; transition: border-color .2s; }
 .tl__ref:hover { border-color: var(--cyan); }
 
 /* CTA */
@@ -332,11 +334,15 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
   .about-grid, .stack-grid { grid-template-columns: 1fr; }
   .proj-grid, .eng-grid { grid-template-columns: 1fr; }
   .hero__strip { grid-template-columns: repeat(2, 1fr); gap: 22px 16px; }
-  .feature { grid-template-columns: 1fr; }
-  .feature__media { flex-direction: row; align-items: center; border-right: none; border-bottom: 1px solid var(--line); padding: 20px 24px; }
+  .feature { grid-template-columns: 1fr; min-width: 0; }
+  .feature__media { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px; border-right: none; border-bottom: 1px solid var(--line); padding: 20px 24px; }
   .feature__num { font-size: 2.4rem; }
   .feature__body { padding: 24px; }
   .psi { grid-template-columns: 1fr; gap: 16px; }
+  .timeline, .tl { min-width: 0; }
+  .tl { grid-template-columns: 56px 1fr; gap: 14px; padding: 18px 18px; }
+  /* Texto ordenado y justificado en móvil */
+  .psi__block p, .proj p, .about-grid__lead, .hero__sub, .tl__body p { text-align: justify; hyphens: auto; }
 }
 @media (min-width: 901px) and (max-width: 1080px) {
   .proj-grid, .eng-grid { grid-template-columns: repeat(2, 1fr); }
@@ -374,9 +380,9 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
           Construyo <span class="grad">empleados virtuales</span> con IA que venden, atienden y operan solos.
         </h1>
         <p class="hero__sub">
-          Diseño y opero <strong>sistemas de IA de grado producción</strong> que recuperan ventas, confirman
-          pedidos, llaman y escriben a clientes, agendan, cotizan y llevan la contabilidad. No son chatbots que
-          improvisan: <strong>entienden, ejecutan con criterio y dejan registro de todo.</strong>
+          Desde <strong>segundos cerebros</strong> hasta agentes de voz y ventas: destrabo cuellos de botella,
+          <strong>aumento las ventas y la productividad</strong> y llevo tu operación al siguiente nivel. No son
+          chatbots que improvisan — <strong>entienden, ejecutan con criterio y dejan registro de todo</strong>.
         </p>
         <div class="hero__actions">
           <a href="#proyectos" class="btn btn--primary">Ver lo que construyo</a>
@@ -613,7 +619,8 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
             <span class="psi__label">La solución</span>
             <p>Un ecosistema de <strong>IA híbrida</strong> sobre WhatsApp que <strong>verifica identidad, valida
             pagos, controla reputación y gestiona planes de pago</strong>, detectando operaciones sospechosas en
-            tiempo real. La <strong>primera solución de IA híbrida en WhatsApp para prevención de fraude bancario
+            tiempo real. Además <strong>genera reportes de tus pagos</strong> para mantener el orden de la
+            contabilidad. La <strong>primera solución de IA híbrida en WhatsApp para prevención de fraude bancario
             en Colombia</strong>.</p>
           </div>
           <div class="psi__block">
@@ -841,7 +848,6 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
     </div>
     <div class="timeline">
       <div class="tl tl--honor reveal"><span class="tl__year">2026</span><div class="tl__body"><h4>Orden de la Democracia — Congreso de la República</h4><p>Reconocimiento legislativo: liderazgo en la estructuración conceptual y tecnológica de <strong>TourCauca</strong>, iniciativa <strong>condecorada por el Congreso de la República</strong> por su aporte al turismo regional.</p></div></div>
-      <div class="tl reveal"><span class="tl__year">2025</span><div class="tl__body"><h4>Certipago</h4><p>Primera solución de IA híbrida en WhatsApp para prevención de fraude bancario en Colombia.</p></div></div>
       <div class="tl reveal"><span class="tl__year">2025</span><div class="tl__body"><h4>Colombia 4.0</h4><p>Ponente de taller en el mayor evento nacional de tecnología. <a class="tl__ref" href="https://www.unicauca.edu.co/noticias-actualidad/cuando-la-pasion-se-convierte-en-innovacion-colombia-4-0/" target="_blank" rel="noopener">Nota Universidad del Cauca ↗</a></p></div></div>
       <div class="tl reveal"><span class="tl__year">2025</span><div class="tl__body"><h4>Mención honorífica</h4><p>Por trabajo de grado.</p></div></div>
       <div class="tl reveal"><span class="tl__year">2024</span><div class="tl__body"><h4>Cátedra Siemens Colombia</h4><p>2.º puesto nacional — "Noche de los Mejores".</p></div></div>
@@ -861,13 +867,16 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
   <!-- ░░ CONTACTO ░░ -->
   <section class="cta" id="contacto">
     <div class="cta__inner reveal">
-      <h2>¿Qué proceso de tu negocio querés que trabaje solo?</h2>
-      <p>Contame el cuello de botella —ventas que se enfrían, pedidos sin confirmar, soporte saturado— y te diseño el empleado virtual que lo resuelve. Respondo rápido.</p>
+      <h2>No te quedes atrás: llevemos lo tuyo al siguiente nivel con IA</h2>
+      <p>Da igual si sos una persona, un freelance o un emprendimiento, o si dirigís una empresa, una entidad pública
+      o un grupo de investigación —y no importa cuánto sepas de IA—: para cada nivel hay una solución que te pone
+      <strong>por delante del mercado</strong>. Agendá un diagnóstico y lo vemos juntos.</p>
       <div class="cta__actions">
-        <a href="https://wa.me/573237451221?text=Hola%20Ángel,%20vi%20tu%20portafolio%20y%20quiero%20automatizar%20mi%20operación" target="_blank" rel="noopener" class="btn btn--primary btn--wa">Escribime al WhatsApp</a>
-        <a href="https://www.linkedin.com/in/angel-garzón-sarzosa-334014337/" target="_blank" rel="noopener" class="btn btn--ghost">Conectar en LinkedIn</a>
+        <a href="https://cal.com/angel-garzon-sarzosa-faectq/diagnostico-con-angel" target="_blank" rel="noopener" class="btn btn--primary">Agendá tu diagnóstico</a>
+        <a href="https://wa.me/573237451221?text=Hola%20Ángel,%20vi%20tu%20portafolio%20y%20quiero%20llevar%20lo%20mío%20al%20siguiente%20nivel%20con%20IA" target="_blank" rel="noopener" class="btn btn--wa">WhatsApp</a>
+        <a href="https://www.linkedin.com/in/angel-garzón-sarzosa-334014337/" target="_blank" rel="noopener" class="btn btn--ghost">LinkedIn</a>
       </div>
-      <p class="cta__meta">+57 323 745 1221 · Popayán, Colombia · <a href="https://github.com/Ahgarzon" target="_blank" rel="noopener">github.com/Ahgarzon</a></p>
+      <p class="cta__meta"><a href="mailto:angelgarzonsarzosa@gmail.com">angelgarzonsarzosa@gmail.com</a> · +57 323 745 1221 · Popayán, Colombia · <a href="https://github.com/Ahgarzon" target="_blank" rel="noopener">github.com/Ahgarzon</a></p>
     </div>
   </section>
 
