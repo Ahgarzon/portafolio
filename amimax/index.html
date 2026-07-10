@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amimax · Amigurumis hechos con amor</title>
+<meta name="description" content="Amigurumis tejidos a mano en Popayán, Cauca. Personajes, animalitos y encargos personalizados, creados con amor por Camila.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFF7F1; --cream2:#FDEFE7; --card:#FFFDFB;
+  --rose:#E79CA6; --rose-deep:#D97D8B; --rose-soft:#F6D3D6;
+  --sage:#AEC3A0; --sage-deep:#8FA97F;
+  --brown:#6E4F45; --brown-soft:#977265;
+  --yellow:#F5D98B; --sky:#BFD4E6;
+  --shadow:0 18px 40px -18px rgba(150,90,80,.35);
+  --shadow-sm:0 10px 24px -14px rgba(150,90,80,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Quicksand',sans-serif;color:var(--brown);
+  background:var(--cream);line-height:1.65;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:'Baloo 2',cursive;line-height:1.15;color:var(--brown)}
+.script{font-family:'Pacifico',cursive;font-weight:400}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 22px}
+.rose{color:var(--rose-deep)}
+.sage{color:var(--sage-deep)}
+
+/* soft dotted texture */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(circle at 15% 20%, #FEE9E1 0, transparent 40%),
+    radial-gradient(circle at 85% 15%, #EAF1E4 0, transparent 38%),
+    radial-gradient(circle at 75% 85%, #FBE6E9 0, transparent 40%),
+    var(--cream);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;opacity:.5;
+  background-image:radial-gradient(rgba(215,125,139,.10) 1.2px, transparent 1.3px);
+  background-size:22px 22px;
+}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,247,241,.82);
+  backdrop-filter:blur(12px);border-bottom:1px solid #F3DDD5}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Baloo 2';font-weight:800;font-size:1.28rem}
+.brand img{width:40px;height:40px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow-sm)}
+.brand .script{font-size:1.5rem;color:var(--rose-deep)}
+.nav-links{display:flex;gap:26px;align-items:center;font-weight:600;font-size:.98rem}
+.nav-links a.n{opacity:.8;transition:.2s}
+.nav-links a.n:hover{opacity:1;color:var(--rose-deep)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--rose-deep);color:#fff;
+  padding:11px 20px;border-radius:999px;font-weight:700;font-family:'Baloo 2';
+  box-shadow:0 10px 22px -10px rgba(217,125,139,.7);transition:.22s;border:none;cursor:pointer;font-size:.98rem}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 28px -10px rgba(217,125,139,.75)}
+.btn.ghost{background:#fff;color:var(--brown);box-shadow:var(--shadow-sm)}
+.btn.sage{background:var(--sage-deep);box-shadow:0 10px 22px -10px rgba(143,169,127,.7)}
+@media(max-width:760px){.nav-links a.n{display:none}}
+
+/* HERO */
+.hero{position:relative;padding:64px 0 40px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #F3DDD5;
+  color:var(--rose-deep);font-weight:700;padding:7px 15px;border-radius:999px;font-size:.86rem;
+  box-shadow:var(--shadow-sm);margin-bottom:20px}
+.hero h1{font-size:clamp(2.5rem,6.5vw,4rem);font-weight:800;letter-spacing:-.5px}
+.hero h1 .script{color:var(--rose-deep);display:inline-block}
+.hero p.lead{font-size:1.18rem;margin:20px 0 28px;max-width:30ch;color:var(--brown-soft);font-weight:500}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:26px;margin-top:34px}
+.hero-stats .s{}
+.hero-stats .s b{display:block;font-family:'Baloo 2';font-size:1.7rem;color:var(--rose-deep);line-height:1}
+.hero-stats .s span{font-size:.82rem;font-weight:600;opacity:.75}
+
+.photo-card{position:relative}
+.photo-card .frame{border-radius:32px;overflow:hidden;box-shadow:var(--shadow);
+  border:8px solid #fff;aspect-ratio:4/5;background:#EADFD8;transform:rotate(2deg)}
+.photo-card .frame img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+.float-chip{position:absolute;background:#fff;border-radius:16px;padding:10px 15px;
+  box-shadow:var(--shadow);font-weight:700;font-family:'Baloo 2';font-size:.92rem;display:flex;gap:8px;align-items:center}
+.chip-1{top:-14px;left:-16px;color:var(--rose-deep);animation:bob 4s ease-in-out infinite}
+.chip-2{bottom:24px;right:-18px;color:var(--sage-deep);animation:bob 5s ease-in-out infinite .5s}
+.chip-3{bottom:-16px;left:28px;color:var(--brown);animation:bob 4.5s ease-in-out infinite .2s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.heart{position:absolute;color:var(--rose-soft);opacity:.9;animation:bob 6s ease-in-out infinite}
+
+/* MARQUEE */
+.marquee{background:var(--rose-deep);color:#fff;padding:14px 0;overflow:hidden;margin-top:14px;
+  transform:rotate(-1deg) scale(1.03)}
+.marquee .track{display:flex;gap:38px;white-space:nowrap;width:max-content;animation:scroll 22s linear infinite;
+  font-family:'Baloo 2';font-weight:700;font-size:1.05rem;letter-spacing:.3px}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section.pad{padding:70px 0}
+.sec-head{text-align:center;max-width:60ch;margin:0 auto 44px}
+.sec-head .tag{color:var(--sage-deep);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.82rem}
+.sec-head h2{font-size:clamp(1.9rem,4.6vw,2.8rem);font-weight:800;margin:8px 0 12px}
+.sec-head p{color:var(--brown-soft);font-size:1.08rem}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:center}
+.about .imgs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.about .imgs img{width:100%;border-radius:22px;box-shadow:var(--shadow-sm);border:5px solid #fff;object-fit:cover;aspect-ratio:3/4}
+.about .imgs img:first-child{margin-top:26px}
+.about-text h2{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:14px}
+.about-text p{color:var(--brown-soft);font-size:1.06rem;margin-bottom:14px}
+.about-feats{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.feat{background:#fff;border:1px solid #F3DDD5;border-radius:14px;padding:12px 16px;font-weight:700;
+  font-family:'Baloo 2';font-size:.95rem;box-shadow:var(--shadow-sm);display:flex;gap:8px;align-items:center}
+
+/* CATALOG */
+.grid-cat{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:var(--card);border-radius:26px;overflow:hidden;box-shadow:var(--shadow-sm);
+  border:1px solid #F5E3DC;transition:.25s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+.card .ph{aspect-ratio:1;overflow:hidden;position:relative;background:linear-gradient(135deg,#FDE8E2,#EAF1E4)}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.card:hover .ph img{transform:scale(1.06)}
+.card .badge{position:absolute;top:12px;left:12px;background:#fff;color:var(--rose-deep);
+  font-weight:700;font-family:'Baloo 2';font-size:.8rem;padding:5px 12px;border-radius:999px;box-shadow:var(--shadow-sm)}
+.card .body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .body h3{font-size:1.25rem;font-weight:700}
+.card .body p{font-size:.94rem;color:var(--brown-soft);flex:1}
+.card .price{display:flex;align-items:baseline;gap:6px;margin-top:8px}
+.card .price b{font-family:'Baloo 2';font-size:1.35rem;color:var(--rose-deep)}
+.card .price span{font-size:.82rem;opacity:.7;font-weight:600}
+.card .body .btn{margin-top:12px;justify-content:center}
+/* CSS amigurumi placeholder */
+.ami{position:absolute;inset:0;display:grid;place-items:center}
+.ami .doll{width:56%;aspect-ratio:1;border-radius:50% 50% 46% 46%;position:relative;box-shadow:inset -8px -10px 0 rgba(0,0,0,.06)}
+.ami .doll::before{content:"";position:absolute;left:22%;right:22%;top:34%;height:8px;border-radius:99px;
+  background:rgba(110,79,69,.35);box-shadow:28px 0 0 rgba(110,79,69,.35);width:auto}
+.ami .doll::after{content:"";position:absolute;left:34%;right:34%;bottom:22%;height:14px;border-radius:99px;
+  border:3px solid rgba(110,79,69,.3);border-top:none}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.step{background:#fff;border-radius:22px;padding:26px 20px;text-align:center;box-shadow:var(--shadow-sm);
+  border:1px solid #F5E3DC;position:relative}
+.step .num{width:52px;height:52px;border-radius:50%;background:var(--rose-soft);color:var(--rose-deep);
+  font-family:'Baloo 2';font-weight:800;font-size:1.5rem;display:grid;place-items:center;margin:0 auto 14px}
+.step:nth-child(2) .num{background:#E7F0DE;color:var(--sage-deep)}
+.step:nth-child(3) .num{background:#FBF0D3;color:#C9A23E}
+.step:nth-child(4) .num{background:#E3EEF6;color:#5E8CB0}
+.step h3{font-size:1.15rem;margin-bottom:6px}
+.step p{font-size:.92rem;color:var(--brown-soft)}
+.step .em{font-size:1.8rem;margin-bottom:6px}
+
+/* CTA band */
+.cta-band{background:linear-gradient(135deg,#FBDDE1,#EAF1E4);border-radius:34px;padding:54px 34px;text-align:center;
+  box-shadow:var(--shadow);position:relative;overflow:hidden}
+.cta-band h2{font-size:clamp(1.9rem,4.6vw,2.7rem);margin-bottom:12px}
+.cta-band p{color:var(--brown-soft);font-size:1.1rem;margin-bottom:26px;max-width:46ch;margin-left:auto;margin-right:auto}
+.cta-band .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{padding:48px 0 40px;text-align:center}
+.foot-brand{display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Baloo 2';font-weight:800;font-size:1.4rem;margin-bottom:8px}
+.foot-brand img{width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow-sm)}
+.foot-links{display:flex;gap:20px;justify-content:center;margin:16px 0;font-weight:700;flex-wrap:wrap}
+.foot-links a{opacity:.85;transition:.2s}.foot-links a:hover{color:var(--rose-deep);opacity:1}
+.credit{font-size:.82rem;opacity:.6;margin-top:18px}
+
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:52px}
+  .photo-card{max-width:340px;margin:0 auto}
+  .about{grid-template-columns:1fr;gap:34px}
+  .grid-cat{grid-template-columns:1fr 1fr;gap:16px}
+  .steps{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .hero{padding:40px 0 24px}
+  .hero-stats{gap:18px}
+  .grid-cat{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .cta-band{padding:40px 22px}
+  .brand span.full{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="#" class="brand"><img src="img/logo.jpg" alt="Amimax"><span class="script">Amimax</span></a>
+    <div class="nav-links">
+      <a class="n" href="#catalogo">Catálogo</a>
+      <a class="n" href="#sobre">Sobre Amimax</a>
+      <a class="n" href="#pedir">Cómo pedir</a>
+      <a class="btn" href="https://instagram.com/amimax_26" target="_blank">💌 Encargar</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">🧶 Hechos a mano en Popayán, Cauca</span>
+      <h1>Amigurumis <span class="script">hechos con amor</span></h1>
+      <p class="lead">Muñequitos tejidos a mano, uno por uno, con lana suave y muchísimo cariño. Elegí el tuyo o pedilo a tu medida.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#catalogo">🐰 Ver catálogo</a>
+        <a class="btn ghost" href="https://instagram.com/amimax_26" target="_blank">Escribir por DM →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="s"><b>100%</b><span>a mano</span></div>
+        <div class="s"><b>∞</b><span>diseños a pedido</span></div>
+        <div class="s"><b>❤</b><span>hechos con amor</span></div>
+      </div>
+    </div>
+    <div class="photo-card">
+      <div class="frame"><img src="img/conejito.jpg" alt="Conejito amigurumi tejido a mano"></div>
+      <div class="float-chip chip-1">🧵 Tejido a mano</div>
+      <div class="float-chip chip-2">✨ Pieza única</div>
+      <div class="float-chip chip-3">📍 Popayán</div>
+      <svg class="heart" style="top:-30px;right:40px;width:26px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5-8-11a4 4 0 018-1 4 4 0 018 1c0 6-8 11-8 11z"/></svg>
+    </div>
+  </div>
+</header>
+
+<div class="marquee">
+  <div class="track">
+    <span>🧶 Personajes</span><span>🐻 Animalitos</span><span>💝 Regalos únicos</span><span>🌸 Diseños a tu medida</span><span>✨ Hechos con amor</span>
+    <span>🧶 Personajes</span><span>🐻 Animalitos</span><span>💝 Regalos únicos</span><span>🌸 Diseños a tu medida</span><span>✨ Hechos con amor</span>
+  </div>
+</div>
+
+<!-- CATALOG -->
+<section class="pad" id="catalogo">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">El catálogo</div>
+      <h2>Muñequitos listos para adoptar</h2>
+      <p>Cada pieza se teje a mano por encargo. Elegí uno de estos o pedí el tuyo personalizado.</p>
+    </div>
+    <div class="grid-cat">
+
+      <div class="card">
+        <div class="ph"><span class="badge">Personajes</span><img src="img/toad.jpg" alt="Toad amigurumi"></div>
+        <div class="body">
+          <h3>Toad 🍄</h3>
+          <p>El clásico personaje tejido con todo el detalle: gorro, chaleco y su carita tierna.</p>
+          <div class="price"><b>$65.000</b><span>COP · a pedido</span></div>
+          <a class="btn" href="https://instagram.com/amimax_26" target="_blank">Lo quiero</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ph"><span class="badge">Animalitos</span><img src="img/conejito.jpg" alt="Conejito amigurumi"></div>
+        <div class="body">
+          <h3>Conejito orejón 🐰</h3>
+          <p>Suavecito, de orejas largas y carita dulce. El compañerito perfecto para regalar.</p>
+          <div class="price"><b>$40.000</b><span>COP · a pedido</span></div>
+          <a class="btn" href="https://instagram.com/amimax_26" target="_blank">Lo quiero</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ph" style="background:linear-gradient(135deg,#FBF0D3,#FDE8E2)">
+          <span class="badge">A tu medida</span>
+          <div class="ami"><div class="doll" style="background:radial-gradient(circle at 40% 30%, #F6C9CF, #E79CA6)"></div></div>
+        </div>
+        <div class="body">
+          <h3>Diseño personalizado ✨</h3>
+          <p>¿Tenés una idea, un personaje o alguien especial en mente? Camila lo teje para vos.</p>
+          <div class="price"><b>Desde $50.000</b><span>COP · según diseño</span></div>
+          <a class="btn sage" href="https://instagram.com/amimax_26" target="_blank">Pedir el mío</a>
+        </div>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:26px;color:var(--brown-soft);font-size:.95rem">
+      🎀 Precios de referencia — el valor final depende del tamaño y el detalle de cada muñequito.
+    </p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="pad" id="sobre" style="background:linear-gradient(180deg,transparent,#FCEAE3 40%,transparent)">
+  <div class="wrap about">
+    <div class="imgs">
+      <img src="img/toad.jpg" alt="Amigurumi Toad">
+      <img src="img/conejito.jpg" alt="Amigurumi conejito">
+    </div>
+    <div class="about-text">
+      <div class="tag" style="color:var(--sage-deep);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.82rem">Detrás de cada punto</div>
+      <h2>Hola, soy <span class="rose">Camila</span> 🌸</h2>
+      <p>Desde Popayán tejo <b>Amimax</b>: amigurumis creados uno por uno, a mano, con lana suave y mucha paciencia. No hay dos iguales — cada muñequito lleva un pedacito de cariño.</p>
+      <p>Me encanta darle vida a personajes, animalitos y regalos que sacan una sonrisa. Si podés imaginarlo, seguro puedo tejerlo. 💗</p>
+      <div class="about-feats">
+        <div class="feat">🧶 Lana de calidad</div>
+        <div class="feat">✋ 100% hecho a mano</div>
+        <div class="feat">💝 Ideal para regalar</div>
+        <div class="feat">🎨 Diseños a pedido</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="pad" id="pedir">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">Así de fácil</div>
+      <h2>Cómo pedir tu amigurumi</h2>
+      <p>En cuatro pasitos tenés tu muñequito en camino.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="em">🐰</div><div class="num">1</div><h3>Elegí</h3><p>Mirá el catálogo o contame la idea que tenés en mente.</p></div>
+      <div class="step"><div class="em">💬</div><div class="num">2</div><h3>Escribime</h3><p>Me mandás DM a <b>@amimax_26</b> y acordamos diseño, tamaño y precio.</p></div>
+      <div class="step"><div class="em">🧵</div><div class="num">3</div><h3>Lo tejo</h3><p>Empiezo tu muñequito a mano, punto por punto, con todo el cariño.</p></div>
+      <div class="step"><div class="em">🎁</div><div class="num">4</div><h3>Te llega</h3><p>Coordinamos la entrega y tu amigurumi llega listo para abrazar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="pad">
+  <div class="wrap">
+    <div class="cta-band">
+      <svg class="heart" style="top:20px;left:40px;width:34px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5-8-11a4 4 0 018-1 4 4 0 018 1c0 6-8 11-8 11z"/></svg>
+      <svg class="heart" style="bottom:24px;right:60px;width:26px;color:#D9C6A0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5-8-11a4 4 0 018-1 4 4 0 018 1c0 6-8 11-8 11z"/></svg>
+      <h2>¿Listo para tu muñequito? 🧸</h2>
+      <p>Escribime por Instagram y armamos juntos el amigurumi perfecto, para vos o para regalar.</p>
+      <div class="btns">
+        <a class="btn" href="https://instagram.com/amimax_26" target="_blank">💌 Encargar por Instagram</a>
+        <a class="btn ghost" href="#catalogo">Volver al catálogo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-brand"><img src="img/logo.jpg" alt="Amimax"><span class="script rose">Amimax</span></div>
+    <p style="color:var(--brown-soft)">Amigurumis hechos con amor · Popayán, Cauca 🇨🇴</p>
+    <div class="foot-links">
+      <a href="https://instagram.com/amimax_26" target="_blank">📷 @amimax_26</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#pedir">Cómo pedir</a>
+    </div>
+    <p class="credit">Hecho con 🧶 para Amimax · página demo</p>
+  </div>
+</footer>
+
+</body>
+</html>
