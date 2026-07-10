@@ -155,6 +155,19 @@ section.pad{padding:70px 0}
 .step p{font-size:.92rem;color:var(--brown-soft)}
 .step .em{font-size:1.8rem;margin-bottom:6px}
 
+/* CONDICIONES */
+.cond-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cond-card{background:var(--card);border-radius:26px;padding:30px 28px;box-shadow:var(--shadow-sm);
+  border:1px solid #F5E3DC;display:flex;flex-direction:column;gap:22px}
+.cond-tag{align-self:flex-start;font-family:'Baloo 2';font-weight:800;font-size:.92rem;
+  padding:7px 16px;border-radius:999px;background:var(--rose-soft);color:var(--rose-deep)}
+.cond-tag.sage{background:#E7F0DE;color:var(--sage-deep)}
+.cond-item{display:flex;gap:16px;align-items:flex-start}
+.cond-ic{flex:none;width:50px;height:50px;border-radius:16px;display:grid;place-items:center;
+  font-size:1.5rem;background:#FDEFE7;box-shadow:var(--shadow-sm)}
+.cond-item h3{font-size:1.18rem;margin-bottom:4px}
+.cond-item p{color:var(--brown-soft);font-size:1rem}
+
 /* CTA band */
 .cta-band{background:linear-gradient(135deg,#FBDDE1,#EAF1E4);border-radius:34px;padding:54px 34px;text-align:center;
   box-shadow:var(--shadow);position:relative;overflow:hidden}
@@ -176,6 +189,7 @@ footer{padding:48px 0 40px;text-align:center}
   .about{grid-template-columns:1fr;gap:34px}
   .grid-cat{grid-template-columns:1fr 1fr;gap:16px}
   .steps{grid-template-columns:1fr 1fr}
+  .cond-grid{grid-template-columns:1fr}
 }
 @media(max-width:560px){
   .hero{padding:40px 0 24px}
@@ -196,7 +210,8 @@ footer{padding:48px 0 40px;text-align:center}
       <a class="n" href="#catalogo">Catálogo</a>
       <a class="n" href="#sobre">Sobre Amimax</a>
       <a class="n" href="#pedir">Cómo pedir</a>
-      <a class="btn" href="https://instagram.com/amimax_26" target="_blank">💌 Encargar</a>
+      <a class="n" href="#condiciones">Condiciones</a>
+      <a class="btn" href="https://wa.me/573003948740?text=Hola%20Amimax!%20Quiero%20encargar%20un%20amigurumi%20%F0%9F%A7%B6" target="_blank">💬 Pedir por WhatsApp</a>
     </div>
   </div>
 </nav>
@@ -209,8 +224,8 @@ footer{padding:48px 0 40px;text-align:center}
       <h1>Amigurumis <span class="script">hechos con amor</span></h1>
       <p class="lead">Muñequitos tejidos a mano, uno por uno, con lana suave y muchísimo cariño. Elegí el tuyo o pedilo a tu medida.</p>
       <div class="hero-cta">
-        <a class="btn" href="#catalogo">🐰 Ver catálogo</a>
-        <a class="btn ghost" href="https://instagram.com/amimax_26" target="_blank">Escribir por DM →</a>
+        <a class="btn" href="https://wa.me/573003948740?text=Hola%20Amimax!%20Quiero%20encargar%20un%20amigurumi%20%F0%9F%A7%B6" target="_blank">💬 Pedir por WhatsApp</a>
+        <a class="btn ghost" href="#catalogo">🐰 Ver catálogo</a>
       </div>
       <div class="hero-stats">
         <div class="s"><b>100%</b><span>a mano</span></div>
@@ -251,7 +266,7 @@ footer{padding:48px 0 40px;text-align:center}
           <h3>Toad 🍄</h3>
           <p>El clásico personaje tejido con todo el detalle: gorro, chaleco y su carita tierna.</p>
           <div class="price"><b>$65.000</b><span>COP · a pedido</span></div>
-          <a class="btn" href="https://instagram.com/amimax_26" target="_blank">Lo quiero</a>
+          <a class="btn" href="https://wa.me/573003948740?text=Hola%20Amimax!%20Quiero%20encargar%20el%20Toad%20%F0%9F%8D%84" target="_blank">Lo quiero</a>
         </div>
       </div>
 
@@ -261,7 +276,7 @@ footer{padding:48px 0 40px;text-align:center}
           <h3>Conejito orejón 🐰</h3>
           <p>Suavecito, de orejas largas y carita dulce. El compañerito perfecto para regalar.</p>
           <div class="price"><b>$40.000</b><span>COP · a pedido</span></div>
-          <a class="btn" href="https://instagram.com/amimax_26" target="_blank">Lo quiero</a>
+          <a class="btn" href="https://wa.me/573003948740?text=Hola%20Amimax!%20Quiero%20encargar%20el%20conejito%20orej%C3%B3n%20%F0%9F%90%B0" target="_blank">Lo quiero</a>
         </div>
       </div>
 
@@ -274,7 +289,7 @@ footer{padding:48px 0 40px;text-align:center}
           <h3>Diseño personalizado ✨</h3>
           <p>¿Tenés una idea, un personaje o alguien especial en mente? Camila lo teje para vos.</p>
           <div class="price"><b>Desde $50.000</b><span>COP · según diseño</span></div>
-          <a class="btn sage" href="https://instagram.com/amimax_26" target="_blank">Pedir el mío</a>
+          <a class="btn sage" href="https://wa.me/573003948740?text=Hola%20Amimax!%20Quiero%20un%20amigurumi%20personalizado%20%E2%9C%A8" target="_blank">Pedir el mío</a>
         </div>
       </div>
 
@@ -316,10 +331,48 @@ footer{padding:48px 0 40px;text-align:center}
       <p>En cuatro pasitos tenés tu muñequito en camino.</p>
     </div>
     <div class="steps">
-      <div class="step"><div class="em">🐰</div><div class="num">1</div><h3>Elegí</h3><p>Mirá el catálogo o contame la idea que tenés en mente.</p></div>
-      <div class="step"><div class="em">💬</div><div class="num">2</div><h3>Escribime</h3><p>Me mandás DM a <b>@amimax_26</b> y acordamos diseño, tamaño y precio.</p></div>
-      <div class="step"><div class="em">🧵</div><div class="num">3</div><h3>Lo tejo</h3><p>Empiezo tu muñequito a mano, punto por punto, con todo el cariño.</p></div>
-      <div class="step"><div class="em">🎁</div><div class="num">4</div><h3>Te llega</h3><p>Coordinamos la entrega y tu amigurumi llega listo para abrazar.</p></div>
+      <div class="step"><div class="em">🐰</div><div class="num">1</div><h3>Elegí y escribime</h3><p>Mirá el catálogo o contame tu idea por <b>WhatsApp</b>. Acordamos diseño, tamaño y precio.</p></div>
+      <div class="step"><div class="em">💳</div><div class="num">2</div><h3>Abonás el 50%</h3><p>Para agendar tu pedido, hacés un abono del <b>50%</b> por transferencia a Bancolombia.</p></div>
+      <div class="step"><div class="em">🧵</div><div class="num">3</div><h3>Lo tejo</h3><p>Empiezo tu muñequito a mano, punto por punto. Toma entre <b>5 y 6 días</b>.</p></div>
+      <div class="step"><div class="em">📸</div><div class="num">4</div><h3>Aprobás y pagás</h3><p>Te mando una foto para tu aprobación; pagás el <b>saldo</b> y coordinamos la entrega. 🎁</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONDICIONES -->
+<section class="pad" id="condiciones" style="background:linear-gradient(180deg,transparent,#FCEAE3 45%,transparent)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">Antes de pedir</div>
+      <h2>Condiciones y pago</h2>
+      <p>Cositas importantes para que tu pedido salga perfecto. 💗</p>
+    </div>
+    <div class="cond-grid">
+
+      <div class="cond-card">
+        <span class="cond-tag rose">🧶 Importante</span>
+        <div class="cond-item">
+          <div class="cond-ic">🤲</div>
+          <div><h3>Hechos a mano</h3><p>Son productos elaborados completamente a mano, por lo que requieren tiempo, dedicación y mucho cariño.</p></div>
+        </div>
+        <div class="cond-item">
+          <div class="cond-ic">📅</div>
+          <div><h3>Agendá tu pedido</h3><p>Por eso te pedimos agendar con anticipación, <b>mínimo entre 5 y 6 días</b>.</p></div>
+        </div>
+      </div>
+
+      <div class="cond-card">
+        <span class="cond-tag sage">💳 Pago</span>
+        <div class="cond-item">
+          <div class="cond-ic">💰</div>
+          <div><h3>Abono y método de pago</h3><p>Para agendar correctamente, se realiza un <b>abono del 50%</b> del total. Recibimos pagos por <b>transferencia a Bancolombia</b>.</p></div>
+        </div>
+        <div class="cond-item">
+          <div class="cond-ic">📸</div>
+          <div><h3>Saldo al aprobar</h3><p>Cuando tu pedido esté terminado, te enviamos una foto para su aprobación. En ese momento pagás el <b>saldo pendiente</b>.</p></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -331,11 +384,12 @@ footer{padding:48px 0 40px;text-align:center}
       <svg class="heart" style="top:20px;left:40px;width:34px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5-8-11a4 4 0 018-1 4 4 0 018 1c0 6-8 11-8 11z"/></svg>
       <svg class="heart" style="bottom:24px;right:60px;width:26px;color:#D9C6A0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5-8-11a4 4 0 018-1 4 4 0 018 1c0 6-8 11-8 11z"/></svg>
       <h2>¿Listo para tu muñequito? 🧸</h2>
-      <p>Escribime por Instagram y armamos juntos el amigurumi perfecto, para vos o para regalar.</p>
+      <p>Escribime por WhatsApp y armamos juntos el amigurumi perfecto, para vos o para regalar.</p>
       <div class="btns">
-        <a class="btn" href="https://instagram.com/amimax_26" target="_blank">💌 Encargar por Instagram</a>
-        <a class="btn ghost" href="#catalogo">Volver al catálogo</a>
+        <a class="btn sage" href="https://wa.me/573003948740?text=Hola%20Amimax!%20Quiero%20encargar%20un%20amigurumi%20%F0%9F%A7%B6" target="_blank">💬 Pedir por WhatsApp</a>
+        <a class="btn ghost" href="https://instagram.com/amimax_26" target="_blank">📷 Ver en Instagram</a>
       </div>
+      <p style="margin:18px auto 0;font-weight:700;font-family:'Baloo 2';color:var(--brown)">📞 +57 300 3948740</p>
     </div>
   </div>
 </section>
@@ -346,9 +400,10 @@ footer{padding:48px 0 40px;text-align:center}
     <div class="foot-brand"><img src="img/logo.jpg" alt="Amimax"><span class="script rose">Amimax</span></div>
     <p style="color:var(--brown-soft)">Amigurumis hechos con amor · Popayán, Cauca 🇨🇴</p>
     <div class="foot-links">
+      <a href="https://wa.me/573003948740" target="_blank">💬 WhatsApp +57 300 3948740</a>
       <a href="https://instagram.com/amimax_26" target="_blank">📷 @amimax_26</a>
       <a href="#catalogo">Catálogo</a>
-      <a href="#pedir">Cómo pedir</a>
+      <a href="#condiciones">Condiciones</a>
     </div>
     <p class="credit">Hecho con 🧶 para Amimax · página demo</p>
   </div>
