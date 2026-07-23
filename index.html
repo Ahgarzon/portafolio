@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ángel Garzón Sarzosa — Arquitecto de Soluciones IA</title>
-<meta name="description" content="Construyo empleados virtuales con IA que venden, atienden y operan solos. Segundos cerebros, agentes de voz y ventas, anti-fraude y automatización de grado producción. Popayán, Colombia." />
+<meta name="description" content="Construyo sistemas de IA a la medida que venden, atienden y hacen crecer tu negocio. Segundos cerebros, agentes de voz y ventas, anti-fraude y automatización de grado producción. Popayán, Colombia." />
 <meta property="og:title" content="Ángel Garzón Sarzosa — Arquitecto de Soluciones IA" />
 <meta property="og:description" content="Empleados virtuales con IA que venden, atienden y operan solos. De segundos cerebros a agentes de voz y ventas." />
 <meta name="theme-color" content="#05070e" />
@@ -330,7 +330,7 @@
       <div class="hero-grid">
         <div>
           <span class="eyebrow"><span class="ping"></span> Arquitecto de Soluciones IA · Popayán, Colombia</span>
-          <h1>Construyo <span class="g">empleados virtuales</span> con IA que venden, atienden y operan solos.</h1>
+          <h1>Construyo <span class="g">sistemas de IA a la medida</span> que venden, atienden y hacen crecer tu negocio.</h1>
           <p class="lede">Desde <b>segundos cerebros</b> hasta <b>agentes de voz y ventas</b>: destrabo cuellos de botella, aumento las ventas y la productividad y llevo tu operación al siguiente nivel. No son chatbots que improvisan — <b>entienden, ejecutan con criterio y dejan registro de todo.</b></p>
           <div class="cta-row">
             <a class="btn btn-primary" href="#proyectos">Ver lo que construyo →</a>
@@ -351,8 +351,8 @@
           <div class="reel-frame">
             <span class="reel-tag"><span class="ping"></span> 60 s con Ángel</span>
             <button class="reel-sound" type="button" aria-label="Activar sonido"
-              onclick="var v=this.parentNode.querySelector('video'); v.muted=!v.muted; if(!v.muted){v.play()} this.textContent=v.muted?'🔇 Sonido':'🔊 Sonido';">🔊 Sonido</button>
-            <video class="reel" poster="assets/angel-reel-poster.jpg" playsinline muted autoplay loop preload="metadata" controls>
+              onclick="var v=document.getElementById('angelReel'); v.muted=!v.muted; if(!v.muted){v.play()} this.textContent=v.muted?'🔇 Sonido':'🔊 Sonido';">🔊 Sonido</button>
+            <video id="angelReel" class="reel" poster="assets/angel-reel-poster.jpg" playsinline muted autoplay loop preload="metadata" controls>
               <source src="assets/angel-reel.mp4" type="video/mp4" />
             </video>
           </div>
@@ -679,7 +679,7 @@
           <span class="tag">✓ $120.000 con dominio incluido</span>
         </div>
         <div class="cta-row" style="justify-content:center">
-          <a class="btn btn-primary" href="https://n8n.angelautomatizacionesn8n.xyz/webhook/generador-webs" target="_blank" rel="noopener">Quiero mi página web →</a>
+          <a class="btn btn-primary" href="https://angelszs.site/generador-webs" target="_blank" rel="noopener">Quiero mi página web →</a>
         </div>
       </div>
     </div>
@@ -808,6 +808,27 @@
     requestAnimationFrame(draw);
   }
   draw();
+</script>
+<script>
+  /* El reel arranca en mudo (los navegadores no permiten audio automatico al cargar).
+     Apenas el usuario interactua por primera vez (toque, click, scroll o tecla), se activa el sonido. */
+  (function(){
+    var v = document.getElementById('angelReel');
+    if(!v) return;
+    var btn = document.querySelector('.reel-sound');
+    var done = false;
+    function activarSonido(){
+      if(done) return; done = true;
+      v.muted = false;
+      var p = v.play();
+      if(p && p.catch){ p.catch(function(){}); }
+      if(btn){ btn.textContent = '🔊 Sonido'; }
+      quitar();
+    }
+    var eventos = ['pointerdown','touchstart','keydown','scroll','click'];
+    function quitar(){ eventos.forEach(function(e){ window.removeEventListener(e, activarSonido, true); }); }
+    eventos.forEach(function(e){ window.addEventListener(e, activarSonido, {capture:true, passive:true}); });
+  })();
 </script>
 </body>
 </html>
