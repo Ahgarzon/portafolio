@@ -139,7 +139,10 @@
   @media(max-width:920px){
     .hero-grid{grid-template-columns:1fr; gap:56px}
     .hero-visual{max-width:380px; margin:0 auto; width:100%}
-    .chip.c1{left:-14px} .chip.c2{right:-12px}
+    /* en móvil los letreros ya no flotan sobre el video: se apilan debajo para no taparlo */
+    .reel-wrap{display:flex; flex-direction:column; align-items:center; gap:12px}
+    .reel-wrap .chip{position:static; animation:none; width:100%; max-width:340px; margin:0}
+    .reel-wrap .chip.c1,.reel-wrap .chip.c2,.reel-wrap .chip.c3{top:auto;bottom:auto;left:auto;right:auto}
   }
 
   /* marquee */
@@ -584,6 +587,24 @@
           </div>
         </article>
 
+        <!-- 08 -->
+        <article class="pcard reveal">
+          <div class="pcard-in">
+            <div class="pcard-body">
+              <div class="pmeta"><span class="pnum">08</span><span class="pbadge">Impacto social</span><span class="pcat">Emergencia · Comunidad</span></div>
+              <h3>Ayúdame Colombia</h3>
+              <p class="ptag">La ayuda que llega a quien de verdad la necesita — sin duplicarse ni perderse.</p>
+              <div class="pblocks">
+                <div class="pblock pb-prob"><span class="lbl">El problema</span><p>Tras una emergencia —un terremoto, una inundación— la ayuda se desborda y se descoordina: a un punto le sobra comida mientras a otro le falta todo, las donaciones se pierden o se repiten, y las familias buscan a sus desaparecidos a ciegas, sin saber quién los vio ni dónde.</p></div>
+                <div class="pblock"><span class="lbl">La solución</span><p>Una <b>app web (PWA) instalable que funciona sin señal</b>, con un <b>mapa vivo de necesidades</b>: cada punto muestra qué falta y qué sobra, cruza lo que sobra en un lado con quien lo necesita más cerca, registra las entregas con foto, lleva las cuentas y aportes, y tiene una sección de <b>personas desaparecidas</b> donde cualquiera puede reportar si vio a alguien o dar información a la familia.</p></div>
+                <div class="pblock pb-imp"><span class="lbl">El impacto</span><p>La ayuda deja de perderse: llega <b>en horas, no en semanas</b>, exactamente a donde hace falta. Ya está <b>viva y en uso real</b>, coordinando ayuda entre decenas de personas de todo el país tras la emergencia.</p></div>
+              </div>
+              <div class="ptech tags"><span class="tag">PWA offline</span><span class="tag">Mapa en vivo</span><span class="tag">Personas desaparecidas</span><span class="tag">n8n</span><span class="tag">Supabase</span><span class="tag">Vercel</span></div>
+              <a class="plink" href="https://xn--aydamecolombia-mrb.space" target="_blank" rel="noopener">ayúdamecolombia.space ↗</a>
+            </div>
+          </div>
+        </article>
+
       </div>
 
       <!-- MÁS SOLUCIONES -->
@@ -593,43 +614,43 @@
       </div>
       <div class="more">
         <div class="mcard reveal">
-          <div class="top"><span class="mn">08</span><span class="mtag">Condecorado · Congreso</span></div>
+          <div class="top"><span class="mn">09</span><span class="mtag">Condecorado · Congreso</span></div>
           <h4>TourMaps — TourCauca</h4>
           <p>App de turismo para Popayán y el Cauca que guía rutas y puntos turísticos. Lideré su estructuración conceptual y tecnológica → condecorada con la Orden de la Democracia por el Congreso.</p>
           <a href="https://play.google.com/store/apps/details?id=com.gopluss.tourmapsgo" target="_blank" rel="noopener">Google Play ↗</a>
         </div>
         <div class="mcard reveal">
-          <div class="top"><span class="mn">09</span><span class="mtag">ERP · Fintech</span></div>
+          <div class="top"><span class="mn">10</span><span class="mtag">ERP · Fintech</span></div>
           <h4>Dropi — ERP financiero</h4>
           <p>Back-office contable automatizado: OCR de facturas, conciliación, conversión de divisas y archivos de pago ACH/COBRE → redujo la auditoría un 70% y aceleró los pagos.</p>
         </div>
         <div class="mcard reveal">
-          <div class="top"><span class="mn">10</span><span class="mtag">Salud · Clínicas</span></div>
+          <div class="top"><span class="mn">11</span><span class="mtag">Salud · Clínicas</span></div>
           <h4>Dental SDR</h4>
           <p>Recepcionista digital con IA: atiende, resuelve precios/horarios/cobertura, agenda en el calendario y envía recordatorios → agenda llena y menos ausencias.</p>
         </div>
         <div class="mcard reveal">
-          <div class="top"><span class="mn">11</span><span class="mtag">Coaching · Objetivos</span></div>
+          <div class="top"><span class="mn">12</span><span class="mtag">Coaching · Objetivos</span></div>
           <h4>Coach IA</h4>
           <p>Un coach por Telegram que acompaña día a día, mide el avance, manda recordatorios y mantiene el foco → más metas cumplidas y hábitos sostenidos.</p>
         </div>
         <div class="mcard reveal">
-          <div class="top"><span class="mn">12</span><span class="mtag">E-commerce</span></div>
+          <div class="top"><span class="mn">13</span><span class="mtag">E-commerce</span></div>
           <h4>Proyecto Fénix</h4>
           <p>Ecosistema e-commerce con soporte 24/7 + motor de reportes (operativos, cierre mensual, detección de envíos sin movimiento) → logística bajo control.</p>
         </div>
         <div class="mcard reveal">
-          <div class="top"><span class="mn">13</span><span class="mtag">Ventas técnicas</span></div>
+          <div class="top"><span class="mn">14</span><span class="mtag">Ventas técnicas</span></div>
           <h4>Cotización Multi-Agente</h4>
           <p>Agentes que leen catálogos y consultan un motor de precios propio → cotizaciones exactas en minutos; el experto solo aprueba.</p>
         </div>
         <div class="mcard reveal">
-          <div class="top"><span class="mn">14</span><span class="mtag">Dropshipping</span></div>
+          <div class="top"><span class="mn">15</span><span class="mtag">Dropshipping</span></div>
           <h4>Radar de Productos Ganadores</h4>
           <p>Inteligencia de productos: detecta y analiza productos ganadores → decisiones de catálogo con datos, no corazonadas.</p>
         </div>
         <div class="mcard reveal">
-          <div class="top"><span class="mn">15</span><span class="mtag">Finanzas personales</span></div>
+          <div class="top"><span class="mn">16</span><span class="mtag">Finanzas personales</span></div>
           <h4>Asistente Personal Contable</h4>
           <p>Ordena la contabilidad y recuerda cada pago → nunca más se te pasa una fecha ni te llegan recargos por olvido.</p>
         </div>
