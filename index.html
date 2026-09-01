@@ -787,7 +787,7 @@
               <a class="plink" href="https://xn--aydamecolombia-mrb.space" target="_blank" rel="noopener">ayúdamecolombia.space ↗</a>
             </div>
             <div class="pcard-media">
-              <div class="m"><img src="assets/ayudame/mapa.jpg" alt="Mapa de Ayúdame Colombia: qué falta y qué ya llegó, punto por punto" loading="lazy"><span class="mcap">el mapa · qué falta y qué ya llegó</span></div>
+              <div class="m"><img src="assets/ayudame/mapa-real.jpg" alt="Mapa en vivo de Ayúdame Colombia con los puntos reportados en todo el país" loading="lazy"><span class="mcap">el mapa en vivo · puntos reales</span></div>
             </div>
           </div>
         </article>
@@ -852,14 +852,25 @@
       <div class="sec-head reveal">
         <div class="kicker">En televisión</div>
         <h2>Ayúdame Colombia, <span class="g">en los noticieros</span>.</h2>
-        <p class="section-lede">La plataforma que levanté en plena emergencia salió en 90 Minutos, Telemedellín y Cable Noticias. Esta es la nota completa.</p>
       </div>
-      <div class="tvwrap reveal">
+      <div class="tvcaja reveal">
         <video class="tvvid" controls preload="none" playsinline poster="assets/ayudame/poster.jpg">
           <source src="assets/ayudame/90minutos-ayudame.mp4" type="video/mp4">
         </video>
+        <div class="tvinfo">
+          <div class="lbl2">Así me presentaron al aire</div>
+          <p class="tvcita">«Ingeniero y <span>creador de la plataforma</span>»</p>
+          <div class="tvquien">Noticiero 90 Minutos · agosto de 2026</div>
+          <div class="tvcanales">
+            <span class="medio"><b>90 Minutos</b></span>
+            <span class="medio"><b>Telemedellín</b></span>
+            <span class="medio"><b>Cable Noticias</b></span>
+          </div>
+          <p class="section-lede" style="margin:0">La plataforma que levanté en plena emergencia salió en tres canales nacionales. Esta es la nota completa: qué resuelve, cómo funciona y a quién le está llegando.</p>
+          <a class="plink" href="https://xn--aydamecolombia-mrb.space" target="_blank" rel="noopener">Ver la plataforma ↗</a>
+          <p class="tvpie">2 minutos · con audio</p>
+        </div>
       </div>
-      <p class="tvpie reveal">Noticiero 90 Minutos · agosto de 2026 · la nota completa, 2 minutos</p>
     </div>
   </section>
 
@@ -904,24 +915,29 @@ a.medio:hover{border-color:rgba(56,189,248,.55);transform:translateY(-1px)}
 .medio b{font-family:var(--disp);font-weight:600;font-size:12.5px;color:#fff}
 .medio .fec{color:var(--muted)}
 
-/* La nota salio en television, y en television el video ES el argumento: se ve a Angel en pantalla
-   presentado como el creador. Por eso tiene banda propia a todo el ancho, y no una miniatura.
-   El video original es vertical y no se puede volver horizontal sin cortarle los rotulos, asi que
-   se centra nitido sobre un desenfoque de si mismo: llena el ancho sin perder nada. */
-.tvband{padding:70px 0 10px}
-.tvwrap{position:relative;width:100%;max-width:1080px;margin:0 auto;aspect-ratio:16/9;
-  border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#05070e;
-  display:flex;align-items:center;justify-content:center}
-.tvwrap::before{content:"";position:absolute;inset:-6%;
-  background:url(assets/ayudame/fondo.jpg) center/cover no-repeat;
-  filter:blur(26px) saturate(.75) brightness(.5);transform:scale(1.15)}
-.tvvid{position:relative;z-index:1;height:100%;width:auto;max-width:100%;display:block;
-  border-radius:6px;box-shadow:0 18px 60px rgba(0,0,0,.55)}
-.tvpie{max-width:1080px;margin:14px auto 0;font-family:var(--mono);font-size:11.5px;
-  color:var(--muted);text-align:center}
-@media(max-width:820px){
-  .tvband{padding:48px 0 6px}
-  .tvwrap{aspect-ratio:3/4;max-width:440px;border-radius:14px}
+/* La nota salio en television, y ahi el video ES el argumento: se ve a Angel presentado como el
+   creador de la plataforma. Pero el archivo es VERTICAL y no se puede volver horizontal: se probo
+   el recorte 16:9 anclado abajo -el unico que conserva el rotulo con su nombre- y solo deja una
+   franja del pie de imagen. Asi que lo horizontal es la BANDA, no el video: en computador van dos
+   columnas -video entero a un lado, contenido al otro-, y en celular una sola, el video arriba. */
+.tvband{padding:74px 0 20px}
+.tvcaja{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:34px;align-items:center;
+  max-width:1000px;margin:0 auto;padding:26px;border:1px solid var(--line);border-radius:20px;
+  background:linear-gradient(135deg,rgba(56,189,248,.05),rgba(255,255,255,.015))}
+.tvvid{width:100%;height:auto;display:block;border-radius:14px;background:#05070e;
+  box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.tvinfo .lbl2{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.14em;
+  color:var(--muted)}
+.tvcita{font-family:var(--disp);font-size:clamp(19px,2.4vw,27px);font-weight:600;line-height:1.25;
+  color:#fff;margin:12px 0 6px}
+.tvcita span{color:var(--c1)}
+.tvquien{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-bottom:20px}
+.tvcanales{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.tvpie{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px}
+@media(max-width:860px){
+  .tvband{padding:50px 0 14px}
+  .tvcaja{grid-template-columns:1fr;gap:22px;padding:18px;border-radius:16px}
+  .tvvid{max-width:420px;margin:0 auto}
 }
 </style>
   <section id="tu-web">
