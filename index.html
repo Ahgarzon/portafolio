@@ -223,10 +223,12 @@
   /* Capturas de conversaciones reales. Van CONTAIN y sin el filtro gris de las demas imagenes:
    estas no son decoracion, son la prueba, y hay que poder leerlas. Recortarlas como una foto
    dejaria el chat cortado por la mitad, y en gris el WhatsApp no se reconoce. */
-.pcard-media.cuatro{grid-template-columns:1fr 1fr}
+.pcard-media.cuatro,
+.pcard-media.chats{grid-template-columns:1fr 1fr}
 .m.chat{background:#0b1220}
 .pcard-media .m.chat img{object-fit:contain;object-position:top center;filter:none;padding:6px}
-@media(max-width:900px){ .pcard-media.cuatro{grid-template-columns:1fr} }
+@media(max-width:900px){ .pcard-media.cuatro,
+  .pcard-media.chats{grid-template-columns:1fr} }
 .pcard-media::after{content:''; position:absolute; inset:0; background:linear-gradient(150deg,rgba(var(--c1-rgb),.16),rgba(var(--c2-rgb),.20)); mix-blend-mode:color; pointer-events:none; transition:.6s}
   .pcard:hover .pcard-media img{filter:grayscale(0) contrast(1.04) brightness(1); transform:scale(1.04)}
   .pcard:hover .pcard-media::after{opacity:0}
@@ -730,7 +732,7 @@
               </div>
               <div class="ptech tags"><span class="tag">WhatsApp</span><span class="tag">IA conversacional</span><span class="tag">Omnicanal</span><span class="tag">Carritos abandonados</span><span class="tag">Confirmación COD</span><span class="tag">n8n</span></div>
             </div>
-            <div class="pcard-media">
+            <div class="pcard-media chats">
               <div class="m chat"><img src="assets/casos/xoxo1-web.jpg" alt="El sistema saluda al cliente, le ofrece confirmar o cancelar el pedido y le responde el precio" loading="lazy"><span class="mcap">confirma el pedido y responde el precio, solo</span></div>
               <div class="m chat"><img src="assets/casos/xoxo2-web.jpg" alt="El pedido queda confirmado y pasa a despacho" loading="lazy"><span class="mcap">confirmado y a despacho, sin intervenir</span></div>
             </div>
