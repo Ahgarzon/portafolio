@@ -462,165 +462,6 @@
 
   <!-- PROYECTOS -->
   <!-- ================= JARVIS (proyecto insignia) ================= -->
-  <section id="jarvis" data-no-i18n>
-    <style>
-      #jarvis{position:relative; padding:96px 0 84px; overflow:hidden;
-        background:
-          radial-gradient(120% 90% at 78% 8%, rgba(53,226,255,.10), transparent 55%),
-          linear-gradient(180deg, #060a14 0%, #080d1a 55%, #060912 100%);
-        border-top:1px solid rgba(53,226,255,.16); border-bottom:1px solid var(--line)}
-      #jarvis .jv-radar{position:absolute; top:-140px; right:-180px; width:640px; height:640px; pointer-events:none; opacity:.5}
-      #jarvis .jv-head{display:flex; align-items:center; gap:28px; flex-wrap:wrap; margin-bottom:14px}
-      #jarvis .jv-logo{width:118px; height:118px; border-radius:26px; flex:none;
-        box-shadow:0 0 0 1px rgba(53,226,255,.35), 0 22px 60px rgba(53,226,255,.28); background:#000}
-      #jarvis .jv-kicker{font-family:var(--mono); font-size:12.5px; letter-spacing:.32em; text-transform:uppercase;
-        color:var(--c1); display:flex; align-items:center; gap:9px}
-      #jarvis .jv-kicker::before{content:none}
-      #jarvis h2.jv-title{font-family:var(--disp); font-weight:800; font-size:clamp(46px,8vw,88px); line-height:.98;
-        letter-spacing:.04em; margin:8px 0 6px;
-        background:linear-gradient(120deg,#eaf6ff,#35e2ff 55%,#7c8bff); -webkit-background-clip:text; background-clip:text; color:transparent}
-      #jarvis .jv-tag{font-family:var(--disp); font-weight:600; font-size:clamp(18px,2.4vw,23px); color:var(--ink); margin:0}
-      #jarvis .jv-tag b{color:var(--c1)}
-      #jarvis .jv-lede{max-width:760px; color:var(--muted); font-size:16.5px; line-height:1.7; margin:20px 0 0}
-      #jarvis .jv-lede b{color:#dbe6f7; font-weight:600}
-      #jarvis .jv-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:44px}
-      #jarvis .jv-card{background:rgba(255,255,255,.028); border:1px solid var(--line); border-radius:18px; padding:24px 22px;
-        border-top:2px solid rgba(53,226,255,.55)}
-      #jarvis .jv-card h3{font-family:var(--disp); font-weight:700; font-size:18px; margin:0 0 12px; color:var(--ink); display:flex; align-items:center; gap:9px}
-      #jarvis .jv-ic{width:30px; height:30px; border-radius:9px; display:grid; place-items:center; flex:none;
-        background:rgba(53,226,255,.12); border:1px solid rgba(53,226,255,.3); font-size:15px}
-      #jarvis .jv-li{display:flex; gap:10px; align-items:flex-start; color:var(--muted); font-size:14.5px; line-height:1.5; padding:6px 0; border-top:1px solid rgba(255,255,255,.05)}
-      #jarvis .jv-li:first-of-type{border-top:0}
-      #jarvis .jv-li b{color:#dbe6f7; font-weight:600}
-      #jarvis .jv-dot{color:var(--c1); flex:none; margin-top:2px}
-      #jarvis .jv-carriles{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px}
-      #jarvis .jv-lane{background:rgba(53,226,255,.05); border:1px solid rgba(53,226,255,.16); border-radius:14px; padding:16px}
-      #jarvis .jv-lane .n{font-family:var(--mono); font-size:12px; color:var(--c1); letter-spacing:.1em}
-      #jarvis .jv-lane .t{font-family:var(--disp); font-weight:700; font-size:15px; color:var(--ink); margin:6px 0 4px}
-      #jarvis .jv-lane .d{color:var(--muted); font-size:13px; line-height:1.45}
-      #jarvis .jv-lane .ms{font-family:var(--mono); font-size:11.5px; color:#7fe6ff; margin-top:8px; display:inline-block}
-      #jarvis .jv-band{margin-top:16px; background:linear-gradient(100deg,rgba(124,139,255,.12),rgba(53,226,255,.06));
-        border:1px solid rgba(124,139,255,.24); border-radius:18px; padding:26px 24px; grid-column:1/-1}
-      #jarvis .jv-band h3{color:var(--ink)} #jarvis .jv-band .jv-ic{background:rgba(124,139,255,.16); border-color:rgba(124,139,255,.34)}
-      #jarvis .jv-future{grid-column:1/-1; border-top-color:rgba(124,139,255,.55)}
-      #jarvis .jv-fgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:6px}
-      #jarvis .jv-fitem{background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:13px; padding:15px 14px}
-      #jarvis .jv-fitem .fi{font-size:20px} #jarvis .jv-fitem b{display:block; color:#dbe6f7; font-size:14px; margin:7px 0 3px; font-weight:600}
-      #jarvis .jv-fitem span{color:var(--muted); font-size:12.5px; line-height:1.4}
-      #jarvis .jv-foot{display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; align-items:center}
-      #jarvis .jv-chip{font-family:var(--mono); font-size:12.5px; color:#bfe9ff; background:rgba(53,226,255,.08);
-        border:1px solid rgba(53,226,255,.24); border-radius:999px; padding:8px 15px}
-      #jarvis .jv-link{font-family:var(--disp); font-weight:600; font-size:14px; color:#04121c; text-decoration:none;
-        background:linear-gradient(90deg,#35e2ff,#7c8bff); padding:11px 20px; border-radius:11px;
-        box-shadow:0 0 26px rgba(53,226,255,.35); transition:.25s}
-      #jarvis .jv-link:hover{box-shadow:0 0 40px rgba(53,226,255,.6); transform:translateY(-1px)}
-      @media(max-width:900px){
-        #jarvis .jv-grid,#jarvis .jv-carriles,#jarvis .jv-fgrid{grid-template-columns:1fr}
-        #jarvis .jv-fgrid{grid-template-columns:1fr 1fr}
-        #jarvis .jv-logo{width:88px; height:88px}
-        #jarvis .jv-radar{display:none}
-      }
-    </style>
-
-    <svg class="jv-radar" viewBox="0 0 200 200" aria-hidden="true">
-      <g fill="none" stroke="rgba(53,226,255,.5)" stroke-width=".6">
-        <circle cx="100" cy="100" r="30"/><circle cx="100" cy="100" r="55"/>
-        <circle cx="100" cy="100" r="80" stroke="rgba(124,139,255,.4)"/><circle cx="100" cy="100" r="98" stroke="rgba(124,139,255,.28)"/>
-      </g>
-      <circle cx="100" cy="100" r="6" fill="#35e2ff"/>
-    </svg>
-
-    <div class="container">
-      <div class="jv-head">
-        <img class="jv-logo" src="assets/jarvis-icono.jpg" alt="Logo de Jarvis" loading="lazy" />
-        <div>
-          <div class="jv-kicker">Proyecto insignia · ZOSA</div>
-          <h2 class="jv-title">JARVIS</h2>
-          <p class="jv-tag">Tu <b>empleado que sí hace</b>. No solo responde.</p>
-        </div>
-      </div>
-
-      <p class="jv-lede">
-        Alexa, Siri y Google ejecutan comandos fijos que alguien programó de antemano. <b>Jarvis es otra
-        categoría: es una IA con manos.</b> No tiene un menú cerrado de habilidades: escucha, entiende, razona,
-        decide y <b>opera sistemas reales</b> — el computador, el negocio y la nube — con voz, en español colombiano.
-        Vive en el PC de Ángel y también en la nube, así que responde desde el celular aunque el computador esté apagado.
-      </p>
-
-      <div class="jv-grid">
-
-        <!-- QUÉ CONTIENE / ARQUITECTURA -->
-        <div class="jv-card">
-          <h3><span class="jv-ic">🧠</span> Qué contiene</h3>
-          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Cerebro:</b> Claude (Anthropic) con el segundo cerebro de Ángel cargado — sabe en qué anda sin que se lo cuenten.</span></div>
-          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Oído:</b> transcripción por voz (Whisper) en el PC y en el servidor.</span></div>
-          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Voz:</b> Edge TTS colombiana (es-CO), natural y gratis.</span></div>
-          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Manos:</b> un agente en el PC + herramientas del servidor (n8n, repos, bases).</span></div>
-          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Memoria viva:</b> un "digesto" que se regenera cada 5 min con proyectos, pendientes y recordatorios.</span></div>
-        </div>
-
-        <!-- DÓNDE VIVE -->
-        <div class="jv-card">
-          <h3><span class="jv-ic">🌐</span> Dónde vive</h3>
-          <div class="jv-li"><span class="jv-dot">▹</span><span><b>En el PC</b> — controla Word, Excel y Chrome con sus sesiones reales; abre, escribe y busca.</span></div>
-          <div class="jv-li"><span class="jv-dot">▹</span><span><b>En la nube</b> — <b>jarvis.angelszs.site</b>, sobre VPS propio; funciona desde el celular sin el PC prendido.</span></div>
-          <div class="jv-li"><span class="jv-dot">▹</span><span>El PC llama al servidor y espera trabajo (long polling): sin abrir puertos, sin IP fija, seguro.</span></div>
-          <div class="jv-li"><span class="jv-dot">▹</span><span>Sesión que dura y sobrevive a reinicios: entra una vez y queda.</span></div>
-        </div>
-
-        <!-- QUÉ PUEDE HACER HOY -->
-        <div class="jv-card">
-          <h3><span class="jv-ic">⚡</span> Qué puede hacer hoy</h3>
-          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Habla y entiende</b> — conversa por voz, en español, ida y vuelta.</span></div>
-          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Maneja el computador</b> — le hablas y te deja hecho el Excel, el correo o la búsqueda.</span></div>
-          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Opera el negocio</b> — toca n8n, repos de GitHub, bases Supabase, pone recordatorios y lanza tareas largas.</span></div>
-          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Conoce tu vida</b> — lee el cerebro y sostiene el contexto de todos tus proyectos.</span></div>
-        </div>
-
-        <!-- LOS TRES CARRILES (arquitectura) -->
-        <div class="jv-card" style="grid-column:1/-1">
-          <h3><span class="jv-ic">🛠️</span> Cómo está armado — tres carriles</h3>
-          <div class="jv-carriles">
-            <div class="jv-lane"><div class="n">CARRIL 0</div><div class="t">Acciones del PC</div><div class="d">"abre YouTube", "sube el volumen", "qué tengo abierto". Ni toca al modelo.</div><span class="ms">≈ 20 ms</span></div>
-            <div class="jv-lane"><div class="n">CARRIL 1</div><div class="t">Conversar</div><div class="d">Va a Claude con el digesto ya cargado. Responde hablando, con criterio.</div><span class="ms">≈ 5 s</span></div>
-            <div class="jv-lane"><div class="n">CARRIL 2</div><div class="t">Tareas largas</div><div class="d">"ponte a hacer X" → lanza una sesión de trabajo en el servidor y después la cuenta.</div><span class="ms">instantáneo al lanzar</span></div>
-          </div>
-        </div>
-
-        <!-- BENEFICIO PARA CUALQUIER PERSONA -->
-        <div class="jv-band">
-          <h3><span class="jv-ic">💡</span> Para qué le sirve a cualquier persona</h3>
-          <p style="color:#c8d4ea; font-size:15px; line-height:1.7; margin:6px 0 0; max-width:900px">
-            No hace falta saber de tecnología. Jarvis es <b style="color:#fff">"hazme esto en el computador" hablando</b>:
-            redactar un correo, armar el Excel de gastos, una carta, buscar algo y resumirlo. Para un negocio, es un
-            <b style="color:#fff">empleado que atiende, registra y opera 24/7</b> sin sumar personal. Para una familia
-            o una persona mayor, es <b style="color:#fff">poder usar el computador solo con la voz</b>. El foso es simple:
-            <b style="color:#7fe6ff">Alexa te prende una luz; Jarvis te crea la aplicación que la controla.</b>
-          </p>
-        </div>
-
-        <!-- HACIA DÓNDE VA -->
-        <div class="jv-card jv-future">
-          <h3><span class="jv-ic" style="background:rgba(124,139,255,.16);border-color:rgba(124,139,255,.34)">🚀</span> Hacia dónde va</h3>
-          <div class="jv-fgrid">
-            <div class="jv-fitem"><span class="fi">🕶️</span><b>Gafas y wearables</b><span>Manejarlo con la voz desde unas gafas, manos libres, en cualquier lado.</span></div>
-            <div class="jv-fitem"><span class="fi">🏠</span><b>Casa inteligente</b><span>Conectado al hogar como Alexa, pero que además razona y ejecuta de verdad.</span></div>
-            <div class="jv-fitem"><span class="fi">🔌</span><b>IoT y dispositivos</b><span>Enlazado a sensores y sistemas; su propio dispositivo Jarvis, físico y real.</span></div>
-            <div class="jv-fitem"><span class="fi">🧩</span><b>Crea todo</b><span>No solo controla apps: las construye. Le pides algo nuevo y lo arma.</span></div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="jv-foot">
-        <a class="jv-link" href="https://jarvis.angelszs.site" target="_blank" rel="noopener">Ver Jarvis en línea ↗</a>
-        <span class="jv-chip">Claude · Anthropic</span>
-        <span class="jv-chip">Voz en español (es-CO)</span>
-        <span class="jv-chip">VPS propio + PC</span>
-        <span class="jv-chip">n8n · GitHub · Supabase</span>
-      </div>
-    </div>
-  </section>
   <!-- ================= /JARVIS ================= -->
 
   <section id="proyectos">
@@ -885,6 +726,165 @@
           <a class="plink" href="https://xn--aydamecolombia-mrb.space" target="_blank" rel="noopener">Ver la plataforma ↗</a>
           <p class="tvpie">2 minutos · con audio</p>
         </div>
+      </div>
+    </div>
+  </section>
+  <section id="jarvis" data-no-i18n>
+    <style>
+      #jarvis{position:relative; padding:96px 0 84px; overflow:hidden;
+        background:
+          radial-gradient(120% 90% at 78% 8%, rgba(53,226,255,.10), transparent 55%),
+          linear-gradient(180deg, #060a14 0%, #080d1a 55%, #060912 100%);
+        border-top:1px solid rgba(53,226,255,.16); border-bottom:1px solid var(--line)}
+      #jarvis .jv-radar{position:absolute; top:-140px; right:-180px; width:640px; height:640px; pointer-events:none; opacity:.5}
+      #jarvis .jv-head{display:flex; align-items:center; gap:28px; flex-wrap:wrap; margin-bottom:14px}
+      #jarvis .jv-logo{width:118px; height:118px; border-radius:26px; flex:none;
+        box-shadow:0 0 0 1px rgba(53,226,255,.35), 0 22px 60px rgba(53,226,255,.28); background:#000}
+      #jarvis .jv-kicker{font-family:var(--mono); font-size:12.5px; letter-spacing:.32em; text-transform:uppercase;
+        color:var(--c1); display:flex; align-items:center; gap:9px}
+      #jarvis .jv-kicker::before{content:none}
+      #jarvis h2.jv-title{font-family:var(--disp); font-weight:800; font-size:clamp(46px,8vw,88px); line-height:.98;
+        letter-spacing:.04em; margin:8px 0 6px;
+        background:linear-gradient(120deg,#eaf6ff,#35e2ff 55%,#7c8bff); -webkit-background-clip:text; background-clip:text; color:transparent}
+      #jarvis .jv-tag{font-family:var(--disp); font-weight:600; font-size:clamp(18px,2.4vw,23px); color:var(--ink); margin:0}
+      #jarvis .jv-tag b{color:var(--c1)}
+      #jarvis .jv-lede{max-width:760px; color:var(--muted); font-size:16.5px; line-height:1.7; margin:20px 0 0}
+      #jarvis .jv-lede b{color:#dbe6f7; font-weight:600}
+      #jarvis .jv-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:44px}
+      #jarvis .jv-card{background:rgba(255,255,255,.028); border:1px solid var(--line); border-radius:18px; padding:24px 22px;
+        border-top:2px solid rgba(53,226,255,.55)}
+      #jarvis .jv-card h3{font-family:var(--disp); font-weight:700; font-size:18px; margin:0 0 12px; color:var(--ink); display:flex; align-items:center; gap:9px}
+      #jarvis .jv-ic{width:30px; height:30px; border-radius:9px; display:grid; place-items:center; flex:none;
+        background:rgba(53,226,255,.12); border:1px solid rgba(53,226,255,.3); font-size:15px}
+      #jarvis .jv-li{display:flex; gap:10px; align-items:flex-start; color:var(--muted); font-size:14.5px; line-height:1.5; padding:6px 0; border-top:1px solid rgba(255,255,255,.05)}
+      #jarvis .jv-li:first-of-type{border-top:0}
+      #jarvis .jv-li b{color:#dbe6f7; font-weight:600}
+      #jarvis .jv-dot{color:var(--c1); flex:none; margin-top:2px}
+      #jarvis .jv-carriles{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px}
+      #jarvis .jv-lane{background:rgba(53,226,255,.05); border:1px solid rgba(53,226,255,.16); border-radius:14px; padding:16px}
+      #jarvis .jv-lane .n{font-family:var(--mono); font-size:12px; color:var(--c1); letter-spacing:.1em}
+      #jarvis .jv-lane .t{font-family:var(--disp); font-weight:700; font-size:15px; color:var(--ink); margin:6px 0 4px}
+      #jarvis .jv-lane .d{color:var(--muted); font-size:13px; line-height:1.45}
+      #jarvis .jv-lane .ms{font-family:var(--mono); font-size:11.5px; color:#7fe6ff; margin-top:8px; display:inline-block}
+      #jarvis .jv-band{margin-top:16px; background:linear-gradient(100deg,rgba(124,139,255,.12),rgba(53,226,255,.06));
+        border:1px solid rgba(124,139,255,.24); border-radius:18px; padding:26px 24px; grid-column:1/-1}
+      #jarvis .jv-band h3{color:var(--ink)} #jarvis .jv-band .jv-ic{background:rgba(124,139,255,.16); border-color:rgba(124,139,255,.34)}
+      #jarvis .jv-future{grid-column:1/-1; border-top-color:rgba(124,139,255,.55)}
+      #jarvis .jv-fgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:6px}
+      #jarvis .jv-fitem{background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:13px; padding:15px 14px}
+      #jarvis .jv-fitem .fi{font-size:20px} #jarvis .jv-fitem b{display:block; color:#dbe6f7; font-size:14px; margin:7px 0 3px; font-weight:600}
+      #jarvis .jv-fitem span{color:var(--muted); font-size:12.5px; line-height:1.4}
+      #jarvis .jv-foot{display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; align-items:center}
+      #jarvis .jv-chip{font-family:var(--mono); font-size:12.5px; color:#bfe9ff; background:rgba(53,226,255,.08);
+        border:1px solid rgba(53,226,255,.24); border-radius:999px; padding:8px 15px}
+      #jarvis .jv-link{font-family:var(--disp); font-weight:600; font-size:14px; color:#04121c; text-decoration:none;
+        background:linear-gradient(90deg,#35e2ff,#7c8bff); padding:11px 20px; border-radius:11px;
+        box-shadow:0 0 26px rgba(53,226,255,.35); transition:.25s}
+      #jarvis .jv-link:hover{box-shadow:0 0 40px rgba(53,226,255,.6); transform:translateY(-1px)}
+      @media(max-width:900px){
+        #jarvis .jv-grid,#jarvis .jv-carriles,#jarvis .jv-fgrid{grid-template-columns:1fr}
+        #jarvis .jv-fgrid{grid-template-columns:1fr 1fr}
+        #jarvis .jv-logo{width:88px; height:88px}
+        #jarvis .jv-radar{display:none}
+      }
+    </style>
+
+    <svg class="jv-radar" viewBox="0 0 200 200" aria-hidden="true">
+      <g fill="none" stroke="rgba(53,226,255,.5)" stroke-width=".6">
+        <circle cx="100" cy="100" r="30"/><circle cx="100" cy="100" r="55"/>
+        <circle cx="100" cy="100" r="80" stroke="rgba(124,139,255,.4)"/><circle cx="100" cy="100" r="98" stroke="rgba(124,139,255,.28)"/>
+      </g>
+      <circle cx="100" cy="100" r="6" fill="#35e2ff"/>
+    </svg>
+
+    <div class="container">
+      <div class="jv-head">
+        <img class="jv-logo" src="assets/jarvis-icono.jpg" alt="Logo de Jarvis" loading="lazy" />
+        <div>
+          <div class="jv-kicker">Proyecto insignia · ZOSA</div>
+          <h2 class="jv-title">JARVIS</h2>
+          <p class="jv-tag">Tu <b>empleado que sí hace</b>. No solo responde.</p>
+        </div>
+      </div>
+
+      <p class="jv-lede">
+        Alexa, Siri y Google ejecutan comandos fijos que alguien programó de antemano. <b>Jarvis es otra
+        categoría: es una IA con manos.</b> No tiene un menú cerrado de habilidades: escucha, entiende, razona,
+        decide y <b>opera sistemas reales</b> — el computador, el negocio y la nube — con voz, en español colombiano.
+        Vive en el PC de Ángel y también en la nube, así que responde desde el celular aunque el computador esté apagado.
+      </p>
+
+      <div class="jv-grid">
+
+        <!-- QUÉ CONTIENE / ARQUITECTURA -->
+        <div class="jv-card">
+          <h3><span class="jv-ic">🧠</span> Qué contiene</h3>
+          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Cerebro:</b> Claude (Anthropic) con el segundo cerebro de Ángel cargado — sabe en qué anda sin que se lo cuenten.</span></div>
+          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Oído:</b> transcripción por voz (Whisper) en el PC y en el servidor.</span></div>
+          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Voz:</b> Edge TTS colombiana (es-CO), natural y gratis.</span></div>
+          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Manos:</b> un agente en el PC + herramientas del servidor (n8n, repos, bases).</span></div>
+          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Memoria viva:</b> un "digesto" que se regenera cada 5 min con proyectos, pendientes y recordatorios.</span></div>
+        </div>
+
+        <!-- DÓNDE VIVE -->
+        <div class="jv-card">
+          <h3><span class="jv-ic">🌐</span> Dónde vive</h3>
+          <div class="jv-li"><span class="jv-dot">▹</span><span><b>En el PC</b> — controla Word, Excel y Chrome con sus sesiones reales; abre, escribe y busca.</span></div>
+          <div class="jv-li"><span class="jv-dot">▹</span><span><b>En la nube</b> — <b>jarvis.angelszs.site</b>, sobre VPS propio; funciona desde el celular sin el PC prendido.</span></div>
+          <div class="jv-li"><span class="jv-dot">▹</span><span>El PC llama al servidor y espera trabajo (long polling): sin abrir puertos, sin IP fija, seguro.</span></div>
+          <div class="jv-li"><span class="jv-dot">▹</span><span>Sesión que dura y sobrevive a reinicios: entra una vez y queda.</span></div>
+        </div>
+
+        <!-- QUÉ PUEDE HACER HOY -->
+        <div class="jv-card">
+          <h3><span class="jv-ic">⚡</span> Qué puede hacer hoy</h3>
+          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Habla y entiende</b> — conversa por voz, en español, ida y vuelta.</span></div>
+          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Maneja el computador</b> — le hablas y te deja hecho el Excel, el correo o la búsqueda.</span></div>
+          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Opera el negocio</b> — toca n8n, repos de GitHub, bases Supabase, pone recordatorios y lanza tareas largas.</span></div>
+          <div class="jv-li"><span class="jv-dot">▹</span><span><b>Conoce tu vida</b> — lee el cerebro y sostiene el contexto de todos tus proyectos.</span></div>
+        </div>
+
+        <!-- LOS TRES CARRILES (arquitectura) -->
+        <div class="jv-card" style="grid-column:1/-1">
+          <h3><span class="jv-ic">🛠️</span> Cómo está armado — tres carriles</h3>
+          <div class="jv-carriles">
+            <div class="jv-lane"><div class="n">CARRIL 0</div><div class="t">Acciones del PC</div><div class="d">"abre YouTube", "sube el volumen", "qué tengo abierto". Ni toca al modelo.</div><span class="ms">≈ 20 ms</span></div>
+            <div class="jv-lane"><div class="n">CARRIL 1</div><div class="t">Conversar</div><div class="d">Va a Claude con el digesto ya cargado. Responde hablando, con criterio.</div><span class="ms">≈ 5 s</span></div>
+            <div class="jv-lane"><div class="n">CARRIL 2</div><div class="t">Tareas largas</div><div class="d">"ponte a hacer X" → lanza una sesión de trabajo en el servidor y después la cuenta.</div><span class="ms">instantáneo al lanzar</span></div>
+          </div>
+        </div>
+
+        <!-- BENEFICIO PARA CUALQUIER PERSONA -->
+        <div class="jv-band">
+          <h3><span class="jv-ic">💡</span> Para qué le sirve a cualquier persona</h3>
+          <p style="color:#c8d4ea; font-size:15px; line-height:1.7; margin:6px 0 0; max-width:900px">
+            No hace falta saber de tecnología. Jarvis es <b style="color:#fff">"hazme esto en el computador" hablando</b>:
+            redactar un correo, armar el Excel de gastos, una carta, buscar algo y resumirlo. Para un negocio, es un
+            <b style="color:#fff">empleado que atiende, registra y opera 24/7</b> sin sumar personal. Para una familia
+            o una persona mayor, es <b style="color:#fff">poder usar el computador solo con la voz</b>. El foso es simple:
+            <b style="color:#7fe6ff">Alexa te prende una luz; Jarvis te crea la aplicación que la controla.</b>
+          </p>
+        </div>
+
+        <!-- HACIA DÓNDE VA -->
+        <div class="jv-card jv-future">
+          <h3><span class="jv-ic" style="background:rgba(124,139,255,.16);border-color:rgba(124,139,255,.34)">🚀</span> Hacia dónde va</h3>
+          <div class="jv-fgrid">
+            <div class="jv-fitem"><span class="fi">🕶️</span><b>Gafas y wearables</b><span>Manejarlo con la voz desde unas gafas, manos libres, en cualquier lado.</span></div>
+            <div class="jv-fitem"><span class="fi">🏠</span><b>Casa inteligente</b><span>Conectado al hogar como Alexa, pero que además razona y ejecuta de verdad.</span></div>
+            <div class="jv-fitem"><span class="fi">🔌</span><b>IoT y dispositivos</b><span>Enlazado a sensores y sistemas; su propio dispositivo Jarvis, físico y real.</span></div>
+            <div class="jv-fitem"><span class="fi">🧩</span><b>Crea todo</b><span>No solo controla apps: las construye. Le pides algo nuevo y lo arma.</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="jv-foot">
+        <a class="jv-link" href="https://jarvis.angelszs.site" target="_blank" rel="noopener">Ver Jarvis en línea ↗</a>
+        <span class="jv-chip">Claude · Anthropic</span>
+        <span class="jv-chip">Voz en español (es-CO)</span>
+        <span class="jv-chip">VPS propio + PC</span>
+        <span class="jv-chip">n8n · GitHub · Supabase</span>
       </div>
     </div>
   </section>
