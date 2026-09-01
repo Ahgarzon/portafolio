@@ -765,7 +765,7 @@
         </article>
 
         <!-- 08 -->
-        <article class="pcard reveal">
+        <article class="pcard has-img reveal">
           <div class="pcard-in">
             <div class="pcard-body">
               <div class="pmeta"><span class="pnum">08</span><span class="pbadge">Impacto social</span><span class="pcat">Emergencia · Comunidad</span></div>
@@ -774,10 +774,18 @@
               <div class="pblocks">
                 <div class="pblock pb-prob"><span class="lbl">El problema</span><p>Tras una emergencia —un terremoto, una inundación— la ayuda se desborda y se descoordina: a un punto le sobra comida mientras a otro le falta todo, las donaciones se pierden o se repiten, y las familias buscan a sus desaparecidos a ciegas, sin saber quién los vio ni dónde.</p></div>
                 <div class="pblock"><span class="lbl">La solución</span><p>Una <b>app web (PWA) instalable que funciona sin señal</b>, con un <b>mapa vivo de necesidades</b>: cada punto muestra qué falta y qué sobra, cruza lo que sobra en un lado con quien lo necesita más cerca, registra las entregas con foto, lleva las cuentas y aportes, y tiene una sección de <b>personas desaparecidas</b> donde cualquiera puede reportar si vio a alguien o dar información a la familia.</p></div>
-                <div class="pblock pb-imp"><span class="lbl">El impacto</span><p>La ayuda deja de perderse: llega <b>en horas, no en semanas</b>, exactamente a donde hace falta. Ya está <b>viva y en uso real</b>, coordinando ayuda entre decenas de personas de todo el país tras la emergencia.</p></div>
+                <div class="pblock pb-imp"><span class="lbl">El impacto</span><p>Se levantó y salió al aire <b>en plena emergencia</b>. En sus primeros <b>13 días</b> (14 al 27 de agosto de 2026) recibió <b>207 reportes de personas desaparecidas</b>, la usaron <b>424 dispositivos distintos</b> con <b>4.628 visitas</b>, y coordinó <b>32 necesidades</b> y <b>14 puntos de acopio</b> en <b>11 municipios</b>. Cubierta por medios nacionales y llevada a televisión.</p></div>
+              </div>
+              <div class="pprensa">
+                <span class="lblp">En prensa</span>
+                <a class="medio" href="https://90minutos.co/colombia/ayudame-colombia-plataforma-ayudas-terremoto-18-08-2026/" target="_blank" rel="noopener"><b>90 Minutos</b><span class="fec">· ago 2026</span> ↗</a>
+                <a class="medio" href="https://www.pulzo.com/tecnologia/ayudame-colombia-plataforma-organiza-donaciones-tras-terremoto-en-colombia-con-mapa-interactivo-PP5277735A" target="_blank" rel="noopener"><b>Pulzo</b><span class="fec">· 18 ago 2026</span> ↗</a>
               </div>
               <div class="ptech tags"><span class="tag">PWA offline</span><span class="tag">Mapa en vivo</span><span class="tag">Personas desaparecidas</span><span class="tag">n8n</span><span class="tag">Supabase</span><span class="tag">Vercel</span></div>
               <a class="plink" href="https://xn--aydamecolombia-mrb.space" target="_blank" rel="noopener">ayúdamecolombia.space ↗</a>
+            </div>
+            <div class="pcard-media">
+              <div class="m"><div class="mvideo-wrap"><iframe class="mvideo" src="https://drive.google.com/file/d/18eAyqFHd8arf5sd_UbSJsFAR3UVUnGDu/preview" title="Ayúdame Colombia en televisión — Canal 90 Minutos" allow="autoplay" allowfullscreen loading="lazy"></iframe></div><span class="mcap">televisión · Canal 90 Minutos</span></div>
             </div>
           </div>
         </article>
@@ -864,7 +872,21 @@
     #tu-web .webperks{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin:26px 0 34px}
     #tu-web .webperks .tag{font-size:13px; padding:8px 14px}
     @media(max-width:640px){ #tu-web{padding:64px 0} #tu-web .webcard{padding:40px 22px} }
-  </style>
+  
+/* --- prensa y video de Ayudame Colombia --------------------------------------------------- */
+.pprensa{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px;align-items:center}
+.pprensa .lblp{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--muted);margin-right:2px}
+.medio{display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+  font-family:var(--mono);font-size:11.5px;color:var(--ink);
+  border:1px solid var(--line);border-radius:9px;padding:7px 11px;
+  background:rgba(255,255,255,.02);transition:.18s}
+.medio:hover{border-color:rgba(var(--c1rgb,56,189,248),.55);transform:translateY(-1px)}
+.medio b{font-family:var(--disp);font-weight:600;font-size:12.5px;color:#fff}
+.medio .fec{color:var(--muted)}
+.mvideo{position:relative;width:100%;aspect-ratio:16/9;border:0;display:block;background:#000}
+.mvideo-wrap{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#000}
+</style>
   <section id="tu-web">
     <div class="container reveal">
       <div class="webcard">
@@ -910,6 +932,7 @@
         <h2>Validado en el <span class="g">ecosistema</span>.</h2>
       </div>
       <div class="timeline">
+        <div class="tl reveal"><div class="yr">2026</div><h4>Ayúdame Colombia en medios nacionales</h4><p>La plataforma que levanté durante el terremoto llegó a televisión y a prensa nacional. <a href="https://90minutos.co/colombia/ayudame-colombia-plataforma-ayudas-terremoto-18-08-2026/" target="_blank" rel="noopener">90 Minutos</a> · <a href="https://www.pulzo.com/tecnologia/ayudame-colombia-plataforma-organiza-donaciones-tras-terremoto-en-colombia-con-mapa-interactivo-PP5277735A" target="_blank" rel="noopener">Pulzo</a></p></div>
         <div class="tl reveal"><div class="yr">2026</div><h4>Orden de la Democracia — Congreso de la República</h4><p>Reconocimiento legislativo por el liderazgo en la estructuración conceptual y tecnológica de <b>TourCauca</b>, iniciativa condecorada por su aporte al turismo regional.</p></div>
         <div class="tl reveal"><div class="yr">2025</div><h4>Colombia 4.0</h4><p>Ponente de taller en el mayor evento nacional de tecnología. <a href="https://www.unicauca.edu.co/noticias-actualidad/cuando-la-pasion-se-convierte-en-innovacion-colombia-4-0/" target="_blank" rel="noopener">Nota Universidad del Cauca ↗</a></p></div>
         <div class="tl reveal"><div class="yr">2025</div><h4>Mención honorífica</h4><p>Por trabajo de grado.</p></div>
