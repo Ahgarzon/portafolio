@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexu, versión 2 · Propuesta de Ángel Garzón</title>
+<meta name="description" content="Un método para el embudo de crédito de Nexu: primero el expediente completo por WhatsApp, después la cobranza. Evaluación con conjunto dorado, rúbrica y A/B; seguridad dentro de la infraestructura de Nexu; semana cero.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  :root{
+    --fondo:#EEF2F4; --papel:#FFFFFF; --tinta:#0B1F33; --tenue:#5A6B7C; --linea:#D3DBE2;
+    --acento:#0F7B6C; --acento-suave:#DDF0EA; --acento-tinta:#0B5A4F;
+    --ambar:#A8681C; --ambar-suave:#F5E9D6;
+    --sombra:0 1px 2px rgba(11,31,51,.06),0 10px 28px rgba(11,31,51,.07);
+    --display:'Bricolage Grotesque','Public Sans',system-ui,sans-serif;
+    --cuerpo:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --fondo:#0E151C; --papel:#151E27; --tinta:#E6EDF3; --tenue:#93A3B3; --linea:#27333F;
+      --acento:#3FBFA6; --acento-suave:#123B35; --acento-tinta:#8EE0CD;
+      --ambar:#D9A44B; --ambar-suave:#3A2C15;
+      --sombra:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --fondo:#0E151C; --papel:#151E27; --tinta:#E6EDF3; --tenue:#93A3B3; --linea:#27333F;
+    --acento:#3FBFA6; --acento-suave:#123B35; --acento-tinta:#8EE0CD;
+    --ambar:#D9A44B; --ambar-suave:#3A2C15;
+    --sombra:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fondo);color:var(--tinta);font-family:var(--cuerpo);font-size:17px;line-height:1.6;overflow-x:hidden}
+  a{color:var(--acento-tinta)}
+  a:focus-visible{outline:2px solid var(--acento);outline-offset:3px}
+  .capa{max-width:860px;margin:0 auto;padding:0 22px}
+  h1,h2,h3{font-family:var(--display);letter-spacing:-.01em;text-wrap:balance;margin:0}
+  h1{font-size:clamp(32px,5.2vw,54px);font-weight:800;line-height:1.04}
+  h2{font-size:clamp(23px,3vw,32px);font-weight:800;line-height:1.12}
+  h3{font-size:18px;font-weight:600;line-height:1.3}
+  p{margin:0 0 14px;max-width:66ch}
+  .tenue{color:var(--tenue)}
+  .ojal{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acento-tinta)}
+  .chip{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:var(--ambar-suave);color:var(--ambar);vertical-align:middle;margin-left:6px;white-space:nowrap}
+
+  .portada{padding:56px 0 30px}
+  .portada .firma{display:flex;flex-wrap:wrap;gap:6px 16px;margin:16px 0 22px;color:var(--tenue);font-size:15px}
+  .portada .firma strong{color:var(--tinta)}
+  .portada .version{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;margin:-10px 0 22px;font-size:14.5px;color:var(--tenue)}
+  .portada .version .v2{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--acento-tinta);background:var(--acento-suave);padding:3px 10px;border-radius:999px}
+  .tesis{font-size:clamp(18px,1.9vw,21px);max-width:60ch}
+
+  /* el numero de cabecera: el embudo de originacion */
+  .ecuacion{background:var(--papel);border:1px solid var(--linea);border-radius:18px;box-shadow:var(--sombra);padding:22px 24px;margin:26px 0 8px}
+  .ecuacion .titulo{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--tenue);margin-bottom:14px}
+  .ecuacion .eq{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1.2fr;gap:8px;align-items:center;text-align:center}
+  .ecuacion .eq .v{font-family:var(--display);font-weight:800;font-size:clamp(15px,2.1vw,21px);line-height:1.15;text-wrap:balance}
+  .ecuacion .eq .v small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tenue);margin-top:8px;font-weight:500}
+  .ecuacion .eq .op{font-size:24px;color:var(--tenue);line-height:1}
+  .ecuacion .eq .op::before{content:"\2192"}
+  .ecuacion .eq .res{color:var(--acento)}
+  .ecuacion .filas{display:grid;gap:8px;margin-top:18px;border-top:1px dashed var(--linea);padding-top:14px}
+  .ecuacion .filas div{display:grid;grid-template-columns:170px 1fr auto;gap:12px;font-family:var(--mono);font-size:13.5px;color:var(--tenue);align-items:start}
+  .ecuacion .filas b{color:var(--tinta);font-weight:500}
+  .ecuacion .filas .chip{margin-left:0}
+  .pie{font-size:14px;color:var(--tenue);margin-top:10px}
+
+  section{padding:40px 0;border-top:1px solid var(--linea)}
+  section header{margin-bottom:18px;display:grid;gap:6px}
+
+  .pasos{display:grid;gap:14px}
+  .paso{background:var(--papel);border:1px solid var(--linea);border-radius:16px;box-shadow:var(--sombra);padding:20px 22px;display:grid;grid-template-columns:44px 1fr;gap:16px}
+  .paso .n{font-family:var(--display);font-weight:800;font-size:34px;line-height:1;color:var(--acento)}
+  .paso h3{margin-bottom:6px}
+  .paso ul{margin:8px 0 0;padding-left:18px}
+  .paso li{margin-bottom:5px}
+  .paso p:last-child{margin-bottom:0}
+  .ve{margin-top:10px;background:var(--acento-suave);color:var(--acento-tinta);border-radius:10px;padding:9px 12px;font-size:14.5px;max-width:none}
+  .ve b{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px}
+  .honesto{border-left:4px solid var(--ambar);background:var(--ambar-suave);color:var(--tinta);border-radius:0 12px 12px 0;padding:12px 16px;font-size:15.5px;margin:6px 0 16px;max-width:none}
+  .honesto b{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ambar);display:block;margin-bottom:2px}
+
+  /* diagrama sencillo, hecho a mano */
+  .flujo{background:var(--papel);border:1px solid var(--linea);border-radius:18px;box-shadow:var(--sombra);padding:22px;overflow-x:auto}
+  .flujo .linea{display:grid;grid-template-columns:repeat(4,1fr);gap:0;align-items:stretch;min-width:720px}
+  .flujo .caja{position:relative;border:1.5px solid var(--linea);border-radius:14px;padding:14px 14px 14px;background:var(--fondo)}
+  .flujo .caja + .caja{margin-left:28px}
+  .flujo .caja + .caja::before{content:"";position:absolute;left:-28px;top:50%;width:28px;height:2px;background:var(--acento);transform:translateY(-1px)}
+  .flujo .caja + .caja::after{content:"";position:absolute;left:-9px;top:50%;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:9px solid var(--acento);transform:translateY(-6px)}
+  .flujo .caja.cerebro{background:var(--acento-suave);border-color:var(--acento)}
+  .flujo .caja h4{margin:0 0 6px;font-family:var(--display);font-weight:800;font-size:16px;line-height:1.2}
+  .flujo .caja p{margin:0;font-size:13.5px;line-height:1.45;color:var(--tenue);max-width:none}
+  .flujo .caja.cerebro p{color:var(--acento-tinta)}
+  .flujo .vuelta{margin-top:14px;min-width:720px;display:grid;grid-template-columns:1fr;gap:0}
+  .flujo .vuelta div{border:1.5px dashed var(--acento);border-radius:14px;padding:12px 16px;font-size:14px;color:var(--acento-tinta);background:var(--papel);text-align:center}
+  .flujo .vuelta div b{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px}
+
+  .dos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  .tarjeta{background:var(--papel);border:1px solid var(--linea);border-radius:16px;box-shadow:var(--sombra);padding:18px 20px}
+  .tarjeta h3{margin-bottom:8px}
+  .tarjeta ul{margin:0;padding-left:18px}
+  .tarjeta li{margin-bottom:6px}
+  .tarjeta p:last-child{margin-bottom:0}
+
+  .metricas{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:6px}
+  .metrica{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:14px 16px}
+  .metrica b{display:block;font-family:var(--display);font-weight:800;font-size:15px;line-height:1.2;margin-bottom:4px}
+  .metrica span{font-size:13.5px;color:var(--tenue);line-height:1.4;display:block}
+
+  .cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:6px 0 18px}
+  .cifra{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:16px 18px;box-shadow:var(--sombra)}
+  .cifra b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(26px,3.4vw,34px);line-height:1;color:var(--acento);font-variant-numeric:tabular-nums;margin-bottom:8px}
+  .cifra span{display:block;font-size:14px;line-height:1.4}
+  .cifra small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tenue);margin-top:8px}
+
+  .cierre{background:var(--acento-suave);color:var(--tinta);border-left:5px solid var(--acento);border-radius:0 18px 18px 0;padding:24px 28px;box-shadow:var(--sombra);margin-top:18px}
+  .cierre p{color:inherit;max-width:none}
+  .cierre p:last-child{margin-bottom:0}
+  .cierre strong{color:var(--acento-tinta)}
+  footer{padding:28px 0 56px;color:var(--tenue);font-size:13.5px}
+
+  /* listas, tablas y codigos (como en el anexo) */
+  .lista{margin:0 0 14px;padding-left:20px}
+  .lista li{margin-bottom:6px;max-width:70ch}
+  .lista li strong{color:var(--tinta)}
+  ol.lista li{padding-left:4px}
+  section h3{margin:18px 0 8px}
+  section header + h3, .tarjeta h3, .paso h3{margin-top:0}
+  code{font-family:var(--mono);font-size:12.5px;background:var(--acento-suave);color:var(--acento-tinta);padding:1px 6px;border-radius:6px;white-space:nowrap}
+  .tabla{background:var(--papel);border:1px solid var(--linea);border-radius:14px;box-shadow:var(--sombra);overflow-x:auto;margin:10px 0 16px}
+  .tabla table{width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.45;min-width:560px}
+  .tabla th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--tenue);font-weight:500;padding:10px 14px;border-bottom:1px solid var(--linea)}
+  .tabla td{padding:9px 14px;border-bottom:1px solid var(--linea);vertical-align:top}
+  .tabla tr:last-child td{border-bottom:0}
+  .tabla td:first-child{white-space:nowrap;font-weight:600}
+
+  @media (max-width:640px){
+    .paso{grid-template-columns:1fr;gap:6px}
+    .ecuacion .filas div{grid-template-columns:1fr;gap:2px}
+    .ecuacion .filas .chip{justify-self:start;margin-top:2px}
+    .ecuacion .eq{grid-template-columns:1fr;gap:4px}
+    .ecuacion .eq .op::before{content:"\2193"}
+    .ecuacion .eq .v{font-size:17px}
+    .tabla td:first-child{white-space:normal}
+  }
+</style>
+</head>
+<body>
+
+<main>
+<div class="portada"><div class="capa">
+  <div class="ojal">Propuesta para Nexu · Embudo de crédito · Versión 2</div>
+  <h1 style="margin-top:10px">Un método para el embudo de crédito de Nexu: primero el expediente por WhatsApp, después la cobranza.</h1>
+  <div class="firma"><span><strong>Ángel Garzón</strong> · Ingeniero de automatización e inteligencia artificial</span></div>
+  <div class="version"><span class="v2">Versión 2</span><span>Versión 2, actualizada el 2 de septiembre de 2026 después de la conversación con Emanuel.</span><span><a href="/nexu/">La propuesta original de cobranza</a></span></div>
+  <p class="tesis">En la conversación con Emanuel entendí algo que cambia el orden de mi propuesta: lo primero que Nexu quiere resolver no es la cobranza, es la entrada del crédito. Hoy un vendedor en piso pide la INE, el comprobante de domicilio y el estado de cuenta, hace las preguntas demográficas y manda la solicitud al equipo de análisis. Ese recorrido puede pasar por WhatsApp, con un agente que guía y un sistema que valida. El método es el mismo que propuse para cobranza: <strong>medir primero</strong>, un cerebro con el estado de cada solicitante, herramientas que deciden lo que el modelo no debe decidir, y mejora continua medida. Lo que cambia es el número que se persigue.</p>
+
+  <div class="ecuacion" aria-label="El embudo de originación y el número de cabecera">
+    <div class="titulo">El número de cabecera</div>
+    <div class="eq">
+      <div class="v">Solicitudes iniciadas<small>por WhatsApp</small></div><div class="op" aria-hidden="true"></div>
+      <div class="v">Expediente completo<small>todos los documentos válidos</small></div><div class="op" aria-hidden="true"></div>
+      <div class="v">Enviado a análisis<small>con folio</small></div><div class="op" aria-hidden="true"></div>
+      <div class="v res">Aprobado por análisis<small>el número que se persigue</small></div>
+    </div>
+    <div class="filas">
+      <div><b>Número de cabecera</b><span>Solicitudes con expediente completo y aprobado por análisis, sobre las iniciadas.</span><span class="chip">se mide</span></div>
+      <div><b>Línea base</b><span>La del proceso actual con vendedores en piso, medida en la semana cero con expedientes reales.</span><span class="chip">semana cero</span></div>
+      <div><b>Meta</b><span>Se acuerda por escrito con Emanuel y el líder de agencias después de ver la línea base.</span><span class="chip">por acordar</span></div>
+    </div>
+    <p class="pie">No pongo un número que no he medido. Lo que sí se define el primer día, por escrito, es el embudo: qué cuenta como solicitud iniciada, qué cuenta como expediente completo y quién es el dueño del número. Con eso, agente y vendedores se miden con la misma regla.</p>
+  </div>
+</div></div>
+
+<section id="originacion"><div class="capa">
+  <header><div class="ojal">Primera aplicación · Originación</div><h2>Lo primero: que el expediente llegue completo por WhatsApp</h2></header>
+  <p>Hoy el expediente depende de que el vendedor en piso pida cada documento, revise que se lea, haga las preguntas y lo mande a análisis. Cada paso que se queda a medias es una solicitud que no llega, o que análisis devuelve. La propuesta es que ese recorrido lo haga un agente de WhatsApp con el vendedor cerca, no en lugar de él: el vendedor sigue viendo su solicitud, puede intervenir, y lo que él corrige queda registrado para mejorar el mensaje siguiente.</p>
+
+  <h3>La máquina de estados por solicitante</h3>
+  <p>Cada solicitante tiene un registro en la base con su estado actual. El agente conversa según ese estado; no según lo que recuerde el modelo del chat. Si el solicitante escribe tres días después, retoma donde se quedó.</p>
+  <div class="tabla"><table>
+    <thead><tr><th>Estado</th><th>Qué pide el agente</th><th>Qué valida la herramienta</th></tr></thead>
+    <tbody>
+      <tr><td>Identificación y consentimiento</td><td>Nombre, teléfono, aviso de privacidad y consentimiento en el primer mensaje.</td><td>Consentimiento registrado con fecha antes de pedir cualquier documento.</td></tr>
+      <tr><td>INE frente</td><td>Una foto, con instrucciones concretas (sin flash, cuatro esquinas visibles).</td><td>Legibilidad, campos extraídos, vigencia, puntaje de confianza.</td></tr>
+      <tr><td>INE reverso</td><td>La segunda foto.</td><td>Legibilidad, coincidencia con el frente, puntaje.</td></tr>
+      <tr><td>Comprobante de domicilio</td><td>Foto o PDF del tipo aceptado por la política de Nexu.</td><td>Tipo aceptado, antigüedad dentro de la vigencia, nombre y dirección legibles.</td></tr>
+      <tr><td>Estado de cuenta</td><td>PDF o foto.</td><td>Tipo aceptado, periodo, legibilidad. Los montos los lee la herramienta, no el modelo.</td></tr>
+      <tr><td>Preguntas demográficas</td><td>Las mismas que hace hoy el vendedor, una a una.</td><td>Campos obligatorios completos y con el formato esperado.</td></tr>
+      <tr><td>Resumen y envío</td><td>Confirmación del solicitante sobre lo enviado.</td><td>Expediente completo según la lista de análisis; envío a solicitud con folio.</td></tr>
+    </tbody>
+  </table></div>
+
+  <ul class="lista">
+    <li><strong>Cada documento pasa por una herramienta de validación</strong> (OCR o visión) que devuelve un puntaje de confianza. Si el puntaje es bajo, el agente pide una corrección concreta: «la foto salió con reflejo en la esquina superior; tómela sin flash y con las cuatro esquinas visibles», no «inténtelo de nuevo».</li>
+    <li><strong>A la segunda falla del mismo documento entra una persona</strong> (el vendedor o el equipo de análisis) con el resumen listo, y el solicitante no repite nada.</li>
+    <li><strong>El modelo conversa y guía; no decide elegibilidad ni calcula.</strong> Eso es regla de negocio o análisis. El agente puede decir «su expediente está completo y enviado»; no puede decir «su crédito va a salir».</li>
+    <li><strong>Lo que hoy es criterio de cada vendedor</strong> (qué sirve como comprobante, qué vigencia se acepta) queda como parámetro del sistema, acordado con análisis y con legal.</li>
+  </ul>
+  <div class="ve"><b>Lo que Nexu ve</b>Un tablero del embudo de originación: iniciadas, expediente completo, enviadas y aprobadas, por agencia y por vendedor, con el tiempo de piso a solicitud y en qué documento se traba cada una.</div>
+
+  <h3>Cómo se sabe si va bien, desde la primera semana</h3>
+  <div class="metricas">
+    <div class="metrica"><b>Expediente completo</b><span>Solicitudes que llegan a análisis con todo, sobre las iniciadas.</span></div>
+    <div class="metrica"><b>Tiempo de piso a solicitud</b><span>Desde el primer mensaje hasta el envío con folio.</span></div>
+    <div class="metrica"><b>Legible al primer intento</b><span>Documentos aceptados sin pedir corrección.</span></div>
+    <div class="metrica"><b>Necesitó humano</b><span>Solicitudes que escalaron, y por qué motivo.</span></div>
+    <div class="metrica"><b>Aprobación de análisis</b><span>Frente a los expedientes que arman hoy los vendedores.</span></div>
+    <div class="metrica"><b>Costo por expediente</b><span>Modelo, validación y mensajes, por solicitud enviada.</span></div>
+  </div>
+</div></section>
+
+<section id="evaluacion"><div class="capa">
+  <header><div class="ojal">Mejora continua medida</div><h2>Cómo se evalúa y mejora el agente, con números y no con impresiones</h2></header>
+  <p>Emanuel me preguntó cómo se sabe, con un número, que un cambio en el agente lo hizo mejor. En la conversación no tuve el método a la mano, y lo digo yo primero. Hoy lo tengo escrito, y es lo primero que construiría.</p>
+  <div class="pasos">
+    <div class="paso"><div class="n">1</div><div>
+      <h3>Conjunto dorado</h3>
+      <p>Entre 50 y 100 conversaciones reales anonimizadas, con la respuesta esperada y la herramienta esperada en cada turno (pedir el reverso de la INE, validar el comprobante, escalar). Los casos difíciles van sobrerrepresentados: foto ilegible, solicitante que manda todo de golpe, que cambia de tema, que pregunta si le van a aprobar. Se congela y se versiona, y una parte queda separada y no se usa para ajustar prompts, para no engañarse a uno mismo.</p>
+    </div></div>
+    <div class="paso"><div class="n">2</div><div>
+      <h3>Rúbrica: cinco criterios por turno</h3>
+      <ul>
+        <li><strong>Herramienta correcta en el momento correcto</strong> (y ninguna cuando no toca).</li>
+        <li><strong>Dato correcto:</strong> lo que dice sale de la base o de la validación, no del modelo.</li>
+        <li><strong>Tono:</strong> de usted, sin presionar, sin prometer.</li>
+        <li><strong>Política respetada:</strong> consentimiento, privacidad, lo que se puede decir y lo que no.</li>
+        <li><strong>Avance del expediente:</strong> el turno acercó la solicitud a completa.</li>
+      </ul>
+    </div></div>
+    <div class="paso"><div class="n">3</div><div>
+      <h3>Juez automático, calibrado contra personas</h3>
+      <p>Un modelo califica cada turno con la rúbrica y se compara contra una muestra calificada por personas, hasta llegar a 85&nbsp;% de acuerdo. Si no llega, se corrige la rúbrica o los ejemplos; no se confía en el juez.</p>
+      <div class="honesto"><b>Lo que ya hice y lo que no</b>Lo más cercano que he construido es un arnés de 70 frases para un clasificador y una comparación de latencia entre dos modelos. Un juez calibrado contra personas todavía no; lo construiría en la primera semana.</div>
+    </div></div>
+    <div class="paso"><div class="n">4</div><div>
+      <h3>Tabla modelo × acierto × latencia × costo</h3>
+      <p>Cada modelo candidato corre el conjunto dorado completo; se anota el acierto según la rúbrica, la latencia p50 y p95 por turno y el costo por conversación. Se elige con la tabla, no con la impresión. Y se repite cada vez que cambia el prompt, el modelo o una herramienta: es la prueba de regresión del agente.</p>
+    </div></div>
+    <div class="paso"><div class="n">5</div><div>
+      <h3>En producción, una muestra diaria</h3>
+      <p>Cada día el juez califica una muestra de conversaciones reales con la misma rúbrica, al lado de la métrica de negocio (expediente completo, aprobación de análisis) y de las métricas de guardia. Si la calidad sube y el negocio no, la rúbrica está mal calibrada y se corrige. Cada semana, 30 minutos con Emanuel y el líder de agencias: qué se traba, qué mensaje corrige mejor, qué escala de más.</p>
+    </div></div>
+    <div class="paso"><div class="n">6</div><div>
+      <h3>A/B, no «antes y después»</h3>
+      <p>Una variante nueva (un mensaje, el orden de los documentos, un modelo) se prueba con asignación aleatoria por conversación, en el mismo periodo, con el tamaño de muestra calculado antes de empezar: detectar una mejora de 3 puntos desde 20&nbsp;% pide cerca de 3.000 conversaciones por brazo. Las métricas de guardia (quejas, escalaciones, costo) forman parte del criterio de éxito desde el diseño: una conversión que sube con quejas no es una conversión sana. Un «antes y después» no sirve: cambia la mezcla de solicitantes, la campaña, el día.</p>
+      <div class="honesto"><b>Dicho de frente</b>No he corrido un experimento con grupo de control en un cliente. El diseño lo tengo, y el piloto en Nexu se arma así desde el primer día.</div>
+    </div></div>
+  </div>
+  <div class="ve" style="margin-top:14px"><b>Las reglas del ciclo</b>Ningún cambio en producción sin prueba y aprobación. Cada prompt, regla y herramienta está versionada en Git y se revierte en un paso; cada cambio queda en bitácora con fecha y con el número que movió. Y cada persona es distinta: el sistema no aplica un solo guion. Con la evidencia de las conversaciones va identificando tipos de solicitante (quien manda todo de golpe, quien necesita que le expliquen cada documento, quien se frena en el estado de cuenta) y ajusta el mensaje para cada tipo. Ese ajuste pasa por el mismo A/B.</div>
+</div></section>
+
+<section id="seguridad"><div class="capa">
+  <header><div class="ojal">Seguridad y cumplimiento</div><h2>Seguridad y cumplimiento, desde la semana cero</h2></header>
+  <p>No he operado datos regulados en una fintech, y lo digo de frente. Lo que traigo es una disciplina que ya aplico en lo mío (secretos fuera del código, respaldo diario verificado, todo reversible por Git, intentar romper una separación antes de darla por buena) y la aplico <strong>dentro de la infraestructura de Nexu</strong>, con sus estándares y con la revisión de su equipo.</p>
+  <div class="dos">
+    <div class="tarjeta"><h3>Dónde vive cada cosa</h3><ul>
+      <li>Todo corre en la infraestructura de Nexu: su nube, su CI, su gestor de secretos. Nada en discos de terceros ni en cuentas mías.</li>
+      <li>Datos personales en tabla aparte y <strong>enmascarados antes de pasar por cualquier modelo</strong>: el modelo recibe la salida de la validación con su puntaje, no la imagen de la INE ni el CURP completo.</li>
+      <li>Imágenes y documentos en el bucket cifrado de Nexu, con acceso por rol. El orquestador no guarda binarios ni datos de ejecución.</li>
+      <li>Retención y borrado de INE, comprobantes y estados de cuenta definidos por legal e implementados como borrado programado, demostrable con una consulta.</li>
+      <li>Registro de quién vio qué expediente; acceso de contratista revocable al salir.</li>
+    </ul></div>
+    <div class="tarjeta"><h3>Qué sale, hacia dónde y bajo qué acuerdo</h3><ul>
+      <li>Inventario de qué dato sale a qué proveedor (modelo de lenguaje, voz, transcripción, WhatsApp), con aviso de privacidad, acuerdos de no entrenamiento y retención mínima. Si el audio no puede salir, se transcribe dentro de la infraestructura de Nexu.</li>
+      <li>Ambientes de desarrollo, pruebas y producción separados; despliegue por el CI de Nexu, no por clics.</li>
+      <li>Logs y trazas sin datos personales.</li>
+      <li>Consentimiento pedido en el primer mensaje y registrado; cumplimiento como banderas por conversación, validado con legal en la semana cero.</li>
+      <li>Plan de incidente y de reversión escrito antes del piloto.</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<section id="arquitectura"><div class="capa">
+  <header><div class="ojal">Arquitectura</div><h2>Todo entra al cerebro, todo sale del cerebro, y los resultados vuelven</h2></header>
+  <div class="flujo">
+    <div class="linea">
+      <div class="caja"><h4>Lo que entra</h4><p>Mensajes y fotos del solicitante por WhatsApp. Sistema de solicitudes y de análisis. Políticas de documentos.</p></div>
+      <div class="caja"><h4>Cola y validación</h4><p>Cola por conversación. Idempotencia por id de mensaje. Validadores con puntaje. Datos personales enmascarados.</p></div>
+      <div class="caja cerebro"><h4>Cerebro</h4><p>Postgres: estado por solicitante, expediente, consentimiento. Reglas de negocio como parámetros. Herramientas deterministas.</p></div>
+      <div class="caja"><h4>Lo que sale</h4><p>Agente de WhatsApp que guía. Persona cuando la confianza es baja. Envío a solicitud con folio. Registro de cada conversación.</p></div>
+    </div>
+    <div class="vuelta"><div><b>El bucle de evaluación</b>Cada conversación registrada → juez con rúbrica sobre una muestra diaria → tablero (embudo, humano frente a agente) → revisión semanal → cambios probados en A/B vuelven al cerebro, versionados.</div></div>
+  </div>
+
+  <h3>Cuatro principios</h3>
+  <ol class="lista">
+    <li><strong>El estado vive en Postgres,</strong> no en el chat ni en el modelo. Un solo registro por solicitante, transaccional.</li>
+    <li><strong>Herramientas deterministas para todo lo que sea un dato:</strong> validar un documento, consultar una política, calcular una vigencia, enviar a solicitud. El modelo llama; no calcula.</li>
+    <li><strong>Humano cuando la confianza es baja:</strong> segunda falla de un documento, pregunta fuera de política, solicitante molesto. Con el resumen listo.</li>
+    <li><strong>Registro obligatorio de cada conversación:</strong> turno, herramienta llamada, argumentos, estado previo y siguiente. Ese registro es la evaluación y es la métrica.</li>
+  </ol>
+
+  <h3>Muchos solicitantes a la vez</h3>
+  <p>Emanuel preguntó por muchos clientes en paralelo y respondí solo con la espera de mensajes en ráfaga. La respuesta completa es esta, y la digo como diseño: no la he operado a la escala de Nexu.</p>
+  <ul class="lista">
+    <li><strong>Cola por conversación</strong> con el teléfono como clave, y <strong>un solo proceso activo por solicitante</strong>: dos fotos seguidas se procesan en orden, no en paralelo.</li>
+    <li><strong>Idempotencia por id de mensaje:</strong> el reintento de WhatsApp no duplica una validación ni un envío.</li>
+    <li><strong>Acuse inmediato y validación asíncrona:</strong> el solicitante recibe «recibí su INE, la reviso» al instante y el resultado cuando la herramienta termina. Presupuesto de latencia percibida de unos 5 segundos por turno de texto.</li>
+    <li><strong>Estado transaccional en Postgres;</strong> los procesos que validan escalan por separado del orquestador.</li>
+    <li><strong>Un bus de mensajes solo si el volumen lo pide.</strong> Para cientos o pocos miles de conversaciones al día, la cola por conversación alcanza; lo que importa es el orden y la idempotencia.</li>
+    <li><strong>En el piloto se mide bajo carga:</strong> latencia p50 y p95, duplicados por reintento (la meta es cero) y un solo proceso por conversación.</li>
+  </ul>
+  <p class="pie">Si el orquestador es n8n dentro de la infraestructura de Nexu o código en su stack es una decisión con el CTO; en los dos casos el estado va en Postgres. n8n es mi vía rápida a producción, no mi límite: también escribo el código (Node, Python) y lo sostengo con pruebas.</p>
+</div></section>
+
+<section id="cobranza"><div class="capa">
+  <header><div class="ojal">Segunda aplicación · Cobranza</div><h2>La cobranza, con el mismo método, como segunda línea</h2></header>
+  <p>La <a href="/nexu/">propuesta original de cobranza</a> sigue en pie. Cuando el embudo de originación tenga números, la misma base sirve para la segunda aplicación:</p>
+  <ul class="lista">
+    <li><strong>Medir primero.</strong> Conectar el WhatsApp desde el que se cobra, las llamadas grabadas y los pagos; cada conversación etiquetada por etapa, objeción, compromiso y cumplimiento. La efectividad se descompone en contacto × compromiso × cumplimiento, y la definición del 20&nbsp;% de hoy se acuerda por escrito.</li>
+    <li><strong>Cerebro de cobranza.</strong> Memoria por cliente, objeciones y respuestas que terminan en pago, políticas de Nexu como parámetros. El sistema calcula los convenios; el agente los lee.</li>
+    <li><strong>Agentes de voz y WhatsApp que llegan sabiendo.</strong> Historia completa antes de marcar, escuchar antes de ofrecer, cerrar con fecha, monto y canal, persona cuando toca.</li>
+    <li><strong>Cada persona es distinta.</strong> Adaptación a las objeciones y a los tipos de cliente (quien paga con un recordatorio, quien necesita un convenio, quien solo responde por WhatsApp, quien promete y no cumple), con canal, hora y respuesta por tipo.</li>
+    <li><strong>Mejora continua medida.</strong> La misma rúbrica, el mismo juez y el mismo A/B de arriba. Y no se queda en el 30: cuando se alcance, el mismo ciclo sigue buscando la mayor tasa posible para la cartera de Nexu.</li>
+  </ul>
+</div></section>
+
+<section id="precisiones"><div class="capa">
+  <header><div class="ojal">Cuatro precisiones</div><h2>Cuatro cosas que quedaron dichas de otra forma, y cómo son en realidad</h2></header>
+  <p>Releí la propuesta original y la conversación con Emanuel con los ojos de quien la va a revisar técnicamente. Hay cuatro puntos que prefiero dejar exactos.</p>
+  <div class="dos">
+    <div class="tarjeta"><h3>La llamada cortada que sigue por WhatsApp</h3><p>Que la conversación continúe por WhatsApp desde el mismo punto, con el mismo estado, es un diseño para Nexu; no es algo que hoy opere. Lo que sí tiene en producción el agente de voz de cobranza es la llamada de vuelta programada cuando se corta, y el envío del link de pago por WhatsApp durante la llamada.</p></div>
+    <div class="tarjeta"><h3>Latencias reales</h3><p>En texto, entre 2 y 5 segundos por turno según la herramienta que se llame; en voz, entre 8 y 10 segundos cuando el agente consulta algo, cubiertos con una frase de relleno. Son los tiempos que he medido; el número para Nexu sale de la tabla de modelos.</p></div>
+    <div class="tarjeta"><h3>Para qué sirve el RAG</h3><p>Para recuperar texto parecido y que el modelo lo lea: políticas, preguntas frecuentes, qué sirve como comprobante. No es la verdad de un dato y no decide elegibilidad: monto, vigencia y elegibilidad salen de la base, de una API o de una regla.</p></div>
+    <div class="tarjeta"><h3>El nombre del ciclo de mejora</h3><p>En la propuesta original lo describí con una analogía de mi formación en robótica. El nombre correcto es mejora continua medida: no se entrena ningún modelo; cada conversación se califica, el resultado real decide el A/B y las lecciones quedan en bitácora versionada.</p></div>
+  </div>
+</div></section>
+
+<section id="hecho"><div class="capa">
+  <header><div class="ojal">Con número y con dueño</div><h2>Lo que ya traigo hecho, con la cifra que puedo sostener</h2></header>
+  <p>Cada dato tiene dueño y fecha; lo que no he medido no lo pongo.</p>
+  <div class="cifras">
+    <div class="cifra"><b>8.690</b><span>Seguimientos proactivos a leads que nadie hacía.</span><small>Duke del Caribe</small></div>
+    <div class="cifra"><b>138 de 242</b><span>Leads fríos con Zoom agendado: 57&nbsp;%.</span><small>Duke del Caribe</small></div>
+    <div class="cifra"><b>29</b><span>Asesores activos usando el asistente.</span><small>Duke del Caribe</small></div>
+    <div class="cifra"><b>69 de 70</b><span>Frases del arnés de pruebas con el resultado esperado.</span><small>Jarvis</small></div>
+    <div class="cifra"><b>69 versiones</b><span>En dos semanas, con gente en campo; la v1 salió en un día.</span><small>Ayúdame Colombia</small></div>
+    <div class="cifra"><b>En producción</b><span>Agente de voz de cobranza B2B con un cliente en Colombia.</span><small>Sin cifra de llamadas: no la tengo verificada</small></div>
+  </div>
+  <div class="dos">
+    <div class="tarjeta"><h3>Duke del Caribe</h3><p>CRM inmobiliario de mi equipo; yo hago la capa de IA: el asistente de Telegram de los asesores y los recordatorios proactivos por lead. Es un antes y después con «antes» igual a cero, no un experimento con grupo de control; lo digo así.</p></div>
+    <div class="tarjeta"><h3>Cobranza por voz</h3><p>Agente de voz en producción con un cliente de cobranza B2B en Colombia: rutas por objeción, convenios en cuotas calculados por el sistema, link de pago por WhatsApp durante la llamada, verificación del pago en vivo y registro obligatorio antes de colgar.</p></div>
+    <div class="tarjeta"><h3>Ayúdame Colombia</h3><p>App para reportar personas desaparecidas después del terremoto. La v1 salió el mismo día; estabilizarla con gente en campo tomó 69 versiones en dos semanas.</p></div>
+    <div class="tarjeta"><h3>Jarvis</h3><p>Mi asistente por voz. Arnés de 70 frases con 69 aciertos como prueba de regresión, y comparación de dos modelos medida en segundos para elegir el rápido sin perder acierto.</p></div>
+  </div>
+</div></section>
+
+<section id="semana-cero"><div class="capa">
+  <header><div class="ojal">Propuesta de arranque</div><h2>Cómo arrancamos: la semana cero</h2></header>
+  <p>Lo propongo yo: antes de tocar producción, una semana con datos reales para que la primera decisión se tome con un número.</p>
+  <div class="dos">
+    <div class="tarjeta"><h3>Lo que entrego en una semana</h3>
+      <p>Con 300 a 500 conversaciones anonimizadas del proceso actual:</p>
+      <ul>
+        <li>El embudo de originación medido (iniciadas, completas, enviadas, aprobadas) y la línea base.</li>
+        <li>El conjunto dorado, versionado.</li>
+        <li>La rúbrica y el juez calibrado contra una muestra humana.</li>
+        <li>La tabla modelo × acierto × latencia × costo.</li>
+        <li>Una hipótesis con su A/B diseñado: variante, tamaño de muestra, métricas de guardia.</li>
+        <li>Una semana con dos o tres vendedores de piso viendo en qué documento se traba cada expediente.</li>
+      </ul>
+    </div>
+    <div class="tarjeta"><h3>Lo que necesito de Nexu</h3><ul>
+      <li>Un dueño del número del lado de negocio, y su definición por escrito.</li>
+      <li>Acceso de solo lectura a solicitudes y análisis, y las conversaciones anonimizadas.</li>
+      <li>El WhatsApp desde el que se atiende hoy: número de empresa, app o proveedor.</li>
+      <li>Las políticas de documentos: qué sirve como comprobante, vigencias, la lista de análisis.</li>
+      <li>Las reglas de elegibilidad como reglas, no como criterio de cada quien.</li>
+      <li>Una hora semanal de Emanuel y del líder de agencias.</li>
+      <li>Validación legal de privacidad y consentimiento.</li>
+    </ul></div>
+  </div>
+  <div class="cierre">
+    <p><strong>Frontera de rol, en una frase:</strong> soy dueño de los agentes de punta a punta (prompt, herramientas, orquestación, evaluación, tablero, revisión semanal) y de la métrica acordada; la infraestructura y la seguridad de base son del equipo de Nexu, y me acoplo a sus estándares con mi código revisado por su backend.</p>
+    <p><strong>Mantengo toda mi disposición de colaborar de verdad con ustedes:</strong> con gusto lo reviso con Emanuel, con Remigio o con quien lidere las agencias; me siento con los vendedores de piso para ver dónde se traba cada expediente, y con legal para dejar las reglas como parámetros desde el inicio. El resultado del embudo es del negocio; lo mío es que cada semana se pueda ver, con un número, por qué subió.</p>
+  </div>
+</div></section>
+</main>
+
+<div class="capa"><p class="tenue" style="text-align:center;max-width:none;font-size:14.5px;margin:0 0 6px">La <a href="/nexu/">propuesta original de cobranza</a> y su <a href="/nexu/detalle/">anexo técnico</a> siguen disponibles.</p></div>
+
+<footer><div class="capa">Ángel Garzón · <a href="https://angelszs.site">angelszs.site</a></div></footer>
+
+<!-- Baliza de visitas: avisa por Telegram (vía n8n) la primera vez que alguien abre la página en cada sesión.
+     La visita del dueño no cuenta: abrir la página con ?yo una vez por navegador la marca como propia. -->
+<script>
+(function(){
+  try{
+    if(location.search.indexOf('yo')>-1){localStorage.setItem('nexu-dueno','1');}
+    if(localStorage.getItem('nexu-dueno')==='1'){return;}
+    if(sessionStorage.getItem('nexu2-visto')==='1'){return;}
+    sessionStorage.setItem('nexu2-visto','1');
+    var p=new URLSearchParams({pag:'nexu2',ref:document.referrer||'',w:String(screen.width),t:new Date().toISOString()});
+    new Image().src='https://n8n.angelszs.site/webhook/nexu-visita?'+p.toString();
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
