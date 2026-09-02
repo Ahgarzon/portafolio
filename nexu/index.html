@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexu, del 20 al 30 · Propuesta de Ángel Garzón</title>
+<meta name="description" content="Cómo llevar la cobranza de Nexu del 20 % al 30 %: medir primero, un cerebro de cobranza, agentes de voz y WhatsApp que aprenden de cada resultado, y todo medido.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  :root{
+    --fondo:#EEF2F4; --papel:#FFFFFF; --tinta:#0B1F33; --tenue:#5A6B7C; --linea:#D3DBE2;
+    --acento:#0F7B6C; --acento-suave:#DDF0EA; --acento-tinta:#0B5A4F;
+    --ambar:#A8681C; --ambar-suave:#F5E9D6;
+    --sombra:0 1px 2px rgba(11,31,51,.06),0 10px 28px rgba(11,31,51,.07);
+    --display:'Bricolage Grotesque','Public Sans',system-ui,sans-serif;
+    --cuerpo:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --fondo:#0E151C; --papel:#151E27; --tinta:#E6EDF3; --tenue:#93A3B3; --linea:#27333F;
+      --acento:#3FBFA6; --acento-suave:#123B35; --acento-tinta:#8EE0CD;
+      --ambar:#D9A44B; --ambar-suave:#3A2C15;
+      --sombra:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --fondo:#0E151C; --papel:#151E27; --tinta:#E6EDF3; --tenue:#93A3B3; --linea:#27333F;
+    --acento:#3FBFA6; --acento-suave:#123B35; --acento-tinta:#8EE0CD;
+    --ambar:#D9A44B; --ambar-suave:#3A2C15;
+    --sombra:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fondo);color:var(--tinta);font-family:var(--cuerpo);font-size:17px;line-height:1.6;overflow-x:hidden}
+  a{color:var(--acento-tinta)}
+  a:focus-visible{outline:2px solid var(--acento);outline-offset:3px}
+  .capa{max-width:860px;margin:0 auto;padding:0 22px}
+  h1,h2,h3{font-family:var(--display);letter-spacing:-.01em;text-wrap:balance;margin:0}
+  h1{font-size:clamp(32px,5.2vw,54px);font-weight:800;line-height:1.04}
+  h2{font-size:clamp(23px,3vw,32px);font-weight:800;line-height:1.12}
+  h3{font-size:18px;font-weight:600;line-height:1.3}
+  p{margin:0 0 14px;max-width:66ch}
+  .tenue{color:var(--tenue)}
+  .ojal{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acento-tinta)}
+  .chip{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:var(--ambar-suave);color:var(--ambar);vertical-align:middle;margin-left:6px}
+
+  .portada{padding:56px 0 30px}
+  .portada .firma{display:flex;flex-wrap:wrap;gap:6px 16px;margin:16px 0 22px;color:var(--tenue);font-size:15px}
+  .portada .firma strong{color:var(--tinta)}
+  .tesis{font-size:clamp(18px,1.9vw,21px);max-width:60ch}
+
+  /* la ecuacion: el corazon de la propuesta */
+  .ecuacion{background:var(--papel);border:1px solid var(--linea);border-radius:18px;box-shadow:var(--sombra);padding:22px 24px;margin:26px 0 8px}
+  .ecuacion .eq{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1.2fr;gap:8px;align-items:center;text-align:center}
+  .ecuacion .eq .v{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.2vw,44px);line-height:1;font-variant-numeric:tabular-nums}
+  .ecuacion .eq .v small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--tenue);margin-top:8px;font-weight:500}
+  .ecuacion .eq .op{font-size:26px;color:var(--tenue)}
+  .ecuacion .eq .res{color:var(--acento)}
+  .ecuacion .filas{display:grid;gap:6px;margin-top:18px;border-top:1px dashed var(--linea);padding-top:14px}
+  .ecuacion .filas div{display:grid;grid-template-columns:150px 1fr auto;gap:12px;font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums;color:var(--tenue)}
+  .ecuacion .filas b{color:var(--tinta);font-weight:500}
+  .ecuacion .filas .r{color:var(--acento);font-weight:500}
+  .pie{font-size:14px;color:var(--tenue);margin-top:10px}
+
+  section{padding:40px 0;border-top:1px solid var(--linea)}
+  section header{margin-bottom:18px;display:grid;gap:6px}
+
+  .pasos{display:grid;gap:14px}
+  .paso{background:var(--papel);border:1px solid var(--linea);border-radius:16px;box-shadow:var(--sombra);padding:20px 22px;display:grid;grid-template-columns:52px 1fr;gap:16px}
+  .paso .n{font-family:var(--display);font-weight:800;font-size:34px;line-height:1;color:var(--acento)}
+  .paso .n small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tenue);margin-top:6px;font-weight:500}
+  .paso h3{margin-bottom:6px}
+  .paso ul{margin:8px 0 0;padding-left:18px}
+  .paso li{margin-bottom:5px}
+  .paso .ve{margin-top:10px;background:var(--acento-suave);color:var(--acento-tinta);border-radius:10px;padding:9px 12px;font-size:14.5px}
+  .paso .ve b{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px}
+
+  /* diagrama sencillo, hecho a mano */
+  .flujo{background:var(--papel);border:1px solid var(--linea);border-radius:18px;box-shadow:var(--sombra);padding:22px;overflow-x:auto}
+  .flujo .linea{display:grid;grid-template-columns:repeat(4,1fr);gap:0;align-items:stretch;min-width:720px}
+  .flujo .caja{position:relative;border:1.5px solid var(--linea);border-radius:14px;padding:14px 14px 14px;background:var(--fondo)}
+  .flujo .caja + .caja{margin-left:28px}
+  .flujo .caja + .caja::before{content:"";position:absolute;left:-28px;top:50%;width:28px;height:2px;background:var(--acento);transform:translateY(-1px)}
+  .flujo .caja + .caja::after{content:"";position:absolute;left:-9px;top:50%;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:9px solid var(--acento);transform:translateY(-6px)}
+  .flujo .caja.cerebro{background:var(--acento-suave);border-color:var(--acento)}
+  .flujo .caja h4{margin:0 0 6px;font-family:var(--display);font-weight:800;font-size:16px;line-height:1.2}
+  .flujo .caja p{margin:0;font-size:13.5px;line-height:1.45;color:var(--tenue);max-width:none}
+  .flujo .caja.cerebro p{color:var(--acento-tinta)}
+  .flujo .vuelta{margin-top:14px;min-width:720px;display:grid;grid-template-columns:1fr;gap:0}
+  .flujo .vuelta div{border:1.5px dashed var(--acento);border-radius:14px;padding:12px 16px;font-size:14px;color:var(--acento-tinta);background:var(--papel);text-align:center}
+  .flujo .vuelta div b{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px}
+
+  .dos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  .tarjeta{background:var(--papel);border:1px solid var(--linea);border-radius:16px;box-shadow:var(--sombra);padding:18px 20px}
+  .tarjeta h3{margin-bottom:8px}
+  .tarjeta ul{margin:0;padding-left:18px}
+  .tarjeta li{margin-bottom:6px}
+  .tarjeta p:last-child{margin-bottom:0}
+
+  .metricas{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:6px}
+  .metrica{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:14px 16px}
+  .metrica b{display:block;font-family:var(--display);font-weight:800;font-size:15px;line-height:1.2;margin-bottom:4px}
+  .metrica span{font-size:13.5px;color:var(--tenue);line-height:1.4;display:block}
+
+  .cierre{background:var(--tinta);color:var(--fondo);border-radius:18px;padding:26px 28px;box-shadow:var(--sombra)}
+  .cierre p{color:inherit;max-width:none}
+  .cierre p:last-child{margin-bottom:0}
+  .cierre strong{color:var(--acento)}
+  footer{padding:28px 0 56px;color:var(--tenue);font-size:13.5px}
+  @media (max-width:640px){
+    .paso{grid-template-columns:1fr;gap:6px}
+    .ecuacion .filas div{grid-template-columns:1fr;gap:2px}
+  }
+</style>
+</head>
+<body>
+
+
+<main>
+<div class="portada"><div class="capa">
+  <div class="ojal">Propuesta para Nexu · Cobranza</div>
+  <h1 style="margin-top:10px">Cómo llevar la cobranza del 20 % al 30 %, y que se vea cada semana.</h1>
+  <div class="firma"><span><strong>Ángel Garzón</strong> · Ingeniero de automatización e inteligencia artificial</span><span>Septiembre de 2026</span></div>
+  <p class="tesis">Mi propuesta no empieza construyendo un robot que llame. Empieza <strong>midiendo lo que ya pasa</strong> en la cobranza de Nexu, para saber con exactitud en qué paso se pierde el 80 % que hoy no paga. Con eso se construye un cerebro de cobranza, y sobre ese cerebro trabajan los agentes de voz y de WhatsApp, que aprenden de cada resultado real y se miden con la misma regla que las personas.</p>
+
+  <div class="ecuacion" aria-label="La efectividad es el producto de tres tasas">
+    <div class="eq">
+      <div class="v">50<small>contacto</small></div><div class="op">×</div>
+      <div class="v">60<small>compromiso</small></div><div class="op">×</div>
+      <div class="v">67<small>cumplimiento</small></div><div class="op">=</div>
+      <div class="v res">20 %</div>
+    </div>
+    <div class="filas">
+      <div><b>Meta comprometida</b><span>60 × 65 × 77</span><span class="r">30 %</span></div>
+      <div><b>Meta interna, con margen</b><span>65 × 70 × 80</span><span class="r">36 %</span></div>
+    </div>
+    <p class="pie">La efectividad de cobranza es el producto de tres cosas: a cuántos clientes se les logra hablar, cuántos se comprometen con fecha y monto, y cuántos cumplen. Los porcentajes de arriba son un ejemplo para explicar la idea<span class="chip">supuesto</span>; los reales salen de la medición de las primeras semanas. Cada una de las tres se arregla con herramientas distintas, y por eso se pueden mover por separado.</p>
+  </div>
+</div></div>
+
+<section id="como"><div class="capa">
+  <header><div class="ojal">Cómo lo haría</div><h2>Cuatro pasos, cada uno con algo que Nexu ve</h2></header>
+  <div class="pasos">
+    <div class="paso"><div class="n">1<small>sem. 1–4</small></div><div>
+      <h3>Medir lo que ya pasa</h3>
+      <p>Conecto las conversaciones que Nexu ya tiene: el WhatsApp desde el que hoy se cobra (por coexistencia, sin cambiar la forma de trabajar del equipo), las llamadas grabadas, el sistema de crédito y los pagos. Cada conversación queda registrada y etiquetada sola: hasta qué etapa llegó, qué objeción apareció, si hubo compromiso y si se cumplió.</p>
+      <ul><li>Si hay histórico, se recupera. Si no, se empieza a recopilar desde el primer día.</li><li>Antes de arrancar se acuerda por escrito qué significa exactamente ese 20 %, para que el 30 % se mida con la misma regla.</li></ul>
+      <div class="ve"><b>Lo que Nexu ve</b>Un tablero con el embudo completo: dónde se pierde la gente, cuáles son las objeciones más frecuentes, qué respuestas funcionan y a qué horas sí contestan.</div>
+    </div></div>
+
+    <div class="paso"><div class="n">2<small>sem. 2–5</small></div><div>
+      <h3>Construir el cerebro de cobranza</h3>
+      <p>Toda esa información vive en una sola base que se actualiza en tiempo real. Por cada cliente sabe su historia: cuánto lleva sin contestar, qué prometió y si cumplió, qué motivo dio para no pagar, por qué canal responde mejor. Y para toda la cartera sabe qué objeciones existen, cómo se han manejado y cuáles respuestas terminan en pago.</p>
+      <ul><li>Las políticas de Nexu (horarios permitidos, cuántos intentos, qué convenios se pueden ofrecer, qué se puede decir) quedan como reglas del sistema, no como criterio de cada quien.</li><li>El sistema calcula los convenios; ningún agente inventa cifras.</li></ul>
+      <div class="ve"><b>Lo que Nexu ve</b>Un mapa claro de sus clientes en mora y de sus objeciones, y la primera respuesta con datos a la pregunta «¿por qué nos quedamos en 20 %?».</div>
+    </div></div>
+
+    <div class="paso"><div class="n">3<small>sem. 4–10</small></div><div>
+      <h3>Agentes de voz y WhatsApp que ya llegan sabiendo</h3>
+      <p>El agente de voz llama en horario laboral, en la hora local del cliente, y arranca con la historia completa: sabe si es la primera vez, si prometió y no cumplió, o si ya le marcaron dos veces. Escucha antes de ofrecer, entiende la objeción con empatía, recuerda lo que se firmó como información y no como amenaza, y siempre busca cerrar con un compromiso de fecha, monto y canal.</p>
+      <ul><li><strong>Si la llamada se corta o cuelgan</strong>, en menos de un minuto la conversación sigue por WhatsApp desde el mismo punto, con el link de pago o el resumen del acuerdo. Voz y WhatsApp comparten el mismo estado del cliente: nunca se pierde el hilo.</li><li>Cuando toca una persona (una disputa, alguien molesto, una petición fuera de política), el agente escala con el resumen listo.</li><li>Arranca en un grupo acotado, en paralelo con el equipo humano sobre el mismo tipo de cuentas, para comparar con justicia.</li></ul>
+      <div class="ve"><b>Lo que Nexu ve</b>Agente y personas en el mismo tablero: contactos, compromisos y pagos verificados, con la misma regla.</div>
+    </div></div>
+
+    <div class="paso"><div class="n">4<small>siempre</small></div><div>
+      <h3>Aprender de cada resultado, todos los días</h3>
+      <p>Aquí está la diferencia con un agente que solo «responde bien». El sistema tiene <strong>ciclos de aprendizaje</strong>: uno diario y uno semanal, y los dos se alimentan del cerebro y lo alimentan de vuelta.</p>
+      <ul><li><strong>Cada día, solo:</strong> cada conversación se evalúa (¿se identificó?, ¿escuchó antes de ofrecer?, ¿cerró con fecha y monto?), cada pago se vincula a la conversación que lo produjo, y las objeciones nuevas se detectan.</li><li><strong>Cada semana, 30 minutos con quien lidera cobranza:</strong> qué movió el número, qué objeción creció, qué respuesta convirtió más. Se prueban dos variantes de una respuesta o de un horario, gana la que convierte, y el cambio queda anotado con fecha.</li><li><strong>Aprendizaje por refuerzo, en la práctica:</strong> el resultado real de cada gestión (pagó, prometió, no contestó) refuerza lo que funciona y descarta lo que no. Las respuestas, los horarios y las reglas de canal mejoran con evidencia, no con opiniones.</li></ul>
+      <div class="ve"><b>Lo que Nexu ve</b>La efectividad subiendo semana a semana, y cada subida explicada por un cambio concreto.</div>
+    </div></div>
+  </div>
+</div></section>
+
+<section id="mapa"><div class="capa">
+  <header><div class="ojal">El sistema, en una imagen</div><h2>Todo entra al cerebro, todo sale del cerebro, y los resultados vuelven</h2></header>
+  <div class="flujo">
+    <div class="linea">
+      <div class="caja"><h4>Lo que ya pasa</h4><p>Llamadas grabadas, WhatsApp, sistema de crédito, pagos.</p></div>
+      <div class="caja"><h4>Se registra y se etiqueta</h4><p>Cada conversación: etapa, objeción, compromiso, cumplimiento.</p></div>
+      <div class="caja cerebro"><h4>Cerebro de cobranza</h4><p>Memoria por cliente. Objeciones y respuestas que funcionan. Las políticas de Nexu como reglas.</p></div>
+      <div class="caja"><h4>Agentes</h4><p>Voz y WhatsApp con el mismo hilo. Persona cuando toca. Siempre en horario permitido.</p></div>
+    </div>
+    <div class="vuelta"><div><b>El ciclo de aprendizaje</b>Cada resultado real (pagó, prometió, no contestó) vuelve al cerebro. Cada día se evalúa; cada semana se ajusta lo que no convierte. Así el sistema mejora solo.</div></div>
+  </div>
+</div></section>
+
+<section id="medido"><div class="capa">
+  <header><div class="ojal">Todo medido</div><h2>El número tiene numerador y denominador desde la primera semana</h2></header>
+  <p>Personas y agentes se miden con la misma regla y en el mismo tablero. La meta interna es 35–40 %, no 30 %: se persigue con margen para que el 30 % comprometido se cumpla aunque una de las tres palancas rinda menos de lo esperado.</p>
+  <div class="metricas">
+    <div class="metrica"><b>Efectividad</b><span>Clientes que pagan tras la gestión, con la definición acordada con Nexu.</span></div>
+    <div class="metrica"><b>Las tres palancas</b><span>Contacto, compromiso y cumplimiento, por canal y por segmento.</span></div>
+    <div class="metrica"><b>Pesos recuperados</b><span>Atribuidos a cada conversación, humana o del agente.</span></div>
+    <div class="metrica"><b>Compromisos cumplidos</b><span>Cuántas promesas terminan en pago, con y sin recordatorio.</span></div>
+    <div class="metrica"><b>Cumplimiento normativo</b><span>Cada contacto con su marca: se identificó, respetó el horario, no habló con terceros.</span></div>
+    <div class="metrica"><b>Salud del sistema</b><span>Gestiones registradas al 100 %, tiempos de respuesta, costo por gestión.</span></div>
+  </div>
+</div></section>
+
+<section id="nexu"><div class="capa">
+  <div class="dos">
+    <div class="tarjeta"><h3>Lo que necesitaría de Nexu</h3><ul>
+      <li>La definición exacta del 20 % de hoy y quién es el dueño del número.</li>
+      <li>Cómo cobran hoy: desde qué WhatsApp, qué telefonía, cuántos gestores, cuántas cuentas en mora.</li>
+      <li>Acceso de solo lectura al sistema de crédito y a los pagos, y una muestra de 30 a 50 conversaciones reales.</li>
+      <li>Las políticas vigentes: horarios, intentos, convenios que se pueden ofrecer, qué se puede decir.</li>
+      <li>Una conversación con su área legal sobre las reglas de cobranza en México, para dejarlas como parámetros del sistema desde el inicio.</li>
+    </ul></div>
+    <div class="tarjeta"><h3>Lo que ya traigo hecho</h3>
+      <p>He diseñado y operado en producción un agente de voz de cobranza con rutas de objeción, convenios en cuotas con primer abono el mismo día, envío del link de pago por WhatsApp durante la llamada, verificación del pago en vivo y registro obligatorio antes de colgar. Lo que Nexu agrega, y lo que más me interesa construir, es el cerebro alrededor: memoria de cada cliente, medición desde el primer día, cumplimiento y el ciclo de aprendizaje.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="cierre"><div class="capa">
+  <div class="cierre">
+    <p>Cuando en la entrevista me plantearon pasar del 20 al 30 por ciento, me quedé pensando en cómo se logra de verdad, y este es el plan. No prometo el 30 % con una frase: propongo <strong>hacerlo medible desde el primer día</strong>, mover las tres palancas con evidencia y dejar un sistema que aprende de cada resultado. El resultado de cobranza es del negocio; lo mío es que cada semana se pueda ver por qué subió.</p>
+    <p>Con gusto lo reviso con Emanuel o con quien lidere cobranza, y ajusto el plan a cómo trabaja Nexu hoy.</p>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="capa">Ángel Garzón · <a href="https://angelszs.site">angelszs.site</a> · Los únicos datos de Nexu en esta página son el 20 % actual y la meta del 30 %; el resto son supuestos de diseño que la medición reemplaza en las primeras semanas.</div></footer>
+
+</body>
+</html>
