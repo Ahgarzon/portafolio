@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anexo técnico · Nexu, del 20 al 30 · Ángel Garzón</title>
+<meta name="description" content="Anexo técnico de la propuesta de Ángel Garzón para Nexu: arquitectura, componentes, agente de voz, continuidad voz–WhatsApp, evaluación continua y tablero.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  :root{
+    --fondo:#EEF2F4; --papel:#FFFFFF; --tinta:#0B1F33; --tenue:#5A6B7C; --linea:#D3DBE2;
+    --acento:#0F7B6C; --acento-suave:#DDF0EA; --acento-tinta:#0B5A4F;
+    --ambar:#A8681C; --ambar-suave:#F5E9D6;
+    --sombra:0 1px 2px rgba(11,31,51,.06),0 10px 28px rgba(11,31,51,.07);
+    --display:'Bricolage Grotesque','Public Sans',system-ui,sans-serif;
+    --cuerpo:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --fondo:#0E151C; --papel:#151E27; --tinta:#E6EDF3; --tenue:#93A3B3; --linea:#27333F;
+      --acento:#3FBFA6; --acento-suave:#123B35; --acento-tinta:#8EE0CD;
+      --ambar:#D9A44B; --ambar-suave:#3A2C15;
+      --sombra:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --fondo:#0E151C; --papel:#151E27; --tinta:#E6EDF3; --tenue:#93A3B3; --linea:#27333F;
+    --acento:#3FBFA6; --acento-suave:#123B35; --acento-tinta:#8EE0CD;
+    --ambar:#D9A44B; --ambar-suave:#3A2C15;
+    --sombra:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fondo);color:var(--tinta);font-family:var(--cuerpo);font-size:17px;line-height:1.6;overflow-x:hidden}
+  a{color:var(--acento-tinta)}
+  a:focus-visible{outline:2px solid var(--acento);outline-offset:3px}
+  .capa{max-width:860px;margin:0 auto;padding:0 22px}
+  h1,h2,h3{font-family:var(--display);letter-spacing:-.01em;text-wrap:balance;margin:0}
+  h1{font-size:clamp(32px,5.2vw,54px);font-weight:800;line-height:1.04}
+  h2{font-size:clamp(23px,3vw,32px);font-weight:800;line-height:1.12}
+  h3{font-size:18px;font-weight:600;line-height:1.3}
+  p{margin:0 0 14px;max-width:66ch}
+  .tenue{color:var(--tenue)}
+  .ojal{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acento-tinta)}
+  .chip{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:var(--ambar-suave);color:var(--ambar);vertical-align:middle;margin-left:6px}
+
+  .portada{padding:56px 0 30px}
+  .portada .firma{display:flex;flex-wrap:wrap;gap:6px 16px;margin:16px 0 22px;color:var(--tenue);font-size:15px}
+  .portada .firma strong{color:var(--tinta)}
+  .tesis{font-size:clamp(18px,1.9vw,21px);max-width:60ch}
+
+  /* la ecuacion: el corazon de la propuesta */
+  .ecuacion{background:var(--papel);border:1px solid var(--linea);border-radius:18px;box-shadow:var(--sombra);padding:22px 24px;margin:26px 0 8px}
+  .ecuacion .eq{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1.2fr;gap:8px;align-items:center;text-align:center}
+  .ecuacion .eq .v{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.2vw,44px);line-height:1;font-variant-numeric:tabular-nums}
+  .ecuacion .eq .v small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--tenue);margin-top:8px;font-weight:500}
+  .ecuacion .eq .op{font-size:26px;color:var(--tenue)}
+  .ecuacion .eq .res{color:var(--acento)}
+  .ecuacion .filas{display:grid;gap:6px;margin-top:18px;border-top:1px dashed var(--linea);padding-top:14px}
+  .ecuacion .filas div{display:grid;grid-template-columns:150px 1fr auto;gap:12px;font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums;color:var(--tenue)}
+  .ecuacion .filas b{color:var(--tinta);font-weight:500}
+  .ecuacion .filas .r{color:var(--acento);font-weight:500}
+  .pie{font-size:14px;color:var(--tenue);margin-top:10px}
+
+  section{padding:40px 0;border-top:1px solid var(--linea)}
+  section header{margin-bottom:18px;display:grid;gap:6px}
+
+  .pasos{display:grid;gap:14px}
+  .paso{background:var(--papel);border:1px solid var(--linea);border-radius:16px;box-shadow:var(--sombra);padding:20px 22px;display:grid;grid-template-columns:44px 1fr;gap:16px}
+  .paso .n{font-family:var(--display);font-weight:800;font-size:34px;line-height:1;color:var(--acento)}
+  .paso .n small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tenue);margin-top:6px;font-weight:500;white-space:nowrap}
+  .paso h3{margin-bottom:6px}
+  .paso ul{margin:8px 0 0;padding-left:18px}
+  .paso li{margin-bottom:5px}
+  .paso .ve{margin-top:10px;background:var(--acento-suave);color:var(--acento-tinta);border-radius:10px;padding:9px 12px;font-size:14.5px}
+  .paso .ve b{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px}
+
+  /* diagrama sencillo, hecho a mano */
+  .flujo{background:var(--papel);border:1px solid var(--linea);border-radius:18px;box-shadow:var(--sombra);padding:22px;overflow-x:auto}
+  .flujo .linea{display:grid;grid-template-columns:repeat(4,1fr);gap:0;align-items:stretch;min-width:720px}
+  .flujo .caja{position:relative;border:1.5px solid var(--linea);border-radius:14px;padding:14px 14px 14px;background:var(--fondo)}
+  .flujo .caja + .caja{margin-left:28px}
+  .flujo .caja + .caja::before{content:"";position:absolute;left:-28px;top:50%;width:28px;height:2px;background:var(--acento);transform:translateY(-1px)}
+  .flujo .caja + .caja::after{content:"";position:absolute;left:-9px;top:50%;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:9px solid var(--acento);transform:translateY(-6px)}
+  .flujo .caja.cerebro{background:var(--acento-suave);border-color:var(--acento)}
+  .flujo .caja h4{margin:0 0 6px;font-family:var(--display);font-weight:800;font-size:16px;line-height:1.2}
+  .flujo .caja p{margin:0;font-size:13.5px;line-height:1.45;color:var(--tenue);max-width:none}
+  .flujo .caja.cerebro p{color:var(--acento-tinta)}
+  .flujo .vuelta{margin-top:14px;min-width:720px;display:grid;grid-template-columns:1fr;gap:0}
+  .flujo .vuelta div{border:1.5px dashed var(--acento);border-radius:14px;padding:12px 16px;font-size:14px;color:var(--acento-tinta);background:var(--papel);text-align:center}
+  .flujo .vuelta div b{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px}
+
+  .dos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  .tarjeta{background:var(--papel);border:1px solid var(--linea);border-radius:16px;box-shadow:var(--sombra);padding:18px 20px}
+  .tarjeta h3{margin-bottom:8px}
+  .tarjeta ul{margin:0;padding-left:18px}
+  .tarjeta li{margin-bottom:6px}
+  .tarjeta p:last-child{margin-bottom:0}
+
+  .metricas{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:6px}
+  .metrica{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:14px 16px}
+  .metrica b{display:block;font-family:var(--display);font-weight:800;font-size:15px;line-height:1.2;margin-bottom:4px}
+  .metrica span{font-size:13.5px;color:var(--tenue);line-height:1.4;display:block}
+
+  .cierre{background:var(--acento-suave);color:var(--tinta);border-left:5px solid var(--acento);border-radius:0 18px 18px 0;padding:24px 28px;box-shadow:var(--sombra)}
+  .cierre p{color:inherit;max-width:none}
+  .cierre p:last-child{margin-bottom:0}
+  .cierre strong{color:var(--acento-tinta)}
+  footer{padding:28px 0 56px;color:var(--tenue);font-size:13.5px}
+  @media (max-width:640px){
+    .paso{grid-template-columns:1fr;gap:6px}
+    .ecuacion .filas div{grid-template-columns:1fr;gap:2px}
+  }
+
+  /* solo para el anexo: listas, tablas y codigos */
+  .lista{margin:0 0 14px;padding-left:20px}
+  .lista li{margin-bottom:6px;max-width:70ch}
+  .lista li strong{color:var(--tinta)}
+  ol.lista li{padding-left:4px}
+  h3{margin:18px 0 8px}
+  section header + h3, .tarjeta h3{margin-top:0}
+  code{font-family:var(--mono);font-size:12.5px;background:var(--acento-suave);color:var(--acento-tinta);padding:1px 6px;border-radius:6px;white-space:nowrap}
+  .tabla{background:var(--papel);border:1px solid var(--linea);border-radius:14px;box-shadow:var(--sombra);overflow-x:auto;margin:10px 0 16px}
+  .tabla table{width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.45;min-width:520px}
+  .tabla th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--tenue);font-weight:500;padding:10px 14px;border-bottom:1px solid var(--linea)}
+  .tabla td{padding:9px 14px;border-bottom:1px solid var(--linea);vertical-align:top}
+  .tabla tr:last-child td{border-bottom:0}
+  .tabla td:first-child{white-space:nowrap}
+  .volver{text-align:center;padding:8px 0 0}
+</style>
+</head>
+<body>
+
+<main>
+<div class="portada"><div class="capa">
+  <div class="ojal">Propuesta para Nexu · Cobranza · Para el equipo de IA</div>
+  <h1 style="margin-top:10px">Anexo técnico</h1>
+  <div class="firma"><span><strong>Ángel Garzón</strong> · Ingeniero de automatización e inteligencia artificial</span><span>Septiembre de 2026</span></div>
+  <p class="tesis">Cómo está armado por dentro el plan para pasar del <strong>20 %</strong> actual al <strong>30 %</strong>. Esos dos números son los únicos datos de Nexu que uso; todo lo demás es diseño inicial<span class="chip">supuesto</span> que la medición reemplaza.</p>
+</div></div>
+
+<section id="arquitectura"><div class="capa">
+  <header><div class="ojal">1 · Arquitectura</div><h2>Todo entra al cerebro, todo sale del cerebro, y los resultados vuelven</h2></header>
+  <div class="flujo">
+    <div class="linea">
+      <div class="caja"><h4>Fuentes</h4><p>WhatsApp Business en coexistencia, telefonía con grabación, core de crédito (saldo, mora, calendario), pagos.</p></div>
+      <div class="caja"><h4>Ingesta</h4><p>n8n: webhooks, crons, idempotencia. Transcripción es-MX con diarización. Etiquetado: etapa, objeción, promesa, cumplimiento.</p></div>
+      <div class="caja cerebro"><h4>Cerebro y orquestador</h4><p>Postgres + pgvector. Estado único por cliente. Políticas como parámetros. Decide canal, hora y siguiente acción.</p></div>
+      <div class="caja"><h4>Agentes</h4><p>Agente de voz. Agente de WhatsApp (links, comprobantes, recordatorios). Humano con el resumen listo.</p></div>
+    </div>
+    <div class="vuelta"><div><b>Bucle de evaluación</b>Cada gestión registrada → tablero (efectividad, tres palancas, humano vs. agente) → revisión semanal → nuevos parámetros, guiones y taxonomía vuelven al cerebro.</div></div>
+  </div>
+
+  <h3>Cinco principios</h3>
+  <ol class="lista">
+    <li><strong>Nada se copia dos veces.</strong> El core es la verdad del saldo; el cerebro, la verdad de la conversación.</li>
+    <li><strong>El estado vive en la base, no en el canal.</strong> Voz, WhatsApp y humano leen y escriben la misma fila por cliente.</li>
+    <li><strong>Las reglas son parámetros, no código.</strong> Horarios, reintentos, tope de contactos, convenios y frases aprobadas viven en una tabla; cambiarlos es decisión de negocio, no despliegue.</li>
+    <li><strong>El agente nunca calcula dinero.</strong> Convenios y cuotas los devuelve una herramienta; el modelo solo lee cifras válidas.</li>
+    <li><strong>Todo entra con su id original</strong> (<code>message_id</code>, <code>call_id</code>) para no duplicar. Datos personales en tabla aparte, enmascarados antes de pasar por cualquier modelo.</li>
+  </ol>
+</div></section>
+
+<section id="componentes"><div class="capa">
+  <header><div class="ojal">2 · Componentes</div><h2>Elección inicial, ajustable a lo que Nexu ya tenga</h2></header>
+  <div class="tabla"><table>
+    <thead><tr><th>Pieza</th><th>Para qué</th></tr></thead>
+    <tbody>
+      <tr><td><strong>n8n</strong></td><td>Bus y orquestador: webhooks, crons, idempotencia y las herramientas que llaman los agentes.</td></tr>
+      <tr><td><strong>Postgres + pgvector</strong></td><td>Cliente, conversación, promesa, pago y evaluación; búsqueda semántica sobre las respuestas que terminaron en pago.</td></tr>
+      <tr><td><strong>Motor de voz</strong></td><td>Retell u otro equivalente: recibe el contexto inyectado, llama herramientas en n8n en vivo y devuelve transcripción y análisis al colgar.</td></tr>
+      <tr><td><strong>WhatsApp Business Platform</strong></td><td>Cloud API o el BSP de Nexu, en coexistencia con la app actual. Fuera de la ventana de 24 h, solo plantillas aprobadas.</td></tr>
+      <tr><td><strong>Transcripción es-MX</strong></td><td>Con diarización. En la nube, o Whisper + pyannote si el audio no puede salir de Nexu.</td></tr>
+      <tr><td><strong>Claude para etiquetado</strong></td><td>Modelo ligero para el volumen, uno mayor para casos ambiguos: etapa, objeción, promesa, cumplimiento, sentimiento.</td></tr>
+      <tr><td><strong>Metabase</strong></td><td>Tablero sobre el mismo Postgres, sin licencia (o Looker Studio si Nexu vive en Google).</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section id="voz"><div class="capa">
+  <header><div class="ojal">3 · El agente de voz</div><h2>Llega sabiendo, escucha antes de ofrecer y no cuelga sin registrar</h2></header>
+
+  <h3>Memoria inyectada antes de marcar</h3>
+  <p>n8n arma el contexto desde el cerebro y lo inyecta como variables dinámicas, sin latencia al inicio: días de atraso, monto, bucket, intentos por canal, mejor hora en que contestó, última objeción, promesas hechas, cumplidas y rotas, canal preferido y lo que legal permite mencionar. Así la apertura cambia: primer contacto, recuerda y escucha; promesa rota, la nombra con respeto y busca un abono hoy; tercer intento, propone seguir por WhatsApp.</p>
+  <p>Identificación ligera antes de mencionar deuda, motivo en una frase y silencio: nada de opciones antes de escuchar el motivo. Tercero: no se revela nada, <code>TERCERO</code>. Buzón: <code>BUZON</code>. «No puedo hablar»: hora concreta o WhatsApp, <code>REAGENDADO</code>.</p>
+
+  <h3>Taxonomía de objeciones, cada una con código en la base</h3>
+  <div class="tabla"><table>
+    <thead><tr><th>Código</th><th>Cómo la maneja el agente de voz</th></tr></thead>
+    <tbody>
+      <tr><td><code>YA_PAGUE</code></td><td>Verifica en el momento con <code>verificar_pago</code>. Si no aparece, pide comprobante por WhatsApp y registra <code>PENDIENTE_COMPROBANTE</code>. No discute.</td></tr>
+      <tr><td><code>NO_TENGO_DINERO</code></td><td>Empatía, pregunta cuándo tiene ingreso, ofrece convenio calculado por sistema, busca abono hoy, cierra con fecha.</td></tr>
+      <tr><td><code>DISPUTA</code></td><td>No debate cifras; envía estado de cuenta por WhatsApp, registra el motivo textual, escala si insiste.</td></tr>
+      <tr><td><code>PROMESA_VAGA</code></td><td>Convierte «ahorita» en día, monto y canal. Sin los tres no es promesa.</td></tr>
+      <tr><td><code>DEVOLVER_AUTO</code> · <code>VENDI_AUTO</code></td><td>No negocia: registra y escala a humano con prioridad.</td></tr>
+      <tr><td><code>SINIESTRO</code> · <code>EN_TALLER</code></td><td>Escucha, registra, deriva por WhatsApp al área correspondiente; no promete nada sobre seguros.</td></tr>
+      <tr><td><code>TERCERO</code> · <code>NUMERO_EQUIVOCADO</code></td><td>Cierra sin revelar y marca el dato para actualizarlo.</td></tr>
+      <tr><td><code>MOLESTO_HOSTIL</code></td><td>Desescala una vez, ofrece humano y cuelga con respeto.</td></tr>
+      <tr><td><code>NO_CONTESTA</code> · <code>BUZON</code></td><td>Reintentos y cambio de canal desde el orquestador.</td></tr>
+      <tr><td><code>OTRA</code></td><td>Texto libre; si se repite, nace una categoría nueva.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="pie">Semilla de unas 12 categorías<span class="chip">supuesto</span>, calibrada la primera semana etiquetando a mano unas 100 conversaciones.</p>
+
+  <h3>Convenios: el sistema calcula, el agente lee</h3>
+  <p><code>calcular_convenio(id_contrato, abono_hoy, numero_cuotas)</code> en n8n aplica las políticas de Nexu (abono mínimo, máximo de cuotas, moratorios) y devuelve dos o tres opciones válidas en pesos. Nunca cifras dígito por dígito; nunca quitas ni «borrar» intereses (eso va a humano); siempre buscar el abono de hoy, o fijar fecha y monto del primero con recordatorio el día anterior. Las consecuencias se mencionan como información, solo las aprobadas por legal, y pegadas a una salida: «para evitarlo, hoy podemos…».</p>
+
+  <h3>Registro obligatorio antes de colgar</h3>
+  <p>Nunca <code>end_call</code> sin <code>registrar_gestion</code>, incluso si se corta: resultado codificado (<code>PAGO_VERIFICADO</code>, <code>PROMESA_FECHADA</code>, <code>CONVENIO_ACTIVADO</code>, <code>PENDIENTE_COMPROBANTE</code>, <code>SIN_ACUERDO</code>, <code>REQUIERE_HUMANO</code>, <code>NO_CONTACTO</code>, <code>REAGENDADO</code>), objeción, fecha, monto y canal, sentimiento, momento en que se perdió al cliente. Ese registro <strong>es</strong> la métrica.</p>
+
+  <h3>Banderas de cumplimiento</h3>
+  <p>El marco de cobranza en México (CONDUSEF, REDECO, privacidad y consentimiento de grabación) se verifica con el área legal de Nexu al inicio; no asumo ningún artículo. En el agente son reglas fijas: horario permitido en hora local del cliente; identificarse como Nexu y avisar que se graba; nunca revelar deuda a terceros; listas de frases prohibidas y aprobadas; tope de intentos; respetar «no me llamen». Cada conversación, humana o del agente, lleva sus banderas: se identificó, respetó horario, no amenazó, no habló con terceros.</p>
+</div></section>
+
+<section id="continuidad"><div class="capa">
+  <header><div class="ojal">4 · Continuidad voz–WhatsApp</div><h2>El caso «se cortó la llamada», paso a paso</h2></header>
+  <p>El orquestador guarda por cliente un estado único (etapa, última objeción, convenio, promesa vigente, canal preferido, intentos) que voz y WhatsApp comparten.</p>
+  <ol class="lista">
+    <li><strong>La llamada cae</strong> a mitad de la negociación; el motor de voz manda a n8n <code>call_ended</code> con motivo, transcripción y análisis.</li>
+    <li><strong>n8n detecta que no hubo cierre:</strong> no hay <code>registrar_gestion</code> con resultado final para ese <code>call_id</code>.</li>
+    <li><strong>Reconstruye la etapa</strong> desde la transcripción y el estado: objeción, convenio, monto y fecha mencionados.</li>
+    <li><strong>En menos de un minuto escribe por WhatsApp</strong> (ventana de 24 h, o plantilla utility aprobada): «se nos cortó la llamada; quedamos en que hoy abona mil pesos y el resto el lunes, aquí le dejo el link».</li>
+    <li><strong>El agente de WhatsApp sigue desde esa etapa,</strong> no desde cero: link con vencimiento; comprobante → extrae monto, fecha y referencia y coteja con pagos; convenio → botones «Acepto» y «Quiero hablar con alguien».</li>
+    <li><strong>Si no responde en la ventana definida,</strong> el orquestador programa otra llamada en franja distinta, y el agente de voz abre sabiendo que se cortó y que le escribió.</li>
+    <li><strong>Todo queda en la misma fila del cliente,</strong> atribuido a la misma gestión.</li>
+  </ol>
+
+  <h3>Reparto de canal por situación<span class="chip">supuesto</span></h3>
+  <div class="tabla"><table>
+    <thead><tr><th>Situación</th><th>Canal inicial</th></tr></thead>
+    <tbody>
+      <tr><td>1–7 días de atraso</td><td>WhatsApp recordatorio con link: barato, no invasivo.</td></tr>
+      <tr><td>8–30 días</td><td>Llamada en horario permitido + WhatsApp de respaldo el mismo día.</td></tr>
+      <tr><td>Promesa rota</td><td>Llamada.</td></tr>
+      <tr><td>Dos llamadas sin contestar</td><td>WhatsApp y llamada en franja distinta al día siguiente.</td></tr>
+      <tr><td>Responde por WhatsApp</td><td>Se queda ahí mientras responda.</td></tr>
+      <tr><td>Pidió no ser llamado</td><td>Solo WhatsApp.</td></tr>
+      <tr><td>Disputa, devolución, hostilidad, quita</td><td>Humano con resumen: transferencia en caliente en horario, ticket prioritario si no.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="pie">Todo son parámetros: cuando otra franja o canal convierta más para un bucket, se cambia y se mide. Falta confirmar con el BSP que el uso en cobranza esté permitido.</p>
+</div></section>
+
+<section id="mejora"><div class="capa">
+  <header><div class="ojal">5 · Evaluación y mejora</div><h2>No se entrena un modelo: se ajusta el sistema con evidencia</h2></header>
+  <div class="dos">
+    <div class="tarjeta"><h3>Corre solo, todos los días</h3><ul>
+      <li><strong>Evaluación de cada conversación:</strong> etiquetas y calificación contra el guion: ¿se identificó?, ¿escuchó antes de ofrecer?, ¿cerró con fecha, monto y canal?, ¿registró?</li>
+      <li><strong>Atribución:</strong> cada pago se vincula a la conversación que lo precedió en la ventana acordada.</li>
+      <li><strong>Detección de «otras»:</strong> las objeciones que no encajan se acumulan para revisión.</li>
+    </ul></div>
+    <div class="tarjeta"><h3>Ritual semanal, 30 minutos</h3><ul>
+      <li>Qué cambió el número: efectividad y tres palancas, humano vs. agente.</li>
+      <li>Qué objeción creció y cuál convierte peor.</li>
+      <li>Qué respuesta gana: conversaciones que terminaron en pago contra las que no, por objeción (pgvector + revisión humana). Eso se vuelve guion.</li>
+      <li>A/B en curso: dos respuestas, aperturas o franjas; gana la que convierte en promesa y pago.</li>
+      <li>Bitácora: ningún cambio entra sin fecha.</li>
+    </ul></div>
+  </div>
+  <h3>Qué se ajusta y qué no</h3>
+  <ul class="lista">
+    <li><strong>Cada semana:</strong> respuestas por objeción, aperturas, horarios y canal por segmento, reintentos, recordatorios, taxonomía. Del prompt, solo la ruta afectada.</li>
+    <li><strong>Con aprobación de Nexu:</strong> políticas de convenio, consecuencias mencionables, frases aprobadas, segmentos que pasan del humano al agente.</li>
+    <li><strong>No se toca sin legal:</strong> horarios permitidos, identificación, terceros y grabación.</li>
+  </ul>
+</div></section>
+
+<section id="tablero"><div class="capa">
+  <header><div class="ojal">6 · Métricas del tablero</div><h2>Una pantalla que se mira cada lunes</h2></header>
+  <p>Vistas: el número grande contra la meta (20 → 30, con meta interna por encima) y las tres palancas; embudo por etapa con filtros por bucket, gestor y canal; mapas objeción × resultado y hora × día; promesas del día; conversaciones con bandera; humano vs. agente con el mismo criterio.</p>
+  <div class="dos">
+    <div class="tarjeta"><h3>De negocio</h3><ul>
+      <li>Efectividad con la definición acordada y sus tres tasas.</li>
+      <li>Pesos recuperados atribuidos a gestión, por canal y segmento.</li>
+      <li>Promesas cumplidas por horizonte (2 vs. 15 días) y con o sin recordatorio.</li>
+      <li>Toques hasta el pago y punto de rendimientos decrecientes.</li>
+      <li>Dónde dejan de responder en WhatsApp.</li>
+    </ul></div>
+    <div class="tarjeta"><h3>Del sistema (respondo por ellas)</h3><ul>
+      <li>Gestiones con registro completo: meta 100 %.</li>
+      <li>Resueltas sin escalar y escaladas correctamente.</li>
+      <li>Respuesta en WhatsApp; latencia de herramientas en voz bajo 8–10 s con frase de relleno.</li>
+      <li>Acierto de transcripción y acuerdo etiquetado automático vs. humano.</li>
+      <li>Costo por gestión y disponibilidad.</li>
+    </ul></div>
+  </div>
+  <p class="pie" style="margin-top:14px">Con dos semanas de datos se ve el embudo grueso; con cuatro, la línea base para medir a los agentes<span class="chip">supuesto</span>: algunos cientos de conversaciones al mes.</p>
+  <p class="volver"><a href="../">← Volver a la propuesta</a></p>
+</div></section>
+</main>
+
+<footer><div class="capa">Ángel Garzón · <a href="https://angelszs.site">angelszs.site</a></div></footer>
+
+<!-- Baliza de visitas: avisa por Telegram (vía n8n) la primera vez que alguien abre la página en cada sesión.
+     La visita del dueño no cuenta: abrir la página con ?yo una vez por navegador la marca como propia. -->
+<script>
+(function(){
+  try{
+    if(location.search.indexOf('yo')>-1){localStorage.setItem('nexu-dueno','1');}
+    if(localStorage.getItem('nexu-dueno')==='1'){return;}
+    if(sessionStorage.getItem('nexu-visto')==='1'){return;}
+    sessionStorage.setItem('nexu-visto','1');
+    var p=new URLSearchParams({pag:'detalle',ref:document.referrer||'',w:String(screen.width),t:new Date().toISOString()});
+    new Image().src='https://n8n.angelszs.site/webhook/nexu-visita?'+p.toString();
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

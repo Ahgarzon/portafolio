@@ -222,7 +222,23 @@
 </div></section>
 </main>
 
-<footer><div class="capa">Ángel Garzón · <a href="https://angelszs.site">angelszs.site</a> · Los únicos datos de Nexu en esta página son el 20 % actual y la meta del 30 %; el resto son supuestos de diseño que la medición reemplaza en las primeras semanas.</div></footer>
+<div class="capa"><p class="tenue" style="text-align:center;max-width:none;font-size:14.5px;margin:0 0 6px">Para el equipo técnico: <a href="detalle/">arquitectura, agente y evaluación en detalle</a></p></div>
 
+<footer><div class="capa">Ángel Garzón · <a href="https://angelszs.site">angelszs.site</a></div></footer>
+
+<!-- Baliza de visitas: avisa por Telegram (vía n8n) la primera vez que alguien abre la página en cada sesión.
+     La visita del dueño no cuenta: abrir la página con ?yo una vez por navegador la marca como propia. -->
+<script>
+(function(){
+  try{
+    if(location.search.indexOf('yo')>-1){localStorage.setItem('nexu-dueno','1');}
+    if(localStorage.getItem('nexu-dueno')==='1'){return;}
+    if(sessionStorage.getItem('nexu-visto')==='1'){return;}
+    sessionStorage.setItem('nexu-visto','1');
+    var p=new URLSearchParams({pag:'propuesta',ref:document.referrer||'',w:String(screen.width),t:new Date().toISOString()});
+    new Image().src='https://n8n.angelszs.site/webhook/nexu-visita?'+p.toString();
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
