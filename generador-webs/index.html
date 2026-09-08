@@ -185,16 +185,16 @@
   <div class="hero">
     <span class="pill">DEMO GRATIS · PAGAS SOLO SI TE GUSTA</span>
     <h1>Primero ves tu página <span class="g">gratis.</span><br>Después decides.</h1>
-    <p class="sub">Te creamos una página profesional para tu negocio con tus fotos reales, dominio incluido, botón a WhatsApp y un agente para editarla por chat. <strong>Si la ves y te gusta, la activas por US$15.</strong></p>
+    <p class="sub">Te creamos una página profesional para tu negocio con tus fotos reales, dominio incluido, botón a WhatsApp y un agente para editarla por chat. <strong>Si la ves y te gusta, la activas por $60.000 COP.</strong></p>
     <div class="cta-row">
       <a href="#pedir" class="btn btn-main">Quiero ver mi página gratis →</a>
       <a href="#video-agente" class="btn btn-ghost">Ver el agente</a>
     </div>
     <div class="hero-offer">
       <div class="label">Oferta de lanzamiento por tiempo limitado</div>
-      <div class="price-line"><span class="free">Verla: GRATIS</span><span class="arrow">→</span><span class="old">Antes US$100</span><span class="now">US$15</span></div>
+      <div class="price-line"><span class="free">Verla: GRATIS</span><span class="arrow">→</span><span class="old">Antes $400.000</span><span class="now">$60.000 COP</span></div>
       <div class="after">No pagas por pedirla ni por revisarla. Pagas solo si quieres dejarla activa.</div>
-      <div class="market">Una página con desarrollador puede costar desde US$300. Aquí primero la ves funcionando.</div>
+      <div class="market">Una página con desarrollador puede costar desde $1.200.000 COP. Aquí primero la ves funcionando.</div>
     </div>
     <div class="hero-includes" aria-label="Qué incluye ZOSA Pages">
       <div class="include"><span class="mark">✓</span><b>Demo gratis</b><span>La recibes por WhatsApp para verla antes de pagar.</span></div>
@@ -218,7 +218,7 @@
         <div class="field">Instagram<br><b>@cafearomas</b></div>
         <div class="field">WhatsApp<br><b>300 123 4567</b></div>
         <div class="go">Enviar y ver mi demo gratis</div>
-        <p class="caption">Después de verla decides si la activas por US$15.</p>
+        <p class="caption">Después de verla decides si la activas por $60.000 COP.</p>
       </div>
     </div>
   </div>
@@ -252,12 +252,12 @@
     <div class="offer">
       <div class="eyebrow">Oferta clara</div>
       <div class="big">Primero la ves. <span class="g">Después decides.</span></div>
-      <div class="offer-price"><span class="was">US$100</span><span class="launch">US$15</span></div>
-      <p>El precio de lanzamiento es <b style="color:var(--txt)">US$15</b> por tiempo limitado. No pagas por pedirla ni por verla: solo pagas si te gusta el resultado y quieres activarla para tu negocio.</p>
+      <div class="offer-price"><span class="was">$400.000</span><span class="launch">$60.000 COP</span></div>
+      <p>El precio de lanzamiento es <b style="color:var(--txt)">$60.000 COP</b> por tiempo limitado. No pagas por pedirla ni por verla: solo pagas si te gusta el resultado y quieres activarla para tu negocio.</p>
       <div class="offer-row">
         <span class="chip"><b>✓</b> Demo gratis</span>
-        <span class="chip"><b>✓</b> Antes US$100</span>
-        <span class="chip"><b>✓</b> Hoy US$15 si te gusta</span>
+        <span class="chip"><b>✓</b> Antes $400.000</span>
+        <span class="chip"><b>✓</b> Hoy $60.000 si te gusta</span>
       </div>
       <div class="fine">Una página hecha desde cero por un desarrollador suele costar mucho más. Esta oferta existe para los primeros negocios que quieran probar ZOSA Pages.</div>
     </div>
@@ -302,7 +302,7 @@
   <section id="pedir">
     <div class="eyebrow">Empecemos</div>
     <h2>Pide tu página</h2>
-    <p class="lead">Déjanos estos datos y te mandamos el link por WhatsApp. La demo es gratis; si te gusta y quieres dejarla activa, aprovechas la oferta de lanzamiento de US$15.</p>
+    <p class="lead">Déjanos estos datos y te mandamos el link por WhatsApp. La demo es gratis; si te gusta y quieres dejarla activa, aprovechas la oferta de lanzamiento de $60.000 COP.</p>
 
     <form id="f">
       <label>Nombre del negocio</label>
@@ -325,7 +325,7 @@
     <div class="ok" id="ok">
       <h3>¡Hemos recibido tu solicitud! ✅</h3>
       <p>Ya estamos preparando tu página con tus datos.<br>
-         Te llegará el <b>link de tu página</b> por WhatsApp para que la veas primero. Si te gusta, la activas con la oferta de lanzamiento de <b>US$15</b>. No te preocupes: ya puedes cerrar esta ventana, nosotros nos encargamos. 💜</p>
+         Te llegará el <b>link de tu página</b> por WhatsApp para que la veas primero. Si te gusta, la activas con la oferta de lanzamiento de <b>$60.000 COP</b>. No te preocupes: ya puedes cerrar esta ventana, nosotros nos encargamos. 💜</p>
       <span class="eta">⏳ En preparación</span>
     </div>
   </section>
@@ -378,8 +378,8 @@
       whatsapp: whatsapp,
       detalle: document.getElementById('detalle').value,
       origen: 'landing-generador-webs',
-      precio_usd: 15,
-      condicion_pago: 'demo gratis; oferta lanzamiento US$15; antes US$100; paga solo si le gusta y quiere activarla'
+      precio_cop: 60000,
+      condicion_pago: 'demo gratis; oferta lanzamiento $60.000 COP; antes $400.000; paga solo si le gusta y quiere activarla'
     };
     trackEvent('ZosaPagesFormStart', {origen:'landing-generador-webs'});
     fetch('https://n8n.angelszs.site/webhook/generar-web-intake', {
@@ -390,8 +390,8 @@
       if(!r.ok) throw new Error('bad');
       form.style.display='none';
       document.getElementById('ok').style.display='block';
-      if (window.fbq) window.fbq('track', 'Lead', {currency:'USD', value:15});
-      trackEvent('ZosaPagesLead', {origen:'landing-generador-webs', precio_usd:15});
+      if (window.fbq) window.fbq('track', 'Lead', {currency:'COP', value:60000});
+      trackEvent('ZosaPagesLead', {origen:'landing-generador-webs', precio_cop:60000});
     }).catch(function(){
       err.textContent = 'No se pudo enviar. Escríbenos directo al WhatsApp y lo resolvemos.';
       err.style.display='block';
