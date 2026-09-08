@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tu página web en minutos · ZOSA</title>
+<title>Página web profesional para tu negocio · ZOSA</title>
 <link rel="canonical" href="https://angelszs.site/generador-webs" />
-<meta name="description" content="Creamos la página web de tu negocio en minutos, con tus fotos reales y link directo por WhatsApp. Para cualquier negocio o marca.">
+<meta name="description" content="Creamos una página web profesional para tu negocio con tus fotos reales. Ves la demo gratis y solo pagas si te gusta y quieres activarla.">
 <style>
   :root{
     --bg:#08070d; --card:#12111c; --line:#26243a;
@@ -48,6 +48,16 @@
   .btn-ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
   .price-note{margin-top:16px;font-size:14px;color:var(--muted)}
   .price-note b{color:var(--txt)}
+  .hero-offer{max-width:560px;margin:24px auto 0;background:linear-gradient(120deg,rgba(139,92,246,.2),rgba(34,211,238,.13));
+    border:1px solid rgba(34,211,238,.35);border-radius:18px;padding:18px 18px 16px;
+    box-shadow:0 16px 42px rgba(0,0,0,.34)}
+  .hero-offer .label{font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--cyan);margin-bottom:7px}
+  .hero-offer .price-line{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap}
+  .hero-offer .old{font-size:18px;color:var(--muted);text-decoration:line-through}
+  .hero-offer .now{font-size:clamp(36px,8vw,54px);font-weight:900;line-height:1;background:var(--grad);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero-offer .after{margin-top:8px;color:var(--txt);font-size:15px;font-weight:700}
+  .hero-offer .market{margin-top:7px;color:var(--muted);font-size:13px}
 
   /* mockup */
   .mock{max-width:440px;margin:44px auto 0;background:var(--card);border:1px solid var(--line);
@@ -123,6 +133,11 @@
   .offer .big{font-size:clamp(24px,4.5vw,34px);font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
   .offer .big .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .offer p{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:clamp(15px,2.3vw,18px)}
+  .offer-price{display:flex;justify-content:center;align-items:end;gap:16px;flex-wrap:wrap;margin:18px 0 10px}
+  .offer-price .was{color:var(--muted);font-size:20px;text-decoration:line-through}
+  .offer-price .launch{font-size:clamp(44px,10vw,72px);font-weight:900;line-height:.95;background:var(--grad);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .fine{color:var(--muted);font-size:13px;margin-top:12px}
   .offer-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:6px}
   .chip{display:inline-flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);
     border-radius:999px;padding:11px 20px;font-weight:700;font-size:14.5px}
@@ -141,7 +156,7 @@
 <body>
 
 <header>
-  <div class="brand"><b>ZOSA Pages</b> · páginas rápidas para negocios reales</div>
+  <div class="brand"><b>ZOSA Pages</b> · páginas profesionales para negocios reales</div>
 </header>
 
 <div class="wrap">
@@ -149,13 +164,18 @@
   <!-- HERO -->
   <div class="hero">
     <span class="pill">PARA CUALQUIER NEGOCIO O MARCA · CON DOMINIO INCLUIDO</span>
-    <h1>Tu página web<br><span class="g">en minutos</span></h1>
-    <p class="sub">Cuéntanos tu negocio y te creamos una página web profesional con tus fotos reales. En menos de 15 minutos tienes el link por WhatsApp para verla.</p>
+    <h1>Tu página web<br><span class="g">lista para vender</span></h1>
+    <p class="sub">Cuéntanos tu negocio y te creamos una página web profesional con tus fotos reales, tu estilo de marca y botón directo a WhatsApp.</p>
     <div class="cta-row">
       <a href="#pedir" class="btn btn-main">Crear mi página GRATIS →</a>
       <a href="#como" class="btn btn-ghost">Ver cómo funciona</a>
     </div>
-    <p class="price-note"><b>La demo es gratis.</b> La ves primero y decides después.</p>
+    <div class="hero-offer">
+      <div class="label">Oferta de lanzamiento por tiempo limitado</div>
+      <div class="price-line"><span class="old">Antes US$100</span><span class="now">US$15</span></div>
+      <div class="after">La demo es gratis. Pagas solo si la ves, te gusta y quieres activarla.</div>
+      <div class="market">Una página con desarrollador puede costar desde US$300. Aquí primero la ves funcionando.</div>
+    </div>
 
     <div class="mock">
       <div class="bar"><i></i><i></i><i></i></div>
@@ -167,9 +187,9 @@
 
   <!-- COMO FUNCIONA -->
   <section id="como">
-    <div class="eyebrow">Así de fácil</div>
-    <h2>Tres pasos y estás en línea</h2>
-    <p class="lead">Tú no tocas nada técnico. Nosotros nos encargamos de todo.</p>
+      <div class="eyebrow">Así funciona</div>
+      <h2>Tres pasos y tu negocio tiene web</h2>
+      <p class="lead">Tú no tocas nada técnico. Nosotros revisamos tu marca, armamos la página y te la mostramos antes de cobrarte.</p>
     <div class="grid">
       <div class="card">
         <div class="num">1</div>
@@ -184,7 +204,7 @@
       <div class="card">
         <div class="num">3</div>
         <h3>Te la entregamos lista</h3>
-        <p>Recibes el link por WhatsApp para revisarla desde tu celular. Si te gusta, la dejamos activa para tu negocio.</p>
+        <p>Recibes el link por WhatsApp para revisarla desde tu celular. Si te gusta, pagas la oferta de lanzamiento y la dejamos activa para tu negocio.</p>
       </div>
     </div>
   </section>
@@ -192,14 +212,16 @@
   <!-- OFERTA GRATIS / NO PAGAS -->
   <section>
     <div class="offer">
-      <div class="eyebrow">Sin riesgo</div>
-      <div class="big">Créala <span class="g">totalmente gratis</span></div>
-      <p>Con un solo botón pides tu demo y la ves completa. No pagas nada por crearla ni por verla. Si te gusta y quieres activarla para tu negocio, cuesta <b style="color:var(--txt)">US$15</b>.</p>
+      <div class="eyebrow">Oferta clara</div>
+      <div class="big">Primero la ves. <span class="g">Después decides.</span></div>
+      <div class="offer-price"><span class="was">US$100</span><span class="launch">US$15</span></div>
+      <p>El precio de lanzamiento es <b style="color:var(--txt)">US$15</b> por tiempo limitado. No pagas por pedirla ni por verla: solo pagas si te gusta el resultado y quieres activarla para tu negocio.</p>
       <div class="offer-row">
-        <span class="chip"><b>✓</b> Gratis para crearla</span>
-        <span class="chip"><b>✓</b> Gratis para verla</span>
-        <span class="chip"><b>✓</b> Pagas solo si la activas</span>
+        <span class="chip"><b>✓</b> Demo gratis</span>
+        <span class="chip"><b>✓</b> Antes US$100</span>
+        <span class="chip"><b>✓</b> Hoy US$15 si te gusta</span>
       </div>
+      <div class="fine">Una página hecha desde cero por un desarrollador suele costar mucho más. Esta oferta existe para los primeros negocios que quieran probar ZOSA Pages.</div>
     </div>
   </section>
 
@@ -242,7 +264,7 @@
   <section id="pedir">
     <div class="eyebrow">Empecemos</div>
     <h2>Pide tu página</h2>
-    <p class="lead">Déjanos estos datos y te mandamos el link por WhatsApp. La demo es gratis; si te gusta y quieres dejarla activa, cuesta US$15.</p>
+    <p class="lead">Déjanos estos datos y te mandamos el link por WhatsApp. La demo es gratis; si te gusta y quieres dejarla activa, aprovechas la oferta de lanzamiento de US$15.</p>
 
     <form id="f">
       <label>Nombre del negocio</label>
@@ -265,7 +287,7 @@
     <div class="ok" id="ok">
       <h3>¡Hemos recibido tu solicitud! ✅</h3>
       <p>Ya estamos preparando tu página con tus datos.<br>
-         En unos pocos minutos te llegará el <b>link de tu página</b> por WhatsApp para que la veas y la compartas. No te preocupes: ya puedes cerrar esta ventana, nosotros nos encargamos. 💜</p>
+         Te llegará el <b>link de tu página</b> por WhatsApp para que la veas primero. Si te gusta, la activas con la oferta de lanzamiento de <b>US$15</b>. No te preocupes: ya puedes cerrar esta ventana, nosotros nos encargamos. 💜</p>
       <span class="eta">⏳ En preparación</span>
     </div>
   </section>
@@ -310,7 +332,7 @@
       detalle: document.getElementById('detalle').value,
       origen: 'landing-generador-webs',
       precio_usd: 15,
-      condicion_pago: 'demo gratis; paga US$15 solo si le gusta y quiere activarla'
+      condicion_pago: 'demo gratis; oferta lanzamiento US$15; antes US$100; paga solo si le gusta y quiere activarla'
     };
     trackEvent('ZosaPagesFormStart', {origen:'landing-generador-webs'});
     fetch('https://n8n.angelszs.site/webhook/generar-web-intake', {
