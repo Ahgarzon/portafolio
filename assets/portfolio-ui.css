@@ -1,0 +1,24 @@
+/* Small additions to the original portfolio: audience choice and FAQ. */
+[hidden]{display:none!important}
+html{scroll-padding-top:96px}
+.audience-switch{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:12px;background:var(--glass);margin-bottom:20px;max-width:100%}
+.audience-switch button{font-family:var(--disp);font-size:13px;font-weight:600;min-height:44px;padding:10px 16px;border:1px solid transparent;border-radius:9px;background:transparent;color:var(--muted);cursor:pointer;transition:transform .18s ease-out}
+.audience-switch button[aria-pressed="true"]{color:var(--ink);background:linear-gradient(115deg,rgba(var(--c1-rgb),.14),rgba(var(--c2-rgb),.16));border-color:rgba(var(--c1-rgb),.3)}
+.audience-switch button:active{transform:scale(.98)}
+.audience-switch button:focus-visible,.audience-shortcuts a:focus-visible,.faq-list summary:focus-visible,.reel-sound:focus-visible{outline:2px solid var(--c1);outline-offset:4px}
+.audience-shortcuts{display:flex;gap:8px 20px;flex-wrap:wrap;margin-top:18px}
+.audience-shortcuts a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--mono);font-size:12px;color:var(--muted);text-decoration:none}
+.audience-shortcuts a:hover{color:var(--c1)}
+.faq-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+.faq-layout h2{margin-top:18px;line-height:1.18}
+.faq-list details{border-bottom:1px solid var(--line)}
+.faq-list summary{display:flex;justify-content:space-between;gap:24px;align-items:center;cursor:pointer;list-style:none;font-size:17px;font-weight:500;line-height:1.6;padding:24px 0;min-height:72px}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:'+';color:var(--c1);font-size:24px;font-weight:400;flex-shrink:0}
+.faq-list details[open] summary::after{content:'−'}
+.faq-list details p{font-size:16px;color:var(--muted);line-height:1.8;padding:0 30px 24px 0;max-width:640px}
+.reel-sound{min-height:44px;min-width:44px}
+@media(max-width:820px){.faq-layout{grid-template-columns:1fr;gap:28px}.faq-list summary{font-size:16px}.audience-switch button{font-size:12px;padding-inline:12px}}
+@media(max-width:600px){.audience-switch{width:100%}.audience-switch button{flex:1}.audience-shortcuts{gap:4px 16px}.audience-shortcuts a{font-size:11px}}
+@media(pointer:coarse){#glow,.grain{display:none}.aura{filter:blur(55px)}.chip,.ping{animation:none}.track{animation:none;white-space:normal;flex-wrap:wrap;width:auto;justify-content:center}.track span:nth-child(n+8){display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
