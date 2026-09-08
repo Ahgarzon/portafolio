@@ -10,7 +10,7 @@
   :root{
     --bg:#08070d; --card:#12111c; --line:#26243a;
     --txt:#f3f2fb; --muted:#a6a3c2;
-    --violet:#8b5cf6; --cyan:#22d3ee;
+    --violet:#8b5cf6; --cyan:#22d3ee; --green:#34d399; --amber:#fbbf24;
     --grad:linear-gradient(120deg,#8b5cf6 0%,#6366f1 45%,#22d3ee 100%);
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -33,41 +33,59 @@
   .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
   /* hero */
-  .hero{text-align:center;padding:46px 0 30px}
+  .hero{text-align:center;padding:38px 0 30px}
   .pill{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.6px;
     color:var(--cyan);border:1px solid var(--line);border-radius:999px;padding:7px 16px;margin-bottom:22px;
     background:rgba(34,211,238,.06)}
-  h1{font-size:clamp(34px,7vw,60px);line-height:1.05;font-weight:800;letter-spacing:-1px}
+  h1{font-size:clamp(36px,7.8vw,68px);line-height:1.02;font-weight:850;letter-spacing:-1px}
   h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{margin:20px auto 0;max-width:620px;font-size:clamp(16px,2.4vw,19px);color:var(--muted)}
+  .sub{margin:20px auto 0;max-width:700px;font-size:clamp(17px,2.5vw,21px);color:var(--muted)}
+  .sub strong{color:var(--txt)}
   .cta-row{margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
   .btn{display:inline-block;font-weight:700;font-size:16px;padding:15px 30px;border-radius:14px;
     border:none;cursor:pointer;text-decoration:none;transition:transform .15s,box-shadow .15s}
   .btn-main{background:var(--grad);color:#0a0a12;box-shadow:0 10px 34px rgba(99,102,241,.4)}
   .btn-main:hover{transform:translateY(-2px);box-shadow:0 14px 42px rgba(99,102,241,.55)}
   .btn-ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
-  .price-note{margin-top:16px;font-size:14px;color:var(--muted)}
-  .price-note b{color:var(--txt)}
-  .hero-offer{max-width:560px;margin:24px auto 0;background:linear-gradient(120deg,rgba(139,92,246,.2),rgba(34,211,238,.13));
+  .hero-offer{max-width:760px;margin:24px auto 0;background:linear-gradient(120deg,rgba(139,92,246,.2),rgba(34,211,238,.13));
     border:1px solid rgba(34,211,238,.35);border-radius:18px;padding:18px 18px 16px;
     box-shadow:0 16px 42px rgba(0,0,0,.34)}
-  .hero-offer .label{font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--cyan);margin-bottom:7px}
-  .hero-offer .price-line{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap}
-  .hero-offer .old{font-size:18px;color:var(--muted);text-decoration:line-through}
-  .hero-offer .now{font-size:clamp(36px,8vw,54px);font-weight:900;line-height:1;background:var(--grad);
+  .hero-offer .label{font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--green);margin-bottom:7px}
+  .hero-offer .price-line{display:flex;align-items:baseline;justify-content:center;gap:14px;flex-wrap:wrap}
+  .hero-offer .free{font-size:clamp(24px,5vw,40px);font-weight:900;color:var(--txt)}
+  .hero-offer .arrow{color:var(--muted);font-weight:900}
+  .hero-offer .old{font-size:17px;color:var(--muted);text-decoration:line-through}
+  .hero-offer .now{font-size:clamp(34px,7vw,52px);font-weight:900;line-height:1;background:var(--grad);
     -webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero-offer .after{margin-top:8px;color:var(--txt);font-size:15px;font-weight:700}
+  .hero-offer .after{margin-top:8px;color:var(--txt);font-size:16px;font-weight:800}
   .hero-offer .market{margin-top:7px;color:var(--muted);font-size:13px}
+  .hero-includes{max-width:900px;margin:20px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .include{background:rgba(18,17,28,.78);border:1px solid var(--line);border-radius:16px;padding:15px 13px;text-align:left;
+    box-shadow:0 12px 30px rgba(0,0,0,.22)}
+  .include b{display:block;color:var(--txt);font-size:15px;margin-bottom:4px}
+  .include span{display:block;color:var(--muted);font-size:12.5px;line-height:1.35}
+  .include .mark{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:9px;
+    background:rgba(52,211,153,.14);color:var(--green);font-weight:900;margin-bottom:10px}
 
   /* mockup */
-  .mock{max-width:440px;margin:44px auto 0;background:var(--card);border:1px solid var(--line);
-    border-radius:18px;padding:16px 16px 20px;box-shadow:0 22px 60px rgba(0,0,0,.5)}
+  .mock{max-width:760px;margin:34px auto 0;background:var(--card);border:1px solid var(--line);
+    border-radius:20px;padding:16px;box-shadow:0 22px 60px rgba(0,0,0,.5);display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left}
+  .mock .preview{border-radius:16px;min-height:245px;padding:18px;background:
+    linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02)),
+    radial-gradient(260px 180px at 80% 15%,rgba(251,191,36,.24),transparent 60%),
+    linear-gradient(145deg,#151326,#0d0c16);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}
+  .mock .preview small{color:var(--amber);font-weight:800;letter-spacing:.8px;text-transform:uppercase}
+  .mock .preview h3{font-size:32px;line-height:1.05;margin-top:10px}
+  .mock .preview p{color:var(--muted);font-size:14px;max-width:25ch}
+  .mock .preview .whatsapp{display:inline-block;margin-top:18px;background:#25d366;color:#061d0f;border-radius:12px;padding:11px 14px;font-weight:850;font-size:14px;width:max-content}
+  .mock .request{border-radius:16px;background:#0d0c16;border:1px solid var(--line);padding:16px}
   .mock .bar{display:flex;gap:6px;margin-bottom:14px}
   .mock .bar i{width:11px;height:11px;border-radius:50%;background:#33314a;display:inline-block}
   .mock .field{background:#0d0c16;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
     font-size:14px;color:var(--muted);text-align:left;margin-bottom:10px}
   .mock .field b{color:var(--txt)}
-  .mock .go{background:var(--grad);color:#0a0a12;font-weight:700;border-radius:10px;padding:12px;font-size:15px}
+  .mock .go{background:var(--grad);color:#0a0a12;font-weight:800;border-radius:10px;padding:12px;font-size:15px;text-align:center}
+  .mock .caption{color:var(--muted);font-size:12.5px;margin-top:10px;text-align:center}
 
   /* steps */
   section{padding:52px 0}
@@ -147,6 +165,8 @@
 
   @media(max-width:760px){
     .grid{grid-template-columns:1fr}
+    .hero-includes{grid-template-columns:1fr 1fr}
+    .mock{grid-template-columns:1fr}
     .agent{grid-template-columns:1fr;gap:22px}
     .agent h2,.agent .lead{text-align:center}
     .cta-row{flex-direction:column;align-items:stretch}
@@ -163,32 +183,50 @@
 
   <!-- HERO -->
   <div class="hero">
-    <span class="pill">PARA CUALQUIER NEGOCIO O MARCA · CON DOMINIO INCLUIDO</span>
-    <h1>Tu página web<br><span class="g">lista para vender</span></h1>
-    <p class="sub">Cuéntanos tu negocio y te creamos una página web profesional con tus fotos reales, tu estilo de marca y botón directo a WhatsApp.</p>
+    <span class="pill">DEMO GRATIS · PAGAS SOLO SI TE GUSTA</span>
+    <h1>Primero ves tu página <span class="g">gratis.</span><br>Después decides.</h1>
+    <p class="sub">Te creamos una página profesional para tu negocio con tus fotos reales, dominio incluido, botón a WhatsApp y un agente para editarla por chat. <strong>Si la ves y te gusta, la activas por US$15.</strong></p>
     <div class="cta-row">
-      <a href="#pedir" class="btn btn-main">Crear mi página GRATIS →</a>
-      <a href="#como" class="btn btn-ghost">Ver cómo funciona</a>
+      <a href="#pedir" class="btn btn-main">Quiero ver mi página gratis →</a>
+      <a href="#video-agente" class="btn btn-ghost">Ver el agente</a>
     </div>
     <div class="hero-offer">
       <div class="label">Oferta de lanzamiento por tiempo limitado</div>
-      <div class="price-line"><span class="old">Antes US$100</span><span class="now">US$15</span></div>
-      <div class="after">La demo es gratis. Pagas solo si la ves, te gusta y quieres activarla.</div>
+      <div class="price-line"><span class="free">Verla: GRATIS</span><span class="arrow">→</span><span class="old">Antes US$100</span><span class="now">US$15</span></div>
+      <div class="after">No pagas por pedirla ni por revisarla. Pagas solo si quieres dejarla activa.</div>
       <div class="market">Una página con desarrollador puede costar desde US$300. Aquí primero la ves funcionando.</div>
+    </div>
+    <div class="hero-includes" aria-label="Qué incluye ZOSA Pages">
+      <div class="include"><span class="mark">✓</span><b>Demo gratis</b><span>La recibes por WhatsApp para verla antes de pagar.</span></div>
+      <div class="include"><span class="mark">✓</span><b>Dominio incluido</b><span>Tu negocio queda con un enlace propio y fácil de compartir.</span></div>
+      <div class="include"><span class="mark">✓</span><b>Agente de edición</b><span>Cambias textos, fotos, precios y horarios por chat.</span></div>
+      <div class="include"><span class="mark">✓</span><b>Lista para vender</b><span>Catálogo, ubicación, contacto y botón directo a WhatsApp.</span></div>
     </div>
 
     <div class="mock">
-      <div class="bar"><i></i><i></i><i></i></div>
-      <div class="field">Nombre del negocio<br><b>Café Aromas</b></div>
-      <div class="field">Instagram<br><b>@cafearomas</b></div>
-      <div class="go">Crear mi página</div>
+      <div class="preview">
+        <div>
+          <small>Página de muestra</small>
+          <h3>Café Aromas</h3>
+          <p>Menú, fotos reales, ubicación y pedidos por WhatsApp en una sola página.</p>
+        </div>
+        <span class="whatsapp">Pedir por WhatsApp</span>
+      </div>
+      <div class="request">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="field">Nombre del negocio<br><b>Café Aromas</b></div>
+        <div class="field">Instagram<br><b>@cafearomas</b></div>
+        <div class="field">WhatsApp<br><b>300 123 4567</b></div>
+        <div class="go">Enviar y ver mi demo gratis</div>
+        <p class="caption">Después de verla decides si la activas por US$15.</p>
+      </div>
     </div>
   </div>
 
   <!-- COMO FUNCIONA -->
   <section id="como">
       <div class="eyebrow">Así funciona</div>
-      <h2>Tres pasos y tu negocio tiene web</h2>
+      <h2>Tres pasos y ves tu página sin pagar</h2>
       <p class="lead">Tú no tocas nada técnico. Nosotros revisamos tu marca, armamos la página y te la mostramos antes de cobrarte.</p>
     <div class="grid">
       <div class="card">
@@ -203,7 +241,7 @@
       </div>
       <div class="card">
         <div class="num">3</div>
-        <h3>Te la entregamos lista</h3>
+        <h3>La ves y decides</h3>
         <p>Recibes el link por WhatsApp para revisarla desde tu celular. Si te gusta, pagas la oferta de lanzamiento y la dejamos activa para tu negocio.</p>
       </div>
     </div>
@@ -229,8 +267,8 @@
   <section>
     <div class="agent">
       <div>
-        <div class="eyebrow" style="text-align:left">Y no queda quieta</div>
-        <h2>El que la edita por ti</h2>
+        <div class="eyebrow" style="text-align:left">Incluye agente</div>
+        <h2>Tu página no queda quieta</h2>
         <p class="lead">¿Cambió un precio? ¿Nuevo producto? Se lo pides por chat, con tus palabras, y tu página se actualiza sola. Sin depender de nadie.</p>
         <ul>
           <li><span>›</span> Agrega o quita productos de tu catálogo</li>
@@ -248,7 +286,7 @@
   </section>
 
   <!-- VIDEO: EL AGENTE EN ACCIÓN -->
-  <section>
+  <section id="video-agente">
     <div class="eyebrow">Míralo en video</div>
     <h2>Así trabaja tu agente</h2>
     <p class="lead">Esto es lo que pasa cuando tienes tu página: la creamos con tu negocio y luego puedes mantenerla al día por chat. Míralo en acción.</p>
