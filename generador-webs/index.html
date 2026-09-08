@@ -338,6 +338,15 @@
 
 <script>
   var form = document.getElementById('f');
+  var agentVideo = document.querySelector('#video-agente video');
+  function setAgentVideoSpeed(){
+    if (!agentVideo) return;
+    agentVideo.defaultPlaybackRate = 1.25;
+    agentVideo.playbackRate = 1.25;
+  }
+  setAgentVideoSpeed();
+  if (agentVideo) agentVideo.addEventListener('loadedmetadata', setAgentVideoSpeed);
+
   function trackEvent(name, params){
     if (window.fbq) window.fbq('trackCustom', name, params || {});
     window.dataLayer = window.dataLayer || [];
