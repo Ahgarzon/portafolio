@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jarvis AIOS | Tu operador personal con IA</title>
-<meta name="description" content="Jarvis AIOS es un operador personal con IA para Telegram, celular y PC. Ve tu pantalla, entiende contexto, recuerda tareas, crea páginas y ejecuta trabajo contigo.">
+<meta name="description" content="Jarvis AIOS es tu asistente personal con IA: conoce tu contexto, te ayuda desde el celular cuando no estás en el PC, crea páginas, apps, documentos y recuerda lo importante.">
 <meta property="og:title" content="Jarvis AIOS | Tu operador personal con IA">
-<meta property="og:description" content="Controla tu PC desde el celular, crea páginas, recuerda tareas y trabaja con un operador personal conectado a tus herramientas.">
+<meta property="og:description" content="Un asistente personal que conoce tu contexto, te acompaña desde el celular, crea, recuerda y ejecuta tareas reales contigo.">
 <meta property="og:image" content="https://angelszs.site/assets/jarvis-icono.jpg">
 <link rel="canonical" href="https://angelszs.site/jarvis/">
 <meta name="theme-color" content="#05070c">
@@ -172,6 +172,11 @@
   .price-card{border:1px solid rgba(102,240,255,.28);border-radius:18px;background:linear-gradient(180deg,rgba(21,31,45,.95),rgba(7,11,17,.95));padding:28px}
   .price{font-size:clamp(40px,6vw,68px);line-height:.95;font-weight:900;color:var(--aqua);margin:14px 0}
   .price-card p{color:var(--muted)}
+  .persona-list{display:grid;gap:12px}
+  .persona-list details{background:linear-gradient(180deg,rgba(21,31,45,.9),rgba(10,15,22,.9))}
+  .persona-list summary{display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .persona-list summary::after{content:"+";width:28px;height:28px;border-radius:10px;display:grid;place-items:center;background:rgba(102,240,255,.1);color:var(--aqua);border:1px solid rgba(102,240,255,.2);flex:0 0 auto}
+  .persona-list details[open] summary::after{content:"-"}
   .faq{display:grid;gap:12px}
   details{border:1px solid var(--line);border-radius:16px;background:rgba(16,23,34,.72);padding:18px 20px}
   summary{cursor:pointer;font-weight:800;font-size:17px}
@@ -227,19 +232,20 @@
     <div class="wrap hero-grid">
       <div>
         <span class="eyebrow"><span class="dot"></span> Operador personal con IA</span>
-        <h1>Jarvis AIOS para controlar tu trabajo desde el celular.</h1>
+        <h1>Tu asistente personal para crear, recordar y operar desde cualquier lugar.</h1>
         <p class="lead">
-          No es un chatbot bonito. Es un operador personal conectado a tu Telegram, tu PC y tu memoria:
-          <strong>ve pantalla, entiende contexto, recuerda, crea páginas, organiza información y ejecuta tareas reales contigo.</strong>
+          Jarvis AIOS es una IA hecha para acompañarte en la vida real: <strong>sabe tu contexto, entiende lo que necesitas,
+          te ayuda cuando no estás frente al computador y convierte instrucciones simples en acciones útiles.</strong>
+          Puede crear una página web, avanzar una aplicación, organizar información compleja o recordarte una cita importante justo a tiempo.
         </p>
         <div class="hero-actions">
           <a class="btn primary" href="https://wa.me/573237451221?text=Hola%2C%20quiero%20instalar%20Jarvis%20AIOS.%20Quiero%20ver%20c%C3%B3mo%20funciona%20y%20cu%C3%A1nto%20cuesta." target="_blank" rel="noopener">Pedir instalación</a>
           <a class="btn secondary" href="#demo">Ver demostración</a>
         </div>
         <div class="proof" aria-label="Capacidades verificadas">
-          <div><b>PC remoto</b><span>Pantalla, voz, teclado, clics y scroll desde el celular.</span></div>
-          <div><b>Memoria real</b><span>Recordatorios, contexto, proyectos y decisiones que no se pierden.</span></div>
-          <div><b>Constructor</b><span>Páginas, apps, archivos, automatizaciones y tareas técnicas.</span></div>
+          <div><b>Te conoce</b><span>Aprende tus proyectos, rutinas, preferencias y prioridades.</span></div>
+          <div><b>Te acompaña</b><span>Está contigo desde el celular aunque el PC esté lejos.</span></div>
+          <div><b>Hace avanzar</b><span>Crea, recuerda, organiza y ejecuta tareas reales.</span></div>
         </div>
       </div>
 
@@ -248,10 +254,10 @@
           <video src="../assets/jarvis/jarvis-demo.mp4" poster="../assets/jarvis/video-gemini.jpg" controls playsinline preload="metadata" aria-label="Demostración de Jarvis AIOS"></video>
         </div>
         <div class="status-strip" aria-label="Módulos principales">
-          <div><b>Telegram</b><span>Entrada principal</span></div>
-          <div><b>Modo PC</b><span>Control visual</span></div>
-          <div><b>Voz</b><span>Respuesta rápida</span></div>
-          <div><b>AIOS</b><span>Cerebro operativo</span></div>
+          <div><b>Celular</b><span>Acceso inmediato</span></div>
+          <div><b>PC</b><span>Trabajo a distancia</span></div>
+          <div><b>Memoria</b><span>Contexto personal</span></div>
+          <div><b>Acción</b><span>Tareas reales</span></div>
         </div>
       </div>
     </div>
@@ -260,40 +266,40 @@
   <section id="funciones">
     <div class="wrap">
       <div class="section-head">
-        <div class="kicker">Qué lo hace diferente</div>
-        <h2>Jarvis AIOS no solo responde. Trabaja dentro de tu sistema.</h2>
-        <p>La promesa es simple: hablarle como a una persona y que pueda ayudarte con acciones concretas, no solo con ideas.</p>
+        <div class="kicker">Qué puede hacer por ti</div>
+        <h2>Un asistente que entiende tu mundo y te ayuda a moverlo.</h2>
+        <p>Jarvis AIOS está pensado para personas ocupadas, negocios en movimiento y equipos que necesitan pasar de una idea a una acción sin fricción.</p>
       </div>
       <div class="grid three">
         <article class="card">
           <div class="icon">01</div>
-          <h3>Ve tu pantalla</h3>
-          <p>Puede interpretar lo que tienes abierto, entender referencias como “eso” o “ahí” y actuar sobre el contexto visible.</p>
+          <h3>Te ayuda lejos del computador</h3>
+          <p>Desde el celular puedes pedirle que revise, avance o controle tareas del PC cuando no estás sentado frente a él.</p>
         </article>
         <article class="card">
           <div class="icon">02</div>
-          <h3>Controla el PC</h3>
-          <p>Desde el celular puedes pedirle abrir páginas, escribir, buscar, revisar archivos, hacer scroll y ejecutar acciones.</p>
+          <h3>Crea cosas complejas</h3>
+          <p>Puede ayudarte a convertir una idea en una página web, una app, un documento, una propuesta o una automatización útil.</p>
         </article>
         <article class="card">
           <div class="icon">03</div>
-          <h3>Recuerda por ti</h3>
-          <p>Agenda recordatorios reales, guarda decisiones importantes y mantiene una memoria útil para no repetir contexto.</p>
+          <h3>Recuerda lo importante</h3>
+          <p>Agenda avisos reales, guarda decisiones y mantiene vivo el contexto que normalmente se pierde entre chats, notas y pendientes.</p>
         </article>
         <article class="card">
           <div class="icon">04</div>
-          <h3>Crea y publica</h3>
-          <p>Construye páginas, prototipos, documentos, automatizaciones y piezas comerciales desde una instrucción natural.</p>
+          <h3>Organiza información</h3>
+          <p>Resume documentos, estructura ideas, encuentra relaciones y convierte información desordenada en pasos claros.</p>
         </article>
         <article class="card">
           <div class="icon">05</div>
-          <h3>Usa voz y chat</h3>
-          <p>Le escribes o le hablas. Jarvis entiende intención, prioriza la última orden y puede interrumpirse cuando cambias de idea.</p>
+          <h3>Trabaja contigo en tiempo real</h3>
+          <p>Le escribes o le hablas como a una persona. Puede seguir instrucciones, cambiar de rumbo y acompañar procesos largos.</p>
         </article>
         <article class="card">
           <div class="icon">06</div>
-          <h3>Tiene límites claros</h3>
-          <p>Las acciones delicadas se confirman. No se vende como magia: se instala con permisos, seguridad y reversa.</p>
+          <h3>Opera con cuidado</h3>
+          <p>Las acciones delicadas se confirman. La meta es darte poder sin perder control sobre tus archivos, cuentas o decisiones.</p>
         </article>
       </div>
     </div>
@@ -306,13 +312,13 @@
       </div>
       <div class="product-copy">
         <div class="kicker">Jarvis AIOS</div>
-        <h2>Un producto instalable para personas que quieren operar más rápido.</h2>
-        <p>Jarvis combina un bot privado, un agente en Windows, un modo visual para el PC y una memoria organizada. Se entrega configurado para la persona, no como una plantilla genérica.</p>
+        <h2>Un asistente instalado alrededor de tu vida, tu trabajo y tus metas.</h2>
+        <p>Jarvis no se entrega como una plantilla genérica. Se configura con tu forma de trabajar, tus proyectos, tus horarios, tus prioridades y las tareas que más te hacen perder tiempo.</p>
         <ul class="bullets">
-          <li>Bot privado para hablar desde el celular.</li>
-          <li>Conexión al computador con pantalla y control.</li>
-          <li>Memoria inicial con reglas, proyectos y preferencias.</li>
-          <li>Automatizaciones ajustadas al trabajo real del usuario.</li>
+          <li>Asistente personal privado para pedirle cosas desde el celular.</li>
+          <li>Conexión al computador para ayudarte cuando estás fuera del escritorio.</li>
+          <li>Memoria inicial con tus reglas, proyectos, preferencias y recordatorios.</li>
+          <li>Flujos de trabajo ajustados a tu negocio, estudio, contenido o vida diaria.</li>
         </ul>
       </div>
     </div>
@@ -322,29 +328,29 @@
     <div class="wrap">
       <div class="section-head">
         <div class="kicker">Cómo se entrega</div>
-        <h2>De “quiero mi Jarvis” a tenerlo funcionando en tu PC.</h2>
-        <p>La instalación se hace guiada porque cada cliente tiene herramientas, permisos y rutinas distintas.</p>
+        <h2>De “quiero mi Jarvis” a tener un asistente funcionando para ti.</h2>
+        <p>La instalación se hace guiada porque cada persona necesita un Jarvis distinto: no trabaja igual un empresario, un creador, un desarrollador o alguien que solo quiere orden en su día.</p>
       </div>
       <div class="steps">
         <article class="step">
           <b>1</b>
-          <h3>Diagnóstico rápido</h3>
-          <p>Se define qué necesita controlar, recordar, crear o automatizar la persona.</p>
+          <h3>Entendemos tu vida</h3>
+          <p>Definimos qué necesitas crear, recordar, organizar, controlar o delegar.</p>
         </article>
         <article class="step">
           <b>2</b>
-          <h3>Instalación Windows</h3>
-          <p>Se prepara el agente local, Modo PC y conexión segura con el operador.</p>
+          <h3>Conectamos tu PC</h3>
+          <p>Preparamos el acceso visual y el control seguro desde tu celular.</p>
         </article>
         <article class="step">
           <b>3</b>
-          <h3>Bot y memoria</h3>
-          <p>Se enlaza Telegram, se cargan reglas base y se dejan límites claros.</p>
+          <h3>Creamos su memoria</h3>
+          <p>Cargamos contexto, preferencias, reglas, proyectos y primeros recordatorios.</p>
         </article>
         <article class="step">
           <b>4</b>
-          <h3>Prueba real</h3>
-          <p>Se valida pantalla, voz, recordatorios y una tarea concreta antes de entregar.</p>
+          <h3>Lo probamos contigo</h3>
+          <p>Validamos una tarea real: crear, controlar, recordar o resolver algo de tu día.</p>
         </article>
       </div>
     </div>
@@ -353,27 +359,27 @@
   <section>
     <div class="wrap">
       <div class="section-head">
-        <div class="kicker">Para qué sirve</div>
-        <h2>Un asistente personal cuando no estás pegado al computador.</h2>
-        <p>Jarvis AIOS sirve tanto para operar negocio como para construir, estudiar, vender, crear contenido o mantener orden personal.</p>
+        <div class="kicker">Para quién es</div>
+        <h2>Jarvis cambia según la persona que lo usa.</h2>
+        <p>La base es la misma: un asistente personal con memoria, celular, PC y capacidad de acción. Lo importante es cómo se adapta a tu realidad.</p>
       </div>
-      <div class="grid two">
-        <article class="card">
-          <h3>Para emprendedores</h3>
-          <p>Crear páginas, ajustar textos, revisar clientes, preparar respuestas, generar ideas y publicar avances sin depender de estar sentado en el PC.</p>
-        </article>
-        <article class="card">
-          <h3>Para creadores</h3>
-          <p>Convertir ideas en guiones, títulos, descripciones, planes de publicación y piezas listas para revisar.</p>
-        </article>
-        <article class="card">
-          <h3>Para trabajo técnico</h3>
-          <p>Leer código, correr pruebas, documentar cambios, operar repositorios y cerrar tareas con trazabilidad.</p>
-        </article>
-        <article class="card">
-          <h3>Para vida diaria</h3>
-          <p>Recordatorios, documentos, pendientes, decisiones, compras, citas e información guardada en un cerebro organizado.</p>
-        </article>
+      <div class="persona-list">
+        <details open>
+          <summary>Si eres empresario o dueño de negocio</summary>
+          <p>Jarvis puede ayudarte a responder más rápido, preparar propuestas, revisar información, organizar clientes, crear páginas de venta, recordar seguimientos y mantener el negocio avanzando aunque estés fuera de la oficina.</p>
+        </details>
+        <details>
+          <summary>Si eres desarrollador, creador técnico o constructor</summary>
+          <p>Jarvis puede leer código contigo, ayudarte a crear prototipos, documentar cambios, correr tareas, convertir ideas en apps y acompañar procesos técnicos que normalmente requieren estar concentrado frente al computador.</p>
+        </details>
+        <details>
+          <summary>Si eres creador de contenido o vendedor</summary>
+          <p>Jarvis puede ayudarte a transformar ideas en guiones, títulos, descripciones, páginas, campañas, mensajes comerciales y planes de publicación, manteniendo el contexto de lo que estás construyendo.</p>
+        </details>
+        <details>
+          <summary>Si eres una persona que quiere más orden en su vida</summary>
+          <p>Jarvis puede recordarte citas, pagos, llamadas, compras, compromisos y tareas importantes. También puede ayudarte a organizar documentos, tomar decisiones y no perder información entre tantas conversaciones.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -384,7 +390,7 @@
         <div class="kicker">Acceso inicial</div>
         <h2>Instalación personalizada de Jarvis AIOS</h2>
         <div class="price">Cupos limitados</div>
-        <p>Se ofrece por instalación guiada porque no todos necesitan el mismo nivel de acceso, memoria o automatización.</p>
+        <p>Se entrega con acompañamiento porque Jarvis debe quedar conectado a tu forma real de trabajar, no a una lista genérica de funciones.</p>
         <div class="hero-actions">
           <a class="btn primary" href="https://wa.me/573237451221?text=Hola%2C%20quiero%20mi%20Jarvis%20AIOS.%20Quiero%20ver%20la%20instalaci%C3%B3n%20y%20saber%20el%20precio." target="_blank" rel="noopener">Hablar por WhatsApp</a>
         </div>
@@ -392,10 +398,11 @@
       <div class="card">
         <h3>Qué incluye</h3>
         <ul class="bullets">
-          <li>Jarvis en Telegram configurado para ti.</li>
+          <li>Asistente personal configurado para ti.</li>
           <li>Modo PC con pantalla, voz y control desde celular.</li>
-          <li>Agente local para ejecutar tareas en tu computador.</li>
-          <li>Memoria inicial, reglas de seguridad y guía de uso.</li>
+          <li>Capacidad para crear páginas, apps, documentos y automatizaciones.</li>
+          <li>Memoria inicial con tus proyectos, hábitos, reglas y prioridades.</li>
+          <li>Recordatorios reales para citas, seguimientos y compromisos.</li>
           <li>Prueba completa antes de cerrar la instalación.</li>
         </ul>
         <p style="margin-top:18px;color:var(--muted)">Requiere PC Windows encendido, Internet estable y permisos concedidos por el usuario. Jarvis no salta permisos del sistema ni opera acciones delicadas sin confirmación.</p>
@@ -415,16 +422,20 @@
           <p>Sí. Con Modo PC activo puedes ver la pantalla, tocar, escribir, hacer scroll y hablarle para pedir acciones.</p>
         </details>
         <details>
-          <summary>¿Funciona solo por Telegram?</summary>
-          <p>Telegram es la entrada principal porque es rápida y funciona desde el celular. El PC se conecta con un agente local y un modo visual privado.</p>
+          <summary>¿Lo puedo usar cuando no estoy en el computador?</summary>
+          <p>Sí. La idea central es que puedas pedir ayuda desde el celular y que Jarvis avance tareas, revise contexto o controle el PC cuando lo necesites.</p>
         </details>
         <details>
           <summary>¿Necesito saber programar?</summary>
           <p>No. La experiencia está pensada para hablar o escribir normal. Si eres técnico, Jarvis también puede ayudarte con código, comandos y despliegues.</p>
         </details>
         <details>
-          <summary>¿Es una IA genérica?</summary>
-          <p>No. Se personaliza con memoria, permisos y reglas. La idea es que trabaje sobre tu contexto real, no que empieces desde cero en cada conversación.</p>
+          <summary>¿Jarvis sabe cosas sobre mí?</summary>
+          <p>Sí, si tú decides configurarlo así. Puede tener memoria de tus proyectos, horarios, preferencias, clientes, tareas y reglas para ayudarte con más contexto.</p>
+        </details>
+        <details>
+          <summary>¿Puede crear páginas web o aplicaciones?</summary>
+          <p>Sí. Puede ayudarte a crear prototipos, páginas, apps, documentos y automatizaciones. En tareas complejas trabaja paso a paso contigo y confirma acciones sensibles.</p>
         </details>
       </div>
     </div>
@@ -434,8 +445,8 @@
     <div class="wrap">
       <div class="final-box">
         <span class="eyebrow"><span class="dot"></span> Jarvis AIOS</span>
-        <h2>Tu operador personal para trabajar desde cualquier lugar.</h2>
-        <p>Instala Jarvis AIOS y convierte tu celular en la entrada a tu PC, tus recordatorios, tus proyectos y tus automatizaciones.</p>
+        <h2>Un asistente personal que trabaja contigo, no solo conversa.</h2>
+        <p>Instala Jarvis AIOS y convierte tu celular en la entrada a tu memoria, tu computador, tus proyectos, tus recordatorios y tus próximas ideas grandes.</p>
         <a class="btn primary" href="https://wa.me/573237451221?text=Hola%2C%20quiero%20instalar%20Jarvis%20AIOS%20en%20mi%20PC.%20%C2%BFC%C3%B3mo%20empezamos%3F" target="_blank" rel="noopener">Quiero mi Jarvis</a>
       </div>
     </div>
