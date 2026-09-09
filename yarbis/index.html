@@ -40,7 +40,7 @@
     overflow-x:hidden;
   }
   a{color:inherit}
-  img,iframe{display:block;max-width:100%}
+  img,video{display:block;max-width:100%}
   .wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
   .nav{
     position:sticky;
@@ -113,8 +113,8 @@
     background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.035)),var(--surface);
     box-shadow:0 1px 2px rgba(0,0,0,.18),0 34px 90px rgba(0,0,0,.46);
   }
-  .video-frame{position:relative;aspect-ratio:16/9;border-radius:17px;overflow:hidden;background:#000}
-  .video-frame iframe{width:100%;height:100%;border:0}
+  .video-frame{position:relative;aspect-ratio:9/16;border-radius:17px;overflow:hidden;background:#000}
+  .video-frame video{width:100%;height:100%;object-fit:contain;background:#000}
   .status-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
   .status-strip div{min-height:62px;border:1px solid var(--line);border-radius:14px;background:rgba(5,7,12,.54);padding:10px}
   .status-strip b{font-size:13px}
@@ -244,7 +244,7 @@
 
       <div class="video-shell" id="demo">
         <div class="video-frame">
-          <iframe src="https://drive.google.com/file/d/1-ffcQ1Yvm4oVLG6MNj0ZBzgHPmGOTD_H/preview" title="Demostración de Jarvis AIOS" allow="autoplay; fullscreen" allowfullscreen></iframe>
+          <video src="../assets/yarbis/jarvis-demo.mp4" poster="../assets/yarbis/video-gemini.jpg" controls playsinline preload="metadata" aria-label="Demostración de Jarvis AIOS"></video>
         </div>
         <div class="status-strip" aria-label="Módulos principales">
           <div><b>Telegram</b><span>Entrada principal</span></div>
