@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YARBIS · Tu operador personal con IA</title>
+<meta name="description" content="YARBIS es un operador personal con IA que vive en Telegram, controla tu PC, ve tu pantalla, recuerda tareas, crea páginas y trabaja contigo desde el celular.">
+<meta property="og:title" content="YARBIS · Tu operador personal con IA">
+<meta property="og:description" content="Controla tu PC desde el celular, crea páginas, recuerda tareas y opera contigo desde Telegram.">
+<meta property="og:image" content="https://angelszs.site/assets/yarbis/tiktok-plan.jpg">
+<meta name="theme-color" content="#06120f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#06120f;
+    --canvas-2:#081716;
+    --surface:#0f201d;
+    --surface-2:#142824;
+    --line:rgba(255,255,255,.12);
+    --text:#f4fff9;
+    --muted:#a9beb6;
+    --cyan:#39d9ff;
+    --green:#55f0a6;
+    --amber:#ffd166;
+    --rose:#ff6f91;
+    --ink:#04100d;
+    --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:
+      radial-gradient(circle at 78% 4%,rgba(57,217,255,.18),transparent 34%),
+      radial-gradient(circle at 10% 20%,rgba(85,240,166,.16),transparent 30%),
+      linear-gradient(180deg,var(--canvas),#050807 64%,#07100e);
+    color:var(--text);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  a{color:inherit}
+  img,video{max-width:100%;display:block}
+  .wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+  .nav{
+    position:sticky;top:0;z-index:20;
+    background:rgba(6,18,15,.76);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(18px);
+  }
+  .nav .wrap{height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;letter-spacing:0}
+  .brand-mark{
+    width:34px;height:34px;border-radius:11px;
+    display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--green),var(--cyan));
+    color:var(--ink);
+    box-shadow:0 16px 40px rgba(57,217,255,.25);
+  }
+  .navlinks{display:flex;align-items:center;gap:22px;font-size:14px;color:var(--muted)}
+  .navlinks a{text-decoration:none}
+  .navlinks a:hover{color:var(--text)}
+  .btn{
+    min-height:44px;
+    border-radius:12px;
+    padding:12px 18px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    text-decoration:none;
+    border:1px solid var(--line);
+    font-weight:800;
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  }
+  .btn:active{transform:scale(.97)}
+  .btn.primary{
+    background:linear-gradient(135deg,var(--green),var(--cyan));
+    color:var(--ink);
+    border-color:transparent;
+    box-shadow:0 18px 52px rgba(57,217,255,.28);
+  }
+  .btn.secondary{background:rgba(255,255,255,.04);color:var(--text)}
+  .btn:hover{transform:translateY(-2px);border-color:rgba(85,240,166,.45)}
+  .hero{padding:74px 0 56px}
+  .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:44px;align-items:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    color:var(--green);
+    border:1px solid rgba(85,240,166,.32);
+    background:rgba(85,240,166,.08);
+    border-radius:999px;
+    padding:8px 13px;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .dot{width:8px;height:8px;border-radius:99px;background:var(--green);box-shadow:0 0 18px var(--green)}
+  h1{
+    margin-top:20px;
+    font-size:clamp(42px,6.2vw,78px);
+    line-height:.96;
+    letter-spacing:0;
+    font-weight:900;
+    text-wrap:balance;
+  }
+  .grad{background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{
+    margin-top:22px;
+    max-width:650px;
+    color:var(--muted);
+    font-size:clamp(17px,2vw,21px);
+  }
+  .lead strong{color:var(--text)}
+  .hero-actions{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+  .trust{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:660px}
+  .trust-item{
+    min-height:76px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:rgba(15,32,29,.72);
+    padding:13px 14px;
+  }
+  .trust-item b{display:block;font-size:18px;color:var(--text)}
+  .trust-item span{display:block;margin-top:2px;color:var(--muted);font-size:12px;line-height:1.35}
+  .phone{
+    position:relative;
+    width:min(420px,100%);
+    margin:0 auto;
+    border-radius:34px;
+    padding:12px;
+    background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(255,255,255,.04));
+    border:1px solid var(--line);
+    box-shadow:0 34px 100px rgba(0,0,0,.55),0 0 80px rgba(57,217,255,.14);
+  }
+  .phone-screen{
+    position:relative;
+    aspect-ratio:9/16;
+    overflow:hidden;
+    border-radius:25px;
+    background:#020504;
+  }
+  .phone video,.phone img{width:100%;height:100%;object-fit:cover}
+  .hud{
+    position:absolute;left:14px;right:14px;bottom:14px;
+    padding:14px;
+    border-radius:18px;
+    background:rgba(4,16,13,.78);
+    border:1px solid rgba(255,255,255,.16);
+    backdrop-filter:blur(12px);
+  }
+  .hud small{color:var(--green);font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+  .hud p{font-size:15px;margin-top:5px;color:var(--text);line-height:1.35}
+  .sound{
+    position:absolute;right:18px;top:18px;z-index:3;
+    border:0;
+    min-height:44px;
+    border-radius:999px;
+    padding:0 15px;
+    font-weight:800;
+    background:linear-gradient(135deg,var(--amber),var(--green));
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .band{
+    border-block:1px solid var(--line);
+    background:rgba(255,255,255,.035);
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .track{display:inline-flex;gap:30px;padding:15px 0;animation:move 28s linear infinite}
+  .track span{color:var(--muted);font-weight:800;font-size:14px}
+  @keyframes move{to{transform:translateX(-50%)}}
+  section{padding:84px 0}
+  .section-head{max-width:760px;margin-bottom:34px}
+  .kicker{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+  h2{font-size:clamp(30px,4.4vw,52px);line-height:1.04;font-weight:900;letter-spacing:0;text-wrap:balance}
+  .section-head p{margin-top:15px;color:var(--muted);font-size:17px;max-width:650px}
+  .grid{display:grid;gap:16px}
+  .grid.three{grid-template-columns:repeat(3,1fr)}
+  .grid.two{grid-template-columns:repeat(2,1fr)}
+  .card{
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:linear-gradient(180deg,rgba(20,40,36,.82),rgba(12,24,21,.82));
+    padding:24px;
+    box-shadow:0 1px 2px rgba(0,0,0,.18),0 20px 48px rgba(0,0,0,.24);
+  }
+  .icon{
+    width:42px;height:42px;border-radius:13px;
+    display:grid;place-items:center;
+    margin-bottom:16px;
+    background:rgba(57,217,255,.12);
+    border:1px solid rgba(57,217,255,.24);
+    font-size:20px;
+  }
+  .card h3{font-size:20px;line-height:1.2;margin-bottom:9px}
+  .card p{color:var(--muted);font-size:15px}
+  .split{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:center}
+  .visual{
+    border:1px solid var(--line);
+    border-radius:20px;
+    overflow:hidden;
+    background:var(--surface);
+    box-shadow:0 26px 70px rgba(0,0,0,.35);
+  }
+  .visual img{width:100%;height:100%;object-fit:cover}
+  .steps{counter-reset:step;display:grid;gap:14px}
+  .step{
+    display:grid;
+    grid-template-columns:50px 1fr;
+    gap:14px;
+    align-items:start;
+    padding:18px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:rgba(15,32,29,.72);
+  }
+  .step::before{
+    counter-increment:step;
+    content:counter(step);
+    width:44px;height:44px;border-radius:13px;
+    display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--green),var(--cyan));
+    color:var(--ink);
+    font-weight:900;
+  }
+  .step h3{font-size:18px;margin-bottom:4px}
+  .step p{color:var(--muted);font-size:15px}
+  .pricing{
+    display:grid;
+    grid-template-columns:.92fr 1.08fr;
+    gap:18px;
+    align-items:stretch;
+  }
+  .price-card{
+    border:1px solid rgba(85,240,166,.3);
+    border-radius:18px;
+    background:
+      radial-gradient(circle at 80% 5%,rgba(255,209,102,.18),transparent 30%),
+      linear-gradient(180deg,rgba(20,40,36,.95),rgba(9,20,17,.95));
+    padding:28px;
+  }
+  .price{font-size:clamp(40px,6vw,72px);font-weight:900;line-height:.95;margin:14px 0;color:var(--green)}
+  .price-card p{color:var(--muted)}
+  .bullets{display:grid;gap:10px;margin-top:18px}
+  .bullets li{list-style:none;display:flex;gap:10px;color:var(--muted)}
+  .bullets li::before{content:"✓";color:var(--green);font-weight:900}
+  .faq{display:grid;gap:12px}
+  details{
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:rgba(15,32,29,.72);
+    padding:18px 20px;
+  }
+  summary{cursor:pointer;font-weight:800;font-size:17px}
+  details p{margin-top:10px;color:var(--muted)}
+  .final{
+    padding:70px 0 84px;
+    text-align:center;
+  }
+  .final-box{
+    border:1px solid rgba(57,217,255,.24);
+    border-radius:22px;
+    padding:42px 24px;
+    background:
+      radial-gradient(circle at 50% 0%,rgba(57,217,255,.16),transparent 42%),
+      rgba(15,32,29,.72);
+  }
+  .final p{max-width:650px;margin:16px auto 26px;color:var(--muted);font-size:18px}
+  footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:13px;text-align:center}
+  @media(max-width:900px){
+    .navlinks a:not(.btn){display:none}
+    .hero-grid,.split,.pricing{grid-template-columns:1fr}
+    .hero{padding-top:48px}
+    .trust,.grid.three,.grid.two{grid-template-columns:1fr}
+    .phone{max-width:360px}
+    section{padding:64px 0}
+  }
+  @media(max-width:520px){
+    .wrap{width:min(100% - 28px,var(--max))}
+    .nav .wrap{height:62px}
+    .brand-mark{width:30px;height:30px}
+    .hero-actions .btn{width:100%}
+    .step{grid-template-columns:1fr}
+    .step::before{width:40px;height:40px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .track{animation:none}
+    .btn,.sound{transition:none}
+  }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="YARBIS">
+      <span class="brand-mark">Y</span>
+      <span>YARBIS</span>
+    </a>
+    <div class="navlinks">
+      <a href="#funciones">Funciones</a>
+      <a href="#instalador">Instalador</a>
+      <a href="#precio">Acceso</a>
+      <a class="btn primary" href="https://wa.me/573237451221?text=Hola%2C%20quiero%20instalar%20YARBIS%20en%20mi%20PC%20y%20celular." target="_blank" rel="noopener">Quiero mi YARBIS</a>
+    </div>
+  </div>
+</nav>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span> Operador personal con IA para PC y celular</span>
+        <h1>Tu propio <span class="grad">YARBIS</span>: trabaja, recuerda y controla tu PC contigo.</h1>
+        <p class="lead">
+          YARBIS vive en Telegram y se conecta a tu computador para ayudarte como un operador real:
+          <strong>ve tu pantalla, entiende lo que señalas, ejecuta tareas, crea páginas, organiza información y te recuerda lo importante.</strong>
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://wa.me/573237451221?text=Hola%2C%20quiero%20instalar%20YARBIS%20en%20mi%20PC%20y%20celular." target="_blank" rel="noopener">Pedir instalación</a>
+          <a class="btn secondary" href="#funciones">Ver qué puede hacer</a>
+        </div>
+        <div class="trust" aria-label="Pruebas de la versión actual">
+          <div class="trust-item"><b>Celular + PC</b><span>Control remoto privado desde el navegador.</span></div>
+          <div class="trust-item"><b>Voz + pantalla</b><span>Hablas mientras YARBIS mira el contexto.</span></div>
+          <div class="trust-item"><b>Instalador</b><span>Preparado para llevarlo a más computadores.</span></div>
+        </div>
+      </div>
+
+      <div class="phone" aria-label="Demostración de YARBIS">
+        <div class="phone-screen">
+          <button class="sound" id="soundBtn" type="button">Audio</button>
+          <video id="heroVideo" src="../assets/yarbis/jarvis-demo.mp4" poster="../assets/yarbis/video-gemini.jpg" autoplay muted loop playsinline></video>
+          <div class="hud">
+            <small>Modo PC activo</small>
+            <p>Desde el celular puedes hablarle, mirar el escritorio y pedirle acciones sobre lo que está en pantalla.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="band" aria-hidden="true">
+    <div class="track">
+      <span>Telegram</span><span>Modo PC</span><span>Control táctil</span><span>Gestos</span><span>Memoria</span><span>Recordatorios</span><span>Páginas web</span><span>Automatización</span>
+      <span>Telegram</span><span>Modo PC</span><span>Control táctil</span><span>Gestos</span><span>Memoria</span><span>Recordatorios</span><span>Páginas web</span><span>Automatización</span>
+    </div>
+  </div>
+
+  <section id="funciones">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Lo que hace</div>
+        <h2>No es otro chat. Es un <span class="grad">operador conectado a tu mundo.</span></h2>
+        <p>La diferencia es que YARBIS no se queda respondiendo texto: puede trabajar sobre tus sistemas, tu pantalla, tus archivos y tus rutinas.</p>
+      </div>
+      <div class="grid three">
+        <article class="card">
+          <div class="icon">▣</div>
+          <h3>Ve y entiende tu pantalla</h3>
+          <p>En Modo PC recibe una captura reciente, interpreta lo que estás viendo y puede actuar con contexto.</p>
+        </article>
+        <article class="card">
+          <div class="icon">⌁</div>
+          <h3>Control desde el celular</h3>
+          <p>Abres YARBIS en el celular, ves el escritorio, tocas, escribes, haces scroll y hablas sin estar pegado al computador.</p>
+        </article>
+        <article class="card">
+          <div class="icon">◉</div>
+          <h3>Gestos con la mano</h3>
+          <p>Puede mover el cursor, hacer clic, arrastrar, hacer scroll y señalar elementos con cámara local.</p>
+        </article>
+        <article class="card">
+          <div class="icon">✦</div>
+          <h3>Crea páginas y apps</h3>
+          <p>Le das una idea o una referencia y te ayuda a construir, publicar y ajustar páginas web, prototipos y automatizaciones.</p>
+        </article>
+        <article class="card">
+          <div class="icon">✓</div>
+          <h3>Recuerda y te avisa</h3>
+          <p>Guarda recordatorios reales y te escribe por Telegram cuando toca actuar, no solo lo anota en una lista.</p>
+        </article>
+        <article class="card">
+          <div class="icon">↯</div>
+          <h3>Ejecuta trabajo técnico</h3>
+          <p>Puede correr comandos, revisar código, generar archivos, operar flujos y ayudarte a cerrar tareas completas.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <div class="visual">
+        <img src="../assets/yarbis/tiktok-plan.jpg" alt="Plan de contenido generado para mostrar YARBIS en redes">
+      </div>
+      <div>
+        <div class="section-head">
+          <div class="kicker">Producto vendible</div>
+          <h2>Tu asistente queda instalado, conectado y listo para usar.</h2>
+          <p>La idea no es entregarte una demo técnica. La instalación deja una experiencia completa: bot, memoria, PC conectado, guía de uso y recuperación automática del agente.</p>
+        </div>
+        <ul class="bullets">
+          <li>Bot privado en Telegram para hablarle desde cualquier lugar.</li>
+          <li>Panel web para Modo PC con voz, pantalla y control táctil.</li>
+          <li>Agente local en Windows para ejecutar tareas en tu computador.</li>
+          <li>Memoria y contexto para que no tengas que repetir todo cada vez.</li>
+          <li>Configuración de seguridad para que tus llaves y datos no queden expuestos.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="instalador">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Instalador YARBIS</div>
+        <h2>De “quiero un Jarvis” a tenerlo corriendo en tu PC.</h2>
+        <p>El instalador prepara el entorno base y deja conectado el computador con tu operador personal. Después se personaliza según tu negocio o tu forma de trabajar.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div>
+            <h3>Instalación en Windows</h3>
+            <p>Se instala el agente local, el módulo de pantalla/control y los accesos para iniciar YARBIS sin abrir mil cosas a mano.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div>
+            <h3>Conexión privada con Telegram</h3>
+            <p>Tu bot queda enlazado a tu cuenta. Desde ahí le puedes escribir, enviar fotos, pedir recordatorios o activar el Modo PC.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div>
+            <h3>Personalización de memoria y habilidades</h3>
+            <p>Se configura qué debe saber de ti, qué herramientas puede tocar y qué límites tiene para trabajar con seguridad.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div>
+            <h3>Prueba real contigo</h3>
+            <p>Antes de entregarlo, se verifica voz, pantalla, control remoto, recordatorios y una tarea práctica de tu día a día.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <div>
+        <div class="section-head">
+          <div class="kicker">Casos de uso</div>
+          <h2>Úsalo para trabajar, vender, crear y no olvidarte de nada.</h2>
+          <p>YARBIS se adapta al rol: emprendedor, creador de contenido, operador técnico, dueño de negocio, estudiante o profesional independiente.</p>
+        </div>
+        <div class="grid two">
+          <article class="card">
+            <h3>Emprendedores</h3>
+            <p>Crea páginas, responde ideas, organiza clientes, automatiza tareas repetidas y prepara mensajes comerciales.</p>
+          </article>
+          <article class="card">
+            <h3>Creadores</h3>
+            <p>Planea videos, guiones, títulos, hashtags, calendarios y piezas visuales para publicar más rápido.</p>
+          </article>
+          <article class="card">
+            <h3>Operadores técnicos</h3>
+            <p>Revisa repos, corre pruebas, documenta cambios, despliega y deja trazabilidad del trabajo.</p>
+          </article>
+          <article class="card">
+            <h3>Vida personal</h3>
+            <p>Recordatorios, archivos, mensajes, ideas, compras, pendientes y decisiones guardadas en un cerebro ordenado.</p>
+          </article>
+        </div>
+      </div>
+      <div class="visual">
+        <img src="../assets/yarbis/telegram-pedido.jpg" alt="YARBIS operando desde Telegram">
+      </div>
+    </div>
+  </section>
+
+  <section id="precio">
+    <div class="wrap pricing">
+      <div class="price-card">
+        <div class="kicker">Acceso inicial</div>
+        <h2>Instalación guiada de YARBIS</h2>
+        <div class="price">Cupos limitados</div>
+        <p>Se vende como instalación personalizada porque cada persona necesita permisos, memoria, herramientas y límites distintos.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://wa.me/573237451221?text=Hola%2C%20quiero%20instalar%20YARBIS%20en%20mi%20PC%20y%20celular.%20%C2%BFC%C3%B3mo%20funciona%3F" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Qué incluye la entrega</h3>
+        <ul class="bullets">
+          <li>YARBIS en Telegram configurado para ti.</li>
+          <li>Modo PC con pantalla, voz y control desde celular.</li>
+          <li>Agente local para ejecutar tareas en tu computador.</li>
+          <li>Memoria inicial, reglas de seguridad y guía de uso.</li>
+          <li>Prueba de funcionamiento antes de cerrar la instalación.</li>
+        </ul>
+        <p style="margin-top:18px;color:var(--muted)">Requiere PC Windows encendido, sesión iniciada, Internet y permisos concedidos por el usuario. YARBIS no despierta un computador apagado ni salta permisos del sistema.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Preguntas claras</div>
+        <h2>Lo potente también debe ser seguro.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>¿YARBIS puede controlar mi PC desde el celular?</summary>
+          <p>Sí. Con Modo PC activo puedes ver la pantalla, tocar, escribir, hacer scroll y hablarle. El control se concede desde tu sesión y se puede cerrar cuando quieras.</p>
+        </details>
+        <details>
+          <summary>¿Ve mi pantalla todo el tiempo?</summary>
+          <p>No. La pantalla se transmite mientras activas el modo correspondiente. Las capturas para entender una orden se usan para esa tarea y no son un video permanente para el modelo.</p>
+        </details>
+        <details>
+          <summary>¿Necesito saber programar?</summary>
+          <p>No. La experiencia principal es por chat y voz. Si eres técnico, también puede ayudarte con repos, comandos y pruebas.</p>
+        </details>
+        <details>
+          <summary>¿Es igual para todos?</summary>
+          <p>No. La base es la misma, pero cada instalación se ajusta a tus herramientas, tus permisos y tu forma de trabajar.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <div class="final-box">
+        <span class="eyebrow"><span class="dot"></span> YARBIS listo para vender</span>
+        <h2>Deja de pedirle cosas a una IA suelta. Dale un operador a tu vida.</h2>
+        <p>Instala YARBIS y empieza a trabajar desde Telegram, celular y PC con una IA que entiende contexto y ejecuta contigo.</p>
+        <a class="btn primary" href="https://wa.me/573237451221?text=Hola%2C%20quiero%20mi%20YARBIS.%20Quiero%20ver%20la%20instalaci%C3%B3n%20y%20saber%20el%20precio." target="_blank" rel="noopener">Quiero mi YARBIS</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">YARBIS · Operador personal con IA · Creado por Ángel Garzón</div>
+</footer>
+
+<script>
+  const video = document.getElementById('heroVideo');
+  const btn = document.getElementById('soundBtn');
+  btn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    btn.textContent = video.muted ? 'Audio' : 'Silenciar';
+    if (video.paused) video.play().catch(() => {});
+  });
+</script>
+</body>
+</html>
