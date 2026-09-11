@@ -144,6 +144,12 @@
   input,textarea{width:100%;background:#0d0c16;border:1px solid var(--line);border-radius:11px;
     padding:13px 15px;color:var(--txt);font-size:15px;font-family:inherit}
   input:focus,textarea:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 3px rgba(139,92,246,.18)}
+  .phone-field{display:flex;align-items:stretch;margin-top:8px;background:#0d0c16;border:1px solid var(--line);border-radius:11px;overflow:hidden;transition:border-color .15s,box-shadow .15s}
+  .phone-field:focus-within{border-color:var(--violet);box-shadow:0 0 0 3px rgba(139,92,246,.18)}
+  .phone-prefix{display:flex;align-items:center;gap:7px;padding:0 14px;color:var(--txt);font-weight:750;background:rgba(255,255,255,.04);border-right:1px solid var(--line);white-space:nowrap}
+  .phone-field input{margin:0;border:0;border-radius:0;box-shadow:none;min-width:0;font-size:16px}
+  .phone-field input:focus{border:0;box-shadow:none}
+  .field-help{color:var(--muted);font-size:12px;margin-top:7px}
   textarea{min-height:92px;resize:vertical}
   form .btn-main{width:100%;margin-top:24px}
   .hint{text-align:center;color:var(--muted);font-size:13px;margin-top:14px}
@@ -335,7 +341,11 @@
       <input id="instagram" name="instagram" required placeholder="@tunegocio o el link de tu perfil">
 
       <label>WhatsApp <span class="opt">(obligatorio para enviarte el link)</span></label>
-      <input id="whatsapp" name="whatsapp" required inputmode="tel" autocomplete="tel" placeholder="Ej: 300 123 4567">
+      <div class="phone-field">
+        <span class="phone-prefix" aria-hidden="true">🇨🇴 +57</span>
+        <input id="whatsapp" name="whatsapp" required inputmode="numeric" autocomplete="tel-national" maxlength="13" placeholder="300 123 4567" aria-describedby="whatsapp-help">
+      </div>
+      <p class="field-help" id="whatsapp-help">Escribe los 10 dígitos de tu celular, sin indicativo de país.</p>
 
       <label>¿Qué quieres en tu página? <span class="opt">(opcional)</span></label>
       <textarea id="detalle" name="detalle" placeholder="Ej: catálogo de cafés, ubicación, botón de pedidos por WhatsApp..."></textarea>
@@ -361,6 +371,7 @@
 
 <script>
   var form = document.getElementById('f');
+  var whatsappInput = document.getElementById('whatsapp');
   function trackEvent(name, params){
     if (window.fbq) window.fbq('trackCustom', name, params || {});
     window.dataLayer = window.dataLayer || [];
@@ -371,6 +382,12 @@
       trackEvent('ZosaPagesCTAClick', {origen:'landing-generador-webs'});
     });
   });
+  whatsappInput.addEventListener('input', function(){
+    var digits = whatsappInput.value.replace(/\D/g, '');
+    if (digits.indexOf('57') === 0 && digits.length > 10) digits = digits.slice(2);
+    digits = digits.slice(0, 10);
+    whatsappInput.value = [digits.slice(0,3), digits.slice(3,6), digits.slice(6,10)].filter(Boolean).join(' ');
+  });
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var btn = document.getElementById('send');
@@ -378,12 +395,20 @@
     err.style.display = 'none';
     var negocio = document.getElementById('negocio').value.trim();
     var instagram = document.getElementById('instagram').value.trim();
-    var whatsapp = document.getElementById('whatsapp').value.trim();
-    if (!negocio || !instagram || !whatsapp) {
+    var whatsappLocal = whatsappInput.value.replace(/\D/g, '');
+    if (whatsappLocal.indexOf('57') === 0 && whatsappLocal.length === 12) whatsappLocal = whatsappLocal.slice(2);
+    if (!negocio || !instagram || !whatsappLocal) {
       err.textContent = 'Completa nombre del negocio, Instagram y WhatsApp para poder crear tu página.';
       err.style.display = 'block';
       return;
     }
+    if (!/^3\d{9}$/.test(whatsappLocal)) {
+      err.textContent = 'Escribe un celular colombiano válido de 10 dígitos. El +57 ya está incluido.';
+      err.style.display = 'block';
+      whatsappInput.focus();
+      return;
+    }
+    var whatsapp = '57' + whatsappLocal;
     btn.textContent = 'Procesando tu pedido…';
     btn.disabled = true;
     var payload = {
@@ -402,6 +427,9 @@
       body: JSON.stringify(payload)
     }).then(function(r){
       if(!r.ok) throw new Error('bad');
+      return r.json();
+    }).then(function(data){
+      if(!data || data.ok !== true) throw new Error('bad');
       form.style.display='none';
       document.getElementById('ok').style.display='block';
       if (window.fbq) window.fbq('track', 'Lead', {currency:'COP', value:60000});
