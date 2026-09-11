@@ -331,7 +331,7 @@
   <section id="pedir">
     <div class="eyebrow">Empecemos</div>
     <h2>Pide tu página</h2>
-    <p class="lead">Déjanos estos datos y te mandamos el link por WhatsApp. La demo es gratis; si te gusta y quieres dejarla activa, aprovechas la oferta de lanzamiento de $60.000 COP.</p>
+    <p class="lead">Déjanos estos datos y continúa por WhatsApp. Al enviar el mensaje, el asistente empezará a preparar tu demo y te entregará el link en esa misma conversación. La demo es gratis; si te gusta y quieres dejarla activa, aprovechas la oferta de lanzamiento de $60.000 COP.</p>
 
     <form id="f">
       <label>Nombre del negocio</label>
@@ -350,16 +350,15 @@
       <label>¿Qué quieres en tu página? <span class="opt">(opcional)</span></label>
       <textarea id="detalle" name="detalle" placeholder="Ej: catálogo de cafés, ubicación, botón de pedidos por WhatsApp..."></textarea>
 
-      <button type="submit" class="btn btn-main" id="send">Crear mi página GRATIS →</button>
-      <p class="hint">Te responde ZOSA Pages con el link de tu demo.</p>
+      <button type="submit" class="btn btn-main" id="send">Continuar por WhatsApp →</button>
+      <p class="hint">Se abrirá WhatsApp con tus datos. Solo debes tocar Enviar para iniciar.</p>
       <p class="err" id="err">No se pudo enviar. Escríbenos directo al WhatsApp y lo resolvemos.</p>
     </form>
 
     <div class="ok" id="ok">
-      <h3>¡Hemos recibido tu solicitud! ✅</h3>
-      <p>Ya estamos preparando tu página con tus datos.<br>
-         Te llegará el <b>link de tu página</b> por WhatsApp para que la veas primero. Si te gusta, la activas con la oferta de lanzamiento de <b>$60.000 COP</b>. No te preocupes: ya puedes cerrar esta ventana, nosotros nos encargamos. 💜</p>
-      <span class="eta">⏳ En preparación</span>
+      <h3>Continúa en WhatsApp ✅</h3>
+      <p>Envía el mensaje que dejamos preparado. El asistente confirmará tu solicitud y empezará a crear la demo de tu negocio.</p>
+      <span class="eta">Abriendo WhatsApp…</span>
     </div>
   </section>
 
@@ -409,7 +408,7 @@
       return;
     }
     var whatsapp = '57' + whatsappLocal;
-    btn.textContent = 'Procesando tu pedido…';
+    btn.textContent = 'Guardando y abriendo WhatsApp…';
     btn.disabled = true;
     var payload = {
       negocio: negocio,
@@ -434,10 +433,22 @@
       document.getElementById('ok').style.display='block';
       if (window.fbq) window.fbq('track', 'Lead', {currency:'COP', value:60000});
       trackEvent('ZosaPagesLead', {origen:'landing-generador-webs', precio_cop:60000});
+      var detail = String(payload.detalle || '').trim() || 'Quiero una página adaptada a mi negocio';
+      var message = [
+        'Hola, quiero crear mi página web con ZOSA Pages.',
+        '',
+        'Negocio: ' + negocio,
+        'Instagram: ' + instagram,
+        'WhatsApp: +57 ' + whatsappLocal.slice(0,3) + ' ' + whatsappLocal.slice(3,6) + ' ' + whatsappLocal.slice(6),
+        'Quiero: ' + detail,
+        '',
+        'Ya llené el formulario. Pueden empezar a preparar mi demo.'
+      ].join('\n');
+      window.location.href = 'https://wa.me/573042399141?text=' + encodeURIComponent(message);
     }).catch(function(){
       err.textContent = 'No se pudo enviar. Escríbenos directo al WhatsApp y lo resolvemos.';
       err.style.display='block';
-      btn.textContent='Crear mi página GRATIS →';
+      btn.textContent='Continuar por WhatsApp →';
       btn.disabled=false;
     });
   });
