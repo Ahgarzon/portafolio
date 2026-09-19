@@ -334,6 +334,10 @@
     <p class="lead">Déjanos estos datos y continúa por WhatsApp. Al enviar el mensaje, el asistente empezará a preparar tu demo y te entregará el link en esa misma conversación. La demo es gratis; si te gusta y quieres dejarla activa, aprovechas la oferta de lanzamiento de $60.000 COP.</p>
 
     <form id="f">
+      <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
+        <label for="website">Sitio web</label>
+        <input id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
       <label>Nombre del negocio</label>
       <input id="negocio" name="negocio" required placeholder="Ej: Café Aromas">
 
@@ -371,6 +375,10 @@
 <script>
   var form = document.getElementById('f');
   var whatsappInput = document.getElementById('whatsapp');
+  var formOpenedAt = Date.now();
+  var formSession = (window.crypto && window.crypto.randomUUID)
+    ? window.crypto.randomUUID()
+    : String(Date.now()) + '-' + Math.random().toString(36).slice(2);
   function trackEvent(name, params){
     if (window.fbq) window.fbq('trackCustom', name, params || {});
     window.dataLayer = window.dataLayer || [];
@@ -418,6 +426,9 @@
       origen: 'landing-generador-webs',
       precio_cop: 60000,
       condicion_pago: 'demo gratis; oferta lanzamiento $60.000 COP; antes $400.000; paga solo si le gusta y quiere activarla'
+      ,website: document.getElementById('website').value
+      ,form_started_ms: Date.now() - formOpenedAt
+      ,form_session: formSession
     };
     trackEvent('ZosaPagesFormStart', {origen:'landing-generador-webs'});
     fetch('https://n8n.angelszs.site/webhook/generar-web-intake', {
