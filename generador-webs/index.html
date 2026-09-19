@@ -455,7 +455,7 @@
         '',
         'Ya llené el formulario. Pueden empezar a preparar mi demo.'
       ].join('\n');
-      window.location.href = 'https://wa.me/573042399141?text=' + encodeURIComponent(message);
+      window.location.href = 'https://api.whatsapp.com/send?phone=573042399141&text=' + encodeURIComponent(message);
     }).catch(function(){
       err.textContent = 'No se pudo enviar. Escríbenos directo al WhatsApp y lo resolvemos.';
       err.style.display='block';
