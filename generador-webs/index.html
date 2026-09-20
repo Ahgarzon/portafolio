@@ -113,15 +113,28 @@
   .results .lead{max-width:700px}
   .results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
   .featured-results{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0 4px}
-  .featured-card{min-height:170px;border-radius:18px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;
+  .featured-card{min-height:245px;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
     text-decoration:none;color:white;background:linear-gradient(145deg,#16477a,#0b2745);border:1px solid #2f6695;
     box-shadow:0 12px 28px rgba(22,71,122,.2);transition:transform .15s,box-shadow .15s}
-  .featured-card:nth-child(2){background:linear-gradient(145deg,#0f5d7d,#16477a)}
-  .featured-card:nth-child(3){background:linear-gradient(145deg,#1f6aa0,#12395f)}
+  .featured-card.image-card{background-size:cover;background-position:center}
+  .featured-card.monk-card{background:
+    radial-gradient(circle at 82% 16%,rgba(143,208,245,.45),transparent 26%),
+    linear-gradient(145deg,#0b2745 0%,#16477a 58%,#1b6fa3 100%)}
+  .featured-card.fisio-card{background-image:linear-gradient(180deg,rgba(8,29,48,.08),rgba(8,29,48,.78)),url('../assets/zosa-results/be-one-fisio.jpg')}
+  .featured-card.camilo-card{background-image:linear-gradient(180deg,rgba(8,8,12,.08),rgba(8,8,12,.84)),url('../assets/zosa-results/camilo-conga.jpg')}
   .featured-card:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(22,71,122,.28)}
+  .featured-copy{padding:18px;background:linear-gradient(180deg,rgba(5,18,31,0),rgba(5,18,31,.92))}
+  .monk-card .featured-copy{background:linear-gradient(180deg,rgba(5,18,31,.08),rgba(5,18,31,.54))}
   .featured-card span{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:#a9dcfb}
-  .featured-card strong{font-size:22px;line-height:1.05;letter-spacing:-.01em}
-  .featured-card small{font-size:13px;color:#e7f6ff;font-weight:700}
+  .featured-card strong{display:block;margin-top:6px;font-size:24px;line-height:1.05;letter-spacing:-.01em}
+  .featured-card small{display:block;margin-top:10px;font-size:13px;color:#e7f6ff;font-weight:700}
+  .reference-row{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:18px 0 4px}
+  .reference-card{background:#ffffff;border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none;color:var(--txt);
+    box-shadow:0 1px 2px rgba(16,37,63,.04),0 10px 24px rgba(22,71,122,.08);transition:transform .15s,border-color .15s}
+  .reference-card:hover{transform:translateY(-1px);border-color:#8fd0f5}
+  .reference-card span{display:block;color:var(--sky);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:850;margin-bottom:8px}
+  .reference-card strong{display:block;font-size:18px;margin-bottom:8px}
+  .reference-card p{color:var(--muted);font-size:14px}
   .result-group{background:#f7fbff;border:1px solid var(--line);border-radius:16px;padding:20px 18px}
   .result-group h3{font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
   .result-group h3 span{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:10px;
@@ -224,6 +237,7 @@
     .grid{grid-template-columns:1fr}
     .results-grid{grid-template-columns:1fr}
     .featured-results{grid-template-columns:1fr}
+    .reference-row{grid-template-columns:1fr}
     .hero-includes{grid-template-columns:1fr 1fr}
     .mock{grid-template-columns:1fr}
     .agent{grid-template-columns:1fr;gap:22px}
@@ -318,20 +332,38 @@
       <h2>¿Quieres ver nuestros resultados?</h2>
       <p class="lead">Mira páginas ya creadas con ZOSA Pages, separadas por tipo de negocio. Así puedes imaginar cómo podría verse la tuya antes de pedir la demo.</p>
       <div class="featured-results" aria-label="Referencias destacadas de ZOSA Pages">
-        <a class="featured-card" href="https://n8n.angelszs.site/webhook/zosa?slug=nicky-burger" target="_blank" rel="noopener">
-          <span>Comida</span>
-          <strong>Nicky Burger</strong>
-          <small>Ver referencia →</small>
+        <a class="featured-card monk-card" href="https://n8n.angelszs.site/webhook/monk" target="_blank" rel="noopener">
+          <div class="featured-copy">
+            <span>Comida y bebidas</span>
+            <strong>Monk</strong>
+            <small>Ver referencia →</small>
+          </div>
         </a>
-        <a class="featured-card" href="https://n8n.angelszs.site/webhook/soulfitgym" target="_blank" rel="noopener">
-          <span>Fitness</span>
-          <strong>Soul Fit GYM & BOX</strong>
-          <small>Ver referencia →</small>
+        <a class="featured-card image-card fisio-card" href="https://n8n.angelszs.site/webhook/beonefisio" target="_blank" rel="noopener">
+          <div class="featured-copy">
+            <span>Salud y servicios</span>
+            <strong>Be One Fisio</strong>
+            <small>Ver referencia →</small>
+          </div>
         </a>
-        <a class="featured-card" href="https://elartedecrear.store" target="_blank" rel="noopener">
-          <span>Marca creativa</span>
+        <a class="featured-card image-card camilo-card" href="https://n8n.angelszs.site/webhook/camilocongas" target="_blank" rel="noopener">
+          <div class="featured-copy">
+            <span>Marca personal</span>
+            <strong>Camilo Conga</strong>
+            <small>Ver referencia →</small>
+          </div>
+        </a>
+      </div>
+      <div class="reference-row" aria-label="Referencias reales de clientes">
+        <a class="reference-card" href="https://elartedecrear.store" target="_blank" rel="noopener">
+          <span>Referencia real</span>
           <strong>El Arte de Crear</strong>
-          <small>Ver referencia →</small>
+          <p>Marca real publicada con ZOSA Pages y buen comentario del resultado.</p>
+        </a>
+        <a class="reference-card" href="https://cerazo.site" target="_blank" rel="noopener">
+          <span>Referencia real</span>
+          <strong>Cristian Erazo</strong>
+          <p>Artista real con página activa y buena experiencia con la entrega.</p>
         </a>
       </div>
       <div class="results-grid">
@@ -349,20 +381,20 @@
         <div class="result-group">
           <h3><span>02</span> Tiendas, salud y servicios</h3>
           <ul class="result-list">
+            <li><a href="https://n8n.angelszs.site/webhook/beonefisio" target="_blank" rel="noopener">Be One Fisio <small>ver</small></a></li>
             <li><a href="https://amimax.store" target="_blank" rel="noopener">Amimax <small>ver</small></a></li>
             <li><a href="https://n8n.angelszs.site/webhook/kpopayan" target="_blank" rel="noopener">KPOPAYAN <small>ver</small></a></li>
             <li><a href="https://n8n.angelszs.site/webhook/soulfitgym" target="_blank" rel="noopener">Soul Fit GYM & BOX <small>ver</small></a></li>
             <li><a href="https://n8n.angelszs.site/webhook/kyrios" target="_blank" rel="noopener">Kyrios Studio <small>ver</small></a></li>
             <li><a href="https://n8n.angelszs.site/webhook/primocell" target="_blank" rel="noopener">PrimoCell <small>ver</small></a></li>
-            <li><a href="https://n8n.angelszs.site/webhook/beonefisio" target="_blank" rel="noopener">Be One Fisio <small>ver</small></a></li>
           </ul>
         </div>
         <div class="result-group">
           <h3><span>03</span> Marcas, arte y profesionales</h3>
           <ul class="result-list">
+            <li><a href="https://n8n.angelszs.site/webhook/camilocongas" target="_blank" rel="noopener">Camilo Conga <small>ver</small></a></li>
             <li><a href="https://elartedecrear.store" target="_blank" rel="noopener">El Arte de Crear <small>ver</small></a></li>
             <li><a href="https://cerazo.site" target="_blank" rel="noopener">Cristian Erazo <small>ver</small></a></li>
-            <li><a href="https://n8n.angelszs.site/webhook/camilocongas" target="_blank" rel="noopener">Camilo Congas <small>ver</small></a></li>
             <li><a href="https://n8n.angelszs.site/webhook/littigio" target="_blank" rel="noopener">Littigio <small>ver</small></a></li>
             <li><a href="https://n8n.angelszs.site/webhook/solix" target="_blank" rel="noopener">Solix <small>ver</small></a></li>
             <li><a href="https://n8n.angelszs.site/webhook/circo-di-lunna" target="_blank" rel="noopener">Circo Di Lunna <small>ver</small></a></li>
