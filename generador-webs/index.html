@@ -167,26 +167,41 @@
   .reference-card .who b{display:block;color:var(--txt);font-size:15px;line-height:1.2}
   .reference-card .who small{display:block;color:var(--muted);font-size:12px;margin-top:3px}
   .reference-card .open{color:var(--sky);font-size:12px;font-weight:850;white-space:nowrap}
-  .result-group{background:#f7fbff;border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px}
-  .result-group h3{font-size:16px;margin-bottom:6px;display:flex;align-items:center;gap:8px}
-  .result-group h3 span{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:10px;
-    background:#e4f4ff;color:var(--brand);font-size:14px}
-  .result-group p{color:var(--muted);font-size:13px;margin-bottom:12px;line-height:1.4}
-  .result-list{list-style:none;display:grid;gap:9px}
-  .result-list a{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--txt);
-    text-decoration:none;border:1px solid #dfeaf4;border-radius:11px;padding:10px 11px;
-    background:white;font-size:14px;font-weight:650;transition:transform .15s,border-color .15s,background .15s}
-  .result-list a:hover{transform:translateY(-1px);border-color:#8fd0f5;background:#eef8ff}
-  .result-list a small{color:var(--sky);font-size:12px;font-weight:800}
-  details.more-results{margin-top:10px}
-  details.more-results summary{min-height:44px;display:flex;align-items:center;justify-content:center;gap:8px;
-    list-style:none;cursor:pointer;border:1px solid #dfeaf4;border-radius:11px;background:white;color:var(--brand);
-    font-size:13.5px;font-weight:850;transition:border-color .15s,background .15s}
+  .result-group{background:linear-gradient(180deg,#f7fbff,#ffffff);border:1px solid var(--line);border-radius:18px;padding:15px;
+    display:flex;flex-direction:column;gap:13px}
+  .result-head{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start}
+  .result-head span{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:12px;
+    background:#e4f4ff;color:var(--brand);font-size:13px;font-weight:900}
+  .result-head h3{font-size:17px;line-height:1.16;margin-bottom:4px}
+  .result-head p{color:var(--muted);font-size:12.8px;line-height:1.35}
+  .result-main{display:flex;align-items:center;justify-content:space-between;gap:10px;text-decoration:none;color:var(--txt);
+    background:white;border:1px solid #dfeaf4;border-radius:14px;padding:13px 14px;
+    box-shadow:0 1px 2px rgba(16,37,63,.04),0 8px 18px rgba(22,71,122,.07);
+    transition:transform .15s,border-color .15s,background .15s}
+  .result-main:hover{transform:translateY(-1px);border-color:#8fd0f5;background:#eef8ff}
+  .result-main small{display:block;color:var(--sky);font-size:11px;font-weight:850;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+  .result-main strong{display:block;font-size:17px;line-height:1.15}
+  .result-main em{font-style:normal;color:var(--sky);font-weight:900;font-size:18px}
+  .quick-examples{display:flex;gap:8px;flex-wrap:wrap}
+  .quick-examples a{display:inline-flex;align-items:center;min-height:34px;text-decoration:none;color:var(--brand);
+    border:1px solid #dfeaf4;background:#ffffff;border-radius:999px;padding:7px 11px;font-size:12.5px;font-weight:800;
+    transition:background .15s,border-color .15s,transform .15s}
+  .quick-examples a:hover{background:#eef8ff;border-color:#8fd0f5;transform:translateY(-1px)}
+  .more-list{list-style:none;display:grid;gap:8px;margin-top:9px}
+  .more-list a{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--txt);
+    text-decoration:none;border:1px solid #dfeaf4;border-radius:11px;padding:9px 11px;background:white;
+    font-size:13px;font-weight:700;transition:transform .15s,border-color .15s,background .15s}
+  .more-list a:hover{transform:translateY(-1px);border-color:#8fd0f5;background:#eef8ff}
+  .more-list a small{color:var(--sky);font-size:12px;font-weight:800}
+  details.more-results{margin-top:auto}
+  details.more-results summary{min-height:42px;display:flex;align-items:center;justify-content:center;gap:8px;
+    list-style:none;cursor:pointer;border:1px solid #dfeaf4;border-radius:12px;background:white;color:var(--brand);
+    font-size:13px;font-weight:850;transition:border-color .15s,background .15s}
   details.more-results summary::-webkit-details-marker{display:none}
   details.more-results summary:after{content:"+";font-size:18px;line-height:1;color:var(--sky)}
   details.more-results[open] summary{background:#eef8ff;border-color:#8fd0f5;margin-bottom:10px}
   details.more-results[open] summary:after{content:"-"}
-  .results-note{text-align:center;color:var(--muted);font-size:13px;margin-top:20px}
+  .results-note{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
   .inline-cta{margin:24px auto 0;text-align:center}
 
   /* agente */
@@ -450,16 +465,24 @@
       </div>
       <div class="results-grid">
         <div class="result-group">
-          <h3><span>01</span> Comida y bebidas</h3>
-          <p>Restaurantes, cafés, antojos y negocios que venden por WhatsApp.</p>
-          <ul class="result-list">
-            <li><a href="https://n8n.angelszs.site/webhook/monk" target="_blank" rel="noopener">Monk <small>ver</small></a></li>
-            <li><a href="https://n8n.angelszs.site/webhook/zosa?slug=nicky-burger" target="_blank" rel="noopener">Nicky Burger <small>ver</small></a></li>
-            <li><a href="https://n8n.angelszs.site/webhook/islabonita" target="_blank" rel="noopener">Isla Bonita <small>ver</small></a></li>
-          </ul>
+          <div class="result-head">
+            <span>01</span>
+            <div>
+              <h3>Comida y bebidas</h3>
+              <p>Restaurantes, cafés, antojos y negocios que venden por WhatsApp.</p>
+            </div>
+          </div>
+          <a class="result-main" href="https://n8n.angelszs.site/webhook/monk" target="_blank" rel="noopener">
+            <span><small>Mira primero</small><strong>Monk</strong></span>
+            <em>→</em>
+          </a>
+          <div class="quick-examples" aria-label="Otros ejemplos de comida y bebidas">
+            <a href="https://n8n.angelszs.site/webhook/zosa?slug=nicky-burger" target="_blank" rel="noopener">Nicky Burger</a>
+            <a href="https://n8n.angelszs.site/webhook/islabonita" target="_blank" rel="noopener">Isla Bonita</a>
+          </div>
           <details class="more-results">
             <summary>Ver más ejemplos</summary>
-            <ul class="result-list">
+            <ul class="more-list">
               <li><a href="https://n8n.angelszs.site/webhook/w?r=chicken-house" target="_blank" rel="noopener">Chicken House <small>ver</small></a></li>
               <li><a href="https://n8n.angelszs.site/webhook/deliraspaos" target="_blank" rel="noopener">Deli Raspao's <small>ver</small></a></li>
               <li><a href="https://n8n.angelszs.site/webhook/zosa?slug=agorapicnic" target="_blank" rel="noopener">Ágora Picnic <small>ver</small></a></li>
@@ -467,16 +490,24 @@
           </details>
         </div>
         <div class="result-group">
-          <h3><span>02</span> Tiendas, salud y servicios</h3>
-          <p>Servicios locales, tiendas, deporte, bienestar y marcas con atención directa.</p>
-          <ul class="result-list">
-            <li><a href="https://n8n.angelszs.site/webhook/beonefisio" target="_blank" rel="noopener">Be One Fisio <small>ver</small></a></li>
-            <li><a href="https://amimax.store" target="_blank" rel="noopener">Amimax <small>ver</small></a></li>
-            <li><a href="https://n8n.angelszs.site/webhook/kpopayan" target="_blank" rel="noopener">KPOPAYAN <small>ver</small></a></li>
-          </ul>
+          <div class="result-head">
+            <span>02</span>
+            <div>
+              <h3>Tiendas, salud y servicios</h3>
+              <p>Servicios locales, tiendas, deporte, bienestar y marcas con atención directa.</p>
+            </div>
+          </div>
+          <a class="result-main" href="https://n8n.angelszs.site/webhook/beonefisio" target="_blank" rel="noopener">
+            <span><small>Mira primero</small><strong>Be One Fisio</strong></span>
+            <em>→</em>
+          </a>
+          <div class="quick-examples" aria-label="Otros ejemplos de tiendas, salud y servicios">
+            <a href="https://amimax.store" target="_blank" rel="noopener">Amimax</a>
+            <a href="https://n8n.angelszs.site/webhook/kpopayan" target="_blank" rel="noopener">KPOPAYAN</a>
+          </div>
           <details class="more-results">
             <summary>Ver más ejemplos</summary>
-            <ul class="result-list">
+            <ul class="more-list">
               <li><a href="https://n8n.angelszs.site/webhook/soulfitgym" target="_blank" rel="noopener">Soul Fit GYM & BOX <small>ver</small></a></li>
               <li><a href="https://n8n.angelszs.site/webhook/kyrios" target="_blank" rel="noopener">Kyrios Studio <small>ver</small></a></li>
               <li><a href="https://n8n.angelszs.site/webhook/primocell" target="_blank" rel="noopener">PrimoCell <small>ver</small></a></li>
@@ -484,16 +515,24 @@
           </details>
         </div>
         <div class="result-group">
-          <h3><span>03</span> Marcas, arte y profesionales</h3>
-          <p>Portafolios, artistas, marcas personales y negocios que necesitan verse serios.</p>
-          <ul class="result-list">
-            <li><a href="https://n8n.angelszs.site/webhook/camilocongas" target="_blank" rel="noopener">Camilo Conga <small>ver</small></a></li>
-            <li><a href="https://elartedecrear.store" target="_blank" rel="noopener">El Arte de Crear <small>ver</small></a></li>
-            <li><a href="https://cerazo.site" target="_blank" rel="noopener">Cristian Erazo <small>ver</small></a></li>
-          </ul>
+          <div class="result-head">
+            <span>03</span>
+            <div>
+              <h3>Marcas, arte y profesionales</h3>
+              <p>Portafolios, artistas, marcas personales y negocios que necesitan verse serios.</p>
+            </div>
+          </div>
+          <a class="result-main" href="https://n8n.angelszs.site/webhook/camilocongas" target="_blank" rel="noopener">
+            <span><small>Mira primero</small><strong>Camilo Conga</strong></span>
+            <em>→</em>
+          </a>
+          <div class="quick-examples" aria-label="Otros ejemplos de marcas, arte y profesionales">
+            <a href="https://elartedecrear.store" target="_blank" rel="noopener">El Arte de Crear</a>
+            <a href="https://cerazo.site" target="_blank" rel="noopener">Cristian Erazo</a>
+          </div>
           <details class="more-results">
             <summary>Ver más ejemplos</summary>
-            <ul class="result-list">
+            <ul class="more-list">
               <li><a href="https://n8n.angelszs.site/webhook/littigio" target="_blank" rel="noopener">Littigio <small>ver</small></a></li>
               <li><a href="https://n8n.angelszs.site/webhook/solix" target="_blank" rel="noopener">Solix <small>ver</small></a></li>
               <li><a href="https://n8n.angelszs.site/webhook/circo-di-lunna" target="_blank" rel="noopener">Circo Di Lunna <small>ver</small></a></li>
