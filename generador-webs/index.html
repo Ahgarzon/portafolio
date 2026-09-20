@@ -10,7 +10,7 @@
   :root{
     --bg:#f4f8fc; --ink:#10253f; --card:#ffffff; --line:#d8e4f0;
     --txt:#10253f; --muted:#607189;
-    --brand:#16477a; --brand-2:#8fd0f5; --sky:#2f9ee7; --green:#1ea672; --amber:#f59e0b;
+    --brand:#16477a; --brand-dark:#092f57; --brand-2:#8fd0f5; --sky:#2f9ee7; --green:#1ea672; --amber:#f59e0b;
     --soft:#e9f5fd; --deep:#0b2745;
     --grad:linear-gradient(135deg,#16477a 0%,#2f9ee7 58%,#8fd0f5 100%);
   }
@@ -35,21 +35,35 @@
   .brand b{color:var(--brand)}
 
   /* hero */
-  .hero{text-align:center;padding:34px 0 30px}
+  .hero{text-align:center;padding:24px 0 30px}
   .pill{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.6px;
     color:var(--brand);border:1px solid #b9dcf4;border-radius:999px;padding:7px 16px;margin-bottom:22px;
     background:#eef8ff}
-  h1{font-size:clamp(36px,7.8vw,68px);line-height:1.02;font-weight:850;letter-spacing:-.02em}
+  h1{font-size:clamp(34px,7.2vw,64px);line-height:1.02;font-weight:850;letter-spacing:-.02em}
   h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{margin:20px auto 0;max-width:700px;font-size:clamp(17px,2.5vw,21px);color:var(--muted)}
+  .sub{margin:18px auto 0;max-width:620px;font-size:clamp(16px,2.3vw,20px);color:var(--muted)}
   .sub strong{color:var(--txt)}
-  .cta-row{margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero-bullets{max-width:720px;margin:18px auto 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .hero-bullets span{display:inline-flex;align-items:center;gap:7px;background:white;border:1px solid var(--line);
+    border-radius:999px;padding:9px 13px;color:var(--ink);font-size:13.5px;font-weight:750;
+    box-shadow:0 1px 2px rgba(16,37,63,.04),0 8px 18px rgba(22,71,122,.07)}
+  .hero-bullets b{color:var(--green)}
+  .cta-row{margin-top:24px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
   .btn{display:inline-block;font-weight:700;font-size:16px;padding:15px 30px;border-radius:14px;
     border:none;cursor:pointer;text-decoration:none;transition:transform .15s,box-shadow .15s}
-  .btn-main{background:var(--grad);color:white;box-shadow:0 10px 28px rgba(22,71,122,.28)}
-  .btn-main:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(47,158,231,.32)}
+  .btn-main{background:var(--brand-dark);color:white;box-shadow:0 1px 2px rgba(9,47,87,.16),0 14px 30px rgba(9,47,87,.28)}
+  .btn-main:hover{transform:translateY(-2px);box-shadow:0 1px 2px rgba(9,47,87,.16),0 18px 38px rgba(9,47,87,.34)}
   .btn-ghost{background:white;color:var(--brand);border:1px solid var(--line)}
-  .hero-offer{max-width:760px;margin:24px auto 0;background:linear-gradient(120deg,#ffffff,#e8f6ff);
+  .hero-flow{max-width:760px;margin:22px auto 0;background:#ffffff;border:1px solid var(--line);border-radius:18px;
+    padding:16px;box-shadow:0 1px 2px rgba(16,37,63,.04),0 12px 28px rgba(22,71,122,.1)}
+  .flow-track{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:10px}
+  .flow-step{display:grid;gap:4px;justify-items:center;text-align:center}
+  .flow-step .dot{width:34px;height:34px;border-radius:12px;background:#e8f6ff;color:var(--brand);display:flex;align-items:center;justify-content:center;font-weight:900}
+  .flow-step b{font-size:14px;color:var(--txt)}
+  .flow-step small{font-size:12px;color:var(--muted);line-height:1.25}
+  .flow-arrow{height:2px;width:34px;background:#b9dcf4;position:relative}
+  .flow-arrow:after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid #b9dcf4;border-top:5px solid transparent;border-bottom:5px solid transparent}
+  .hero-offer{max-width:760px;margin:18px auto 0;background:linear-gradient(120deg,#ffffff,#e8f6ff);
     border:1px solid #b9dcf4;border-radius:18px;padding:18px 18px 16px;
     box-shadow:0 1px 2px rgba(16,37,63,.04),0 16px 36px rgba(22,71,122,.12)}
   .hero-offer .label{font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--green);margin-bottom:7px}
@@ -66,7 +80,7 @@
     border-radius:999px;padding:9px 13px;color:var(--ink);font-size:13px;font-weight:750;
     box-shadow:0 1px 2px rgba(16,37,63,.04),0 8px 18px rgba(22,71,122,.07)}
   .trustbar b{color:var(--green)}
-  .hero-includes{max-width:900px;margin:20px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .hero-includes{max-width:900px;margin:18px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
   .include{background:white;border:1px solid var(--line);border-radius:16px;padding:15px 13px;text-align:left;
     box-shadow:0 1px 2px rgba(16,37,63,.04),0 10px 24px rgba(22,71,122,.08)}
   .include b{display:block;color:var(--txt);font-size:15px;margin-bottom:4px}
@@ -106,6 +120,13 @@
     display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
   .card h3{font-size:18px;margin-bottom:8px}
   .card p{color:var(--muted);font-size:15px}
+  .steps-line{max-width:840px;margin:0 auto;position:relative;display:grid;gap:14px}
+  .steps-line:before{content:"";position:absolute;left:25px;top:22px;bottom:22px;width:2px;background:#c7e3f6}
+  .step-row{position:relative;display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--line);
+    border-radius:16px;padding:18px 18px 18px 0;box-shadow:0 1px 2px rgba(16,37,63,.04),0 10px 24px rgba(22,71,122,.08)}
+  .step-row .num{margin:0;position:relative;z-index:1;justify-self:center}
+  .step-row h3{font-size:18px;margin-bottom:4px}
+  .step-row p{color:var(--muted);font-size:15px}
 
   /* resultados */
   .results{background:#ffffff;border:1px solid var(--line);border-radius:22px;padding:36px 28px;
@@ -244,6 +265,9 @@
     .featured-results{grid-template-columns:1fr}
     .reference-row{grid-template-columns:1fr}
     .hero-includes{grid-template-columns:1fr 1fr}
+    .flow-track{grid-template-columns:1fr;gap:8px}
+    .flow-arrow{width:2px;height:22px;margin:0 auto}
+    .flow-arrow:after{right:-4px;top:auto;bottom:-1px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #b9dcf4;border-bottom:0}
     .mock{grid-template-columns:1fr}
     .agent{grid-template-columns:1fr;gap:22px}
     .agent h2,.agent .lead{text-align:center}
@@ -254,6 +278,17 @@
     .wa-body{padding:18px 14px}
     .wa-msg{font-size:14.5px;max-width:92%}
     .wa-wave{max-width:150px}
+    .hero{padding-top:20px}
+    .sub{max-width:29ch}
+    .hero-bullets{display:grid;grid-template-columns:1fr;max-width:340px}
+    .hero-bullets span{justify-content:center}
+    .btn{width:100%;padding-left:18px;padding-right:18px}
+    .trustbar{display:grid;grid-template-columns:1fr;max-width:340px}
+    .trustbar span{justify-content:center}
+    .hero-offer{padding:16px 14px}
+    .hero-offer .price-line{gap:8px}
+    .hero-offer .old{font-size:15px}
+    .hero-offer .after{font-size:14.5px}
   }
 </style>
 </head>
@@ -269,10 +304,24 @@
   <div class="hero">
     <span class="pill">DEMO GRATIS · PAGAS SOLO SI TE GUSTA</span>
     <h1>Primero ves tu página <span class="g">gratis.</span><br>Después decides.</h1>
-    <p class="sub">Te creamos una página profesional para tu negocio con tus fotos reales, dominio incluido, botón a WhatsApp y un asistente para editarla desde el mismo WhatsApp. <strong>Si la ves y te gusta, la activas por $60.000 COP.</strong></p>
+    <p class="sub">Te mostramos una página profesional de tu negocio antes de cobrarte. <strong>Si te gusta, la activas por $60.000 COP.</strong></p>
+    <div class="hero-bullets" aria-label="Beneficios principales">
+      <span><b>✓</b> Hecha con tus fotos reales</span>
+      <span><b>✓</b> Botón directo a WhatsApp</span>
+      <span><b>✓</b> Cambios fáciles después</span>
+    </div>
     <div class="cta-row">
       <a href="#pedir" class="btn btn-main">Quiero ver mi página gratis →</a>
       <a href="#asistente-whatsapp" class="btn btn-ghost">Ver el asistente en WhatsApp</a>
+    </div>
+    <div class="hero-flow" aria-label="Proceso de ZOSA Pages">
+      <div class="flow-track">
+        <div class="flow-step"><span class="dot">1</span><b>Pides la demo</b><small>Con tu Instagram y WhatsApp.</small></div>
+        <span class="flow-arrow" aria-hidden="true"></span>
+        <div class="flow-step"><span class="dot">2</span><b>La ves gratis</b><small>Te llega el link por WhatsApp.</small></div>
+        <span class="flow-arrow" aria-hidden="true"></span>
+        <div class="flow-step"><span class="dot">3</span><b>Decides</b><small>Solo pagas si quieres activarla.</small></div>
+      </div>
     </div>
     <div class="trustbar" aria-label="Pruebas de confianza">
       <span><b>✓</b> 19 demos reales publicadas</span>
@@ -316,22 +365,28 @@
   <section id="como">
       <div class="eyebrow">Así funciona</div>
       <h2>Tres pasos y ves tu página sin pagar</h2>
-      <p class="lead">Tú no tocas nada técnico. Nosotros revisamos tu marca, armamos la página y te la mostramos antes de cobrarte.</p>
-    <div class="grid">
-      <div class="card">
+      <p class="lead">La idea es que avances sin esfuerzo: nos das lo básico, ves el resultado y decides con la página en la mano.</p>
+    <div class="steps-line">
+      <div class="step-row">
         <div class="num">1</div>
-        <h3>Cuéntanos tu negocio</h3>
-        <p>Dejas el nombre, tu Instagram y tu WhatsApp. Con eso tomamos tus fotos, colores y estilo reales. Cuanto más nos cuentes, mejor queda.</p>
+        <div>
+          <h3>Cuéntanos tu negocio</h3>
+          <p>Dejas nombre, Instagram y WhatsApp. Con eso tomamos tus fotos, colores y estilo reales.</p>
+        </div>
       </div>
-      <div class="card">
+      <div class="step-row">
         <div class="num">2</div>
-        <h3>La armamos por ti</h3>
-        <p>Revisamos tu negocio y montamos una página completa: secciones, catálogo, contacto por WhatsApp y estilo propio de tu marca.</p>
+        <div>
+          <h3>La armamos por ti</h3>
+          <p>Montamos una página completa: presentación, servicios o productos, ubicación y contacto.</p>
+        </div>
       </div>
-      <div class="card">
+      <div class="step-row">
         <div class="num">3</div>
-        <h3>La ves y decides</h3>
-        <p>Recibes el link por WhatsApp para revisarla desde tu celular. Si te gusta, pagas la oferta de lanzamiento y la dejamos activa para tu negocio.</p>
+        <div>
+          <h3>La ves y decides</h3>
+          <p>Recibes el link en tu celular. Si te gusta, pagas la oferta y queda activa para tu negocio.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -544,6 +599,36 @@
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(Object.assign({event:name}, params || {}));
   }
+  var maxScrollTracked = 0;
+  var scrollMarks = [25, 50, 75, 90];
+  function trackScrollDepth(){
+    var doc = document.documentElement;
+    var scrollable = Math.max(1, doc.scrollHeight - window.innerHeight);
+    var depth = Math.round((window.scrollY / scrollable) * 100);
+    scrollMarks.forEach(function(mark){
+      if (depth >= mark && maxScrollTracked < mark) {
+        maxScrollTracked = mark;
+        trackEvent('ZosaPagesScrollDepth', {origen:'landing-generador-webs', profundidad:mark});
+      }
+    });
+  }
+  var scrollTimer;
+  window.addEventListener('scroll', function(){
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(trackScrollDepth, 160);
+  }, {passive:true});
+  document.addEventListener('click', function(e){
+    var target = e.target.closest('a, button, .mock .go');
+    if (!target) return;
+    var rect = target.getBoundingClientRect();
+    trackEvent('ZosaPagesInteraction', {
+      origen:'landing-generador-webs',
+      texto:(target.textContent || '').trim().slice(0,80),
+      destino:target.getAttribute('href') || target.id || target.className || 'sin-destino',
+      x:Math.round(rect.left + rect.width / 2),
+      y:Math.round(window.scrollY + rect.top + rect.height / 2)
+    });
+  });
   document.querySelectorAll('a[href="#pedir"], .mock .go').forEach(function(el){
     el.addEventListener('click', function(){
       trackEvent('ZosaPagesCTAClick', {origen:'landing-generador-webs'});
