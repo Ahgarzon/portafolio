@@ -113,18 +113,17 @@
   .results .lead{max-width:700px}
   .results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
   .featured-results{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0 4px}
-  .featured-card{min-height:245px;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+  .featured-card{min-height:245px;aspect-ratio:1/1.08;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
     text-decoration:none;color:white;background:linear-gradient(145deg,#16477a,#0b2745);border:1px solid #2f6695;
     box-shadow:0 12px 28px rgba(22,71,122,.2);transition:transform .15s,box-shadow .15s}
   .featured-card.image-card{background-size:cover;background-position:center}
-  .featured-card.monk-card{background:
-    radial-gradient(circle at 82% 16%,rgba(143,208,245,.45),transparent 26%),
-    linear-gradient(145deg,#0b2745 0%,#16477a 58%,#1b6fa3 100%)}
+  .featured-card.monk-card{background-image:linear-gradient(180deg,rgba(5,12,9,.05),rgba(5,12,9,.84)),url('../assets/zosa-results/monk.jpg');
+    background-size:cover;background-position:center 34%}
   .featured-card.fisio-card{background-image:linear-gradient(180deg,rgba(8,29,48,.08),rgba(8,29,48,.78)),url('../assets/zosa-results/be-one-fisio.jpg')}
   .featured-card.camilo-card{background-image:linear-gradient(180deg,rgba(8,8,12,.08),rgba(8,8,12,.84)),url('../assets/zosa-results/camilo-conga.jpg')}
   .featured-card:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(22,71,122,.28)}
   .featured-copy{padding:18px;background:linear-gradient(180deg,rgba(5,18,31,0),rgba(5,18,31,.92))}
-  .monk-card .featured-copy{background:linear-gradient(180deg,rgba(5,18,31,.08),rgba(5,18,31,.54))}
+  .monk-card .featured-copy{background:linear-gradient(180deg,rgba(5,12,9,0),rgba(5,12,9,.88))}
   .featured-card span{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:#a9dcfb}
   .featured-card strong{display:block;margin-top:6px;font-size:24px;line-height:1.05;letter-spacing:-.01em}
   .featured-card small{display:block;margin-top:10px;font-size:13px;color:#e7f6ff;font-weight:700}
@@ -164,23 +163,24 @@
 
   /* demo WhatsApp */
   .wa-demo{max-width:560px;margin:30px auto 0;border-radius:22px;overflow:hidden;
-    border:1px solid rgba(37,211,102,.32);box-shadow:0 22px 60px rgba(0,0,0,.55);background:#0b141a;text-align:left}
-  .wa-top{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#202c33;border-bottom:1px solid rgba(255,255,255,.08)}
+    border:1px solid rgba(21,91,74,.22);box-shadow:0 1px 2px rgba(16,37,63,.04),0 18px 42px rgba(22,71,122,.16);
+    background:#eff6f2;text-align:left}
+  .wa-top{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#f8fffb;border-bottom:1px solid #d6e8df}
   .wa-logo{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
     background:#25d366;color:#062a16;font-size:22px;font-weight:900}
-  .wa-name{font-weight:800;font-size:15px;line-height:1.2}
-  .wa-status{display:block;color:#b7c8d1;font-size:12px;font-weight:500;margin-top:3px}
+  .wa-name{font-weight:850;font-size:15px;line-height:1.2;color:#10253f}
+  .wa-status{display:block;color:#607189;font-size:12.5px;font-weight:600;margin-top:3px}
   .wa-body{padding:22px 16px;background:
-    linear-gradient(rgba(11,20,26,.93),rgba(11,20,26,.93)),
-    radial-gradient(circle at 20% 20%,rgba(37,211,102,.22),transparent 25%);display:grid;gap:12px}
-  .wa-msg{max-width:86%;border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.42;
-    box-shadow:0 1px 1px rgba(0,0,0,.25)}
-  .wa-msg.owner{margin-left:auto;background:#005c4b;border-top-right-radius:3px}
-  .wa-msg.zosa{background:#202c33;border-top-left-radius:3px}
-  .wa-msg strong{color:#8ff0b3}
-  .wa-audio{display:flex;align-items:center;gap:9px;color:#d9e6eb}
+    radial-gradient(circle at 18% 12%,rgba(37,211,102,.16),transparent 28%),
+    linear-gradient(180deg,#f6fbf8,#ecf6f1);display:grid;gap:12px}
+  .wa-msg{max-width:88%;border-radius:12px;padding:11px 13px;font-size:15px;line-height:1.42;color:#10253f;
+    box-shadow:0 1px 2px rgba(16,37,63,.08)}
+  .wa-msg.owner{margin-left:auto;background:#d9fdd3;border-top-right-radius:4px}
+  .wa-msg.zosa{background:#ffffff;border:1px solid #dcebe4;border-top-left-radius:4px}
+  .wa-msg strong{color:#0d7a4f}
+  .wa-audio{display:flex;align-items:center;gap:9px;color:#10253f;min-width:0}
   .wa-play{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#25d366;color:#062a16}
-  .wa-wave{letter-spacing:1px;color:#91a5af;white-space:nowrap;overflow:hidden}
+  .wa-wave{letter-spacing:1px;color:#3a8262;white-space:nowrap;overflow:hidden}
   .wa-proof{text-align:center;color:var(--muted);font-size:13px;margin-top:14px}
 
   /* form */
@@ -243,6 +243,12 @@
     .agent{grid-template-columns:1fr;gap:22px}
     .agent h2,.agent .lead{text-align:center}
     .cta-row{flex-direction:column;align-items:stretch}
+    .featured-card{aspect-ratio:1/0.74;min-height:220px}
+    .featured-card.monk-card{background-position:center 28%}
+    .wa-demo{border-radius:20px}
+    .wa-body{padding:18px 14px}
+    .wa-msg{font-size:14.5px;max-width:92%}
+    .wa-wave{max-width:150px}
   }
 </style>
 </head>
