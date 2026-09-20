@@ -99,6 +99,23 @@
   .card h3{font-size:18px;margin-bottom:8px}
   .card p{color:var(--muted);font-size:15px}
 
+  /* resultados */
+  .results{background:rgba(18,17,28,.72);border:1px solid var(--line);border-radius:22px;padding:36px 28px;
+    box-shadow:0 22px 60px rgba(0,0,0,.34)}
+  .results .lead{max-width:700px}
+  .results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+  .result-group{background:#0d0c16;border:1px solid var(--line);border-radius:16px;padding:20px 18px}
+  .result-group h3{font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .result-group h3 span{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:10px;
+    background:rgba(34,211,238,.12);color:var(--cyan);font-size:14px}
+  .result-list{list-style:none;display:grid;gap:9px}
+  .result-list a{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--txt);
+    text-decoration:none;border:1px solid rgba(255,255,255,.06);border-radius:11px;padding:10px 11px;
+    background:rgba(255,255,255,.025);font-size:14px;font-weight:650;transition:transform .15s,border-color .15s,background .15s}
+  .result-list a:hover{transform:translateY(-1px);border-color:rgba(34,211,238,.45);background:rgba(34,211,238,.06)}
+  .result-list a small{color:var(--cyan);font-size:12px;font-weight:800}
+  .results-note{text-align:center;color:var(--muted);font-size:13px;margin-top:20px}
+
   /* agente */
   .agent{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 28px;
     display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center}
@@ -186,6 +203,7 @@
 
   @media(max-width:760px){
     .grid{grid-template-columns:1fr}
+    .results-grid{grid-template-columns:1fr}
     .hero-includes{grid-template-columns:1fr 1fr}
     .mock{grid-template-columns:1fr}
     .agent{grid-template-columns:1fr;gap:22px}
@@ -265,6 +283,53 @@
         <h3>La ves y decides</h3>
         <p>Recibes el link por WhatsApp para revisarla desde tu celular. Si te gusta, pagas la oferta de lanzamiento y la dejamos activa para tu negocio.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section id="resultados">
+    <div class="results">
+      <div class="eyebrow">Resultados reales</div>
+      <h2>¿Quieres ver nuestros resultados?</h2>
+      <p class="lead">Mira páginas ya creadas con ZOSA Pages, separadas por tipo de negocio. Así puedes imaginar cómo podría verse la tuya antes de pedir la demo.</p>
+      <div class="results-grid">
+        <div class="result-group">
+          <h3><span>01</span> Comida y bebidas</h3>
+          <ul class="result-list">
+            <li><a href="https://n8n.angelszs.site/webhook/monk" target="_blank" rel="noopener">Monk <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/zosa?slug=nicky-burger" target="_blank" rel="noopener">Nicky Burger <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/islabonita" target="_blank" rel="noopener">Isla Bonita <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/w?r=chicken-house" target="_blank" rel="noopener">Chicken House <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/deliraspaos" target="_blank" rel="noopener">Deli Raspao's <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/zosa?slug=agorapicnic" target="_blank" rel="noopener">Ágora Picnic <small>ver</small></a></li>
+          </ul>
+        </div>
+        <div class="result-group">
+          <h3><span>02</span> Tiendas, salud y servicios</h3>
+          <ul class="result-list">
+            <li><a href="https://amimax.store" target="_blank" rel="noopener">Amimax <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/kpopayan" target="_blank" rel="noopener">KPOPAYAN <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/soulfitgym" target="_blank" rel="noopener">Soul Fit GYM & BOX <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/kyrios" target="_blank" rel="noopener">Kyrios Studio <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/primocell" target="_blank" rel="noopener">PrimoCell <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/movil-express" target="_blank" rel="noopener">Móvil Express <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/beonefisio" target="_blank" rel="noopener">Be One Fisio <small>ver</small></a></li>
+          </ul>
+        </div>
+        <div class="result-group">
+          <h3><span>03</span> Marcas, arte y profesionales</h3>
+          <ul class="result-list">
+            <li><a href="https://elartedecrear.store" target="_blank" rel="noopener">El Arte de Crear <small>ver</small></a></li>
+            <li><a href="https://cerazo.site" target="_blank" rel="noopener">Cristian Erazo <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/camilocongas" target="_blank" rel="noopener">Camilo Congas <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/littigio" target="_blank" rel="noopener">Littigio <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/solix" target="_blank" rel="noopener">Solix <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/circo-di-lunna" target="_blank" rel="noopener">Circo Di Lunna <small>ver</small></a></li>
+            <li><a href="https://n8n.angelszs.site/webhook/seleccion-colombia" target="_blank" rel="noopener">Selección Colombia <small>ver</small></a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="results-note">Cada página se adapta al negocio: fotos reales, contacto por WhatsApp, catálogo o servicios y una estructura pensada para generar confianza.</p>
     </div>
   </section>
 
