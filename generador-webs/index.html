@@ -325,6 +325,22 @@
     .hero-offer .after{font-size:14.5px}
   }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s){
+    if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+    s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1395300545498160');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1395300545498160&ev=PageView&noscript=1"
+  alt=""></noscript>
+<!-- End Meta Pixel Code -->
 <script>
   (function(c,l,a,r,i,t,y){
     c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -686,6 +702,31 @@
   var formSession = (window.crypto && window.crypto.randomUUID)
     ? window.crypto.randomUUID()
     : String(Date.now()) + '-' + Math.random().toString(36).slice(2);
+  var leadEventId = 'zosa-lead-' + formSession;
+  function getCookie(name){
+    var prefix = name + '=';
+    var part = document.cookie.split(';').map(function(value){ return value.trim(); })
+      .find(function(value){ return value.indexOf(prefix) === 0; });
+    return part ? decodeURIComponent(part.slice(prefix.length)) : '';
+  }
+  function getTrackingParams(){
+    var search = new URLSearchParams(window.location.search);
+    var fbclid = search.get('fbclid') || '';
+    var fbc = getCookie('_fbc');
+    if (!fbc && fbclid) fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+    return {
+      fbp: getCookie('_fbp'),
+      fbc: fbc,
+      fbclid: fbclid,
+      utm_source: search.get('utm_source') || '',
+      utm_medium: search.get('utm_medium') || '',
+      utm_campaign: search.get('utm_campaign') || '',
+      utm_content: search.get('utm_content') || '',
+      utm_term: search.get('utm_term') || '',
+      landing_url: window.location.href.split('#')[0],
+      referrer: document.referrer || ''
+    };
+  }
   function trackEvent(name, params){
     if (window.fbq) window.fbq('trackCustom', name, params || {});
     window.dataLayer = window.dataLayer || [];
@@ -753,6 +794,7 @@
       return;
     }
     var whatsapp = '57' + whatsappLocal;
+    var trackingParams = getTrackingParams();
     btn.textContent = 'Guardando y abriendo WhatsApp…';
     btn.disabled = true;
     var payload = {
@@ -766,6 +808,8 @@
       ,website: document.getElementById('website').value
       ,form_started_ms: Date.now() - formOpenedAt
       ,form_session: formSession
+      ,meta_lead_event_id: leadEventId
+      ,meta_tracking: trackingParams
     };
     trackEvent('ZosaPagesFormStart', {origen:'landing-generador-webs'});
     fetch('https://n8n.angelszs.site/webhook/generar-web-intake', {
@@ -779,8 +823,20 @@
       if(!data || data.ok !== true) throw new Error('bad');
       form.style.display='none';
       document.getElementById('ok').style.display='block';
-      if (window.fbq) window.fbq('track', 'Lead', {currency:'COP', value:60000});
-      trackEvent('ZosaPagesLead', {origen:'landing-generador-webs', precio_cop:60000});
+      if (data.created !== false) {
+        if (window.fbq) window.fbq('track', 'Lead', {
+          currency:'COP',
+          value:60000,
+          content_name:'ZOSA Pages',
+          content_category:'Página web profesional'
+        }, {eventID: leadEventId});
+        trackEvent('ZosaPagesLead', {
+          origen:'landing-generador-webs',
+          precio_cop:60000,
+          pedido_id:data.id || null
+        });
+        if (window.clarity) window.clarity('upgrade', 'zosa-lead');
+      }
       var detail = String(payload.detalle || '').trim() || 'Quiero una página adaptada a mi negocio';
       var message = [
         'Hola, quiero crear mi página web con ZOSA Pages.',
@@ -792,7 +848,9 @@
         '',
         'Ya llené el formulario. Pueden empezar a preparar mi demo.'
       ].join('\n');
-      window.location.href = 'https://api.whatsapp.com/send?phone=573042399141&text=' + encodeURIComponent(message);
+      setTimeout(function(){
+        window.location.href = 'https://api.whatsapp.com/send?phone=573042399141&text=' + encodeURIComponent(message);
+      }, 450);
     }).catch(function(){
       err.textContent = 'No se pudo enviar. Escríbenos directo al WhatsApp y lo resolvemos.';
       err.style.display='block';
