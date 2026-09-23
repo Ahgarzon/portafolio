@@ -654,7 +654,7 @@
   <section id="pedir">
     <div class="eyebrow">Empecemos</div>
     <h2>Pide tu página</h2>
-    <p class="lead">Déjanos estos datos y continúa por WhatsApp. Al enviar el mensaje, el asistente empezará a preparar tu demo y te entregará el link en esa misma conversación. La demo es gratis; si te gusta y quieres dejarla activa, aprovechas la oferta de lanzamiento de $60.000 COP.</p>
+    <p class="lead">Déjanos información real de tu negocio y continúa por WhatsApp. Primero validamos que el perfil tenga contenido suficiente; después el asistente prepara una demo adaptada y te entrega el enlace en esa misma conversación. La demo es gratis; si te gusta y quieres dejarla activa, aprovechas la oferta de lanzamiento de $60.000 COP.</p>
 
     <form id="f">
       <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
@@ -664,8 +664,9 @@
       <label>Nombre del negocio</label>
       <input id="negocio" name="negocio" required placeholder="Ej: Café Aromas">
 
-      <label>Instagram <span class="opt">(obligatorio para tomar tus fotos y estilo reales)</span></label>
-      <input id="instagram" name="instagram" required placeholder="@tunegocio o el link de tu perfil">
+      <label>Instagram público del negocio <span class="opt">(obligatorio para tomar información y fotos reales)</span></label>
+      <input id="instagram" name="instagram" required autocomplete="url" aria-describedby="instagram-help" placeholder="@tunegocio o https://instagram.com/tunegocio">
+      <p class="field-help" id="instagram-help">Usa el perfil activo de la marca, con publicaciones visibles. No escribas un correo ni una cuenta personal.</p>
 
       <label>WhatsApp <span class="opt">(obligatorio para enviarte el link)</span></label>
       <div class="phone-field">
@@ -674,8 +675,9 @@
       </div>
       <p class="field-help" id="whatsapp-help">Escribe los 10 dígitos de tu celular, sin indicativo de país.</p>
 
-      <label>¿Qué quieres en tu página? <span class="opt">(opcional)</span></label>
-      <textarea id="detalle" name="detalle" placeholder="Ej: catálogo de cafés, ubicación, botón de pedidos por WhatsApp..."></textarea>
+      <label>¿Qué ofrece tu negocio y qué quieres mostrar?</label>
+      <textarea id="detalle" name="detalle" required minlength="25" aria-describedby="detalle-help" placeholder="Ej: Estamos en Popayán. Vendemos café de especialidad, desayunos y postres; quiero ubicación, menú y pedidos por WhatsApp."></textarea>
+      <p class="field-help" id="detalle-help">Incluye la ciudad y al menos tres productos o servicios. Esto nos permite adaptar la página sin inventar información.</p>
 
       <button type="submit" class="btn btn-main" id="send">Continuar por WhatsApp →</button>
       <p class="hint">Se abrirá WhatsApp con tus datos. Solo debes tocar Enviar para iniciar.</p>
@@ -684,7 +686,7 @@
 
     <div class="ok" id="ok">
       <h3>Continúa en WhatsApp ✅</h3>
-      <p>Envía el mensaje que dejamos preparado. El asistente confirmará tu solicitud y empezará a crear la demo de tu negocio.</p>
+      <p>Envía el mensaje que dejamos preparado. El asistente validará la información y, si es suficiente, empezará a crear la demo de tu negocio.</p>
       <span class="eta">Abriendo WhatsApp…</span>
     </div>
   </section>
@@ -780,11 +782,26 @@
     err.style.display = 'none';
     var negocio = document.getElementById('negocio').value.trim();
     var instagram = document.getElementById('instagram').value.trim();
+    var detalle = document.getElementById('detalle').value.trim();
     var whatsappLocal = whatsappInput.value.replace(/\D/g, '');
     if (whatsappLocal.indexOf('57') === 0 && whatsappLocal.length === 12) whatsappLocal = whatsappLocal.slice(2);
-    if (!negocio || !instagram || !whatsappLocal) {
-      err.textContent = 'Completa nombre del negocio, Instagram y WhatsApp para poder crear tu página.';
+    if (!negocio || !instagram || !whatsappLocal || !detalle) {
+      err.textContent = 'Completa el negocio, su Instagram público, WhatsApp y una descripción concreta de lo que ofrece.';
       err.style.display = 'block';
+      return;
+    }
+    var instagramMatch = instagram.match(/^@([a-z0-9._]{2,30})$/i) || instagram.match(/^https?:\/\/(?:www\.)?instagram\.com\/([a-z0-9._]{2,30})(?:[/?#].*)?$/i);
+    var reservedInstagram = /^(accounts|about|developer|directory|explore|legal|reels?|stories)$/i;
+    if (!instagramMatch || reservedInstagram.test(instagramMatch[1])) {
+      err.textContent = 'Escribe un perfil de Instagram válido del negocio, por ejemplo @tunegocio o https://instagram.com/tunegocio. No uses un correo.';
+      err.style.display = 'block';
+      document.getElementById('instagram').focus();
+      return;
+    }
+    if (detalle.length < 25 || detalle.split(/[,;\n]/).filter(function(item){ return item.trim(); }).length < 2) {
+      err.textContent = 'Cuéntanos con más detalle la ciudad y varios productos o servicios del negocio para poder crear una página real y bien adaptada.';
+      err.style.display = 'block';
+      document.getElementById('detalle').focus();
       return;
     }
     if (!/^3\d{9}$/.test(whatsappLocal)) {
@@ -801,7 +818,7 @@
       negocio: negocio,
       instagram: instagram,
       whatsapp: whatsapp,
-      detalle: document.getElementById('detalle').value,
+      detalle: detalle,
       origen: 'landing-generador-webs',
       precio_cop: 60000,
       condicion_pago: 'demo gratis; oferta lanzamiento $60.000 COP; antes $400.000; paga solo si le gusta y quiere activarla'
@@ -837,7 +854,7 @@
         });
         if (window.clarity) window.clarity('upgrade', 'zosa-lead');
       }
-      var detail = String(payload.detalle || '').trim() || 'Quiero una página adaptada a mi negocio';
+      var detail = String(payload.detalle || '').trim();
       var message = [
         'Hola, quiero crear mi página web con ZOSA Pages.',
         '',
