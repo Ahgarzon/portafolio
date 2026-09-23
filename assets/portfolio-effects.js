@@ -39,7 +39,7 @@
   const canvas=document.getElementById('net'),ctx=canvas.getContext('2d');
   if(!ctx)return;
   let width,height,dpr,points=[],mx=-999,my=-999,animation=0,last=0;
-  function staticMode(){return mobile.matches||reduced.matches;}
+  function staticMode(){return mobile.matches||reduced.matches||document.documentElement.dataset.audience==='perfil';}
   function paint(move){
     ctx.clearRect(0,0,width,height);
     const link=150*dpr,link2=link*link;
@@ -55,17 +55,17 @@
       ctx.beginPath();ctx.arc(a.x,a.y,dpr*1.5,0,7);ctx.fillStyle='rgba(160,185,255,.85)';ctx.fill();
     }
   }
-  function draw(now){animation=0;if(document.hidden||staticMode())return;if(now-last>=1000/30){paint(true);last=now;}animation=requestAnimationFrame(draw);}
+  function draw(now){animation=0;if(document.hidden||staticMode())return;if(now-last>=1000/24){paint(true);last=now;}animation=requestAnimationFrame(draw);}
   function sync(){if(animation)cancelAnimationFrame(animation);animation=0;if(!document.hidden&&!staticMode())animation=requestAnimationFrame(draw);else if(!document.hidden)paint(false);}
   function resize(){
     dpr=Math.min(devicePixelRatio||1,staticMode()?1:1.5);width=canvas.width=innerWidth*dpr;height=canvas.height=innerHeight*dpr;
-    const count=Math.max(12,Math.min(staticMode()?24:64,Math.floor(innerWidth*innerHeight/16000)));
+    const count=Math.max(12,Math.min(staticMode()?20:44,Math.floor(innerWidth*innerHeight/24000)));
     points=Array.from({length:count},()=>({x:Math.random()*width,y:Math.random()*height,vx:(Math.random()-.5)*.44*dpr,vy:(Math.random()-.5)*.44*dpr}));
     paint(false);sync();
   }
   let resizeFrame=0;
   addEventListener('resize',()=>{if(!resizeFrame)resizeFrame=requestAnimationFrame(()=>{resizeFrame=0;resize();});},{passive:true});
   if(!mobile.matches){addEventListener('mousemove',event=>{mx=event.clientX*dpr;my=event.clientY*dpr;},{passive:true});addEventListener('mouseleave',()=>{mx=my=-999;});}
-  document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',resize);mobile.addEventListener('change',resize);
+  document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',resize);mobile.addEventListener('change',resize);addEventListener('portfolio:audience',resize);
   resize();
 })();

@@ -1,15 +1,20 @@
 (() => {
   const buttons=[...document.querySelectorAll('[data-audience]')];
   const variants=[...document.querySelectorAll('[data-audience-view]')];
+  const sections=[...document.querySelectorAll('[data-audience-section]')];
   function setAudience(view,updateUrl=false){
     const audience=view==='perfil'?'perfil':'negocio';
+    document.documentElement.dataset.audience=audience;
+    document.body.dataset.audience=audience;
     buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.audience===audience)));
     variants.forEach(element=>{element.hidden=element.dataset.audienceView!==audience;});
+    sections.forEach(element=>{element.hidden=element.dataset.audienceSection!==audience;});
     if(updateUrl){
       const url=new URL(location.href);
       if(audience==='perfil')url.searchParams.set('enfoque','perfil');else url.searchParams.delete('enfoque');
       history.replaceState(null,'',url.pathname+url.search+url.hash);
     }
+    dispatchEvent(new CustomEvent('portfolio:audience',{detail:{audience}}));
   }
   buttons.forEach(button=>button.addEventListener('click',()=>setAudience(button.dataset.audience,true)));
   setAudience(new URL(location.href).searchParams.get('enfoque'));

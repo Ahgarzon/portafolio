@@ -4,13 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ángel Garzón Sarzosa — Arquitecto de Soluciones IA</title>
-<meta name="description" content="Construyo sistemas de IA a la medida que venden, atienden y hacen crecer tu negocio. Segundos cerebros, agentes de voz y ventas, anti-fraude y automatización de grado producción. Popayán, Colombia." />
+<meta name="description" content="Consultoría de transformación digital y arquitectura de soluciones IA: diagnóstico, estrategia, segundos cerebros empresariales y sistemas de grado producción que mejoran KPIs." />
 <meta property="og:title" content="Ángel Garzón Sarzosa — Arquitecto de Soluciones IA" />
-<meta property="og:description" content="Empleados virtuales con IA que venden, atienden y operan solos. De segundos cerebros a agentes de voz y ventas." />
+<meta property="og:description" content="De la estrategia a producción: segundos cerebros empresariales, productos digitales y sistemas de IA orientados a resultados." />
 <meta name="theme-color" content="#05070e" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>document.documentElement.dataset.audience=new URL(location.href).searchParams.get('enfoque')==='perfil'?'perfil':'negocio';</script>
 <style>
   :root{
     --bg:#05070e; --bg2:#080b16; --ink:#f2f5fc; --muted:#98a1ba;
@@ -317,7 +318,7 @@
 .lang-toggle:hover{color:var(--ink);border-color:rgba(var(--c1-rgb),.5);background:rgba(var(--c1-rgb),.08)}
 @media(max-width:820px){.nav-links{gap:14px}.lang-toggle{font-size:12px;padding:6px 9px}}
 </style>
-<link rel="stylesheet" href="assets/portfolio-ui.css" />
+<link rel="stylesheet" href="assets/portfolio-ui.css?v=20260922-2" />
 </head>
 <body>
 <canvas id="net"></canvas>
@@ -332,13 +333,17 @@
     <div class="container">
       <a class="brand" href="#top"><span class="mark"></span> Ángel&nbsp;Garzón</a>
       <div class="nav-links">
-        <a href="#about">Perfil</a>
-        <a href="#stack">Stack</a>
-        <a href="#jarvis">Jarvis</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#tu-web">Tu web</a>
+        <a href="#about" data-audience-view="negocio">Perfil</a>
+        <a href="#stack" data-audience-view="negocio">Stack</a>
+        <a href="#jarvis" data-audience-view="negocio">Jarvis</a>
+        <a href="#proyectos" data-audience-view="negocio">Proyectos</a>
+        <a href="#tu-web" data-audience-view="negocio">Tu web</a>
+        <a href="#perfil-impacto" data-audience-view="perfil" hidden>Visión</a>
+        <a href="#casos-profesionales" data-audience-view="perfil" hidden>Casos</a>
+        <a href="#trayectoria" data-audience-view="perfil" hidden>Trayectoria</a>
         <a href="#logros">Logros</a>
-        <a class="nav-cta" href="#contacto">Hablemos →</a>
+        <a class="nav-cta" href="#contacto" data-audience-view="negocio">Hablemos →</a>
+        <a class="nav-cta" href="#contacto" data-audience-view="perfil" hidden>Conversemos →</a>
         <button id="agLang" class="lang-toggle" data-no-i18n type="button" aria-label="English / Español">EN</button>
 
       </div>
@@ -355,35 +360,40 @@
             <button type="button" data-audience="perfil" aria-pressed="false">Perfil profesional</button>
           </div>
           <span class="eyebrow"><span class="ping"></span> Arquitecto de Soluciones IA · Popayán, Colombia</span>
-          <h1><span data-audience-view="negocio">Construyo <span class="g">sistemas de IA a la medida</span> que venden, atienden y hacen crecer tu negocio.</span><span data-audience-view="perfil" hidden>Ángel Garzón Sarzosa.<br><span class="g">Arquitecto de Soluciones IA</span> e Ingeniero en Automática Industrial.</span></h1>
-          <p class="lede" data-audience-view="negocio">Desde <b>segundos cerebros</b> hasta <b>agentes de voz y ventas</b>: destrabo cuellos de botella, aumento las ventas y la productividad y llevo tu operación al siguiente nivel. No son chatbots que improvisan — <b>entienden, ejecutan con criterio y dejan registro de todo.</b></p>
-          <p class="lede" data-audience-view="perfil" hidden>Diseño y construyo <b>sistemas de inteligencia artificial, automatización y productos digitales</b>. Mi experiencia conecta agentes conversacionales, software y robótica. Aquí puedes conocer mi formación y explorar todos mis proyectos.</p>
+          <h1><span data-audience-view="negocio">Convierto estrategia y operación en <span class="g">sistemas de IA que mueven tus KPIs</span>.</span><span data-audience-view="perfil" hidden>Ángel Garzón Sarzosa.<br><span class="g">Conecto negocio, IA y ejecución</span> para transformar empresas.</span></h1>
+          <p class="lede" data-audience-view="negocio">Primero entiendo el negocio y detecto dónde la tecnología sí crea valor. Después diseño la hoja de ruta y construyo el sistema completo: <b>segundos cerebros empresariales, productos digitales, automatización y agentes de IA</b>, conectados a la operación y medidos por resultados.</p>
+          <p class="lede" data-audience-view="perfil" hidden><b>Arquitecto de Soluciones IA e Ingeniero en Automática.</b> Conecto estrategia, procesos y tecnología para llevar iniciativas de transformación digital de 0 a 1: desde el diagnóstico ejecutivo hasta un producto estable, medible y operable por el equipo.</p>
           <div class="cta-row" data-audience-view="negocio">
             <a class="btn btn-primary" href="#proyectos">Ver lo que construyo →</a>
             <a class="btn btn-ghost" href="https://wa.me/573237451221?text=Hola%20%C3%81ngel,%20vi%20tu%20portafolio%20y%20quiero%20automatizar%20mi%20operaci%C3%B3n" target="_blank" rel="noopener">Hablemos por WhatsApp</a>
           </div>
           <div class="cta-row" data-audience-view="perfil" hidden>
-            <a class="btn btn-primary" href="#proyectos">Explorar todos mis proyectos →</a>
+            <a class="btn btn-primary" href="#casos-profesionales">Ver casos y resultados →</a>
             <a class="btn btn-ghost" href="mailto:angelgarzonsarzosa@gmail.com?subject=Oportunidad%20profesional">Hablemos de una oportunidad</a>
           </div>
           <div class="audience-shortcuts" data-audience-view="negocio">
             <a href="#proyectos">Soluciones y proyectos ↓</a><a href="#tu-web">Tu página web ↓</a><a href="#preguntas">Preguntas frecuentes ↓</a>
           </div>
           <div class="audience-shortcuts" data-audience-view="perfil" hidden>
-            <a href="#about">Quién soy ↓</a><a href="#stack">Stack técnico ↓</a><a href="#ingenieria">Ingeniería ↓</a><a href="#logros">Reconocimientos ↓</a>
+            <a href="#perfil-impacto">Cómo aporto ↓</a><a href="#casos-profesionales">Casos ↓</a><a href="#trayectoria">Trayectoria ↓</a><a href="#logros">Reconocimientos ↓</a>
           </div>
           <div class="socials">
             <a href="https://www.linkedin.com/in/angel-garz%C3%B3n-sarzosa-334014337/" target="_blank" rel="noopener">LinkedIn ↗</a>
             <a href="https://github.com/Ahgarzon" target="_blank" rel="noopener">GitHub ↗</a>
             <a href="mailto:angelgarzonsarzosa@gmail.com">Email ↗</a>
           </div>
-          <div class="hero-meta">
+          <div class="hero-meta" data-audience-view="negocio">
+            <div><b>0 → 1</b><span>del diagnóstico a producción</span></div>
             <div><b>15+</b><span>soluciones IA construidas</span></div>
-            <div><b>24/7</b><span>atienden y venden sin parar</span></div>
-            <div><b>Voz + WhatsApp</b><span>hablan y escriben como humanos</span></div>
+            <div><b>−70%</b><span>auditoría manual en Dropi</span></div>
+          </div>
+          <div class="hero-meta" data-audience-view="perfil" hidden>
+            <div><b>0 → 1</b><span>estrategia, arquitectura y ejecución</span></div>
+            <div><b>15+</b><span>sistemas construidos</span></div>
+            <div><b>Negocio + IA</b><span>decisiones técnicas con visión ejecutiva</span></div>
           </div>
         </div>
-        <div class="hero-visual reel-wrap">
+        <div class="hero-visual reel-wrap" data-audience-view="negocio">
           <div class="reel-frame">
             <span class="reel-tag"><span class="ping"></span> Jarvis en vivo</span>
             <button class="reel-sound" type="button" data-no-i18n aria-label="Reproducir demostración de Jarvis">▶ Ver demo</button>
@@ -396,51 +406,112 @@
           <div class="chip c3"><span class="ic">✓</span><div><small>Proyectos de alto impacto</small><b>Sector público y privado</b></div></div>
         </div>
 
-        <div class="hero-visual" hidden>
+        <div class="hero-visual profile-portrait" data-audience-view="perfil" hidden>
           <div class="frame">
             <img width="420" height="420" decoding="async" src="assets/portafolio/retrato.jpg" alt="Ángel Garzón Sarzosa" loading="lazy" />
             <div class="scan"></div>
           </div>
           <div class="chip c1"><span class="ic">◈</span><div><small>En producción</small><b>Certipago · ALMA · Dropi</b></div></div>
           <div class="chip c2"><span class="ic">⚡</span><div><small>Grado producción</small><b>Confiable y medible</b></div></div>
-          <div class="chip c3"><span class="ic">✓</span><div><small>Condecorado</small><b>Congreso de la República</b></div></div>
+          <div class="chip c3"><span class="ic">✓</span><div><small>De estrategia a producción</small><b>Sector público y privado</b></div></div>
         </div>
       </div>
     </div>
   </header>
 
   <!-- MARQUEE -->
-  <div class="marquee">
+  <div class="marquee" data-audience-view="negocio">
     <div class="track">
       <span>Segundos cerebros</span><span>Agentes de voz</span><span>CRM con call center IA</span><span>Anti-fraude bancario</span><span>Recuperación de ventas</span><span>Automatización n8n</span><span>Visión artificial</span>
       <span>Segundos cerebros</span><span>Agentes de voz</span><span>CRM con call center IA</span><span>Anti-fraude bancario</span><span>Recuperación de ventas</span><span>Automatización n8n</span><span>Visión artificial</span>
     </div>
   </div>
 
+  <div class="marquee" data-audience-view="perfil" hidden>
+    <div class="track profile-track">
+      <span>Transformación digital</span><span>Arquitectura de soluciones</span><span>Segundos cerebros empresariales</span><span>Productos 0 → 1</span><span>KPIs y trazabilidad</span><span>Liderazgo técnico</span>
+      <span>Transformación digital</span><span>Arquitectura de soluciones</span><span>Segundos cerebros empresariales</span><span>Productos 0 → 1</span><span>KPIs y trazabilidad</span><span>Liderazgo técnico</span>
+    </div>
+  </div>
+
+  <!-- PERFIL PROFESIONAL: recorrido ejecutivo y compacto -->
+  <section id="perfil-impacto" class="profile-section" data-audience-section="perfil" hidden>
+    <div class="container">
+      <div class="profile-intro reveal">
+        <div>
+          <div class="kicker">Cómo aporto</div>
+          <h2>No empiezo por la IA.<br><span class="g">Empiezo por el negocio.</span></h2>
+        </div>
+        <p>Me siento con líderes y equipos para entender qué frena el crecimiento, qué conocimiento se está perdiendo y qué KPI debe cambiar. Con ese diagnóstico defino la transformación, priorizo el caso de uso correcto y lidero la construcción hasta que el sistema queda operando y dejando evidencia.</p>
+      </div>
+      <div class="value-grid">
+        <article class="value-card reveal"><span class="value-n">01</span><h3>Diagnóstico ejecutivo</h3><p>Mapeo procesos, dependencias, datos y costos para encontrar dónde la IA genera valor real y dónde no conviene usarla.</p></article>
+        <article class="value-card reveal"><span class="value-n">02</span><h3>Estrategia y hoja de ruta</h3><p>Traduzco la oportunidad en prioridades, arquitectura, indicadores y un plan que negocio y tecnología pueden entender.</p></article>
+        <article class="value-card reveal"><span class="value-n">03</span><h3>Construcción de 0 a 1</h3><p>Diseño producto, backend, automatizaciones, datos e interfaces; integro el sistema con la operación existente y lo llevo a producción.</p></article>
+        <article class="value-card reveal"><span class="value-n">04</span><h3>Adopción y mejora</h3><p>Dejo trazabilidad, documentación y métricas para que el equipo pueda operar, medir y escalar la solución con criterio.</p></article>
+      </div>
+      <div class="proof-row reveal" aria-label="Resultados destacados">
+        <div><strong>−70%</strong><span>auditoría manual en el ERP financiero de Dropi</span></div>
+        <div><strong>&lt;5 min</strong><span>para contactar y calificar un lead en el CRM con IA</span></div>
+        <div><strong>4.628</strong><span>visitas en 13 días para Ayúdame Colombia</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="casos-profesionales" class="profile-section" data-audience-section="perfil" hidden>
+    <div class="container">
+      <div class="sec-head reveal">
+        <div class="kicker">Casos seleccionados</div>
+        <h2>El valor está en <span class="g">resolver el sistema completo</span>.</h2>
+        <p class="section-lede">Cuatro proyectos que muestran estrategia, producto, ingeniería y capacidad de ejecución en contextos distintos.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card case-featured reveal"><div class="case-top"><span class="case-type">Arquitectura · Operación</span><span>01</span></div><h3>AIOS y segundos cerebros empresariales</h3><p>Diseñé sistemas operativos con IA que centralizan conocimiento, conectan herramientas y ejecutan procesos desde lenguaje natural. La empresa gana memoria institucional, trazabilidad y una operación que mejora con cada uso.</p><div class="case-foot"><span>Rol: Arquitectura end-to-end</span><span>Estrategia → producción</span></div></article>
+        <article class="case-card reveal"><div class="case-top"><span class="case-type">Fintech · ERP</span><span>02</span></div><h3>Dropi — automatización financiera</h3><p>Construí un back-office con OCR, conciliación, conversión de divisas y archivos bancarios ACH/COBRE. El rediseño redujo 70% la auditoría manual y aceleró el ciclo de pagos.</p><div class="case-foot"><span>Rol: IA Full Stack</span><span>Resultado: −70%</span></div></article>
+        <article class="case-card reveal"><div class="case-top"><span class="case-type">Impacto social · PWA</span><span>03</span></div><h3>Ayúdame Colombia</h3><p>Levanté una plataforma offline durante una emergencia para coordinar necesidades, puntos de acopio y reportes de desaparecidos. En 13 días llegó a 424 dispositivos y 4.628 visitas, con cobertura en televisión y prensa nacional.</p><div class="case-foot"><span>Rol: Creador y arquitecto</span><span>Producto en emergencia real</span></div></article>
+        <article class="case-card reveal"><div class="case-top"><span class="case-type">Ventas · CRM</span><span>04</span></div><h3>Call center con IA y trazabilidad comercial</h3><p>Arquitecté un CRM omnicanal que contacta leads en menos de cinco minutos, conversa por voz y WhatsApp, califica con BANT y entrega al asesor un briefing con todo el contexto.</p><div class="case-foot"><span>Rol: Arquitectura de solución</span><span>Negocio + producto + datos</span></div></article>
+      </div>
+      <div class="profile-more reveal"><a class="btn btn-ghost" href="?enfoque=negocio#proyectos">Ver el catálogo completo de proyectos →</a></div>
+    </div>
+  </section>
+
+  <section id="trayectoria" class="profile-section" data-audience-section="perfil" hidden>
+    <div class="container career-layout">
+      <div class="career-heading reveal"><div class="kicker">Trayectoria</div><h2>He construido desde la <span class="g">estrategia, el producto y la ingeniería</span>.</h2><p class="section-lede">Experiencia en emprendimiento, SaaS B2B, e-commerce, fintech y robótica aplicada.</p></div>
+      <div class="career-list">
+        <article class="career-item reveal"><div class="career-date">2026 — actual</div><div><h3>Co-Founder &amp; AI Solutions Architect · NSG</h3><p>Lidero visión técnica, arquitectura end-to-end y productos de automatización: AIOS, CRMs con call center de IA y sistemas comerciales omnicanal.</p></div></article>
+        <article class="career-item reveal"><div class="career-date">2026 — actual</div><div><h3>Co-Founder &amp; Arquitecto Principal · ALMA Solutions</h3><p>Diseño una plataforma SaaS multi-cliente de empleados virtuales para ventas y servicio, con voz, WhatsApp, automatización y tableros en tiempo real.</p></div></article>
+        <article class="career-item reveal"><div class="career-date">ene — abr 2026</div><div><h3>Ingeniero de Automatizaciones e IA Full Stack · Dropi / Clazz Group</h3><p>Tomé decisiones de arquitectura, construí productos B2B y automaticé procesos financieros y comerciales de alto impacto.</p></div></article>
+        <article class="career-item reveal"><div class="career-date">feb — abr 2025</div><div><h3>Ingeniero Investigador · Universidad Miguel Hernández, España</h3><p>Desarrollé una plataforma de robótica quirúrgica multi-robot con Unity 3D y ROS2 para coordinar brazos UR3e y UR5e desde una interfaz común.</p></div></article>
+      </div>
+      <div class="career-base reveal"><div><span>Formación</span><strong>Ingeniero en Automática Industrial</strong><small>Universidad del Cauca · 2019–2025 · Mención honorífica</small></div><div><span>Enfoque</span><strong>Transformación digital con IA</strong><small>Estrategia · Arquitectura · Producto · Adopción</small></div><div><span>Ubicación</span><strong>Popayán, Colombia</strong><small>Experiencia remota e internacional</small></div></div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
-  <section id="about">
+  <section id="about" data-audience-section="negocio">
     <div class="container">
       <div class="sec-head reveal">
         <div class="kicker">Quién soy</div>
-        <h2>Convierto procesos manuales en <span class="g">sistemas de IA que trabajan solos</span>.</h2>
+        <h2>No empiezo por la herramienta. <span class="g">Empiezo por el negocio.</span></h2>
       </div>
       <div class="about-grid">
         <div class="about-body reveal">
-          <p>Soy <b>Ángel Garzón Sarzosa</b>, Ingeniero en Automática Industrial (Universidad del Cauca, promoción 2025) y Arquitecto de Soluciones IA. No construyo chatbots que improvisan: diseño <b>sistemas de IA de grado producción</b> que entienden el negocio, ejecutan con criterio y dejan registro de cada acción.</p>
-          <p>Tomo un cuello de botella —ventas que se enfrían, pedidos sin confirmar, soporte saturado, contabilidad desordenada— y lo convierto en un <b>empleado virtual confiable</b> que lo resuelve solo, 24/7, y mejora con el tiempo.</p>
+          <p>Soy <b>Ángel Garzón Sarzosa</b>, Ingeniero en Automática Industrial y Arquitecto de Soluciones IA. Acompaño empresas en su transformación digital: entiendo la operación, encuentro dónde está el valor, defino la hoja de ruta y convierto la oportunidad en un sistema de grado producción.</p>
+          <p>No me limito a instalar herramientas o crear un agente aislado. Construyo <b>segundos cerebros empresariales, productos digitales y ecosistemas de automatización</b> que conectan conocimiento, personas y procesos para mejorar ventas, productividad, control y velocidad de decisión.</p>
         </div>
         <div class="about-cards reveal">
           <div class="acard"><div class="ic">🎓</div><b>Ing. Automática Industrial</b><span>Universidad del Cauca · Promoción 2025</span></div>
-          <div class="acard"><div class="ic">🎙️</div><b>Voz + WhatsApp</b><span>Agentes que llaman, escriben y cierran</span></div>
-          <div class="acard"><div class="ic">🛠️</div><b>Grado producción</b><span>Sistemas reales, confiables y medibles</span></div>
-          <div class="acard"><div class="ic">🖥️</div><b>n8n self-hosted</b><span>Arquitectura sobre VPS propio</span></div>
+          <div class="acard"><div class="ic">🧭</div><b>Consultoría estratégica</b><span>Diagnóstico, prioridades, KPIs y hoja de ruta</span></div>
+          <div class="acard"><div class="ic">🧠</div><b>Segundos cerebros</b><span>Conocimiento conectado con la operación</span></div>
+          <div class="acard"><div class="ic">🛠️</div><b>De 0 a producción</b><span>Arquitectura, construcción, adopción y mejora</span></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- STACK -->
-  <section id="stack">
+  <section id="stack" data-audience-section="negocio">
     <div class="container">
       <div class="sec-head reveal">
         <div class="kicker">Tecnología que uso</div>
@@ -479,7 +550,7 @@
   <!-- ================= JARVIS (proyecto insignia) ================= -->
   <!-- ================= /JARVIS ================= -->
 
-  <section id="proyectos">
+  <section id="proyectos" data-audience-section="negocio">
     <div class="container">
       <div class="sec-head reveal">
         <div class="kicker">Proyectos insignia</div>
@@ -672,9 +743,9 @@
       </div>
       <div class="more">
         <div class="mcard reveal">
-          <div class="top"><span class="mn">09</span><span class="mtag">Condecorado · Congreso</span></div>
+          <div class="top"><span class="mn">09</span><span class="mtag">Iniciativa reconocida · Congreso</span></div>
           <h4>TourMaps — TourCauca</h4>
-          <p>App de turismo para Popayán y el Cauca que guía rutas y puntos turísticos. Lideré su estructuración conceptual y tecnológica → condecorada con la Orden de la Democracia por el Congreso.</p>
+          <p>App de turismo para Popayán y el Cauca que guía rutas y puntos turísticos. Participé en su estructuración conceptual y tecnológica; la iniciativa fue condecorada por su aporte al turismo regional.</p>
           <a href="https://play.google.com/store/apps/details?id=com.gopluss.tourmapsgo" target="_blank" rel="noopener">Google Play ↗</a>
         </div>
         <div class="mcard reveal">
@@ -718,7 +789,7 @@
 
   <!-- STATS -->
   <!-- AYUDAME COLOMBIA EN TELEVISION -->
-  <section class="tvband" id="tv-ayudame">
+  <section class="tvband" id="tv-ayudame" data-audience-section="negocio">
     <div class="container">
       <div class="sec-head reveal">
         <div class="kicker">En televisión</div>
@@ -744,7 +815,7 @@
       </div>
     </div>
   </section>
-  <section id="jarvis" data-no-i18n>
+  <section id="jarvis" data-no-i18n data-audience-section="negocio">
     <style>
       #jarvis{position:relative; padding:96px 0 84px; overflow:hidden;
         background:
@@ -904,7 +975,7 @@
     </div>
   </section>
 
-  <section class="band">
+  <section class="band" data-audience-section="negocio">
     <div class="container">
       <div class="stats reveal">
         <div><b data-count="15" data-suf="+">0+</b><span>soluciones IA<br>construidas</span></div>
@@ -970,7 +1041,7 @@ a.medio:hover{border-color:rgba(56,189,248,.55);transform:translateY(-1px)}
   .tvvid{max-width:420px;margin:0 auto}
 }
 </style>
-  <section id="tu-web">
+  <section id="tu-web" data-audience-section="negocio">
     <div class="container reveal">
       <div class="webcard">
         <div class="kicker" style="justify-content:center">Para vos o tu negocio</div>
@@ -988,7 +1059,7 @@ a.medio:hover{border-color:rgba(56,189,248,.55);transform:translateY(-1px)}
   </section>
 
   <!-- INGENIERÍA -->
-  <section id="ingenieria">
+  <section id="ingenieria" data-audience-section="negocio">
     <div class="container">
       <div class="sec-head reveal">
         <div class="kicker">Ingeniería · IA · Visión</div>
@@ -1015,7 +1086,7 @@ a.medio:hover{border-color:rgba(56,189,248,.55);transform:translateY(-1px)}
       </div>
       <div class="timeline">
         <div class="tl reveal"><div class="yr">2026</div><h4>Ayúdame Colombia: televisión, prensa y ecosistema</h4><p>La plataforma que levanté en plena emergencia salió en <b>90 Minutos</b>, <b>Telemedellín</b> y <b>Cable Noticias</b>, y en prensa nacional. Desde entonces ha despertado el interés del <b>Senado de la República</b>, de la <b>Alcaldía de Popayán</b> y de entidades de respuesta como la <b>Cruz Roja</b>. La meta para final de año: ser la <b>herramienta sin ánimo de lucro número uno del país para desastres naturales</b>. <a href="https://90minutos.co/colombia/ayudame-colombia-plataforma-ayudas-terremoto-18-08-2026/" target="_blank" rel="noopener">90 Minutos</a> · <a href="https://www.pulzo.com/tecnologia/ayudame-colombia-plataforma-organiza-donaciones-tras-terremoto-en-colombia-con-mapa-interactivo-PP5277735A" target="_blank" rel="noopener">Pulzo</a></p></div>
-        <div class="tl reveal"><div class="yr">2026</div><h4>Orden de la Democracia — Congreso de la República</h4><p>Reconocimiento legislativo por el liderazgo en la estructuración conceptual y tecnológica de <b>TourCauca</b>, iniciativa condecorada por su aporte al turismo regional.</p></div>
+        <div class="tl reveal"><div class="yr">2026</div><h4>TourCauca — iniciativa reconocida por el Congreso</h4><p>Participación registrada en la estructuración conceptual y tecnológica de <b>TourCauca</b>, iniciativa condecorada por su aporte al turismo regional.</p></div>
         <div class="tl reveal"><div class="yr">2025</div><h4>Colombia 4.0</h4><p>Ponente de taller en el mayor evento nacional de tecnología. <a href="https://www.unicauca.edu.co/noticias-actualidad/cuando-la-pasion-se-convierte-en-innovacion-colombia-4-0/" target="_blank" rel="noopener">Nota Universidad del Cauca ↗</a></p></div>
         <div class="tl reveal"><div class="yr">2025</div><h4>Mención honorífica</h4><p>Por trabajo de grado.</p></div>
         <div class="tl reveal"><div class="yr">2024</div><h4>Cátedra Siemens Colombia</h4><p>2.º puesto nacional — "Noche de los Mejores".</p></div>
@@ -1024,7 +1095,7 @@ a.medio:hover{border-color:rgba(56,189,248,.55);transform:translateY(-1px)}
   </section>
 
   <!-- PREGUNTAS FRECUENTES -->
-  <section id="preguntas" aria-labelledby="faq-title">
+  <section id="preguntas" aria-labelledby="faq-title" data-audience-section="negocio">
     <div class="container faq-layout">
       <div><div class="kicker">Antes de conversar</div><h2 id="faq-title">Buenas preguntas.</h2></div>
       <div class="faq-list">
@@ -1039,12 +1110,23 @@ a.medio:hover{border-color:rgba(56,189,248,.55);transform:translateY(-1px)}
   <!-- CONTACTO -->
   <section class="final" id="contacto">
     <div class="container reveal">
-      <div class="kicker" style="justify-content:center">Tu turno</div>
-      <h2>No te quedes atrás:<br />llevemos lo tuyo al <span class="g">siguiente nivel con IA</span>.</h2>
-      <p class="section-lede">Da igual si sos una persona, un freelance, un emprendimiento, una empresa o un grupo de investigación —y no importa cuánto sepas de IA—: para cada nivel hay una solución que te pone por delante del mercado. Agendá un diagnóstico y lo vemos juntos.</p>
-      <div class="cta-row" style="justify-content:center; margin-top:36px">
+      <div data-audience-view="negocio">
+        <div class="kicker" style="justify-content:center">Tu turno</div>
+        <h2>No te quedes atrás:<br />llevemos lo tuyo al <span class="g">siguiente nivel con IA</span>.</h2>
+        <p class="section-lede">Da igual si sos una persona, un freelance, un emprendimiento, una empresa o un grupo de investigación —y no importa cuánto sepas de IA—: para cada nivel hay una solución que te pone por delante del mercado. Agendá un diagnóstico y lo vemos juntos.</p>
+      </div>
+      <div data-audience-view="perfil" hidden>
+        <div class="kicker" style="justify-content:center">Colaboremos</div>
+        <h2>¿Buscas a alguien que conecte <span class="g">negocio, IA y ejecución</span>?</h2>
+        <p class="section-lede">Estoy abierto a proyectos, consultorías, alianzas y oportunidades donde pueda asumir un problema complejo, darle estructura y llevar la solución hasta producción.</p>
+      </div>
+      <div class="cta-row" style="justify-content:center; margin-top:36px" data-audience-view="negocio">
         <a class="btn btn-primary" href="https://cal.com/angel-garzon-sarzosa-faectq/diagnostico-con-angel" target="_blank" rel="noopener">Agendá tu diagnóstico →</a>
         <a class="btn btn-ghost" href="https://wa.me/573237451221?text=Hola%20%C3%81ngel,%20vi%20tu%20portafolio%20y%20quiero%20llevar%20lo%20m%C3%ADo%20al%20siguiente%20nivel%20con%20IA" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <div class="cta-row" style="justify-content:center; margin-top:36px" data-audience-view="perfil" hidden>
+        <a class="btn btn-primary" href="mailto:angelgarzonsarzosa@gmail.com?subject=Proyecto%20u%20oportunidad%20profesional">Escribirme por email →</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/angel-garz%C3%B3n-sarzosa-334014337/" target="_blank" rel="noopener">Ver LinkedIn</a>
       </div>
       <div class="contact-info">
         <a href="mailto:angelgarzonsarzosa@gmail.com">✉ angelgarzonsarzosa@gmail.com</a>
@@ -1064,12 +1146,36 @@ a.medio:hover{border-color:rgba(56,189,248,.55);transform:translateY(-1px)}
   </footer>
 </div>
 
-<script src="assets/portfolio-effects.js"></script>
-<script src="assets/portfolio-ui.js"></script>
+<script src="assets/portfolio-effects.js?v=20260922-1"></script>
+<script src="assets/portfolio-ui.js?v=20260922-1"></script>
 <script id="agI18n">
 (function(){
   var DATA={"t": {"Perfil": "Profile", "Proyectos": "Projects", "Tu web": "Your website", "Logros": "Achievements", "Hablemos →": "Let's talk →", "Arquitecto de Soluciones IA · Popayán, Colombia": "AI Solutions Architect · Popayán, Colombia", "Construyo": "I build", "sistemas de IA a la medida": "custom AI systems", "que venden, atienden y hacen crecer tu negocio.": "that sell, serve customers and grow your business.", "Desde": "From", "segundos cerebros": "second brains", "hasta": "to", "agentes de voz y ventas": "voice and sales agents", ": destrabo cuellos de botella, aumento las ventas y la productividad y llevo tu operación al siguiente nivel. No son chatbots que improvisan —": ": I clear bottlenecks, boost sales and productivity, and take your operation to the next level. These aren't chatbots that improvise —", "entienden, ejecutan con criterio y dejan registro de todo.": "they understand, act with judgment and log everything.", "Ver lo que construyo →": "See what I build →", "Hablemos por WhatsApp": "Let's talk on WhatsApp", "soluciones IA construidas": "AI solutions built", "atienden y venden sin parar": "serve and sell nonstop", "Voz + WhatsApp": "Voice + WhatsApp", "hablan y escriben como humanos": "they speak and write like humans", "60 s con Ángel": "60 s with Ángel", "🔊 Sonido": "🔊 Sound", "En producción": "In production", "Grado producción": "Production-grade", "Confiable y medible": "Reliable and measurable", "Proyectos de alto impacto": "High-impact projects", "Sector público y privado": "Public and private sector", "Condecorado": "Honored", "Congreso de la República": "Congress of the Republic", "Segundos cerebros": "Second brains", "Agentes de voz": "Voice agents", "CRM con call center IA": "CRM with AI call center", "Anti-fraude bancario": "Banking anti-fraud", "Recuperación de ventas": "Sales recovery", "Automatización n8n": "n8n automation", "Visión artificial": "Computer vision", "Quién soy": "Who I am", "Convierto procesos manuales en": "I turn manual processes into", "sistemas de IA que trabajan solos": "AI systems that run on their own", "Soy": "I'm", ", Ingeniero en Automática Industrial (Universidad del Cauca, promoción 2025) y Arquitecto de Soluciones IA. No construyo chatbots que improvisan: diseño": ", Industrial Automation Engineer (Universidad del Cauca, class of 2025) and AI Solutions Architect. I don't build chatbots that improvise: I design", "sistemas de IA de grado producción": "production-grade AI systems", "que entienden el negocio, ejecutan con criterio y dejan registro de cada acción.": "that understand the business, act with judgment and log every action.", "Tomo un cuello de botella —ventas que se enfrían, pedidos sin confirmar, soporte saturado, contabilidad desordenada— y lo convierto en un": "I take a bottleneck —sales going cold, unconfirmed orders, overwhelmed support, messy accounting— and turn it into a", "empleado virtual confiable": "reliable virtual employee", "que lo resuelve solo, 24/7, y mejora con el tiempo.": "that solves it on its own, 24/7, and gets better over time.", "Ing. Automática Industrial": "Industrial Automation Eng.", "Universidad del Cauca · Promoción 2025": "Universidad del Cauca · Class of 2025", "Agentes que llaman, escriben y cierran": "Agents that call, write and close", "Sistemas reales, confiables y medibles": "Real, reliable and measurable systems", "Arquitectura sobre VPS propio": "Architecture on my own VPS", "Tecnología que uso": "Technology I use", "El stack detrás de cada": "The stack behind every", "empleado virtual": "virtual employee", "IA y datos": "AI and data", "Sistemas RAG": "RAG systems", "Retell AI (voz)": "Retell AI (voice)", "Visión por computador": "Computer vision", "Redes neuronales": "Neural networks", "Diseño de agentes": "Agent design", "Automatización y backend": "Automation and backend", "APIs REST": "REST APIs", "Datos, nube y negocio": "Data, cloud and business", "Industrial y robótica": "Industrial and robotics", "Gemelos digitales": "Digital twins", "Proyectos insignia": "Flagship projects", "Qué problema resuelve": "What problem", "cada uno": "each one solves", "Cada proyecto nace de un dolor real del negocio. Acá está el problema, la solución que construí y el impacto.": "Every project is born from a real business pain. Here's the problem, the solution I built and the impact.", "Insignia": "Flagship", "Empresas · Agencias · Freelance": "Companies · Agencies · Freelancers", "Segundos Cerebros con IA": "AI Second Brains", "Memoria perfecta y operación clara para empresas, agencias y freelances.": "Perfect memory and clear operations for companies, agencies and freelancers.", "El problema": "The problem", "Proyectos, clientes, procesos y lecciones quedan regados entre apps, chats y documentos. Con cada cliente nuevo o cambio de equipo se reinventa la rueda y se pierde contexto —y plata—.": "Projects, clients, processes and lessons end up scattered across apps, chats and documents. With every new client or team change the wheel gets reinvented and context —and money— is lost.", "La solución": "The solution", "Un": "A", "segundo cerebro digital": "digital second brain", "que captura, organiza y conecta todo el conocimiento del negocio en un solo lugar vivo, accesible por lenguaje natural desde el celular o el PC, y que además ayuda a operar el día a día.": "that captures, organizes and connects all the business's knowledge in a single living place, accessible in natural language from phone or PC, and that also helps run day-to-day operations.", "El impacto": "The impact", "Claridad total y memoria perfecta:": "Total clarity and perfect memory:", "onboarding inmediato": "instant onboarding", ", decisiones más rápidas, nada se pierde y cada persona rinde como si tuviera un asistente que se sabe todo el negocio.": ", faster decisions, nothing gets lost and everyone performs as if they had an assistant who knows the whole business.", "Segundo cerebro IA": "AI second brain", "Gestión de conocimiento": "Knowledge management", "Multi-cliente": "Multi-client", "Móvil + PC": "Mobile + PC", "segundo cerebro · vista de conocimiento": "second brain · knowledge view", "IA · Operación": "AI · Operations", "Creación de AIOS — Sistemas Operativos con IA": "Building AIOS — AI Operating Systems", "El cerebro que centraliza todo lo que un negocio sabe… y además lo opera.": "The brain that centralizes everything a business knows… and runs it too.", "El conocimiento y la operación viven dispersos —en cabezas, chats, archivos y herramientas sueltas—. Cuando alguien se va o el volumen crece, se pierde información y todo depende de la memoria de unas pocas personas.": "Knowledge and operations live scattered —in people's heads, chats, files and disconnected tools—. When someone leaves or volume grows, information is lost and everything depends on the memory of a few people.", "Diseño un": "I design an", "AIOS (sistema operativo con IA)": "AIOS (AI operating system)", ": un cerebro central que reúne todo lo que el negocio sabe y que, además de recordar,": ": a central brain that gathers everything the business knows and that, beyond remembering,", "ejecuta": "executes", ": ordena, automatiza tareas y opera desde lenguaje natural, en el PC o el celular. Aprende y mejora con cada uso.": ": it organizes, automates tasks and operates from natural language, on PC or phone. It learns and improves with every use.", "La empresa deja de depender de la memoria de una persona:": "The company stops depending on one person's memory:", "cada acción queda registrada y es trazable": "every action is logged and traceable", ", la operación corre sola y el sistema se vuelve más inteligente con el tiempo.": ", operations run on their own and the system gets smarter over time.", "IA": "AI", "Memoria viva": "Living memory", "Lenguaje natural": "Natural language", "Automatización": "Automation", "Trazabilidad": "Traceability", "CRM · Call Center IA": "CRM · AI Call Center", "CRM con Call Center de IA": "CRM with AI Call Center", "Un equipo comercial de agentes de IA que recibe, califica y agenda — por voz, WhatsApp y Telegram.": "A sales team of AI agents that receives, qualifies and books — by voice, WhatsApp and Telegram.", "Los leads se enfrían en minutos: el call center humano no contacta a tiempo, no califica parejo y pierde el contexto de cada conversación.": "Leads go cold in minutes: the human call center doesn't reach out in time, doesn't qualify consistently and loses the context of each conversation.", "Un CRM con un": "A CRM with an", "call center de agentes de IA": "AI-agent call center", "que contacta al lead en menos de 5 minutos por voz, WhatsApp y Telegram, lo califica con": "that contacts the lead in under 5 minutes by voice, WhatsApp and Telegram, qualifies them with", ", le asigna score y arma el briefing para el asesor —con registro de cada conversación y un centro de inteligencia en vivo—.": ", assigns a score and builds the briefing for the rep —with a log of every conversation and a live intelligence center—.", "Ningún prospecto se enfría: el asesor recibe solo": "No prospect goes cold: the rep only receives", "leads calientes con todo el contexto": "hot leads with full context", "y el negocio ve en tiempo real mensajes, conversiones y agentes activos.": "and the business sees messages, conversions and active agents in real time.", "Calificación BANT": "BANT qualification", "Briefing al asesor": "Briefing to the rep", "Dashboard en vivo": "Live dashboard", "pipeline · score · prioridad": "pipeline · score · priority", "agentes IA en vivo · BANT": "live AI agents · BANT", "Premiado": "Awarded", "Banca · Anti-fraude": "Banking · Anti-fraud", "IA anti-fraude bancario que vive dentro de WhatsApp.": "Banking anti-fraud AI that lives inside WhatsApp.", "El fraude por WhatsApp —comprobantes falsos, phishing, suplantación— le cuesta dinero y confianza a bancos y comercios. Verificar a mano es lento y se cuelan los engaños.": "WhatsApp fraud —fake receipts, phishing, impersonation— costs banks and merchants money and trust. Verifying by hand is slow and scams slip through.", "Un ecosistema de": "An ecosystem of", "IA híbrida sobre WhatsApp": "hybrid AI on WhatsApp", "que verifica identidad, valida pagos, controla reputación y gestiona planes de pago, detectando operaciones sospechosas en tiempo real. La primera solución de IA híbrida en WhatsApp para prevención de fraude bancario en Colombia.": "that verifies identity, validates payments, monitors reputation and manages payment plans, detecting suspicious operations in real time. The first hybrid-AI WhatsApp solution for banking fraud prevention in Colombia.", "Frena el fraude antes de que golpee y le da": "It stops fraud before it hits and gives", "trazabilidad a cada transacción": "traceability to every transaction", ": convierte un canal de riesgo en uno verificado y auditable.": ": it turns a risky channel into a verified, auditable one.", "Visión / OCR": "Vision / OCR", "IA híbrida": "Hybrid AI", "Detección de fraude": "Fraud detection", "Tiempo real": "Real time", "E-commerce · IA omnicanal": "E-commerce · Omnichannel AI", "SaaS de Recuperación + Confirmación de Pedidos": "Order Recovery + Confirmation SaaS", "El motor que recupera la plata que tu tienda online deja sobre la mesa.": "The engine that recovers the money your online store leaves on the table.", "En e-commerce y contraentrega (COD) se pierde mucho dinero por dos huecos:": "In e-commerce and cash-on-delivery (COD) a lot of money is lost through two gaps:", "carritos abandonados": "abandoned carts", "que nadie vuelve a tocar y": "that nobody follows up on and", "pedidos que se despachan sin confirmar": "orders shipped without confirmation", ", que terminan en rechazos, devoluciones y doble flete pagado.": ", which end in rejections, returns and double shipping paid.", "Un sistema de IA omnicanal que sale a recuperar cada carrito abandonado por WhatsApp con un mensaje humano y oportuno, y que": "An omnichannel AI system that goes out to recover every abandoned cart over WhatsApp with a human, timely message, and that", "confirma cada pedido y su envío": "confirms every order and its shipment", "con el cliente antes del despacho —conversando como una persona—.": "with the customer before dispatch —chatting like a real person—.", "Rescata ventas que hoy se perderían, baja la tasa de rechazo y devolución en contraentrega, y libera al equipo de llamar uno por uno. Cada venta y despacho pasa por un filtro que cuida el margen.": "It rescues sales that would be lost today, lowers the rejection and return rate on COD, and frees the team from calling one by one. Every sale and dispatch passes through a filter that protects the margin.", "IA conversacional": "Conversational AI", "Omnicanal": "Omnichannel", "Carritos abandonados": "Abandoned carts", "Confirmación COD": "COD confirmation", "SaaS · Voz + WhatsApp": "SaaS · Voice + WhatsApp", "Tu mejor vendedor, clonado en IA, atendiendo a todos a la vez — por voz y WhatsApp.": "Your best salesperson, cloned into AI, serving everyone at once — by voice and WhatsApp.", "Los negocios pierden ventas porque no alcanzan a llamar, responder y hacer seguimiento a cada lead. Los leads se enfrían y el equipo no da abasto.": "Businesses lose sales because they can't manage to call, reply and follow up on every lead. Leads go cold and the team can't keep up.", "empleado virtual de ventas": "virtual sales employee", "que llama por teléfono con voz natural (Retell AI) y conversa por WhatsApp: atiende, califica, responde objeciones y agenda solo, para clínicas, inmobiliarias, restaurantes y e-commerce. Cada conversación queda transcrita, resumida y clasificada.": "that calls on the phone with a natural voice (Retell AI) and chats on WhatsApp: it serves, qualifies, handles objections and books on its own, for clinics, real estate, restaurants and e-commerce. Every conversation is transcribed, summarized and classified.", "Vende y atiende": "It sells and serves", "24/7 sin sumar personal": "24/7 without adding headcount", ". El dueño ve en un tablero cuántos clientes entran, cuántos convierten y por qué se pierden. SaaS multi-cliente, listo para instalarse plug & play.": ". The owner sees on a dashboard how many customers come in, how many convert and why they're lost. Multi-client SaaS, ready to install plug & play.", "WhatsApp + IA": "WhatsApp + AI", "SaaS multi-cliente": "Multi-client SaaS", "Restaurantes · Visión + Voz": "Restaurants · Vision + Voice", "ALMA — Asistente de Ventas para Restaurantes": "ALMA — Sales Assistant for Restaurants", "Toma el pedido, cobra, verifica el pago con visión y lo manda a la cocina. Solo.": "Takes the order, charges, verifies the payment with vision and sends it to the kitchen. On its own.", "En horas pico los restaurantes pierden ventas por no alcanzar a responder WhatsApp, se equivocan tomando pedidos por audio, y reciben comprobantes de pago falsos que nadie alcanza a verificar.": "At peak hours restaurants lose sales because they can't keep up with WhatsApp, make mistakes taking orders by audio, and receive fake payment receipts nobody has time to verify.", "Un agente de IA que gestiona el": "An AI agent that manages the", "ciclo completo de venta por WhatsApp": "full sales cycle over WhatsApp", ", 100% autónomo: entiende notas de voz, envía el menú, toma el pedido, calcula costos dinámicos y": ", 100% autonomous: it understands voice notes, sends the menu, takes the order, calculates dynamic costs and", "audita con visión artificial": "audits with computer vision", "la foto del comprobante (monto y cuenta) antes de aprobar. Cada orden aparece en cocina en tiempo real.": "the receipt photo (amount and account) before approving. Every order appears in the kitchen in real time.", "Atención inmediata sin esperas,": "Instant service with no waiting,", "cero ventas perdidas en pico": "zero lost sales at peak", ", experiencia natural y prevención de fraude en cada pago. Solo escala a un humano ante quejas o casos especiales.": ", a natural experience and fraud prevention on every payment. It only escalates to a human for complaints or special cases.", "Notas de voz": "Voice notes", "Anti-fraude": "Anti-fraud", "Costos dinámicos": "Dynamic costs", "cocina en tiempo real": "kitchen in real time", "tablero · ingresos · canales": "dashboard · revenue · channels", "Impacto social": "Social impact", "Emergencia · Comunidad": "Emergency · Community", "La ayuda que llega a quien de verdad la necesita — sin duplicarse ni perderse.": "Aid that reaches whoever truly needs it — without duplicating or getting lost.", "Tras una emergencia —un terremoto, una inundación— la ayuda se desborda y se descoordina: a un punto le sobra comida mientras a otro le falta todo, las donaciones se pierden o se repiten, y las familias buscan a sus desaparecidos a ciegas, sin saber quién los vio ni dónde.": "After an emergency —an earthquake, a flood— aid overflows and loses coordination: one point has surplus food while another lacks everything, donations get lost or duplicated, and families search for their missing blindly, not knowing who saw them or where.", "Una": "An", "app web (PWA) instalable que funciona sin señal": "installable web app (PWA) that works with no signal", ", con un": ", with a", "mapa vivo de necesidades": "live map of needs", ": cada punto muestra qué falta y qué sobra, cruza lo que sobra en un lado con quien lo necesita más cerca, registra las entregas con foto, lleva las cuentas y aportes, y tiene una sección de": ": each point shows what's missing and what's in surplus, matches the surplus in one place with whoever needs it nearest, logs deliveries with photos, tracks the accounts and contributions, and has a section for", "personas desaparecidas": "missing persons", "donde cualquiera puede reportar si vio a alguien o dar información a la familia.": "where anyone can report if they saw someone or give information to the family.", "La ayuda deja de perderse: llega": "Aid stops getting lost: it arrives", "en horas, no en semanas": "in hours, not weeks", ", exactamente a donde hace falta. Ya está": ", exactly where it's needed. It's already", "viva y en uso real": "live and in real use", ", coordinando ayuda entre decenas de personas de todo el país tras la emergencia.": ", coordinating aid among dozens of people across the country after the emergency.", "Mapa en vivo": "Live map", "Personas desaparecidas": "Missing persons", "Más soluciones en operación": "More solutions in operation", "Ocho sistemas más,": "Eight more systems,", "resolviendo dolores reales": "solving real pains", "Condecorado · Congreso": "Honored · Congress", "App de turismo para Popayán y el Cauca que guía rutas y puntos turísticos. Lideré su estructuración conceptual y tecnológica → condecorada con la Orden de la Democracia por el Congreso.": "Tourism app for Popayán and Cauca that guides routes and points of interest. I led its conceptual and technological structuring → honored with the Order of Democracy by Congress.", "Dropi — ERP financiero": "Dropi — Financial ERP", "Back-office contable automatizado: OCR de facturas, conciliación, conversión de divisas y archivos de pago ACH/COBRE → redujo la auditoría un 70% y aceleró los pagos.": "Automated accounting back-office: invoice OCR, reconciliation, currency conversion and ACH/COBRE payment files → cut auditing by 70% and sped up payments.", "Salud · Clínicas": "Health · Clinics", "Recepcionista digital con IA: atiende, resuelve precios/horarios/cobertura, agenda en el calendario y envía recordatorios → agenda llena y menos ausencias.": "AI digital receptionist: it serves, answers prices/hours/coverage, books on the calendar and sends reminders → full schedule and fewer no-shows.", "Coaching · Objetivos": "Coaching · Goals", "Coach IA": "AI Coach", "Un coach por Telegram que acompaña día a día, mide el avance, manda recordatorios y mantiene el foco → más metas cumplidas y hábitos sostenidos.": "A Telegram coach that accompanies you day to day, measures progress, sends reminders and keeps you focused → more goals met and habits sustained.", "Ecosistema e-commerce con soporte 24/7 + motor de reportes (operativos, cierre mensual, detección de envíos sin movimiento) → logística bajo control.": "E-commerce ecosystem with 24/7 support + reporting engine (operational, monthly close, detection of stalled shipments) → logistics under control.", "Ventas técnicas": "Technical sales", "Cotización Multi-Agente": "Multi-Agent Quoting", "Agentes que leen catálogos y consultan un motor de precios propio → cotizaciones exactas en minutos; el experto solo aprueba.": "Agents that read catalogs and query a proprietary pricing engine → exact quotes in minutes; the expert only approves.", "Radar de Productos Ganadores": "Winning Products Radar", "Inteligencia de productos: detecta y analiza productos ganadores → decisiones de catálogo con datos, no corazonadas.": "Product intelligence: detects and analyzes winning products → catalog decisions based on data, not hunches.", "Finanzas personales": "Personal finance", "Asistente Personal Contable": "Personal Accounting Assistant", "Ordena la contabilidad y recuerda cada pago → nunca más se te pasa una fecha ni te llegan recargos por olvido.": "It organizes your accounting and remembers every payment → never miss a date again or get late fees for forgetting.", "soluciones IA": "AI solutions", "construidas": "built", "atienden y venden": "serve and sell", "sin parar": "nonstop", "menos auditoría": "less manual", "manual en Dropi": "auditing in Dropi", "IA híbrida anti-fraude": "hybrid anti-fraud AI", "en WhatsApp (Colombia)": "on WhatsApp (Colombia)", "Para vos o tu negocio": "For you or your business", "¿Querés una": "Want a", "página web": "website", "Contame de tu negocio y con tu Instagram te armo una página profesional, lista para vender.": "Tell me about your business and with your Instagram I'll build you a professional page, ready to sell.", "La ves terminada ANTES de pagar": "You see it finished BEFORE you pay", "— si no te gusta, no pagás nada. Diseño propio, funciona en compu, celular y tablet.": "— if you don't like it, you pay nothing. Custom design, works on desktop, phone and tablet.", "✓ La ves antes de pagar": "✓ See it before you pay", "✓ Solo tu Instagram": "✓ Just your Instagram", "Quiero mi página web →": "I want my website →", "Ingeniería · IA · Visión": "Engineering · AI · Vision", "La raíz": "The", "técnica y académica": "technical and academic roots", "Antes de los agentes, la base dura: visión por computador, redes neuronales y robótica.": "Before the agents, the hard foundation: computer vision, neural networks and robotics.", "Detector de neumonía": "Pneumonia detector", "Red neuronal (CNN) que detecta neumonía en rayos X con 86% de precisión.": "Neural network (CNN) that detects pneumonia in X-rays with 86% accuracy.", "Etiquetado automático": "Automatic labeling", "Pipeline de anotación de imágenes con Meta SAM.": "Image annotation pipeline with Meta SAM.", "Presión arterial no invasiva": "Non-invasive blood pressure", "Medición sin pinchazos con Arduino + Python.": "Needle-free measurement with Arduino + Python.", "Colección de proyectos de visión en Python / MATLAB.": "Collection of vision projects in Python / MATLAB.", "App web de vocabulario construida en Next.js.": "Vocabulary web app built in Next.js.", "Robótica quirúrgica multi-robot": "Multi-robot surgical robotics", "Coordinación multi-robot en ROS2 + Unity (UMH, España).": "Multi-robot coordination in ROS2 + Unity (UMH, Spain).", "Reconocimientos": "Recognition", "Validado en el": "Validated by the", "ecosistema": "ecosystem", "Orden de la Democracia — Congreso de la República": "Order of Democracy — Congress of the Republic", "Reconocimiento legislativo por el liderazgo en la estructuración conceptual y tecnológica de": "Legislative recognition for leadership in the conceptual and technological structuring of", ", iniciativa condecorada por su aporte al turismo regional.": ", an initiative honored for its contribution to regional tourism.", "Ponente de taller en el mayor evento nacional de tecnología.": "Workshop speaker at the largest national technology event.", "Nota Universidad del Cauca ↗": "Universidad del Cauca feature ↗", "Mención honorífica": "Honorable mention", "Por trabajo de grado.": "For thesis work.", "Cátedra Siemens Colombia": "Siemens Colombia Chair", "2.º puesto nacional — \"Noche de los Mejores\".": "2nd place nationally — \"Noche de los Mejores\".", "Tu turno": "Your turn", "No te quedes atrás:": "Don't get left behind:", "llevemos lo tuyo al": "let's take what's yours to the", "siguiente nivel con IA": "next level with AI", "Da igual si sos una persona, un freelance, un emprendimiento, una empresa o un grupo de investigación —y no importa cuánto sepas de IA—: para cada nivel hay una solución que te pone por delante del mercado. Agendá un diagnóstico y lo vemos juntos.": "It doesn't matter if you're an individual, a freelancer, a startup, a company or a research group —and no matter how much you know about AI—: for every level there's a solution that puts you ahead of the market. Book a diagnosis and we'll look at it together.", "Agendá tu diagnóstico →": "Book your diagnosis →", "· Arquitecto de Soluciones IA · Popayán, Colombia": "· AI Solutions Architect · Popayán, Colombia", "Volver arriba ↑": "Back to top ↑"}, "m": {"Ángel Garzón Sarzosa — Arquitecto de Soluciones IA": "Ángel Garzón Sarzosa — AI Solutions Architect", "Construyo sistemas de IA a la medida que venden, atienden y hacen crecer tu negocio. Segundos cerebros, agentes de voz y ventas, anti-fraude y automatización de grado producción. Popayán, Colombia.": "I build custom AI systems that sell, serve and grow your business. Second brains, voice and sales agents, anti-fraud and production-grade automation. Popayán, Colombia.", "Empleados virtuales con IA que venden, atienden y operan solos. De segundos cerebros a agentes de voz y ventas.": "AI virtual employees that sell, serve and operate on their own. From second brains to voice and sales agents."}};
   Object.assign(DATA.t,{"Para tu negocio": "For your business", "Perfil profesional": "Professional profile", "Arquitecto de Soluciones IA": "AI Solutions Architect", "e Ingeniero en Automática Industrial.": "and Industrial Automation Engineer.", "Diseño y construyo": "I design and build", "sistemas de inteligencia artificial, automatización y productos digitales": "AI systems, automation and digital products", ". Mi experiencia conecta agentes conversacionales, software y robótica. Aquí puedes conocer mi formación y explorar todos mis proyectos.": ". My experience connects conversational agents, software and robotics. Explore my background and all of my projects here.", "Explorar todos mis proyectos →": "Explore all my projects →", "Hablemos de una oportunidad": "Let's discuss an opportunity", "Soluciones y proyectos ↓": "Solutions and projects ↓", "Tu página web ↓": "Your website ↓", "Preguntas frecuentes ↓": "Frequently asked questions ↓", "Quién soy ↓": "About me ↓", "Stack técnico ↓": "Technical stack ↓", "Ingeniería ↓": "Engineering ↓", "Reconocimientos ↓": "Recognition ↓", "Antes de conversar": "Before we talk", "Buenas preguntas.": "Good questions.", "¿Necesito saber de IA?": "Do I need to know about AI?", "No. Tú aportas el conocimiento de tu negocio. Yo traduzco el problema a una propuesta técnica y te explico las decisiones en lenguaje claro.": "No. You bring your knowledge of the business. I translate the problem into a technical proposal and explain the decisions in plain language.", "¿Puedes trabajar con las herramientas que ya uso?": "Can you work with my existing tools?", "Eso es lo primero que revisamos. Comprobamos sus integraciones, accesos y limitaciones antes de acordar qué vamos a construir.": "We check that first. We review their integrations, access and limitations before agreeing on what we will build.", "¿Cuánto cuesta un proyecto?": "How much does a project cost?", "Depende del problema, el alcance y las integraciones. Después de entender tu caso, recibes una propuesta con entregables, costos de terceros y condiciones de soporte.": "It depends on the problem, scope and integrations. After understanding your case, you receive a proposal with deliverables, third-party costs and support terms.", "¿Qué pasa después de la entrega?": "What happens after delivery?", "Recibes documentación y orientación para usar el sistema. El mantenimiento y las mejoras futuras se acuerdan como parte de la propuesta.": "You receive documentation and guidance for using the system. Maintenance and future improvements are agreed as part of the proposal."});
+  Object.assign(DATA.t,{
+    "Visión":"Vision","Casos":"Cases","Trayectoria":"Experience","Conversemos →":"Let's connect →",
+    "Convierto estrategia y operación en":"I turn strategy and operations into","sistemas de IA que mueven tus KPIs":"AI systems that move your KPIs",
+    "Primero entiendo el negocio y detecto dónde la tecnología sí crea valor. Después diseño la hoja de ruta y construyo el sistema completo:":"I first understand the business and identify where technology creates real value. Then I design the roadmap and build the complete system:",
+    "segundos cerebros empresariales, productos digitales, automatización y agentes de IA":"enterprise second brains, digital products, automation and AI agents",", conectados a la operación y medidos por resultados.":", connected to operations and measured by results.",
+    "Arquitecto de Soluciones IA e Ingeniero en Automática.":"AI Solutions Architect and Automation Engineer.","Conecto estrategia, procesos y tecnología para llevar iniciativas de transformación digital de 0 a 1: desde el diagnóstico ejecutivo hasta un producto estable, medible y operable por el equipo.":"I connect strategy, processes and technology to take digital transformation initiatives from 0 to 1: from executive diagnosis to a stable, measurable product the team can operate.",
+    "Ver casos y resultados →":"See cases and results →","Cómo aporto ↓":"How I contribute ↓","Casos ↓":"Cases ↓","Trayectoria ↓":"Experience ↓","del diagnóstico a producción":"from diagnosis to production","auditoría manual en Dropi":"manual auditing at Dropi","estrategia, arquitectura y ejecución":"strategy, architecture and execution","sistemas construidos":"systems built","Negocio + IA":"Business + AI","decisiones técnicas con visión ejecutiva":"technical decisions with executive vision","De estrategia a producción":"From strategy to production",
+    "Transformación digital":"Digital transformation","Arquitectura de soluciones":"Solutions architecture","Segundos cerebros empresariales":"Enterprise second brains","Productos 0 → 1":"0 → 1 products","KPIs y trazabilidad":"KPIs and traceability","Liderazgo técnico":"Technical leadership",
+    "Cómo aporto":"How I contribute","No empiezo por la IA.":"I don't start with AI.","Empiezo por el negocio.":"I start with the business.","Me siento con líderes y equipos para entender qué frena el crecimiento, qué conocimiento se está perdiendo y qué KPI debe cambiar. Con ese diagnóstico defino la transformación, priorizo el caso de uso correcto y lidero la construcción hasta que el sistema queda operando y dejando evidencia.":"I work with leaders and teams to understand what is holding back growth, what knowledge is being lost and which KPI must change. From that diagnosis, I define the transformation, prioritize the right use case and lead delivery until the system is running and producing evidence.",
+    "Diagnóstico ejecutivo":"Executive diagnosis","Mapeo procesos, dependencias, datos y costos para encontrar dónde la IA genera valor real y dónde no conviene usarla.":"I map processes, dependencies, data and costs to find where AI creates real value—and where it should not be used.","Estrategia y hoja de ruta":"Strategy and roadmap","Traduzco la oportunidad en prioridades, arquitectura, indicadores y un plan que negocio y tecnología pueden entender.":"I translate the opportunity into priorities, architecture, metrics and a plan both business and technology can understand.","Construcción de 0 a 1":"0 to 1 delivery","Diseño producto, backend, automatizaciones, datos e interfaces; integro el sistema con la operación existente y lo llevo a producción.":"I design product, backend, automation, data and interfaces; integrate the system with existing operations and take it to production.","Adopción y mejora":"Adoption and improvement","Dejo trazabilidad, documentación y métricas para que el equipo pueda operar, medir y escalar la solución con criterio.":"I leave traceability, documentation and metrics so the team can operate, measure and scale the solution with sound judgment.",
+    "auditoría manual en el ERP financiero de Dropi":"manual auditing in Dropi's financial ERP","para contactar y calificar un lead en el CRM con IA":"to contact and qualify a lead in the AI CRM","visitas en 13 días para Ayúdame Colombia":"visits in 13 days for Ayúdame Colombia",
+    "Casos seleccionados":"Selected cases","El valor está en":"The value lies in","resolver el sistema completo":"solving the complete system","Cuatro proyectos que muestran estrategia, producto, ingeniería y capacidad de ejecución en contextos distintos.":"Four projects that demonstrate strategy, product, engineering and delivery across different contexts.",
+    "Arquitectura · Operación":"Architecture · Operations","AIOS y segundos cerebros empresariales":"AIOS and enterprise second brains","Diseñé sistemas operativos con IA que centralizan conocimiento, conectan herramientas y ejecutan procesos desde lenguaje natural. La empresa gana memoria institucional, trazabilidad y una operación que mejora con cada uso.":"I designed AI operating systems that centralize knowledge, connect tools and execute processes through natural language. The company gains institutional memory, traceability and operations that improve with every use.","Rol: Arquitectura end-to-end":"Role: End-to-end architecture","Estrategia → producción":"Strategy → production",
+    "Fintech · ERP":"Fintech · ERP","Dropi — automatización financiera":"Dropi — financial automation","Construí un back-office con OCR, conciliación, conversión de divisas y archivos bancarios ACH/COBRE. El rediseño redujo 70% la auditoría manual y aceleró el ciclo de pagos.":"I built a back office with OCR, reconciliation, currency conversion and ACH/COBRE banking files. The redesign cut manual auditing by 70% and accelerated the payment cycle.","Rol: IA Full Stack":"Role: Full Stack AI","Resultado: −70%":"Result: −70%",
+    "Impacto social · PWA":"Social impact · PWA","Levanté una plataforma offline durante una emergencia para coordinar necesidades, puntos de acopio y reportes de desaparecidos. En 13 días llegó a 424 dispositivos y 4.628 visitas, con cobertura en televisión y prensa nacional.":"I launched an offline platform during an emergency to coordinate needs, collection points and missing-person reports. In 13 days it reached 424 devices and 4,628 visits, with national TV and press coverage.","Rol: Creador y arquitecto":"Role: Creator and architect","Producto en emergencia real":"Product in a real emergency",
+    "Ventas · CRM":"Sales · CRM","Call center con IA y trazabilidad comercial":"AI call center and commercial traceability","Arquitecté un CRM omnicanal que contacta leads en menos de cinco minutos, conversa por voz y WhatsApp, califica con BANT y entrega al asesor un briefing con todo el contexto.":"I architected an omnichannel CRM that contacts leads in under five minutes, talks over voice and WhatsApp, qualifies with BANT and gives the sales rep a briefing with full context.","Rol: Arquitectura de solución":"Role: Solution architecture","Negocio + producto + datos":"Business + product + data","Ver el catálogo completo de proyectos →":"See the full project catalog →",
+    "He construido desde la":"I have built across","estrategia, el producto y la ingeniería":"strategy, product and engineering","Experiencia en emprendimiento, SaaS B2B, e-commerce, fintech y robótica aplicada.":"Experience across entrepreneurship, B2B SaaS, e-commerce, fintech and applied robotics.","2026 — actual":"2026 — present","Lidero visión técnica, arquitectura end-to-end y productos de automatización: AIOS, CRMs con call center de IA y sistemas comerciales omnicanal.":"I lead technical vision, end-to-end architecture and automation products: AIOS, CRMs with AI call centers and omnichannel commercial systems.","Co-Founder & Arquitecto Principal · ALMA Solutions":"Co-Founder & Principal Architect · ALMA Solutions","Diseño una plataforma SaaS multi-cliente de empleados virtuales para ventas y servicio, con voz, WhatsApp, automatización y tableros en tiempo real.":"I design a multi-tenant SaaS platform of virtual employees for sales and service, with voice, WhatsApp, automation and real-time dashboards.","ene — abr 2026":"Jan — Apr 2026","Ingeniero de Automatizaciones e IA Full Stack · Dropi / Clazz Group":"Automation & Full Stack AI Engineer · Dropi / Clazz Group","Tomé decisiones de arquitectura, construí productos B2B y automaticé procesos financieros y comerciales de alto impacto.":"I made architecture decisions, built B2B products and automated high-impact financial and commercial processes.","feb — abr 2025":"Feb — Apr 2025","Ingeniero Investigador · Universidad Miguel Hernández, España":"Research Engineer · Miguel Hernández University, Spain","Desarrollé una plataforma de robótica quirúrgica multi-robot con Unity 3D y ROS2 para coordinar brazos UR3e y UR5e desde una interfaz común.":"I developed a multi-robot surgical robotics platform with Unity 3D and ROS2 to coordinate UR3e and UR5e arms through one interface.",
+    "Formación":"Education","Ingeniero en Automática Industrial":"Industrial Automation Engineer","Universidad del Cauca · 2019–2025 · Mención honorífica":"Universidad del Cauca · 2019–2025 · Honorable mention","Enfoque":"Focus","Transformación digital con IA":"AI-powered digital transformation","Estrategia · Arquitectura · Producto · Adopción":"Strategy · Architecture · Product · Adoption","Ubicación":"Location","Experiencia remota e internacional":"Remote and international experience",
+    "No empiezo por la herramienta.":"I don't start with the tool.",", Ingeniero en Automática Industrial y Arquitecto de Soluciones IA. Acompaño empresas en su transformación digital: entiendo la operación, encuentro dónde está el valor, defino la hoja de ruta y convierto la oportunidad en un sistema de grado producción.":", Industrial Automation Engineer and AI Solutions Architect. I guide companies through digital transformation: I understand operations, find where the value is, define the roadmap and turn the opportunity into a production-grade system.","No me limito a instalar herramientas o crear un agente aislado. Construyo":"I don't just install tools or build an isolated agent. I create","segundos cerebros empresariales, productos digitales y ecosistemas de automatización":"enterprise second brains, digital products and automation ecosystems","que conectan conocimiento, personas y procesos para mejorar ventas, productividad, control y velocidad de decisión.":"that connect knowledge, people and processes to improve sales, productivity, control and decision speed.","Consultoría estratégica":"Strategic consulting","Diagnóstico, prioridades, KPIs y hoja de ruta":"Diagnosis, priorities, KPIs and roadmap","Conocimiento conectado con la operación":"Knowledge connected to operations","De 0 a producción":"From 0 to production","Arquitectura, construcción, adopción y mejora":"Architecture, delivery, adoption and improvement",
+    "Iniciativa reconocida · Congreso":"Initiative recognized · Congress","App de turismo para Popayán y el Cauca que guía rutas y puntos turísticos. Participé en su estructuración conceptual y tecnológica; la iniciativa fue condecorada por su aporte al turismo regional.":"A tourism app for Popayán and Cauca that guides routes and points of interest. I contributed to its conceptual and technological structuring; the initiative was honored for its contribution to regional tourism.","TourCauca — iniciativa reconocida por el Congreso":"TourCauca — initiative recognized by Congress","Participación registrada en la estructuración conceptual y tecnológica de":"Documented participation in the conceptual and technological structuring of",
+    "Colaboremos":"Let's collaborate","¿Buscas a alguien que conecte":"Looking for someone who connects","negocio, IA y ejecución":"business, AI and execution","Estoy abierto a proyectos, consultorías, alianzas y oportunidades donde pueda asumir un problema complejo, darle estructura y llevar la solución hasta producción.":"I am open to projects, consulting engagements, partnerships and opportunities where I can take on a complex problem, give it structure and take the solution to production.","Escribirme por email →":"Email me →","Ver LinkedIn":"View LinkedIn"
+  });
+  Object.assign(DATA.t,{"Conecto negocio, IA y ejecución":"I connect business, AI and execution","para transformar empresas.":"to transform companies."});
+  Object.assign(DATA.m,{"Consultoría de transformación digital y arquitectura de soluciones IA: diagnóstico, estrategia, segundos cerebros empresariales y sistemas de grado producción que mejoran KPIs.":"Digital transformation consulting and AI solutions architecture: diagnosis, strategy, enterprise second brains and production-grade systems that improve KPIs.","De la estrategia a producción: segundos cerebros empresariales, productos digitales y sistemas de IA orientados a resultados.":"From strategy to production: enterprise second brains, digital products and results-driven AI systems."});
   var DICT=DATA.t||{}, META=DATA.m||{};
   function norm(s){return (s||"").replace(/\u00a0/g," ").replace(/\s+/g," ").trim();}
   // capturar nodos de texto (español original) una sola vez
