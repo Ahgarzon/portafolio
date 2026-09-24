@@ -88,25 +88,54 @@
   .include .mark{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:9px;
     background:rgba(52,211,153,.14);color:var(--green);font-weight:900;margin-bottom:10px}
 
-  /* mockup */
-  .mock{max-width:760px;margin:34px auto 0;background:var(--card);border:1px solid var(--line);
-    border-radius:20px;padding:16px;box-shadow:0 1px 2px rgba(16,37,63,.04),0 18px 42px rgba(22,71,122,.14);
-    display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left}
-  .mock .preview{border-radius:16px;min-height:245px;padding:18px;background:
-    linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02)),
-    linear-gradient(145deg,#16477a,#0b2745);border:1px solid #2f6695;display:flex;flex-direction:column;justify-content:space-between;color:white}
-  .mock .preview small{color:#a9dcfb;font-weight:800;letter-spacing:.8px;text-transform:uppercase}
-  .mock .preview h3{font-size:32px;line-height:1.05;margin-top:10px}
-  .mock .preview p{color:#d9eefe;font-size:14px;max-width:25ch}
-  .mock .preview .whatsapp{display:inline-block;margin-top:18px;background:#25d366;color:#061d0f;border-radius:12px;padding:11px 14px;font-weight:850;font-size:14px;width:max-content}
-  .mock .request{border-radius:16px;background:#f7fbff;border:1px solid var(--line);padding:16px}
-  .mock .bar{display:flex;gap:6px;margin-bottom:14px}
-  .mock .bar i{width:11px;height:11px;border-radius:50%;background:#33314a;display:inline-block}
-  .mock .field{background:white;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
-    font-size:14px;color:var(--muted);text-align:left;margin-bottom:10px}
-  .mock .field b{color:var(--txt)}
-  .mock .go{background:var(--grad);color:white;font-weight:800;border-radius:10px;padding:12px;font-size:15px;text-align:center}
-  .mock .caption{color:var(--muted);font-size:12.5px;margin-top:10px;text-align:center}
+  /* muestra visual */
+  .site-showcase{max-width:920px;margin:38px auto 0;padding:28px;display:grid;grid-template-columns:.8fr 1.35fr;gap:34px;
+    align-items:center;text-align:left;background:linear-gradient(135deg,#0b2745 0%,#123f6c 55%,#176ca3 100%);
+    border:1px solid rgba(143,208,245,.34);border-radius:28px;color:white;overflow:hidden;position:relative;
+    box-shadow:0 2px 4px rgba(9,47,87,.12),0 26px 60px rgba(9,47,87,.3)}
+  .site-showcase:before{content:"";position:absolute;width:390px;height:390px;border-radius:50%;right:-160px;top:-210px;
+    background:rgba(143,208,245,.2);filter:blur(4px)}
+  .site-showcase:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;left:-85px;bottom:-100px;
+    background:rgba(37,211,102,.13)}
+  .showcase-copy,.device-stage{position:relative;z-index:1}
+  .showcase-kicker{display:inline-flex;align-items:center;gap:8px;color:#bfe7ff;text-transform:uppercase;font-size:11px;
+    letter-spacing:.16em;font-weight:900;margin-bottom:13px}
+  .showcase-kicker:before{content:"";width:28px;height:2px;background:#25d366}
+  .showcase-copy h3{font-size:clamp(27px,3.8vw,39px);line-height:1.04;letter-spacing:-.035em;margin-bottom:14px}
+  .showcase-copy p{color:#dbeeff;font-size:15px;line-height:1.55}
+  .showcase-points{list-style:none;display:grid;gap:9px;margin-top:19px}
+  .showcase-points li{display:flex;align-items:center;gap:9px;color:#f5fbff;font-size:13.5px;font-weight:720}
+  .showcase-points span{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+    background:rgba(37,211,102,.18);color:#7cf0a9;font-weight:900;flex:0 0 auto}
+  .device-stage{min-height:380px;padding:12px 8px 18px}
+  .desktop-frame{width:92%;margin-left:auto;background:#f9f5ee;border:6px solid #e7f0f7;border-radius:18px;overflow:hidden;
+    box-shadow:0 24px 46px rgba(0,0,0,.34)}
+  .browser-bar{height:28px;background:white;display:flex;align-items:center;gap:5px;padding:0 10px;border-bottom:1px solid #e7e4df}
+  .browser-bar i{width:7px;height:7px;border-radius:50%;background:#d2dce5}
+  .browser-bar span{height:12px;flex:1;margin-left:7px;border-radius:999px;background:#eef3f7}
+  .sample-site{min-height:298px;background:linear-gradient(90deg,rgba(16,12,8,.86) 0%,rgba(16,12,8,.48) 58%,rgba(16,12,8,.1) 100%),
+    url('../assets/zosa-demo-cafe.webp') center/cover;display:flex;flex-direction:column;color:white}
+  .sample-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;font-size:11px;font-weight:850}
+  .sample-brand{display:flex;align-items:center;gap:7px;font-family:Georgia,serif;font-size:16px}
+  .sample-brand b{width:22px;height:22px;border:1px solid #f4c88b;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#f4c88b}
+  .sample-links{display:flex;gap:13px;color:#f7eadb}
+  .sample-hero{padding:26px 22px 24px;max-width:315px;margin:auto 0}
+  .sample-hero small{color:#f4c88b;font-size:9px;letter-spacing:.17em;text-transform:uppercase;font-weight:900}
+  .sample-hero h4{font-family:Georgia,serif;font-size:34px;line-height:.98;margin:9px 0 11px;letter-spacing:-.03em}
+  .sample-hero p{font-size:11px;color:#f8eadb;max-width:31ch;line-height:1.45}
+  .sample-cta{display:inline-flex;margin-top:14px;padding:9px 12px;border-radius:999px;background:#25d366;color:#062a16;font-size:10px;font-weight:900}
+  .phone-frame{position:absolute;right:-2px;bottom:0;width:142px;background:#101820;border:5px solid #f3f8fc;border-radius:25px;
+    padding:5px;box-shadow:0 20px 38px rgba(0,0,0,.34);transform:rotate(2deg)}
+  .phone-notch{width:45px;height:7px;background:#101820;border-radius:0 0 8px 8px;position:absolute;left:50%;top:5px;transform:translateX(-50%);z-index:2}
+  .phone-screen{min-height:258px;border-radius:17px;overflow:hidden;background:linear-gradient(180deg,rgba(16,12,8,.38),rgba(16,12,8,.75)),
+    url('../assets/zosa-demo-cafe.webp') center/cover;color:white;padding:25px 12px 12px;display:flex;flex-direction:column;justify-content:flex-end}
+  .phone-screen small{color:#f4c88b;font-size:8px;font-weight:900;text-transform:uppercase;letter-spacing:.14em}
+  .phone-screen strong{font-family:Georgia,serif;font-size:21px;line-height:1.02;margin:7px 0}
+  .phone-screen p{font-size:9px;color:#fff3e3;line-height:1.35}
+  .phone-screen em{font-style:normal;margin-top:10px;text-align:center;background:#25d366;color:#062a16;border-radius:999px;padding:7px 6px;font-size:8px;font-weight:900}
+  .showcase-note{position:absolute;right:118px;bottom:12px;background:white;color:var(--txt);border-radius:13px;padding:9px 12px;
+    box-shadow:0 12px 28px rgba(0,0,0,.22);font-size:11px;font-weight:850;transform:rotate(-2deg)}
+  .showcase-note b{color:var(--green)}
 
   /* steps */
   section{padding:52px 0}
@@ -205,21 +234,52 @@
   .inline-cta{margin:24px auto 0;text-align:center}
 
   /* agente */
-  .agent{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 28px;
-    display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center}
-  .agent h2{text-align:left;margin-top:6px}
-  .agent .lead{text-align:left;margin:0}
-  .agent ul{list-style:none;margin-top:18px;display:grid;gap:12px}
-  .agent li{display:flex;gap:11px;align-items:flex-start;font-size:15px}
-  .agent li span{color:var(--sky);font-weight:800}
-  .chat{background:#f7fbff;border:1px solid var(--line);border-radius:16px;padding:18px}
-  .msg{max-width:82%;padding:11px 14px;border-radius:14px;font-size:14px;margin-bottom:12px;line-height:1.4}
-  .msg.me{margin-left:auto;background:var(--grad);color:white;border-bottom-right-radius:4px;font-weight:600}
-  .msg.bot{background:white;border:1px solid var(--line);border-bottom-left-radius:4px}
-  .tag{display:inline-block;font-size:11px;font-weight:700;background:#dff3ff;color:var(--brand);border-radius:6px;padding:2px 7px;margin-left:6px}
+  .agent{background:linear-gradient(138deg,#081f38 0%,#0f3964 62%,#15608e 100%);border:1px solid rgba(143,208,245,.32);
+    border-radius:28px;padding:46px 42px;display:grid;grid-template-columns:.95fr 1.15fr;gap:42px;align-items:center;color:white;
+    overflow:hidden;position:relative;box-shadow:0 2px 4px rgba(9,47,87,.12),0 26px 60px rgba(9,47,87,.25)}
+  .agent:after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;right:-120px;bottom:-210px;background:rgba(37,211,102,.14)}
+  .agent-copy,.change-stage{position:relative;z-index:1}
+  .agent .eyebrow{color:#80d3ff}
+  .agent h2{text-align:left;margin-top:8px;color:white;font-size:clamp(30px,4.6vw,44px);line-height:1.03}
+  .agent .lead{text-align:left;margin:0;color:#d8edff;max-width:45ch}
+  .agent-benefits{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+  .agent-benefit{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px}
+  .agent-benefit b{display:block;color:white;font-size:13px;margin-bottom:3px}
+  .agent-benefit span{display:block;color:#bcd9ed;font-size:11.5px;line-height:1.35}
+  .change-stage{background:#edf6fb;border:1px solid rgba(255,255,255,.55);border-radius:22px;padding:18px;color:var(--txt);
+    box-shadow:0 24px 48px rgba(0,0,0,.25)}
+  .change-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+  .change-head b{font-size:13px}
+  .live-status{display:inline-flex;align-items:center;gap:6px;color:#137b53;background:#dff8ea;border-radius:999px;padding:6px 9px;font-size:10px;font-weight:900}
+  .live-status:before{content:"";width:7px;height:7px;background:#25d366;border-radius:50%;box-shadow:0 0 0 4px rgba(37,211,102,.13)}
+  .change-flow{display:grid;grid-template-columns:1fr 26px 1fr;gap:8px;align-items:center}
+  .change-chat{background:#f3fbf7;border:1px solid #d4e9de;border-radius:16px;padding:12px;min-height:214px;display:flex;flex-direction:column;justify-content:flex-end}
+  .change-chat-top{font-size:10px;color:#5e786b;font-weight:800;margin-bottom:auto;display:flex;align-items:center;gap:7px}
+  .change-chat-top i{width:23px;height:23px;border-radius:50%;background:#25d366;color:#07301a;font-style:normal;display:flex;align-items:center;justify-content:center;font-weight:900}
+  .change-bubble{margin-top:9px;border-radius:11px;padding:9px 10px;font-size:10.5px;line-height:1.35;box-shadow:0 1px 2px rgba(16,37,63,.06)}
+  .change-bubble.owner{background:#d9fdd3;margin-left:12px;border-top-right-radius:3px}
+  .change-bubble.zosa{background:white;border:1px solid #dcebe4;margin-right:8px;border-top-left-radius:3px}
+  .change-arrow{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--grad);color:white;font-weight:900}
+  .live-page{border-radius:16px;overflow:hidden;background:white;border:1px solid #d8e4f0;min-height:214px;box-shadow:0 8px 20px rgba(22,71,122,.12)}
+  .live-page-hero{height:118px;padding:15px;color:white;background:linear-gradient(90deg,rgba(12,25,34,.76),rgba(12,25,34,.22)),url('../assets/zosa-demo-cafe.webp') center/cover;display:flex;flex-direction:column;justify-content:end}
+  .live-page-hero small{font-size:7px;letter-spacing:.14em;color:#f4c88b;text-transform:uppercase;font-weight:900}
+  .live-page-hero strong{font-family:Georgia,serif;font-size:18px;line-height:1.05;margin-top:4px}
+  .live-page-items{padding:11px;display:grid;gap:7px}
+  .live-item{display:flex;align-items:center;justify-content:space-between;gap:7px;border:1px solid #e1eaf1;border-radius:9px;padding:7px 8px;font-size:8.5px}
+  .live-item b{font-size:9px}
+  .new-chip{font-size:7px;font-weight:900;background:#dff8ea;color:#137b53;border-radius:999px;padding:3px 5px}
+  .change-proof{text-align:center;color:#567086;font-size:10.5px;font-weight:750;margin-top:12px}
 
   /* demo WhatsApp */
-  .wa-demo{max-width:560px;margin:30px auto 0;border-radius:22px;overflow:hidden;
+  .assistant-panel{background:white;border:1px solid var(--line);border-radius:28px;padding:42px 34px;
+    box-shadow:0 2px 4px rgba(16,37,63,.04),0 22px 52px rgba(22,71,122,.14)}
+  .assistant-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:32px;align-items:center;margin-top:28px}
+  .assistant-steps{display:grid;gap:12px}
+  .assistant-step{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;border:1px solid var(--line);border-radius:15px;padding:14px;background:#f8fbfe}
+  .assistant-step b:first-child{width:38px;height:38px;border-radius:12px;background:var(--grad);color:white;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .assistant-step strong{display:block;font-size:14px;margin-bottom:3px}
+  .assistant-step span{display:block;color:var(--muted);font-size:12.5px;line-height:1.42}
+  .wa-demo{max-width:560px;margin:0 auto;border-radius:22px;overflow:hidden;
     border:1px solid rgba(21,91,74,.22);box-shadow:0 1px 2px rgba(16,37,63,.04),0 18px 42px rgba(22,71,122,.16);
     background:#eff6f2;text-align:left}
   .wa-top{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#f8fffb;border-bottom:1px solid #d6e8df}
@@ -243,7 +303,12 @@
   /* form */
   #pedir .lead{margin-bottom:30px}
   form{max-width:560px;margin:0 auto;background:var(--card);border:1px solid var(--line);
-    border-radius:20px;padding:30px 26px}
+    border-radius:24px;padding:30px 26px;box-shadow:0 2px 4px rgba(16,37,63,.04),0 18px 44px rgba(22,71,122,.13)}
+  .form-card-head{margin:-12px -8px 24px;padding:18px;border-radius:17px;background:linear-gradient(135deg,#eef8ff,#f8fcff);border:1px solid #d6eaf7}
+  .form-card-head strong{display:block;font-size:18px;margin-bottom:4px}
+  .form-card-head p{color:var(--muted);font-size:13px}
+  .form-mini-proof{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .form-mini-proof span{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:var(--brand);background:white;border:1px solid #d8e8f4;border-radius:999px;padding:6px 9px}
   label{display:block;font-size:14px;font-weight:600;margin:16px 0 7px}
   label:first-child{margin-top:0}
   label .opt{color:var(--muted);font-weight:400}
@@ -302,9 +367,26 @@
     .flow-track{grid-template-columns:1fr;gap:8px}
     .flow-arrow{width:2px;height:22px;margin:0 auto}
     .flow-arrow:after{right:-4px;top:auto;bottom:-1px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #b9dcf4;border-bottom:0}
-    .mock{grid-template-columns:1fr}
-    .agent{grid-template-columns:1fr;gap:22px}
-    .agent h2,.agent .lead{text-align:center}
+    .site-showcase{grid-template-columns:1fr;padding:26px 20px 20px;gap:20px}
+    .showcase-copy{text-align:center}
+    .showcase-kicker{justify-content:center}
+    .showcase-points{max-width:360px;margin:18px auto 0;text-align:left}
+    .device-stage{min-height:330px;padding-top:2px}
+    .desktop-frame{width:96%;margin:0 auto}
+    .sample-site{min-height:250px}
+    .sample-links{display:none}
+    .sample-hero{padding:20px 18px 24px;max-width:250px}
+    .sample-hero h4{font-size:28px}
+    .phone-frame{width:122px;right:-5px}
+    .phone-screen{min-height:220px}
+    .showcase-note{right:92px;bottom:8px;font-size:9px}
+    .agent{grid-template-columns:1fr;gap:26px;padding:34px 22px}
+    .agent h2,.agent .lead{text-align:center;margin-left:auto;margin-right:auto}
+    .agent .eyebrow{text-align:center!important}
+    .agent-benefits{max-width:430px;margin:20px auto 0}
+    .assistant-panel{padding:32px 18px}
+    .assistant-grid{grid-template-columns:1fr;gap:22px}
+    .assistant-steps{grid-template-columns:1fr;max-width:560px;margin:0 auto}
     .cta-row{flex-direction:column;align-items:stretch}
     .featured-card{aspect-ratio:1/0.74;min-height:220px}
     .featured-card.monk-card{background-position:center 28%}
@@ -323,6 +405,24 @@
     .hero-offer .price-line{gap:8px}
     .hero-offer .old{font-size:15px}
     .hero-offer .after{font-size:14.5px}
+  }
+  @media(max-width:520px){
+    .site-showcase{margin-top:30px;border-radius:22px}
+    .device-stage{min-height:305px}
+    .desktop-frame{width:100%;margin-left:-4px}
+    .sample-site{min-height:225px}
+    .sample-hero{max-width:205px}
+    .sample-hero h4{font-size:24px}
+    .phone-frame{width:108px;right:-9px;border-width:4px;border-radius:20px}
+    .phone-screen{min-height:196px;padding:22px 9px 9px}
+    .phone-screen strong{font-size:17px}
+    .showcase-note{display:none}
+    .agent-benefits{grid-template-columns:1fr}
+    .change-stage{padding:12px}
+    .change-flow{grid-template-columns:1fr;gap:9px}
+    .change-arrow{transform:rotate(90deg);margin:0 auto}
+    .change-chat,.live-page{min-height:190px}
+    .assistant-panel{border-radius:22px}
   }
 </style>
 <!-- Meta Pixel Code -->
@@ -398,22 +498,40 @@
       <div class="include"><span class="mark">✓</span><b>Lista para vender</b><span>Catálogo, ubicación, contacto y botón directo a WhatsApp.</span></div>
     </div>
 
-    <div class="mock">
-      <div class="preview">
-        <div>
-          <small>Página de muestra</small>
-          <h3>Café Aromas</h3>
-          <p>Menú, fotos reales, ubicación y pedidos por WhatsApp en una sola página.</p>
-        </div>
-        <span class="whatsapp">Pedir por WhatsApp</span>
+    <div class="site-showcase" aria-label="Ejemplo visual de una página profesional creada por ZOSA Pages">
+      <div class="showcase-copy">
+        <span class="showcase-kicker">Diseñada para tu negocio</span>
+        <h3>No te entregamos una plantilla. Te mostramos una marca.</h3>
+        <p>Tomamos tus fotos, tu estilo y lo que vendes para construir una página que se sienta propia desde el primer vistazo.</p>
+        <ul class="showcase-points">
+          <li><span>✓</span> Se ve profesional en celular y computador</li>
+          <li><span>✓</span> Guía al cliente directo a tu WhatsApp</li>
+          <li><span>✓</span> Lista para compartir apenas la apruebes</li>
+        </ul>
       </div>
-      <div class="request">
-        <div class="bar"><i></i><i></i><i></i></div>
-        <div class="field">Nombre del negocio<br><b>Café Aromas</b></div>
-        <div class="field">Instagram<br><b>@cafearomas</b></div>
-        <div class="field">WhatsApp<br><b>300 123 4567</b></div>
-        <div class="go">Enviar y ver mi demo gratis</div>
-        <p class="caption">Después de verla decides si la activas por $60.000 COP.</p>
+      <div class="device-stage" aria-hidden="true">
+        <div class="desktop-frame">
+          <div class="browser-bar"><i></i><i></i><i></i><span></span></div>
+          <div class="sample-site">
+            <div class="sample-nav"><span class="sample-brand"><b>A</b> Aromas</span><span class="sample-links">Menú&nbsp;&nbsp; Nosotros&nbsp;&nbsp; Visítanos</span></div>
+            <div class="sample-hero">
+              <small>Café de especialidad</small>
+              <h4>Momentos que saben mejor.</h4>
+              <p>Café, brunch y postres para compartir sin afán.</p>
+              <span class="sample-cta">Reservar por WhatsApp</span>
+            </div>
+          </div>
+        </div>
+        <div class="phone-frame">
+          <span class="phone-notch"></span>
+          <div class="phone-screen">
+            <small>Café Aromas</small>
+            <strong>Tu pausa favorita.</strong>
+            <p>Sabores hechos para quedarte.</p>
+            <em>Ver menú</em>
+          </div>
+        </div>
+        <div class="showcase-note"><b>✓</b> Adaptada a cada pantalla</div>
       </div>
     </div>
   </div>
@@ -610,53 +728,81 @@
   <!-- AGENTE QUE EDITA -->
   <section>
     <div class="agent">
-      <div>
+      <div class="agent-copy">
         <div class="eyebrow" style="text-align:left">Incluye asistente en WhatsApp</div>
-        <h2>Tu página no queda quieta</h2>
-        <p class="lead">¿Cambió un precio? ¿Nuevo producto? Se lo pides por WhatsApp, con tus palabras, y tu página se actualiza sola. Sin depender de nadie.</p>
-        <ul>
-          <li><span>›</span> Agrega o quita productos de tu catálogo</li>
-          <li><span>›</span> Cambia precios, fotos y textos cuando quieras</li>
-          <li><span>›</span> Envía texto, audios, fotos, videos o archivos por WhatsApp</li>
-        </ul>
+        <h2>Tu negocio cambia. Tu página también.</h2>
+        <p class="lead">No necesitas aprender un panel ni buscar un programador. Escribes el cambio como se lo dirías a una persona y tu página se actualiza.</p>
+        <div class="agent-benefits">
+          <div class="agent-benefit"><b>Habla o escribe</b><span>Envía texto, audio, foto o video desde WhatsApp.</span></div>
+          <div class="agent-benefit"><b>Sin tecnicismos</b><span>Pide precios, horarios, textos o productos con tus palabras.</span></div>
+          <div class="agent-benefit"><b>Ve el resultado</b><span>Recibes confirmación y revisas el cambio en tu propio enlace.</span></div>
+          <div class="agent-benefit"><b>Comparte el acceso</b><span>Tu equipo también puede solicitar ajustes cuando lo necesite.</span></div>
+        </div>
       </div>
-      <div class="chat">
-        <div class="msg me">Agrega al catálogo el Capuccino a $8.000</div>
-        <div class="msg bot">Listo ✅ Agregué <b>Capuccino — $8.000</b> a tu catálogo.<span class="tag">NUEVO</span></div>
-        <div class="msg me">Cambia el horario a 7am–9pm</div>
-        <div class="msg bot">Hecho. Tu página ya muestra <b>7:00 am – 9:00 pm</b>.</div>
+      <div class="change-stage" aria-label="Ejemplo de un cambio pedido por WhatsApp y publicado en la página">
+        <div class="change-head"><b>Del mensaje a tu página</b><span class="live-status">Publicado</span></div>
+        <div class="change-flow">
+          <div class="change-chat">
+            <div class="change-chat-top"><i>Z</i> ZOSA Pages · WhatsApp</div>
+            <div class="change-bubble owner">Agrega un cappuccino nuevo a $8.000 y usa esta foto.</div>
+            <div class="change-bubble zosa">Listo ✅ Ya aparece en tu menú y el cambio está publicado.</div>
+          </div>
+          <span class="change-arrow" aria-hidden="true">→</span>
+          <div class="live-page">
+            <div class="live-page-hero"><small>Café Aromas</small><strong>Momentos que saben mejor.</strong></div>
+            <div class="live-page-items">
+              <div class="live-item"><span><b>Cappuccino</b><br>$8.000</span><span class="new-chip">NUEVO</span></div>
+              <div class="live-item"><span><b>Horario</b><br>7:00 am – 9:00 pm</span><span>✓</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="change-proof">Pides el cambio → lo hacemos → lo ves publicado.</p>
       </div>
     </div>
   </section>
 
   <!-- ASISTENTE DE WHATSAPP EN ACCIÓN -->
   <section id="asistente-whatsapp">
-    <div class="eyebrow">Todo desde WhatsApp</div>
-    <h2>Así trabaja tu asistente</h2>
-    <p class="lead">Después de activar tu página, escribes al WhatsApp de ZOSA Pages, ingresas una sola vez tu código y sigues pidiendo cambios en esa misma conversación.</p>
-    <div class="wa-demo" aria-label="Ejemplo de una conversación con el asistente de ZOSA Pages en WhatsApp">
-      <div class="wa-top">
-        <span class="wa-logo" aria-hidden="true">Z</span>
-        <div class="wa-name">ZOSA Pages<span class="wa-status">Asistente por WhatsApp</span></div>
+    <div class="assistant-panel">
+      <div class="eyebrow">Todo desde WhatsApp</div>
+      <h2>Tu asistente siempre viaja contigo</h2>
+      <p class="lead">Lo activas una sola vez. Desde ese momento, la misma conversación se convierte en la forma más fácil de mantener tu negocio al día.</p>
+      <div class="assistant-grid">
+        <div class="assistant-steps">
+          <div class="assistant-step"><b>1</b><p><strong>Conectas tu página</strong><span>Ingresas el código de acceso una sola vez.</span></p></div>
+          <div class="assistant-step"><b>2</b><p><strong>Pides cualquier ajuste</strong><span>Escribe, habla o manda la foto que quieres usar.</span></p></div>
+          <div class="assistant-step"><b>3</b><p><strong>Recibes la confirmación</strong><span>El asistente te avisa cuando el cambio ya está visible.</span></p></div>
+        </div>
+        <div class="wa-demo" aria-label="Ejemplo de una conversación con el asistente de ZOSA Pages en WhatsApp">
+          <div class="wa-top">
+            <span class="wa-logo" aria-hidden="true">Z</span>
+            <div class="wa-name">ZOSA Pages<span class="wa-status">Asistente por WhatsApp · en línea</span></div>
+          </div>
+          <div class="wa-body">
+            <div class="wa-msg owner">Mi código de activación es 123456</div>
+            <div class="wa-msg zosa">✅ Tu página quedó conectada. Ya puedes pedirme cambios por este WhatsApp.</div>
+            <div class="wa-msg owner"><div class="wa-audio"><span class="wa-play">▶</span><span class="wa-wave">▂▅▇▃▆▅▂▇▆▃▅▂</span><span>0:08</span></div></div>
+            <div class="wa-msg zosa">Entendí: cambiar el horario y agregar la foto nueva. Ya estoy trabajando en tu página.</div>
+            <div class="wa-msg zosa"><strong>Listo ✅</strong> El cambio ya está publicado y puedes verlo en tu enlace.</div>
+          </div>
+        </div>
       </div>
-      <div class="wa-body">
-        <div class="wa-msg owner">Mi código de activación es 123456</div>
-        <div class="wa-msg zosa">✅ Tu página quedó conectada. Ya puedes pedirme cambios por este WhatsApp.</div>
-        <div class="wa-msg owner"><div class="wa-audio"><span class="wa-play">▶</span><span class="wa-wave">▂▅▇▃▆▅▂▇▆▃▅▂</span><span>0:08</span></div></div>
-        <div class="wa-msg zosa">Entendí: cambiar el horario y agregar la foto nueva. Ya estoy trabajando en tu página.</div>
-        <div class="wa-msg zosa"><strong>Listo ✅</strong> El cambio ya está publicado y puedes verlo en tu enlace.</div>
-      </div>
+      <p class="wa-proof">Sin aplicaciones nuevas, sin paneles y sin depender de conocimientos técnicos.</p>
     </div>
-    <p class="wa-proof">Texto, notas de voz, imágenes, videos y archivos, sin entrar a un panel.</p>
   </section>
 
   <!-- FORM -->
   <section id="pedir">
     <div class="eyebrow">Empecemos</div>
     <h2>Pide tu página</h2>
-    <p class="lead">Déjanos información real de tu negocio y continúa por WhatsApp. Primero validamos que el perfil tenga contenido suficiente; después el asistente prepara una demo adaptada y te entrega el enlace en esa misma conversación. La demo es gratis; si te gusta y quieres dejarla activa, aprovechas la oferta de lanzamiento de $60.000 COP.</p>
+    <p class="lead">Déjanos tres datos y continúa por WhatsApp. Tomamos la información y las fotos públicas de tu negocio para preparar una demo que puedas revisar gratis.</p>
 
     <form id="f">
+      <div class="form-card-head">
+        <strong>Tu demo empieza aquí</strong>
+        <p>Te toma menos de un minuto. No pagas nada para verla.</p>
+        <div class="form-mini-proof"><span>✓ 3 datos básicos</span><span>✓ Demo gratis</span><span>✓ Respuesta por WhatsApp</span></div>
+      </div>
       <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
         <label for="website">Sitio web</label>
         <input id="website" name="website" tabindex="-1" autocomplete="off">
@@ -675,9 +821,9 @@
       </div>
       <p class="field-help" id="whatsapp-help">Escribe los 10 dígitos de tu celular, sin indicativo de país.</p>
 
-      <label>¿Qué ofrece tu negocio y qué quieres mostrar?</label>
-      <textarea id="detalle" name="detalle" required minlength="25" aria-describedby="detalle-help" placeholder="Ej: Estamos en Popayán. Vendemos café de especialidad, desayunos y postres; quiero ubicación, menú y pedidos por WhatsApp."></textarea>
-      <p class="field-help" id="detalle-help">Incluye la ciudad y al menos tres productos o servicios. Esto nos permite adaptar la página sin inventar información.</p>
+      <label>¿Quieres contarnos algo más? <span class="opt">(opcional)</span></label>
+      <textarea id="detalle" name="detalle" aria-describedby="detalle-help" placeholder="Ej: Quiero mostrar mi menú, ubicación y recibir pedidos por WhatsApp."></textarea>
+      <p class="field-help" id="detalle-help">Puedes dejarlo vacío. Usaremos la información pública de tu Instagram para adaptar la demo.</p>
 
       <button type="submit" class="btn btn-main" id="send">Continuar por WhatsApp →</button>
       <p class="hint">Se abrirá WhatsApp con tus datos. Solo debes tocar Enviar para iniciar.</p>
@@ -753,7 +899,7 @@
     scrollTimer = setTimeout(trackScrollDepth, 160);
   }, {passive:true});
   document.addEventListener('click', function(e){
-    var target = e.target.closest('a, button, .mock .go');
+    var target = e.target.closest('a, button');
     if (!target) return;
     var rect = target.getBoundingClientRect();
     trackEvent('ZosaPagesInteraction', {
@@ -764,7 +910,7 @@
       y:Math.round(window.scrollY + rect.top + rect.height / 2)
     });
   });
-  document.querySelectorAll('a[href="#pedir"], .mock .go').forEach(function(el){
+  document.querySelectorAll('a[href="#pedir"]').forEach(function(el){
     el.addEventListener('click', function(){
       trackEvent('ZosaPagesCTAClick', {origen:'landing-generador-webs'});
     });
@@ -785,8 +931,8 @@
     var detalle = document.getElementById('detalle').value.trim();
     var whatsappLocal = whatsappInput.value.replace(/\D/g, '');
     if (whatsappLocal.indexOf('57') === 0 && whatsappLocal.length === 12) whatsappLocal = whatsappLocal.slice(2);
-    if (!negocio || !instagram || !whatsappLocal || !detalle) {
-      err.textContent = 'Completa el negocio, su Instagram público, WhatsApp y una descripción concreta de lo que ofrece.';
+    if (!negocio || !instagram || !whatsappLocal) {
+      err.textContent = 'Completa el nombre del negocio, su Instagram público y el WhatsApp donde quieres recibir la demo.';
       err.style.display = 'block';
       return;
     }
@@ -796,12 +942,6 @@
       err.textContent = 'Escribe un perfil de Instagram válido del negocio, por ejemplo @tunegocio o https://instagram.com/tunegocio. No uses un correo.';
       err.style.display = 'block';
       document.getElementById('instagram').focus();
-      return;
-    }
-    if (detalle.length < 25 || detalle.split(/[,;\n]/).filter(function(item){ return item.trim(); }).length < 2) {
-      err.textContent = 'Cuéntanos con más detalle la ciudad y varios productos o servicios del negocio para poder crear una página real y bien adaptada.';
-      err.style.display = 'block';
-      document.getElementById('detalle').focus();
       return;
     }
     if (!/^3\d{9}$/.test(whatsappLocal)) {
@@ -861,7 +1001,7 @@
         'Negocio: ' + negocio,
         'Instagram: ' + instagram,
         'WhatsApp: +57 ' + whatsappLocal.slice(0,3) + ' ' + whatsappLocal.slice(3,6) + ' ' + whatsappLocal.slice(6),
-        'Quiero: ' + detail,
+        'Quiero: ' + (detail || 'Una página adaptada a mi negocio'),
         '',
         'Ya llené el formulario. Pueden empezar a preparar mi demo.'
       ].join('\n');
