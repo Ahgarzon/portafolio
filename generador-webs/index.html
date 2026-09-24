@@ -55,6 +55,15 @@
   .btn-main{background:var(--brand-dark);color:white;box-shadow:0 1px 2px rgba(9,47,87,.16),0 14px 30px rgba(9,47,87,.28)}
   .btn-main:hover{transform:translateY(-2px);box-shadow:0 1px 2px rgba(9,47,87,.16),0 18px 38px rgba(9,47,87,.34)}
   .btn-ghost{background:white;color:var(--brand);border:1px solid var(--line)}
+  .hero-primary-cta{min-width:350px;min-height:64px;padding:19px 38px;font-size:18px;display:inline-flex;align-items:center;justify-content:center}
+  .floating-cta{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));z-index:80;
+    width:min(390px,calc(100% - 32px));min-height:62px;padding:16px 24px;border-radius:18px;
+    display:flex;align-items:center;justify-content:center;gap:10px;background:var(--brand-dark);color:white;
+    text-decoration:none;font-size:17px;font-weight:850;box-shadow:0 4px 10px rgba(9,47,87,.24),0 18px 46px rgba(9,47,87,.38);
+    opacity:0;pointer-events:none;transform:translate(-50%,24px);transition:opacity .2s ease,transform .2s ease,box-shadow .2s ease}
+  .floating-cta span{font-size:22px;line-height:1}
+  .floating-cta.is-visible{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+  .floating-cta:hover{box-shadow:0 4px 10px rgba(9,47,87,.25),0 22px 52px rgba(9,47,87,.46)}
   .hero-flow{max-width:760px;margin:22px auto 0;background:#ffffff;border:1px solid var(--line);border-radius:18px;
     padding:16px;box-shadow:0 1px 2px rgba(16,37,63,.04),0 12px 28px rgba(22,71,122,.1)}
   .flow-track{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:10px}
@@ -400,6 +409,8 @@
     .hero-bullets{display:grid;grid-template-columns:1fr;max-width:340px}
     .hero-bullets span{justify-content:center}
     .btn{width:100%;padding-left:18px;padding-right:18px}
+    .hero-primary-cta{min-width:0;min-height:62px;padding-top:18px;padding-bottom:18px;font-size:17.5px}
+    .floating-cta{bottom:max(12px,env(safe-area-inset-bottom));width:calc(100% - 24px);min-height:60px;border-radius:16px;font-size:16.5px}
     .trustbar{display:grid;grid-template-columns:1fr;max-width:340px}
     .trustbar span{justify-content:center}
     .hero-offer{padding:16px 14px}
@@ -424,6 +435,9 @@
     .change-arrow{transform:rotate(90deg);margin:0 auto}
     .change-chat,.live-page{min-height:190px}
     .assistant-panel{border-radius:22px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .floating-cta{transition:none}
   }
 </style>
 <!-- Meta Pixel Code -->
@@ -456,6 +470,10 @@
   <div class="brand"><img src="../assets/zosa-logo.jpg" alt=""><b>ZOSA Pages</b> · páginas profesionales para negocios reales</div>
 </header>
 
+<a href="#pedir" class="floating-cta" id="floatingCta" aria-label="Ir al formulario para ver mi página web gratis">
+  Quiero ver mi página gratis <span aria-hidden="true">→</span>
+</a>
+
 <div class="wrap">
 
   <!-- HERO -->
@@ -469,7 +487,7 @@
       <span><b>✓</b> Cambios fáciles después</span>
     </div>
     <div class="cta-row">
-      <a href="#pedir" class="btn btn-main">Quiero ver mi página gratis →</a>
+      <a href="#pedir" class="btn btn-main hero-primary-cta" id="heroPrimaryCta">Quiero ver mi página gratis →</a>
       <a href="#asistente-whatsapp" class="btn btn-ghost">Ver el asistente en WhatsApp</a>
     </div>
     <div class="hero-flow" aria-label="Proceso de ZOSA Pages">
@@ -899,6 +917,36 @@
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(trackScrollDepth, 160);
   }, {passive:true});
+  var heroPrimaryCta = document.getElementById('heroPrimaryCta');
+  var floatingCta = document.getElementById('floatingCta');
+  var formSection = document.getElementById('pedir');
+  var heroCtaVisible = true;
+  var formVisible = false;
+  function updateFloatingCta(){
+    var show = !heroCtaVisible && !formVisible;
+    floatingCta.classList.toggle('is-visible', show);
+    floatingCta.setAttribute('aria-hidden', show ? 'false' : 'true');
+    floatingCta.tabIndex = show ? 0 : -1;
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries){
+      heroCtaVisible = entries[0].isIntersecting;
+      updateFloatingCta();
+    }, {threshold:.15}).observe(heroPrimaryCta);
+    new IntersectionObserver(function(entries){
+      formVisible = entries[0].isIntersecting;
+      updateFloatingCta();
+    }, {threshold:.08}).observe(formSection);
+  } else {
+    window.addEventListener('scroll', function(){
+      var heroRect = heroPrimaryCta.getBoundingClientRect();
+      var formRect = formSection.getBoundingClientRect();
+      heroCtaVisible = heroRect.bottom > 0 && heroRect.top < window.innerHeight;
+      formVisible = formRect.bottom > 0 && formRect.top < window.innerHeight;
+      updateFloatingCta();
+    }, {passive:true});
+  }
+  updateFloatingCta();
   document.addEventListener('click', function(e){
     var target = e.target.closest('a, button');
     if (!target) return;
