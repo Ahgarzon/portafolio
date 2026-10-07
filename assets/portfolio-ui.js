@@ -1,5 +1,5 @@
 (() => {
-  const buttons=[...document.querySelectorAll('[data-audience]')];
+  const buttons=[...document.querySelectorAll('button[data-audience]')];
   const variants=[...document.querySelectorAll('[data-audience-view]')];
   const sections=[...document.querySelectorAll('[data-audience-section]')];
   function setAudience(view,updateUrl=false){
