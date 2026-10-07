@@ -41,3 +41,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 @media(max-width:700px){.container{padding-inline:24px}nav,nav.scrolled{padding:12px 0}.brand-name{font-size:14px}.brand-name small{font-size:10px}.brand-portrait{width:44px;height:44px}.nav-links{gap:0}header,html[data-audience="perfil"] header{padding:108px 0 40px}.hero-grid{grid-template-columns:1fr;gap:32px}.audience-switch{width:100%;margin-bottom:28px;gap:24px}.audience-switch button{flex:none;font-size:12px}.eyebrow{font-size:9.5px;letter-spacing:.09em}h1,html[data-audience="perfil"] h1{font-size:42px;line-height:1.09;margin:20px 0}.lede,html[data-audience="perfil"] .lede{font-size:15px}.cta-row .btn{flex:1;justify-content:center;text-align:center;min-width:140px;padding:12px;font-size:12px}.hero-meta,html[data-audience="perfil"] .hero-meta{gap:16px;margin-top:20px}.hero-meta b{font-size:23px}.hero-meta span{font-size:10px}.portrait-editorial{max-width:100%}.portrait-image{aspect-ratio:4/3}.portrait-image img{object-position:center 27%}.portrait-editorial figcaption{font-size:10px}.experience-strip{padding:24px 0}.experience-strip .container{display:block}.experience-strip .container>div{margin-top:16px;justify-content:space-between;gap:12px}.experience-strip strong{font-size:16px}.marquee .track{justify-content:flex-start;gap:8px 20px}.marquee span{font-size:10px}section,.profile-section{padding:56px 0}.jarvis-demo-layout{grid-template-columns:1fr;padding:24px;gap:28px}.jarvis-demo-layout h3{font-size:28px}.hero-meta div{min-width:0}.case-card,.value-card{padding:24px}.socials{margin-top:12px}}
 @media(max-width:370px){.container{padding-inline:20px}.brand-name{font-size:13px}h1,html[data-audience="perfil"] h1{font-size:38px}.hero-meta b{font-size:20px}.experience-strip strong{font-size:14px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Visual depth preserves the complete catalog and approved portrait identity. */
+header{background:radial-gradient(ellipse at 88% 28%,rgba(var(--c1-rgb),.09),transparent 56%)}
+.portrait-image{border-radius:12px;box-shadow:0 2px 4px rgba(0,0,0,.2),0 24px 64px rgba(0,0,0,.28)}
+.portrait-editorial figcaption{border-bottom-color:var(--c1)}
+.pcard,.case-card,.value-card,.scol{box-shadow:0 1px 2px rgba(0,0,0,.16),0 12px 32px rgba(0,0,0,.12)}
+.pcard-media{border-bottom:1px solid var(--line)}
+.pcard .pnum{color:var(--c1)}
+.pcard .pbadge{background:var(--bg);border:1px solid var(--line)}
+.experience-strip{background:linear-gradient(110deg,var(--bg2),var(--bg))}
+.btn-primary{box-shadow:0 1px 2px rgba(0,0,0,.16),0 8px 24px rgba(0,0,0,.12)}
