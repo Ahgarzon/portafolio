@@ -89,3 +89,42 @@ body #tu-web .cta-row{justify-content:flex-start;margin-top:16px}.tvcita{color:v
 @media(max-width:820px){.tourmaps-layout{grid-template-columns:1fr;gap:24px}.tourmaps-detail{border-left:0;padding-left:0}.tourmaps-feature h4{font-size:32px}body #tu-web .webcard{grid-template-columns:1fr;gap:24px}body #jarvis .jv-grid{grid-template-columns:1fr}body #jarvis .jv-fgrid{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.portrait-image{aspect-ratio:4/3;box-shadow:8px 8px 0 #e9ecf2}.pcard-body{padding:28px 24px}.hero-grid{gap:40px}h1 .g{text-decoration-thickness:3px;text-underline-offset:6px}.tourmaps-layout{gap:28px}.store-links{flex-direction:column}.mcard .store-links a{justify-content:center}.jarvis-intro h3{font-size:26px}body #jarvis{padding:56px 0}body #jarvis .jv-fgrid{grid-template-columns:1fr}body #tu-web .webcard{padding:32px 0}.more{gap:0}.experience-strip strong{font-size:14px}}
 body #jarvis h2.jv-title{-webkit-text-fill-color:var(--ink);background:none;color:var(--ink);font-weight:600}body #jarvis .jv-kicker{color:var(--c1);letter-spacing:.14em}.pcard-audio>div{color:var(--c1)!important}
+
+/* Match late inline media rules with explicit light-surface text roles. */
+body .tvcaja{background:var(--glass);border-radius:4px}
+body .tvcita,body .medio b{color:var(--ink)}
+body .tvcita span{color:var(--c1)}
+body .medio{background:var(--glass);border-color:var(--line)}
+html[data-audience="perfil"] .value-grid{gap:0 32px}
+html[data-audience="perfil"] .value-card{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:24px 0;box-shadow:none}
+html[data-audience="perfil"] .value-card h3{margin-top:16px}
+@media(max-width:700px){
+  nav .container{gap:12px}.brand{gap:10px;min-width:0}.brand-name{font-size:13px}.brand-name small{font-size:10px}
+  .brand-portrait{width:40px;height:40px;flex-shrink:0}
+  header,html[data-audience="perfil"] header{padding:96px 0 40px}
+  .hero-grid{display:flex;flex-direction:column;gap:0}.hero-grid>div:first-child{display:contents}
+  .audience-switch{order:0;margin-bottom:24px;gap:24px}
+  .eyebrow{order:1;align-self:flex-start;font-size:10px;letter-spacing:.06em}
+  h1,html[data-audience="perfil"] h1{order:2;font-size:clamp(34px,8.8vw,42px);line-height:1.12;letter-spacing:-.045em;margin:16px 0 24px;width:100%;text-wrap:balance}
+  h1 .g{text-decoration:none}
+  .portrait-editorial{order:3;display:grid;grid-template-columns:112px 1fr;gap:20px;align-items:center;margin:0 0 24px;padding:0 0 24px;border-bottom:1px solid var(--line)}
+  .portrait-image{aspect-ratio:3/4;box-shadow:4px 4px 0 #e9ecf2;border-radius:3px}
+  .portrait-image img{object-position:50% 30%}
+  .portrait-editorial figcaption{display:flex;flex-direction:column;justify-content:center;gap:8px;border:0;padding:0;font-size:12px;line-height:1.5}
+  .portrait-editorial figcaption span:first-child{font-size:15px;font-weight:600}
+  .lede,html[data-audience="perfil"] .lede{order:4;font-size:16px;line-height:1.7;margin:0;max-width:none}
+  .cta-row,html[data-audience="perfil"] .cta-row{order:5;display:flex;flex-direction:column;width:100%;gap:12px;margin-top:24px}
+  .cta-row .btn{width:100%;min-height:48px;font-size:14px;flex:auto}
+  .socials,html[data-audience="perfil"] .socials{order:6;width:100%;margin-top:12px;gap:24px}
+  .hero-meta,html[data-audience="perfil"] .hero-meta{order:7;width:100%;gap:12px;padding-top:20px;margin-top:16px}
+  .hero-meta b{font-size:22px}.hero-meta span{font-size:11px;line-height:1.5}
+  html[data-audience="perfil"] .hero-meta>div:last-child b{font-size:19px}
+  .experience-strip .container>div{flex-wrap:wrap;gap:16px 20px;justify-content:flex-start}
+  .experience-strip strong{font-size:15px}.marquee span{font-size:11px}
+  .profile-intro{gap:24px}.profile-intro p{font-size:16px;line-height:1.75}
+  .value-card p,.case-card p,.career-item p{font-size:15px;line-height:1.75}
+  .case-card{padding:24px}.case-foot{flex-wrap:wrap;gap:8px}
+  .career-item{gap:12px}.career-item h3{font-size:18px;line-height:1.4}
+  body .tvcaja{padding:20px;gap:24px}body .tvcita{font-size:24px}
+  body .tvvid{max-width:300px;box-shadow:none}.tvquien{line-height:1.6}
+}
