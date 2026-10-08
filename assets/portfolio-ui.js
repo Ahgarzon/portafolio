@@ -38,3 +38,28 @@
   new MutationObserver(label).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   label();
 })();
+
+// Align a shared project link after fonts settle; never move a reader who started scrolling.
+(() => {
+  if (!location.hash) return;
+  let interacted = false;
+  for (const event of ['wheel', 'touchstart', 'pointerdown', 'keydown']) {
+    addEventListener(event, () => { interacted = true; }, {once:true, passive:true});
+  }
+  addEventListener('load', async () => {
+    await document.fonts.ready;
+    const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (!interacted && target && target.getClientRects().length) {
+      target.classList.add('in');
+      requestAnimationFrame(() => target.scrollIntoView({block:'start', behavior:'instant'}));
+    }
+  }, {once:true});
+})();
+// A hash change inside the open page does not fire load.
+addEventListener('hashchange', () => {
+  const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (target && target.getClientRects().length) {
+    target.classList.add('in');
+    requestAnimationFrame(() => target.scrollIntoView({block:'start', behavior:'instant'}));
+  }
+});
