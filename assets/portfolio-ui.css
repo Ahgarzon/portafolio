@@ -57,7 +57,8 @@ html[data-audience="perfil"] .aura{opacity:.72}
 .case-foot{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:auto;padding-top:24px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;color:var(--muted)}
 .profile-more{display:flex;justify-content:center;margin-top:30px}
 .career-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:56px 72px;align-items:start}
-.career-heading{position:sticky;top:116px}
+/* Keep the heading in its grid row so it cannot overlap the education row on scroll. */
+.career-heading{position:static}
 .career-list{display:flex;flex-direction:column}
 .career-item{display:grid;grid-template-columns:118px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--line)}
 .career-item:first-child{padding-top:0}
