@@ -57,7 +57,7 @@ for(const width of [360,390,768,1440]){
     await page.locator('#name').fill('Prueba ficticia');await page.locator('#need').fill('Construir una aplicación de ejemplo');await page.locator('#contact-form button[type=submit]').click();
     assert.match(await page.evaluate(()=>window.__preparedURL),/^https:\/\/wa\.me\/573237451221\?text=/);
   });
-  if(width===390)await check('mobile menu, touch targets and background/offscreen suspension',async()=>{
+  if(width===390)await check('mobile menu, touch targets and offscreen suspension',async()=>{
     await page.locator('#menu').click();assert.equal(await page.locator('#menu').getAttribute('aria-expanded'),'true');await page.keyboard.press('Escape');assert.equal(await page.locator('#menu').getAttribute('aria-expanded'),'false');
     for(const selector of ['#motion','[data-build="1"]','#menu'])assert.ok((await page.locator(selector).boundingBox()).height>=44);
     await settle(page);await page.locator('#contacto').scrollIntoViewIfNeeded();await page.waitForTimeout(250);const a=await state(page);await page.waitForTimeout(350);assert.equal(a.frames,(await state(page)).frames);
@@ -74,11 +74,22 @@ await check('automatic construction advances through all six chapters',async()=>
  for(let i=0;i<6;i++){await p.waitForFunction(stage=>document.querySelector('#scene').dataset.stage===String(stage),i,{timeout:20000});seen.add((await state(p)).stage)}
  assert.equal(seen.size,6);await p.close();
 });
+await check('simulated visibility loss stops frames and resumes without time jumps',async()=>{
+ const p=await browser.newPage({viewport:{width:390,height:844}});await p.goto(base);await settle(p);
+ await p.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'))});
+ const a=await state(p);await p.waitForTimeout(350);assert.equal(a.frames,(await state(p)).frames);
+ await p.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'))});await p.waitForTimeout(250);assert.ok(Number((await state(p)).frames)>Number(a.frames));await p.close();
+});
+await check('original film decodes and old route preserves query and anchor',async()=>{
+ const p=await browser.newPage({viewport:{width:390,height:844}});await p.goto(base);await p.locator('#boro-film').evaluate(video=>{video.preload='metadata';video.load()});await p.waitForFunction(()=>document.querySelector('#boro-film').readyState>=1);
+ const film=await p.locator('#boro-film').evaluate(v=>({duration:v.duration,w:v.videoWidth,h:v.videoHeight}));assert.equal(film.w,1280);assert.equal(film.h,720);assert.ok(film.duration>9&&film.duration<11);
+ await p.goto(new URL('../jarvis3d/?test=boro#capacidades',base).href);await p.waitForURL(/\/boroaios\/\?test=boro#capacidades/);await p.close();
+});
 await check('WebGL context loss is honest and retains the interactive text',async()=>{
  const p=await browser.newPage({viewport:{width:390,height:844}});await p.goto(base);await settle(p);await p.locator('#scene canvas').evaluate(canvas=>canvas.dispatchEvent(new Event('webglcontextlost',{cancelable:true})));assert.ok(await p.locator('.fallback-note').isVisible());assert.equal((await state(p)).status,'static');await p.locator('[data-build="4"]').click();assert.match(await p.locator('#capability-tag').innerText(),/COMPUTADOR/);await p.close();
 });
 await check('no-WebGL fallback keeps content and all capabilities usable',async()=>{
- const p=await browser.newPage({viewport:{width:390,height:844}});await p.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){if(type.startsWith('webgl'))return null;return original.call(this,type,...args)}});await p.goto(base);await p.locator('.visual').scrollIntoViewIfNeeded();assert.ok(await p.locator('.fallback-note').isVisible());await p.locator('[data-build="1"]').click();assert.match(await p.locator('#capability-result').innerText(),/primera versión/);await p.screenshot({path:path.join(output,'fallback.png')});await p.close();
+ const p=await browser.newPage({viewport:{width:390,height:844}});await p.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){if(type.startsWith('webgl'))return null;return original.call(this,type,...args)}});await p.goto(base);await p.locator('.visual').scrollIntoViewIfNeeded();assert.ok(await p.locator('.fallback-note').isVisible());await p.locator('[data-build="1"]').click();assert.match(await p.locator('#capability-result').innerText(),/primera versión/);await p.locator('.visual').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(output,'fallback.png')});await p.close();
 });
 assert.deepEqual(report.errors,[]);await fs.writeFile(path.join(output,'report.json'),JSON.stringify(report,null,2));console.log('REPORT '+output);
 })().catch(async error=>{console.error(error);report.failure=String(error);await fs.mkdir(output,{recursive:true});await fs.writeFile(path.join(output,'report.json'),JSON.stringify(report,null,2));process.exitCode=1}).finally(async()=>{await browser?.close()});
