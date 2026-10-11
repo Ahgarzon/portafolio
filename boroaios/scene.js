@@ -1,4 +1,5 @@
 import * as THREE from './assets/three.module.min.js';
+import { BUILD_SECONDS, poseAt, deformPoint } from './character-motion.js?v=builder2';
 
 const host = document.querySelector('#scene');
 const visual = document.querySelector('.visual');
@@ -18,15 +19,15 @@ const capabilities = [
     ]
   },
   {
-    "name": "PÁGINAS WEB",
-    "short": "Idea → página web",
-    "request": "“Crea una página para mi negocio con mis servicios y contacto”.",
-    "result": "Construye el diseño, los textos y la página; la revisas y autorizas su publicación.",
-    "caption": "Tu idea encuentra su lugar en la web.",
+    "name": "PROYECTOS DIGITALES",
+    "short": "Idea → solución",
+    "request": "“Ayúdame a construir una web o una aplicación para mi proyecto”.",
+    "result": "Define contigo qué necesitas, construye una primera versión y la prueba contigo. El alcance, las integraciones y la publicación se acuerdan antes de ponerla en marcha.",
+    "caption": "Webs, aplicaciones y soluciones para tu proyecto.",
     "cards": [
-      "TU NEGOCIO",
-      "TU PÁGINA",
-      "PUBLICACIÓN"
+      "TU IDEA",
+      "SOLUCIÓN",
+      "PRIMERA VERSIÓN"
     ]
   },
   {
@@ -97,7 +98,7 @@ function selectStage(next) {
   document.querySelector('#capability-request').textContent = c.request;
   document.querySelector('#capability-result').textContent = c.result;
   document.querySelector('#scene-caption').textContent = `0${stage+1} / ${c.caption}`;
-  document.querySelector('.construction-progress span').style.width = `${(stage+1)/6*100}%`;
+  document.querySelector('.construction-progress span').style.transform = `scaleX(${(stage+1)/6})`;
   host.dataset.stage = String(stage);
   document.querySelectorAll('.scene-outputs span').forEach((el,i)=>el.textContent=c.cards[i]);
   updateCards(c); request();
@@ -110,6 +111,8 @@ function fallback() {
   document.body.classList.remove('has-webgl');
   document.querySelector('.fallback-note').hidden = false;
   host.querySelector('canvas')?.remove(); motion.hidden = true;
+  host.dataset.status = 'static';
+  document.querySelector('#builder-action').textContent='Vista estática de Boro';
 }
 syncButton();
 try {
@@ -134,12 +137,19 @@ try {
     const pts = Array.from({length:97},(_,i)=>vector(Math.cos(i/96*Math.PI*2)*radius,y,Math.sin(i/96*Math.PI*2)*radius*.65));
     return line(pts,0x64dfee,opacity);
   }
-  // Character is an identity-preserving rendered cutout; brain and connections are live 3D geometry.
-  // Keep it facing the viewer during orbit; never present this asset as a skeletal 3D rig.
+  // Identity-preserving articulated 2.5D mesh; not a volumetric reconstruction of the mascot.
+  // Local vertex deformation moves the arm/head/tail independently, not just the whole image.
   const character = new THREE.Group();scene.add(character);
   const texture = new THREE.TextureLoader().load('./assets/boro-constructor.png',()=>{host.dataset.character='loaded';request()},undefined,()=>fallback());
   texture.colorSpace=THREE.SRGBColorSpace;
-  const beaver = new THREE.Mesh(new THREE.PlaneGeometry(5.7,3.8),new THREE.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false,side:THREE.DoubleSide}));
+  const mobile = matchMedia('(max-width:760px)').matches;
+  const beaverGeometry = new THREE.PlaneGeometry(5.7,3.8,mobile?64:96,mobile?48:64);
+  const originalUV = beaverGeometry.attributes.uv;
+  const puppetVertices = beaverGeometry.attributes.position;
+  puppetVertices.setUsage(THREE.DynamicDrawUsage);
+  const deformed = {}, handUV = {x:.752,y:.353}, handLocal = vector(0,0,0);
+  const beaver = new THREE.Mesh(beaverGeometry,new THREE.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false,side:THREE.DoubleSide}));
+  beaver.frustumCulled=false;
   beaver.position.set(-1.55,1.95,.65); character.add(beaver);
   // Elliptical workbench, a holographic construction plane and the two brain hemispheres.
   const base = new THREE.Mesh(new THREE.CylinderGeometry(3.25,3.32,.1,80),new THREE.MeshStandardMaterial({color:0x0b1925,metalness:.7,roughness:.45}));
@@ -149,6 +159,23 @@ try {
     const z=i*.42,half=Math.sqrt(Math.max(0,8.6-z*z));
     line([vector(-half,.02,z*.65),vector(half,.02,z*.65)],0x345363,.23);
   }
+  // Grounded light-workshop: radial conduits, moving energy ring, contact shadow and build plinth.
+  for(let i=0;i<16;i++) {
+    const a=i/16*Math.PI*2;
+    line([vector(Math.cos(a)*.8,.023,Math.sin(a)*.52),vector(Math.cos(a)*3.1,.023,Math.sin(a)*2.015)],0x477c91,.16);
+  }
+  const floorPulse=ring(1,.032,.4);
+  const floorCore=ring(.62,.035,.65);floorCore.position.x=1.12;
+  const plinth=new THREE.Mesh(new THREE.CylinderGeometry(.72,.82,.12,48),new THREE.MeshStandardMaterial({color:0x183d4b,metalness:.8,roughness:.35}));
+  plinth.position.set(1.12,.06,0);world.add(plinth);
+  const shadowCanvas=document.createElement('canvas');shadowCanvas.width=256;shadowCanvas.height=128;
+  const shadowContext=shadowCanvas.getContext('2d');
+  const shadowGradient=shadowContext.createRadialGradient(128,64,0,128,64,108);
+  shadowGradient.addColorStop(0,'rgba(0,0,0,.85)');shadowGradient.addColorStop(1,'rgba(0,0,0,0)');
+  shadowContext.fillStyle=shadowGradient;shadowContext.fillRect(0,0,256,128);
+  const shadowTexture=new THREE.CanvasTexture(shadowCanvas);
+  const shadow=new THREE.Mesh(new THREE.PlaneGeometry(2.5,1.2),new THREE.MeshBasicMaterial({map:shadowTexture,transparent:true,depthWrite:false}));
+  shadow.rotation.x=-Math.PI/2;shadow.position.set(-1.8,.04,.6);scene.add(shadow);
   const brain = new THREE.Group();brain.position.set(1.12,2.28,0);world.add(brain);
   const nodes=[],connections=[],folds=[];
   // Lobed closed surface, split at the longitudinal fissure. Nodes assemble from the hand.
@@ -181,15 +208,21 @@ try {
     for(let j=0;j<48;j++) {
       const u=j*2.39996,v=Math.acos(1-2*(j+.5)/48);
       const target=brainPoint(side,u,v);target.x+=side*.2;
-      const mesh=new THREE.Mesh(nodeGeometry,cyan.clone());brain.add(mesh);
-      nodes.push({mesh,target,region:Math.floor(j/8),index:nodes.length});
+      nodes.push({target,region:Math.floor(j/8),index:nodes.length});
     }
   }
-  // Nearby neural paths rather than an unreadable all-to-all mesh.
+  // Batch neurons and neural paths: one draw each, rather than hundreds of mobile draw calls.
+  const neuronMesh=new THREE.InstancedMesh(nodeGeometry,new THREE.MeshBasicMaterial({color:0xffffff}),nodes.length);
+  neuronMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);neuronMesh.frustumCulled=false;brain.add(neuronMesh);
+  const neuronMatrix=new THREE.Matrix4(),neuronPosition=vector(0,0,0),neuronColor=new THREE.Color();
+  const pathVertices=[];
   nodes.forEach((a,i)=>nodes.forEach((b,j)=>{
     if(j<=i||a.target.distanceTo(b.target)>.48||j%2!==i%2)return;
-    const l=line([a.target,b.target],0x75d7ef,.25,brain);connections.push({line:l,region:a.region});
+    connections.push({offset:pathVertices.length/3,region:a.region});pathVertices.push(...a.target.toArray(),...b.target.toArray());
   }));
+  const paths=new THREE.BufferGeometry();paths.setAttribute('position',new THREE.Float32BufferAttribute(pathVertices,3));
+  const pathColors=new THREE.Float32BufferAttribute(new Float32Array(pathVertices.length),3);pathColors.setUsage(THREE.DynamicDrawUsage);paths.setAttribute('color',pathColors);
+  brain.add(new THREE.LineSegments(paths,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.65})));
   const stem=new THREE.Mesh(new THREE.CylinderGeometry(.11,.07,.48,12),new THREE.MeshBasicMaterial({color:0x387d91,transparent:true,opacity:.65}));
   stem.position.set(0,-.94,-.06);stem.rotation.x=-.3;brain.add(stem);
   const orbit=new THREE.Group();orbit.position.copy(brain.position);world.add(orbit);
@@ -215,48 +248,86 @@ try {
   });
   updateCards=c=>cards.forEach((card,i)=>{card.material.map.dispose();card.material.map=cardTexture(c.cards[i],i);card.material.needsUpdate=true});
   document.fonts.ready.then(()=>{if(!failed){updateCards(capabilities[stage]);request()}});
-  const sparks=Array.from({length:18},()=>{const m=new THREE.Mesh(nodeGeometry,cyan);scene.add(m);return m});
-  const hand=vector(.18,2.36,.8),destination=vector(1.12,2.28,0);
-  const toolCurve=new THREE.CatmullRomCurve3([hand,vector(.6,2.65,.6),destination]);
-  const beam=line(toolCurve.getPoints(40),0x85ecff,.5,scene);
+  const sparks=Array.from({length:mobile?12:20},()=>{const m=new THREE.Mesh(nodeGeometry,cyan);scene.add(m);return m});
+  const hand=vector(0,0,0),destination=vector(0,0,0),handInBrain=vector(0,0,0),mid=vector(0,0,0);
+  const beam=line(Array.from({length:33},()=>vector(0,0,0)),0x85ecff,.5,scene);
+  beam.geometry.attributes.position.setUsage(THREE.DynamicDrawUsage);
+  beam.frustumCulled=false;
+  const idea=new THREE.Mesh(new THREE.OctahedronGeometry(.095),new THREE.MeshBasicMaterial({color:0xddfbff,transparent:true}));scene.add(idea);
+  const handRing=new THREE.Mesh(new THREE.TorusGeometry(.17,.009,6,32),new THREE.MeshBasicMaterial({color:0x84e9f7,transparent:true}));scene.add(handRing);
+  const actionLabel=document.querySelector('#builder-action');
+  let lastAction='';
+  function curvePoint(k,out) {
+    const inverse=1-k;
+    out.copy(hand).multiplyScalar(inverse*inverse).addScaledVector(mid,2*inverse*k).addScaledVector(destination,k*k);
+    return out;
+  }
   let dragging=false,px=0;
   renderer.domElement.addEventListener('pointerdown',e=>{dragging=true;px=e.clientX;renderer.domElement.setPointerCapture(e.pointerId)});
   renderer.domElement.addEventListener('pointermove',e=>{if(dragging){angleGoal=THREE.MathUtils.clamp(angleGoal+(e.clientX-px)*.005,-.45,.45);px=e.clientX;request()}});
   for(const event of ['pointerup','pointercancel'])renderer.domElement.addEventListener(event,()=>dragging=false);
   function resize() {
     const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;
-    camera.position.set(0,3.35,camera.aspect<1?14.2:9.8);camera.lookAt(0,1.95,0);camera.updateProjectionMatrix();
-    beaver.position.x=camera.aspect<1?-1:-1.55;
-    beaver.scale.setScalar(camera.aspect<1?.9:1);
+    camera.position.set(0,3.35,camera.aspect<1?13.2:9.8);camera.lookAt(0,1.95,0);camera.updateProjectionMatrix();
+    beaver.position.x=camera.aspect<1?-.5:camera.aspect<1.5?-.9:-1.55;
+    beaver.scale.setScalar(camera.aspect<1?.78:camera.aspect<1.5?.88:1);
     cards.forEach(card=>card.visible=w>540);request();
   }
   function render(t) {
     frame=0;if(failed||!visible||document.hidden)return;
     // RAF timestamps can precede an observer callback in the same frame.
     const dt=Math.max(0,Math.min((t-last)/1000||.016,.05));last=t;
-    if(!paused){phase+=dt;if(phase>=manualUntil&&phase-stageAt>=7)selectStage((stage+1)%6)}
+    if(!paused){phase+=dt;if(phase>=manualUntil&&phase-stageAt>=BUILD_SECONDS)selectStage((stage+1)%6)}
     angle+=(angleGoal-angle)*.13;world.rotation.y=angle;
     const elapsed=phase-stageAt;
-    const assembled=paused?1:Math.min(1,elapsed/2.7);
+    const pose=poseAt(phase,elapsed);
+    const assembled=pose.progress;
     brain.rotation.y=angle*.2+Math.sin(phase*.2)*.14;
-    brain.position.y=2.28+(paused?0:Math.sin(phase*.8)*.025);
+    brain.position.y=2.28+Math.sin(phase*.8)*.025;
     beaver.quaternion.copy(camera.quaternion);
-    beaver.position.y=(camera.aspect<1?1.78:1.95)+(paused?0:Math.sin(phase*1.1)*.018);
-    beaver.rotation.z=paused?0:Math.sin(phase*.65)*.007;
-    nodes.forEach(({mesh,target,region,index})=>{
+    beaver.position.y=.25+1.7*beaver.scale.x;
+    for(let i=0;i<puppetVertices.count;i++) {
+      deformPoint(originalUV.getX(i),1-originalUV.getY(i),pose,deformed);
+      puppetVertices.setXYZ(i,(deformed.x-.5)*5.7,(.5-deformed.y)*3.8,0);
+    }
+    puppetVertices.needsUpdate=true;
+    // Use exactly the same deformation for the emitting palm and the character mesh.
+    deformPoint(handUV.x,handUV.y,pose,deformed);
+    handLocal.set((deformed.x-.5)*5.7,(.5-deformed.y)*3.8,.03);
+    scene.updateMatrixWorld(true);
+    hand.copy(beaver.localToWorld(handLocal));
+    destination.copy(brain.localToWorld(vector(0,.05,.12)));
+    mid.copy(hand).lerp(destination,.5);mid.y+=.35;
+    handInBrain.copy(brain.worldToLocal(hand.clone()));
+    nodes.forEach(({target,region,index})=>{
       const current=region===stage;
       const a=current?THREE.MathUtils.smoothstep(assembled, (index%8)/16, .65+(index%8)/24):1;
-      mesh.position.lerpVectors(vector(-.85,.02,.8),target,a);
-      mesh.scale.setScalar(current?1.6+Math.sin(phase*2+index)*.18:.75);
-      mesh.material.color.setHex(current?0xc2f5ff:0x3e7b90);
+      neuronPosition.lerpVectors(handInBrain,target,a);
+      const scale=current?1.6+Math.sin(phase*2+index)*.18:.75;
+      neuronMatrix.makeScale(scale,scale,scale).setPosition(neuronPosition);neuronMesh.setMatrixAt(index,neuronMatrix);
+      neuronColor.setHex(current?0xc2f5ff:0x3e7b90);neuronMesh.setColorAt(index,neuronColor);
     });
+    neuronMesh.instanceMatrix.needsUpdate=true;neuronMesh.instanceColor.needsUpdate=true;
     folds.forEach((fold,i)=>{fold.material.opacity=.28+(i%6===stage?.5:.12)});
-    connections.forEach(c=>c.line.material.opacity=c.region===stage?.65:.12);
-    cards.forEach((card,i)=>{card.quaternion.copy(camera.quaternion);card.position.y=cardPositions[i].y+(paused?0:Math.sin(phase*.65+i)*.035)});
-    sparks.forEach((spark,i)=>{const k=(phase*.42+i/18)%1;spark.position.copy(toolCurve.getPoint(k));spark.scale.setScalar(.5+Math.sin(k*Math.PI)*.6);spark.visible=!paused});
-    beam.material.opacity=paused?.18:.3+Math.sin(phase*2)*.14;
+    connections.forEach(c=>{const strength=c.region===stage?.12+assembled*.88:.18;pathColors.setXYZ(c.offset,.46*strength,.84*strength,.94*strength);pathColors.setXYZ(c.offset+1,.46*strength,.84*strength,.94*strength)});pathColors.needsUpdate=true;
+    cards.forEach((card,i)=>{card.quaternion.copy(camera.quaternion);card.position.y=cardPositions[i].y+Math.sin(phase*.65+i)*.035});
+    const building=pose.cycle>.9&&pose.cycle<5.7;
+    sparks.forEach((spark,i)=>{const k=(phase*.65+i/sparks.length)%1;curvePoint(k,spark.position);spark.scale.setScalar(.5+Math.sin(k*Math.PI)*.7);spark.visible=building});
+    const beamPositions=beam.geometry.attributes.position;
+    for(let i=0;i<beamPositions.count;i++){curvePoint(i/(beamPositions.count-1),handLocal);beamPositions.setXYZ(i,handLocal.x,handLocal.y,handLocal.z)}
+    beamPositions.needsUpdate=true;beam.material.opacity=building?.22+pose.place*.3:.05;
+    idea.position.copy(hand);idea.position.y+=.09;idea.rotation.set(phase*.6,phase,0);idea.scale.setScalar(.8+pose.place*.8);idea.visible=pose.cycle<4.4;
+    handRing.position.copy(hand);handRing.quaternion.copy(camera.quaternion);handRing.scale.setScalar(1+pose.place*.6);handRing.material.opacity=.3+pose.reach*.4;
+    floorPulse.scale.setScalar(.8+(phase*.32)%2.3);floorPulse.material.opacity=.35*(1-((phase*.32)%2.3)/2.3);
+    floorCore.material.opacity=.35+pose.place*.55;
+    shadow.position.x=beaver.position.x-.2;shadow.scale.x=1+pose.breath*5;
+    const action=paused?'Movimiento en pausa':pose.action;
+    if(action!==lastAction){actionLabel.textContent=action;lastAction=action}
     renderer.render(scene,camera);
     host.dataset.frames=String(Number(host.dataset.frames||0)+1);host.dataset.build=assembled.toFixed(2);host.dataset.angle=angle.toFixed(3);
+    host.dataset.pose=[pose.arm,pose.head,pose.tail].map(x=>x.toFixed(3)).join(',');
+    host.dataset.hand=[hand.x,hand.y,hand.z].map(x=>x.toFixed(3)).join(',');host.dataset.status=paused?'paused':'animating';
+    host.dataset.drawCalls=String(renderer.info.render.calls);
     if(!paused||Math.abs(angleGoal-angle)>.001)request();
   }
   request=()=>{if(!frame&&!failed&&visible&&!document.hidden)frame=requestAnimationFrame(render)};
