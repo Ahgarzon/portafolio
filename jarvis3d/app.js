@@ -11,3 +11,12 @@ filmPlay.addEventListener('click',async()=>{try{await film.play();filmPlay.hidde
 film.addEventListener('play',()=>filmPlay.hidden=true);
 film.addEventListener('ended',()=>filmPlay.hidden=false);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)film.pause()});
+
+// Independent, accessible marquee pause. Reduced motion is also enforced by CSS.
+const ticker=document.querySelector('.ticker'),tickerButton=document.querySelector('#ticker-motion');
+const tickerReduced=matchMedia('(prefers-reduced-motion:reduce)');
+let tickerPaused=tickerReduced.matches;
+function setTicker(){ticker.classList.toggle('is-paused',tickerPaused);tickerButton.textContent=tickerPaused?'▷':'Ⅱ';tickerButton.setAttribute('aria-pressed',String(tickerPaused));tickerButton.setAttribute('aria-label',tickerPaused?'Activar franja en movimiento':'Pausar franja en movimiento');}
+tickerButton.addEventListener('click',()=>{tickerPaused=!tickerPaused;if(tickerReduced.matches){ticker.querySelector('.ticker-track').style.animation=tickerPaused?'none':'ticker-left 42s linear infinite';}setTicker()});
+tickerReduced.addEventListener('change',()=>{tickerPaused=tickerReduced.matches;ticker.querySelector('.ticker-track').style.animation='';setTicker()});
+document.addEventListener('visibilitychange',()=>{ticker.querySelector('.ticker-track').style.animationPlayState=document.hidden||tickerPaused?'paused':'running'});setTicker();

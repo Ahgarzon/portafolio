@@ -1,108 +1,204 @@
 import * as THREE from './assets/three.module.min.js';
-const host=document.querySelector('#scene'),visual=document.querySelector('.visual'),motion=document.querySelector('#motion');
-const reduced=matchMedia('(prefers-reduced-motion:reduce)');
-let paused=reduced.matches,visible=false,failed=false,frame=0,phase=0,last=0,stage=0,build=0,angle=0,angleGoal=0,manualUntil=0,renderer;
-const captions=['Cada gran proyecto empieza con una pieza.','El contexto conecta las piezas.','Tu idea empieza a tomar forma.'];
-function button(){motion.textContent=paused?'Activar movimiento':'Pausar movimiento';motion.setAttribute('aria-pressed',String(paused))}
-function fallback(){failed=true;cancelAnimationFrame(frame);document.body.classList.remove('has-webgl');document.querySelector('.fallback-note').hidden=false;host.querySelector('canvas')?.remove();motion.hidden=true}
-button();
+
+const host = document.querySelector('#scene');
+const visual = document.querySelector('.visual');
+const motion = document.querySelector('#motion');
+const reduced = matchMedia('(prefers-reduced-motion:reduce)');
+const capabilities = [
+  {name:'MEMORIA', short:'Ideas → contexto', request:'“Retomemos la idea que te conté ayer”.', result:'Notas, decisiones y pendientes conectados para continuar con contexto.', caption:'Conecta lo que importa.', cards:['IDEA GUARDADA','DECISIONES','PRÓXIMO PASO']},
+  {name:'BÚSQUEDA', short:'Pregunta → fuentes', request:'“Encuentra lo que acordamos para este proyecto”.', result:'Recupera el contexto autorizado y contrasta información actual con sus fuentes.', caption:'Encuentra la conexión correcta.', cards:['TU PREGUNTA','CONTEXTO','FUENTES']},
+  {name:'DOCUMENTOS', short:'Petición → propuesta', request:'“Prepara una propuesta con estas notas”.', result:'Organiza el contenido y prepara un Word, Excel o PDF para que lo revises.', caption:'Convierte conocimiento en un entregable.', cards:['TUS NOTAS','BORRADOR','TU REVISIÓN']},
+  {name:'ARCHIVOS', short:'Archivo → respuesta', request:'“Resume este PDF y muéstrame las páginas clave”.', result:'Consulta tus archivos con referencias. Una lectura parcial se señala como tal.', caption:'Cada respuesta conserva su origen.', cards:['DOCUMENTO','PÁGINAS CLAVE','RESPUESTA']},
+  {name:'COMPUTADOR', short:'Permiso → acción', request:'“Abre la carpeta del proyecto en mi computador”.', result:'Apoya acciones autorizadas en tu PC cuando está encendido, conectado y configurado.', caption:'Tu autorización conecta con la acción.', cards:['TU PERMISO','PC CONECTADO','ACCIÓN']},
+  {name:'PROCESOS', short:'Herramientas → resultado', request:'“Conecta estas herramientas para dar seguimiento”.', result:'Diseña flujos a medida, con permisos, pruebas y revisión humana antes de acciones sensibles.', caption:'Las piezas trabajan juntas.', cards:['HERRAMIENTAS','PROCESO','RESULTADO']}
+];
+let paused = reduced.matches, visible = false, failed = false, frame = 0;
+let phase = 0, last = 0, stage = 0, stageAt = 0, manualUntil = 0, angle = 0, angleGoal = 0;
+let renderer, request = () => {};
+function syncButton() {
+  motion.textContent = paused ? 'Activar movimiento' : 'Pausar movimiento';
+  motion.setAttribute('aria-pressed', String(paused));
+}
+let updateCards = () => {};
+function selectStage(next) {
+  stage = next; stageAt = phase;
+  const c = capabilities[stage];
+  document.querySelectorAll('[data-build]').forEach(b => {
+    const active = Number(b.dataset.build) === stage;
+    b.classList.toggle('active', active); b.setAttribute('aria-pressed', String(active));
+  });
+  document.querySelector('#capability-tag').textContent = `0${stage+1} / ${c.name}`;
+  document.querySelector('#capability-request').textContent = c.request;
+  document.querySelector('#capability-result').textContent = c.result;
+  document.querySelector('#scene-caption').textContent = `0${stage+1} / ${c.caption}`;
+  document.querySelector('.construction-progress span').style.width = `${(stage+1)/6*100}%`;
+  host.dataset.stage = String(stage);
+  document.querySelectorAll('.scene-outputs span').forEach((el,i)=>el.textContent=c.cards[i]);
+  updateCards(c); request();
+}
+document.querySelectorAll('[data-build]').forEach(b => b.addEventListener('click', () => {
+  manualUntil = phase + 24; selectStage(Number(b.dataset.build));
+}));
+function fallback() {
+  failed = true; cancelAnimationFrame(frame); frame = 0;
+  document.body.classList.remove('has-webgl');
+  document.querySelector('.fallback-note').hidden = false;
+  host.querySelector('canvas')?.remove(); motion.hidden = true;
+}
+syncButton();
 try {
- renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:'low-power'});
- renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.35;
- renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;host.appendChild(renderer.domElement);renderer.domElement.setAttribute('aria-hidden','true');
- const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,1,.1,80),world=new THREE.Group();scene.add(world);
- scene.add(new THREE.HemisphereLight(0xc8edff,0x16232e,3));
- const key=new THREE.DirectionalLight(0xf1e4d6,5);key.position.set(-3,7,6);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-6;key.shadow.camera.right=6;key.shadow.camera.top=6;key.shadow.camera.bottom=-6;key.shadow.normalBias=.04;scene.add(key);
- const rim=new THREE.DirectionalLight(0x39cfff,4);rim.position.set(3,4,-4);scene.add(rim);
- const fill=new THREE.PointLight(0x54e9ff,24);fill.position.set(3,2,3);scene.add(fill);
- const mat=(color,metalness=0,roughness=.5)=>new THREE.MeshStandardMaterial({color,metalness,roughness});
- const armor=mat(0x344655,.85,.28),silver=mat(0x89949b,.85,.27),dark=mat(0x0c1821,.5,.36),fur=mat(0x66574d,0,.95),furLight=mat(0x9f8d77,0,.9),muzzle=mat(0xc6b6a0,0,.84),black=mat(0x060b10,.2,.27),white=mat(0xfff4dc,0,.22),cyan=new THREE.MeshStandardMaterial({color:0x75f0ff,emissive:0x05b5df,emissiveIntensity:2,metalness:.35,roughness:.25});
- const sphere=new THREE.SphereGeometry(1,24,18),cube=new THREE.BoxGeometry(1,1,1);
- function mesh(g,m,pos,scale,parent=world){const o=new THREE.Mesh(g,m);o.position.set(...pos);o.scale.set(...scale);o.castShadow=true;o.receiveShadow=true;parent.add(o);return o}
- const ball=(m,p,s,parent)=>mesh(sphere,m,p,s,parent);
- const box=(m,p,s,parent)=>mesh(cube,m,p,s,parent);
- function tube(points,r,m,parent=world){const curve=new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(...p)));return mesh(new THREE.TubeGeometry(curve,24,r,6,false),m,[0,0,0],[1,1,1],parent)}
- function ring(radius,r,m,p,rot,parent=world){const o=mesh(new THREE.TorusGeometry(radius,r,8,64),m,p,[1,1,1],parent);o.rotation.set(...rot);return o}
- // A small sculpted robotic beaver, built as an articulated character.
- const boro=new THREE.Group();boro.position.set(-1.05,0,.18);boro.rotation.y=.25;world.add(boro);
- const tail=ball(dark,[0,.65,-.7],[.58,.2,.94],boro);tail.rotation.x=.12;
- for(let i=-3;i<=3;i++){tube([[i*.13,.78,-.65],[i*.15,.78,-1.05],[i*.12,.72,-1.43]],.012,silver,boro)}
- for(let i=0;i<5;i++){tube([[-.4,.78-i*.015,-.65-i*.17],[0,.82-i*.018,-.7-i*.17],[.4,.78-i*.015,-.65-i*.17]],.009,armor,boro)}
- for(const x of [-.36,.36]){
-  ball(dark,[x,.3,.17],[.3,.26,.43],boro);ball(silver,[x,.43,.1],[.24,.29,.28],boro);
-  ball(armor,[x,.72,.03],[.25,.37,.25],boro);ball(silver,[x,.72,.23],[.2,.21,.10],boro);
-  tube([[x-.18,.36,.46],[x,.38,.51],[x+.18,.36,.46]],.018,cyan,boro);
- }
- ball(dark,[0,1.12,0],[.53,.55,.36],boro);ball(armor,[0,1.45,0],[.66,.57,.39],boro);
- const chest=box(silver,[0,1.52,.32],[.7,.55,.14],boro);chest.rotation.z=Math.PI/4;chest.scale.set(.55,.55,.14);
- tube([[-.52,1.73,.25],[0,1.39,.46],[.52,1.73,.25]],.035,silver,boro);
- tube([[-.51,1.5,.32],[0,1.2,.4],[.51,1.5,.32]],.021,cyan,boro);
- tube([[-.4,1.17,.32],[0,.99,.37],[.4,1.17,.32]],.025,silver,boro);
- const arms=[];
- for(const side of [-1,1]){
-  const arm=new THREE.Group();arm.position.set(side*.65,1.66,0);boro.add(arm);arms.push(arm);
-  ball(silver,[0,0,0],[.29,.28,.3],arm);ring(.2,.025,cyan,[0,0,.265],[0,0,0],arm);
-  ball(armor,[side*.04,-.34,.03],[.21,.3,.22],arm);ball(dark,[side*.08,-.58,.04],[.2,.17,.2],arm);
-  ball(silver,[side*.08,-.73,.06],[.23,.23,.24],arm);
-  for(let j=0;j<3;j++)ball(dark,[(j-1)*.11+side*.08,-.88,.16],[.062,.13,.09],arm);
-  tube([[-.12,-.42,.22],[.02,-.52,.25],[.12,-.65,.23]],.018,cyan,arm);
- }
- const head=new THREE.Group();head.position.set(0,2.22,0);boro.add(head);
- ball(fur,[0,0,0],[.66,.63,.51],head);ball(furLight,[0,-.02,.22],[.59,.48,.41],head);
- for(const side of [-1,1]){ball(fur,[side*.49,.42,-.06],[.22,.23,.16],head);ball(dark,[side*.49,.43,.065],[.13,.14,.055],head)}
- // Cheek and crest tufts provide a deliberate sculpted, rather than photographic, fur style.
- for(let j=0;j<20;j++){
-  const a=j/20*Math.PI*2,x=Math.cos(a)*.53,y=Math.sin(a)*.48;
-  const tuft=mesh(new THREE.ConeGeometry(.13,.28,5),j%3?fur:furLight,[x,y,-.16],[1,1,.8],head);tuft.rotation.z=a-Math.PI/2;
- }
- for(let j=0;j<5;j++){const t=mesh(new THREE.ConeGeometry(.14,.33,5),furLight,[(j-2)*.15,.56,-.1],[1,1,.7],head);t.rotation.z=-.45}
- for(const side of [-1,1]){
-  ball(dark,[side*.27,.08,.46],[.23,.23,.11],head);ball(white,[side*.27,.1,.525],[.17,.17,.065],head);
-  ball(cyan,[side*.25,.1,.583],[.095,.11,.03],head);ball(black,[side*.245,.1,.607],[.048,.075,.019],head);ball(white,[side*.22,.14,.626],[.027,.033,.009],head);
-  ball(muzzle,[side*.21,-.21,.53],[.28,.22,.24],head);
-  for(let i=0;i<3;i++)ball(dark,[side*(.18+i*.07),-.18+(i%2)*.05,.75-i*.025],[.012,.012,.008],head);
-  const brow=ball(fur,[side*.28,.3,.47],[.23,.065,.06],head);brow.rotation.z=-side*.14;
-  const tooth=box(white,[side*.077,-.44,.66],[.145,.27,.11],head);tooth.rotation.x=-.12;
-  // Rounded rectangular glasses with an open lens, preserving the bright eyes.
-  tube([[side*.06,.29,.65],[side*.45,.29,.6],[side*.48,.23,.59],[side*.45,-.07,.64],[side*.06,-.07,.69],[side*.04,.05,.69],[side*.06,.29,.65]],.027,dark,head);
-  tube([[side*.47,.23,.59],[side*.61,.26,.21],[side*.57,.26,-.2]],.027,dark,head);
-  tube([[side*.58,.26,.18],[side*.6,.26,.35]],.022,cyan,head);
- }
- tube([[-.05,.18,.69],[0,.21,.72],[.05,.18,.69]],.025,dark,head);
- ball(black,[0,-.12,.79],[.135,.1,.09],head);ball(silver,[-.035,-.086,.87],[.035,.014,.008],head);
- // Circular workbench and a three-stage architecture assembled at Boro's hand.
- const platform=mesh(new THREE.CylinderGeometry(2.9,3,.14,80),dark,[.15,.02,0],[1,1,1]);
- ring(2.84,.013,cyan,[.15,.11,0],[Math.PI/2,0,0]);
- const gridMat=new THREE.LineBasicMaterial({color:0x345065,transparent:true,opacity:.45});
- for(let i=-5;i<=5;i++){tube([[-2,.102,i*.42],[2.3,.102,i*.42]],.005,gridMat);tube([[i*.42,.102,-2],[i*.42,.102,2]],.005,gridMat)}
- const blocks=[];
- const blocksMat=new THREE.MeshPhysicalMaterial({color:0x41869a,metalness:.55,roughness:.24,transparent:true,opacity:.84,clearcoat:1});
- const targets=[[.82,.39,.35],[1.47,.39,.35],[2.12,.39,.35],[.82,.39,-.3],[1.47,.39,-.3],[2.12,.39,-.3],[.82,1.02,.35],[1.47,1.02,.35],[2.12,1.02,.35],[1.47,1.65,.35],[1.47,1.02,-.3]];
- targets.forEach((p,i)=>{
-  const g=new THREE.Group();world.add(g);box(blocksMat,[0,0,0],[.55,.55,.55],g);
-  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(.56,.56,.56)),new THREE.LineBasicMaterial({color:0x78ebff,transparent:true,opacity:.7}));g.add(edges);
-  const loose=new THREE.Vector3(.6+(i%3)*.7,.42+Math.floor(i/3)*.6,-.4+(i%2)*.5);
-  blocks.push({g,target:new THREE.Vector3(...p),loose,index:i});
- });
- const sparks=[];for(let i=0;i<12;i++){const o=ball(cyan,[0,0,0],[.025,.025,.025]);sparks.push(o)}
- const ringTool=ring(.25,.015,cyan,[.1,1.3,.6],[0,0,0]);
- let dragging=false,px=0;
- renderer.domElement.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'||e.isPrimary){dragging=true;px=e.clientX;renderer.domElement.setPointerCapture(e.pointerId)}});
- renderer.domElement.addEventListener('pointermove',e=>{if(!dragging)return;angleGoal+=(e.clientX-px)*.006;angleGoal=THREE.MathUtils.clamp(angleGoal,-1.2,1.2);px=e.clientX;request()});
- renderer.domElement.addEventListener('pointerup',()=>dragging=false);renderer.domElement.addEventListener('pointercancel',()=>dragging=false);
- function selectStage(next){stage=next;document.querySelectorAll('[data-build]').forEach(t=>{const active=Number(t.dataset.build)===stage;t.classList.toggle('active',active);t.setAttribute('aria-pressed',String(active))});document.querySelector('#scene-caption').textContent=captions[stage];if(paused)build=stage}
- document.querySelectorAll('[data-build]').forEach(b=>b.addEventListener('click',()=>{manualUntil=phase+24;selectStage(Number(b.dataset.build));request()}));
- function resize(){const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.position.set(4.6,3.2,camera.aspect<.9?10.8:8.9);camera.lookAt(.1,1.27,0);camera.updateProjectionMatrix();request()}
- function render(t){frame=0;if(failed||!visible||document.hidden)return;const dt=Math.min((t-last)/1000||.016,.05);last=t;if(!paused){phase+=dt;if(phase> manualUntil){const automatic=Math.floor(phase/6)%3;if(automatic!==stage)selectStage(automatic)}build+=(stage-build)*Math.min(1,dt*3)}angle+=(angleGoal-angle)*.12;world.rotation.y=angle;
-  boro.position.y=paused?0:Math.sin(phase*1.8)*.018;head.rotation.y=paused?.07:Math.sin(phase*.6)*.1+.07;
-  arms[0].rotation.z=-.12;arms[1].rotation.z=.9+Math.sin(phase*2.5)*.12;arms[1].rotation.x=-.35;arms[0].rotation.x=Math.sin(phase*1.7)*.045;
-  blocks.forEach(({g,target,loose,index})=>{const assemble=THREE.MathUtils.smoothstep(build,1,2);g.position.lerpVectors(loose,target,assemble);const active=build<.02?index===0:index<Math.ceil(1+build*5);g.visible=active;g.scale.setScalar(Math.min(1,Math.max(.05,1+build*5-index)));if(build<1.8&&!paused){g.position.y+=Math.sin(phase*1.5+index)*.05;g.rotation.y=Math.sin(phase*.7+index)*.07*(1-assemble)}else g.rotation.y=0;});
-  sparks.forEach((o,i)=>{o.visible=stage>0&&!paused;const k=(phase*.4+i/12)%1;o.position.set(.05+k*1.5,1.3+Math.sin(k*Math.PI)*.6,.5+Math.sin(i)*.1);o.scale.setScalar(.015+Math.sin(k*Math.PI)*.018)});
-  ringTool.visible=stage>0;ringTool.rotation.z=phase;renderer.render(scene,camera);host.dataset.frames=String(Number(host.dataset.frames||0)+1);host.dataset.stage=String(stage);host.dataset.build=build.toFixed(2);if(!paused||Math.abs(angle-angleGoal)>.001)request();
- }
- function request(){if(!frame&&!failed&&visible&&!document.hidden)frame=requestAnimationFrame(render)}
- motion.addEventListener('click',()=>{paused=!paused;button();request()});reduced.addEventListener('change',e=>{paused=e.matches;button();request()});
- new ResizeObserver(resize).observe(host);new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible){last=performance.now();request()}else{cancelAnimationFrame(frame);frame=0}},{rootMargin:'60px'}).observe(visual);
- document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0}else{last=performance.now();request()}});
- renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();fallback()});document.body.classList.add('has-webgl');resize();
-} catch(error){fallback()}
+  renderer = new THREE.WebGLRenderer({alpha:true, antialias:true, powerPreference:'low-power'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  host.appendChild(renderer.domElement); renderer.domElement.setAttribute('aria-hidden','true');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(34, 1, .1, 60);
+  const world = new THREE.Group(); scene.add(world);
+  scene.add(new THREE.HemisphereLight(0xc8edff,0x132033,2));
+  const light = new THREE.DirectionalLight(0xa0eaff,3);light.position.set(2,5,6);scene.add(light);
+  const cyan = new THREE.MeshBasicMaterial({color:0x8be8f5});
+  const dim = new THREE.MeshBasicMaterial({color:0x285264});
+  const nodeGeometry = new THREE.SphereGeometry(.036,8,6);
+  const vector = (x,y,z) => new THREE.Vector3(x,y,z);
+  function line(points, color, opacity, parent=world) {
+    const g = new THREE.BufferGeometry().setFromPoints(points);
+    const l = new THREE.Line(g,new THREE.LineBasicMaterial({color,transparent:true,opacity}));parent.add(l);return l;
+  }
+  function ring(radius,y,opacity) {
+    const pts = Array.from({length:97},(_,i)=>vector(Math.cos(i/96*Math.PI*2)*radius,y,Math.sin(i/96*Math.PI*2)*radius*.65));
+    return line(pts,0x64dfee,opacity);
+  }
+  // Character is an identity-preserving rendered cutout; brain and connections are live 3D geometry.
+  // Keep it facing the viewer during orbit; never present this asset as a skeletal 3D rig.
+  const character = new THREE.Group();scene.add(character);
+  const texture = new THREE.TextureLoader().load('./assets/boro-constructor.png',()=>{host.dataset.character='loaded';request()},undefined,()=>fallback());
+  texture.colorSpace=THREE.SRGBColorSpace;
+  const beaver = new THREE.Mesh(new THREE.PlaneGeometry(5.7,3.8),new THREE.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false,side:THREE.DoubleSide}));
+  beaver.position.set(-1.55,1.95,.65); character.add(beaver);
+  // Elliptical workbench, a holographic construction plane and the two brain hemispheres.
+  const base = new THREE.Mesh(new THREE.CylinderGeometry(3.25,3.32,.1,80),new THREE.MeshStandardMaterial({color:0x0b1925,metalness:.7,roughness:.45}));
+  base.position.set(0,-.06,0);world.add(base);
+  ring(3.22,.01,.7); ring(2.95,.015,.16);
+  for(let i=-6;i<=6;i++) {
+    const z=i*.42,half=Math.sqrt(Math.max(0,8.6-z*z));
+    line([vector(-half,.02,z*.65),vector(half,.02,z*.65)],0x345363,.23);
+  }
+  const brain = new THREE.Group();brain.position.set(1.12,2.28,0);world.add(brain);
+  const nodes=[],connections=[],folds=[];
+  // Lobed closed surface, split at the longitudinal fissure. Nodes assemble from the hand.
+  function brainPoint(side,u,v) {
+    const r=1+.065*Math.sin(u*7+v*2)+.04*Math.cos(v*9-u*3);
+    return vector(side*(.19+.56*Math.sin(v)*Math.cos(u)*r),.88*Math.cos(v)*r,.69*Math.sin(v)*Math.sin(u)*r);
+  }
+  for(const side of [-1,1]) {
+    const shellGeometry = new THREE.SphereGeometry(1,40,28);
+    const positions=shellGeometry.attributes.position;
+    for(let i=0;i<positions.count;i++) {
+      const x=positions.getX(i),y=positions.getY(i),z=positions.getZ(i);
+      const r=1+.055*Math.sin(y*18+z*8)+.035*Math.sin(x*15-z*12);
+      positions.setXYZ(i,x*.53*r+side*.38,y*.84*r,z*.7*r);
+    }
+    shellGeometry.computeVertexNormals();
+    const shell=new THREE.Mesh(shellGeometry,new THREE.MeshPhysicalMaterial({color:0x23667c,metalness:.3,roughness:.3,transparent:true,opacity:.34,depthWrite:false,side:THREE.DoubleSide}));
+    brain.add(shell);
+    // Convolutions: curved gyri wrap both lobes, with deliberately irregular paths.
+    for(let row=0;row<10;row++) {
+      const v=.2+row/9*2.7;
+      const pts=Array.from({length:65},(_,k)=>{
+        const u=k/64*Math.PI*2;
+        const p=brainPoint(side,u,v+.11*Math.sin(u*5+row));p.x+=side*.2;return p;
+      });
+      const curve=new THREE.CatmullRomCurve3(pts);
+      const fold=new THREE.Mesh(new THREE.TubeGeometry(curve,64,.014,4,false),new THREE.MeshBasicMaterial({color:row%3===0?0xabe7ee:0x418fa9,transparent:true,opacity:.65}));
+      brain.add(fold);folds.push(fold);
+    }
+    for(let j=0;j<48;j++) {
+      const u=j*2.39996,v=Math.acos(1-2*(j+.5)/48);
+      const target=brainPoint(side,u,v);target.x+=side*.2;
+      const mesh=new THREE.Mesh(nodeGeometry,cyan.clone());brain.add(mesh);
+      nodes.push({mesh,target,region:Math.floor(j/8),index:nodes.length});
+    }
+  }
+  // Nearby neural paths rather than an unreadable all-to-all mesh.
+  nodes.forEach((a,i)=>nodes.forEach((b,j)=>{
+    if(j<=i||a.target.distanceTo(b.target)>.48||j%2!==i%2)return;
+    const l=line([a.target,b.target],0x75d7ef,.25,brain);connections.push({line:l,region:a.region});
+  }));
+  const stem=new THREE.Mesh(new THREE.CylinderGeometry(.11,.07,.48,12),new THREE.MeshBasicMaterial({color:0x387d91,transparent:true,opacity:.65}));
+  stem.position.set(0,-.94,-.06);stem.rotation.x=-.3;brain.add(stem);
+  const orbit=new THREE.Group();orbit.position.copy(brain.position);world.add(orbit);
+  for(let j=0;j<2;j++) {
+    const pts=Array.from({length:97},(_,i)=>vector(Math.cos(i/96*Math.PI*2)*(1.35+j*.15),0,Math.sin(i/96*Math.PI*2)*(1.05+j*.1)));
+    const r=line(pts,0x6fe1ef,.32,orbit);r.rotation.z=j?.2:-.18;r.rotation.x=j?.25:-.25;
+  }
+  // Three floating output cards, using crisp CanvasTexture labels, change with each capability.
+  const cards=[];
+  function cardTexture(label,index) {
+    const canvas=document.createElement('canvas');canvas.width=512;canvas.height=176;
+    const ctx=canvas.getContext('2d');ctx.fillStyle='#0c202e';ctx.fillRect(0,0,512,176);
+    ctx.strokeStyle='#426d80';ctx.lineWidth=3;ctx.strokeRect(2,2,508,172);
+    ctx.fillStyle='#73e6f8';ctx.fillRect(26,30,6,30);ctx.font='500 26px Inter, sans-serif';ctx.fillText('0'+(index+1),52,54);
+    ctx.fillStyle='#f1f6fa';ctx.font='600 42px Inter, sans-serif';ctx.fillText(label,26,124,460);
+    const tex=new THREE.CanvasTexture(canvas);tex.colorSpace=THREE.SRGBColorSpace;return tex;
+  }
+  const cardPositions=[vector(.15,3.61,.1),vector(2.32,3.31,.05),vector(2.45,1.1,.65)];
+  cardPositions.forEach((p,i)=>{
+    const m=new THREE.Mesh(new THREE.PlaneGeometry(1.45,.5),new THREE.MeshBasicMaterial({map:cardTexture(capabilities[0].cards[i],i),transparent:true}));
+    m.position.copy(p);world.add(m);cards.push(m);
+    line([vector(1.12,2.28,0),p],0x4d91a3,.25);
+  });
+  updateCards=c=>cards.forEach((card,i)=>{card.material.map.dispose();card.material.map=cardTexture(c.cards[i],i);card.material.needsUpdate=true});
+  document.fonts.ready.then(()=>{if(!failed){updateCards(capabilities[stage]);request()}});
+  const sparks=Array.from({length:18},()=>{const m=new THREE.Mesh(nodeGeometry,cyan);scene.add(m);return m});
+  const hand=vector(.18,2.36,.8),destination=vector(1.12,2.28,0);
+  const toolCurve=new THREE.CatmullRomCurve3([hand,vector(.6,2.65,.6),destination]);
+  const beam=line(toolCurve.getPoints(40),0x85ecff,.5,scene);
+  let dragging=false,px=0;
+  renderer.domElement.addEventListener('pointerdown',e=>{dragging=true;px=e.clientX;renderer.domElement.setPointerCapture(e.pointerId)});
+  renderer.domElement.addEventListener('pointermove',e=>{if(dragging){angleGoal=THREE.MathUtils.clamp(angleGoal+(e.clientX-px)*.005,-.45,.45);px=e.clientX;request()}});
+  for(const event of ['pointerup','pointercancel'])renderer.domElement.addEventListener(event,()=>dragging=false);
+  function resize() {
+    const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;
+    camera.position.set(0,3.35,camera.aspect<1?14.2:9.8);camera.lookAt(0,1.95,0);camera.updateProjectionMatrix();
+    beaver.position.x=camera.aspect<1?-1:-1.55;
+    beaver.scale.setScalar(camera.aspect<1?.9:1);
+    cards.forEach(card=>card.visible=w>540);request();
+  }
+  function render(t) {
+    frame=0;if(failed||!visible||document.hidden)return;
+    // RAF timestamps can precede an observer callback in the same frame.
+    const dt=Math.max(0,Math.min((t-last)/1000||.016,.05));last=t;
+    if(!paused){phase+=dt;if(phase>=manualUntil&&phase-stageAt>=7)selectStage((stage+1)%6)}
+    angle+=(angleGoal-angle)*.13;world.rotation.y=angle;
+    const elapsed=phase-stageAt;
+    const assembled=paused?1:Math.min(1,elapsed/2.7);
+    brain.rotation.y=angle*.2+Math.sin(phase*.2)*.14;
+    brain.position.y=2.28+(paused?0:Math.sin(phase*.8)*.025);
+    beaver.quaternion.copy(camera.quaternion);
+    beaver.position.y=(camera.aspect<1?1.78:1.95)+(paused?0:Math.sin(phase*1.1)*.018);
+    beaver.rotation.z=paused?0:Math.sin(phase*.65)*.007;
+    nodes.forEach(({mesh,target,region,index})=>{
+      const current=region===stage;
+      const a=current?THREE.MathUtils.smoothstep(assembled, (index%8)/16, .65+(index%8)/24):1;
+      mesh.position.lerpVectors(vector(-.85,.02,.8),target,a);
+      mesh.scale.setScalar(current?1.6+Math.sin(phase*2+index)*.18:.75);
+      mesh.material.color.setHex(current?0xc2f5ff:0x3e7b90);
+    });
+    folds.forEach((fold,i)=>{fold.material.opacity=.28+(i%6===stage?.5:.12)});
+    connections.forEach(c=>c.line.material.opacity=c.region===stage?.65:.12);
+    cards.forEach((card,i)=>{card.quaternion.copy(camera.quaternion);card.position.y=cardPositions[i].y+(paused?0:Math.sin(phase*.65+i)*.035)});
+    sparks.forEach((spark,i)=>{const k=(phase*.42+i/18)%1;spark.position.copy(toolCurve.getPoint(k));spark.scale.setScalar(.5+Math.sin(k*Math.PI)*.6);spark.visible=!paused});
+    beam.material.opacity=paused?.18:.3+Math.sin(phase*2)*.14;
+    renderer.render(scene,camera);
+    host.dataset.frames=String(Number(host.dataset.frames||0)+1);host.dataset.build=assembled.toFixed(2);host.dataset.angle=angle.toFixed(3);
+    if(!paused||Math.abs(angleGoal-angle)>.001)request();
+  }
+  request=()=>{if(!frame&&!failed&&visible&&!document.hidden)frame=requestAnimationFrame(render)};
+  motion.addEventListener('click',()=>{paused=!paused;syncButton();request()});
+  reduced.addEventListener('change',e=>{paused=e.matches;syncButton();request()});
+  new ResizeObserver(resize).observe(host);
+  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible){last=performance.now();request()}else{cancelAnimationFrame(frame);frame=0}},{rootMargin:'40px'}).observe(visual);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0}else{last=performance.now();request()}});
+  renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();fallback()});
+  document.body.classList.add('has-webgl');selectStage(0);resize();
+} catch(error) { fallback(); }
