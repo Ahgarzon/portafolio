@@ -5,12 +5,78 @@ const visual = document.querySelector('.visual');
 const motion = document.querySelector('#motion');
 const reduced = matchMedia('(prefers-reduced-motion:reduce)');
 const capabilities = [
-  {name:'MEMORIA', short:'Ideas → contexto', request:'“Retomemos la idea que te conté ayer”.', result:'Notas, decisiones y pendientes conectados para continuar con contexto.', caption:'Conecta lo que importa.', cards:['IDEA GUARDADA','DECISIONES','PRÓXIMO PASO']},
-  {name:'BÚSQUEDA', short:'Pregunta → fuentes', request:'“Encuentra lo que acordamos para este proyecto”.', result:'Recupera el contexto autorizado y contrasta información actual con sus fuentes.', caption:'Encuentra la conexión correcta.', cards:['TU PREGUNTA','CONTEXTO','FUENTES']},
-  {name:'DOCUMENTOS', short:'Petición → propuesta', request:'“Prepara una propuesta con estas notas”.', result:'Organiza el contenido y prepara un Word, Excel o PDF para que lo revises.', caption:'Convierte conocimiento en un entregable.', cards:['TUS NOTAS','BORRADOR','TU REVISIÓN']},
-  {name:'ARCHIVOS', short:'Archivo → respuesta', request:'“Resume este PDF y muéstrame las páginas clave”.', result:'Consulta tus archivos con referencias. Una lectura parcial se señala como tal.', caption:'Cada respuesta conserva su origen.', cards:['DOCUMENTO','PÁGINAS CLAVE','RESPUESTA']},
-  {name:'COMPUTADOR', short:'Permiso → acción', request:'“Abre la carpeta del proyecto en mi computador”.', result:'Apoya acciones autorizadas en tu PC cuando está encendido, conectado y configurado.', caption:'Tu autorización conecta con la acción.', cards:['TU PERMISO','PC CONECTADO','ACCIÓN']},
-  {name:'PROCESOS', short:'Herramientas → resultado', request:'“Conecta estas herramientas para dar seguimiento”.', result:'Diseña flujos a medida, con permisos, pruebas y revisión humana antes de acciones sensibles.', caption:'Las piezas trabajan juntas.', cards:['HERRAMIENTAS','PROCESO','RESULTADO']}
+  {
+    "name": "MEMORIA",
+    "short": "Pendiente → aviso",
+    "request": "“Recuérdame mañana enviar la propuesta y guarda esta idea”.",
+    "result": "Organiza el contexto del proyecto y programa el aviso para que puedas continuar a tiempo.",
+    "caption": "Tus pendientes tienen un próximo paso.",
+    "cards": [
+      "TU IDEA",
+      "RECORDATORIO",
+      "SEGUIMIENTO"
+    ]
+  },
+  {
+    "name": "PÁGINAS WEB",
+    "short": "Idea → página web",
+    "request": "“Crea una página para mi negocio con mis servicios y contacto”.",
+    "result": "Construye el diseño, los textos y la página; la revisas y autorizas su publicación.",
+    "caption": "Tu idea encuentra su lugar en la web.",
+    "cards": [
+      "TU NEGOCIO",
+      "TU PÁGINA",
+      "PUBLICACIÓN"
+    ]
+  },
+  {
+    "name": "DOCUMENTOS",
+    "short": "Notas → entregable",
+    "request": "“Arma la propuesta, la presentación y el Excel de este proyecto”.",
+    "result": "Usa tus notas y archivos para crear entregables que puedas revisar, editar y compartir.",
+    "caption": "Del conocimiento al trabajo entregado.",
+    "cards": [
+      "TUS ARCHIVOS",
+      "PROPUESTA",
+      "ENTREGABLES"
+    ]
+  },
+  {
+    "name": "CAMPAÑAS",
+    "short": "Oferta → campaña",
+    "request": "“Prepara una campaña para dar a conocer mi negocio”.",
+    "result": "Define contigo el mensaje y las piezas, y ayuda a configurar la campaña en tu cuenta conectada. Tú apruebas el gasto.",
+    "caption": "Dale visibilidad a lo que construyes.",
+    "cards": [
+      "TU OFERTA",
+      "CONTENIDO",
+      "CAMPAÑA"
+    ]
+  },
+  {
+    "name": "COMPUTADOR",
+    "short": "Objetivo → tarea hecha",
+    "request": "“Prepara mi PC y las herramientas para trabajar en este proyecto”.",
+    "result": "Configura el entorno, organiza archivos y ejecuta pasos autorizados en tu computador encendido y conectado.",
+    "caption": "De abrir un programa a completar el trabajo.",
+    "cards": [
+      "TU OBJETIVO",
+      "HERRAMIENTAS",
+      "TAREA HECHA"
+    ]
+  },
+  {
+    "name": "AUTOMATIZACIÓN",
+    "short": "Rutina → flujo",
+    "request": "“Registra cada solicitud y recuérdame hacer seguimiento”.",
+    "result": "Conecta el formulario, la hoja de cálculo y los avisos; prueba contigo el flujo antes de activarlo.",
+    "caption": "Las tareas repetitivas encuentran su ritmo.",
+    "cards": [
+      "SOLICITUD",
+      "REGISTRO",
+      "AVISO"
+    ]
+  }
 ];
 let paused = reduced.matches, visible = false, failed = false, frame = 0;
 let phase = 0, last = 0, stage = 0, stageAt = 0, manualUntil = 0, angle = 0, angleGoal = 0;

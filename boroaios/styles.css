@@ -47,3 +47,6 @@
 
 .scene-outputs{display:none;position:absolute;left:16px;right:16px;bottom:55px;gap:6px;grid-template-columns:repeat(3,1fr);pointer-events:none}.scene-outputs span{padding:8px 4px;text-align:center;border:1px solid #426d80;background:#0c202eee;font-size:9.5px;letter-spacing:.01em;color:#d8edf4;border-radius:4px}
 @media(max-width:760px){.workshop .visual{height:430px}.scene-outputs{display:grid}}
+
+/* Keep the expanded plan name readable on small screens. */
+.plan{min-width:0}.plan-audience{display:block;font-size:clamp(22px,3vw,32px);line-height:1.3}
