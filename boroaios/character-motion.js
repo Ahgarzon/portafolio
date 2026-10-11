@@ -14,10 +14,10 @@ export function poseAt(time, elapsed) {
   const reach = ramp(cycle, .5, 1.8) * (1 - ramp(cycle, 4.4, 6.5));
   const place = ramp(cycle, 1.8, 2.7) * (1 - ramp(cycle, 3.2, 4.5));
   return {
-    arm: .07 - reach * .29 + Math.sin(time * 1.7) * .025,
-    forearm: -.04 - place * .16,
-    head: Math.sin(time * .95) * .025 + reach * .025,
-    tail: Math.sin(time * 1.2) * .095,
+    arm: .07 - reach * .42 + Math.sin(time * 1.7) * .025,
+    forearm: -.04 - place * .23,
+    head: Math.sin(time * .95) * .035 + reach * .035,
+    tail: Math.sin(time * 1.2) * .13,
     leftArm: Math.sin(time * 1.4 + .6) * .035,
     breath: Math.sin(time * 1.9) * .004,
     reach, place, cycle,

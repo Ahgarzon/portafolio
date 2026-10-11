@@ -1,16 +1,18 @@
 import * as THREE from './assets/three.module.min.js';
-import { BUILD_SECONDS, poseAt, deformPoint } from './character-motion.js?v=builder2';
+import { BUILD_SECONDS, poseAt, deformPoint } from './character-motion.js?v=constructor3-20261011';
 
 const host = document.querySelector('#scene');
 const visual = document.querySelector('.visual');
 const motion = document.querySelector('#motion');
+const replay = document.querySelector('#replay-build');
+host.dataset.release = 'constructor3-20261011';
 const reduced = matchMedia('(prefers-reduced-motion:reduce)');
 const capabilities = [
   {
     "name": "MEMORIA",
     "short": "Pendiente → aviso",
-    "request": "“Recuérdame mañana enviar la propuesta y guarda esta idea”.",
-    "result": "Organiza el contexto del proyecto y programa el aviso para que puedas continuar a tiempo.",
+    "request": "“Recuérdame la cita de mañana y guarda esta idea”.",
+    "result": "Guarda lo que quieres retomar y programa el aviso con la fecha que confirmes.",
     "caption": "Tus pendientes tienen un próximo paso.",
     "cards": [
       "TU IDEA",
@@ -110,7 +112,7 @@ function fallback() {
   failed = true; cancelAnimationFrame(frame); frame = 0;
   document.body.classList.remove('has-webgl');
   document.querySelector('.fallback-note').hidden = false;
-  host.querySelector('canvas')?.remove(); motion.hidden = true;
+  host.querySelector('canvas')?.remove(); motion.hidden = true; replay.hidden = true;
   host.dataset.status = 'static';
   document.querySelector('#builder-action').textContent='Vista estática de Boro';
 }
@@ -316,7 +318,10 @@ try {
     const beamPositions=beam.geometry.attributes.position;
     for(let i=0;i<beamPositions.count;i++){curvePoint(i/(beamPositions.count-1),handLocal);beamPositions.setXYZ(i,handLocal.x,handLocal.y,handLocal.z)}
     beamPositions.needsUpdate=true;beam.material.opacity=building?.22+pose.place*.3:.05;
-    idea.position.copy(hand);idea.position.y+=.09;idea.rotation.set(phase*.6,phase,0);idea.scale.setScalar(.8+pose.place*.8);idea.visible=pose.cycle<4.4;
+    // A visible construction piece travels from the actual palm into the brain.
+    const transfer=THREE.MathUtils.smoothstep(pose.cycle,2.2,4.4);
+    curvePoint(transfer,idea.position);idea.position.y+=.09*(1-transfer);
+    idea.rotation.set(phase*.6,phase,0);idea.scale.setScalar((1.2+pose.place*.8)*(1-transfer*.45));idea.visible=pose.cycle<4.4;
     handRing.position.copy(hand);handRing.quaternion.copy(camera.quaternion);handRing.scale.setScalar(1+pose.place*.6);handRing.material.opacity=.3+pose.reach*.4;
     floorPulse.scale.setScalar(.8+(phase*.32)%2.3);floorPulse.material.opacity=.35*(1-((phase*.32)%2.3)/2.3);
     floorCore.material.opacity=.35+pose.place*.55;
@@ -328,10 +333,12 @@ try {
     host.dataset.pose=[pose.arm,pose.head,pose.tail].map(x=>x.toFixed(3)).join(',');
     host.dataset.hand=[hand.x,hand.y,hand.z].map(x=>x.toFixed(3)).join(',');host.dataset.status=paused?'paused':'animating';
     host.dataset.drawCalls=String(renderer.info.render.calls);
+    host.dataset.cycle=pose.cycle.toFixed(2);host.dataset.transfer=transfer.toFixed(2);
     if(!paused||Math.abs(angleGoal-angle)>.001)request();
   }
   request=()=>{if(!frame&&!failed&&visible&&!document.hidden)frame=requestAnimationFrame(render)};
   motion.addEventListener('click',()=>{paused=!paused;syncButton();request()});
+  replay.addEventListener('click',()=>{paused=false;manualUntil=phase+BUILD_SECONDS;selectStage(stage);syncButton();last=performance.now();request()});
   reduced.addEventListener('change',e=>{paused=e.matches;syncButton();request()});
   new ResizeObserver(resize).observe(host);
   new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible){last=performance.now();request()}else{cancelAnimationFrame(frame);frame=0}},{rootMargin:'40px'}).observe(visual);

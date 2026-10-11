@@ -17,6 +17,16 @@ for(const width of [360,390,768,1440]){
   const page=await browser.newPage({viewport:{width,height:width>1000?1000:844},deviceScaleFactor:1,hasTouch:width<800});
   page.on('pageerror',e=>report.errors.push(String(e)));page.on('response',r=>{if(r.status()>=400)report.errors.push(r.status()+' '+r.url())});
   await page.goto(base,{waitUntil:'networkidle'});await settle(page);
+  await check(width+' published release, replay and clearly articulated reach',async()=>{
+    assert.equal((await state(page)).release,'constructor3-20261011');
+    await page.locator('#motion').click();await page.waitForTimeout(150);
+    await page.locator('#replay-build').click();await page.waitForFunction(()=>Number(document.querySelector('#scene').dataset.cycle)<.5);
+    const a=await state(page);
+    await page.waitForFunction(()=>Number(document.querySelector('#scene').dataset.cycle)>2.7);
+    const b=await state(page);
+    assert.equal(b.status,'animating');assert.ok(Math.abs(Number(b.pose.split(',')[0])-Number(a.pose.split(',')[0]))>.25);
+    assert.ok(Number(b.transfer)>0);assert.ok((await page.locator('#replay-build').boundingBox()).height>=44);
+  });
   await check(width+' autonomous mascot, palm and brain motion',async()=>{
     const a=await state(page),imA=await page.locator('#scene canvas').screenshot();await page.waitForFunction(()=>Number(document.querySelector('#scene').dataset.build)>.2,{},{timeout:30000});
     const b=await state(page),imB=await page.locator('#scene canvas').screenshot();
@@ -50,7 +60,8 @@ for(const width of [360,390,768,1440]){
     }
   });
   await check(width+' examples, plan and contact only prepare a message',async()=>{
-    for(const key of ['web','campana','rutina']){await page.locator('[data-example="'+key+'"]').click();assert.equal(await page.locator('[data-example="'+key+'"]').getAttribute('aria-selected'),'true')}
+    for(const key of ['dia','web','campana','rutina']){await page.locator('[data-example="'+key+'"]').click();assert.equal(await page.locator('[data-example="'+key+'"]').getAttribute('aria-selected'),'true')}
+    await page.locator('[data-example="dia"]').click();assert.match(await page.locator('#example-request').innerText(),/recuérdame lo importante/);
     await page.locator('[data-example="web"]').click();assert.match(await page.locator('#example-request').innerText(),/aplicación/);
     await page.locator('[data-plan="Personal / Emprendedores"]').click();assert.equal(await page.locator('#plan').inputValue(),'Personal / Emprendedores');
     await page.evaluate(()=>{window.open=url=>{window.__preparedURL=url;return null}});

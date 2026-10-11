@@ -5,7 +5,7 @@ import {poseAt, deformPoint, BUILD_SECONDS} from '../character-motion.js';
 test('palm moves independently while both boots stay on the ground',()=>{
   const a=poseAt(.2,.2),b=poseAt(3,3);
   const handA=deformPoint(.752,.353,a),handB=deformPoint(.752,.353,b);
-  assert.ok(Math.hypot(handA.x-handB.x,handA.y-handB.y)>.04);
+  assert.ok(Math.hypot(handA.x-handB.x,handA.y-handB.y)>.08,'deliberate reach is visibly different from the resting pose');
   for(const [x,y] of [[.35,.94],[.60,.91]]){
     const p=deformPoint(x,y,b);assert.ok(Math.hypot(p.x-x,p.y-y)<.00001);
   }

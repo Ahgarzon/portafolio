@@ -20,3 +20,5 @@ function setTicker(){ticker.classList.toggle('is-paused',tickerPaused);tickerBut
 tickerButton.addEventListener('click',()=>{tickerPaused=!tickerPaused;if(tickerReduced.matches){ticker.querySelector('.ticker-track').style.animation=tickerPaused?'none':'ticker-left 42s linear infinite';}setTicker()});
 tickerReduced.addEventListener('change',()=>{tickerPaused=tickerReduced.matches;ticker.querySelector('.ticker-track').style.animation='';setTicker()});
 document.addEventListener('visibilitychange',()=>{ticker.querySelector('.ticker-track').style.animationPlayState=document.hidden||tickerPaused?'paused':'running'});setTicker();
+// Everyday use is a first-class example, not a niche or a software-only offer.
+examples.dia={request:'“Tengo varias cosas en la cabeza. Ayúdame a ordenarlas y recuérdame lo importante”.',steps:['Te ayuda a separar ideas, pendientes y compromisos.','Organiza contigo qué hacer primero y guarda lo que quieres retomar.','Programa los recordatorios con las fechas que confirmes.'],limit:'Tú eliges qué guardar y confirmas las fechas. Las notificaciones necesitan estar habilitadas en tus dispositivos.'};

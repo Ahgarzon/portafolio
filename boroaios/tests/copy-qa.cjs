@@ -1,0 +1,14 @@
+const fs=require('node:fs'),assert=require('node:assert/strict');
+const html=fs.readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8');
+assert.match(html,/Las grandes<br>ideas merecen<br><em>construirse\.<\/em>/);
+assert.match(html,/MUCHO GUSTO\. SOY BORO\./);
+assert.match(html,/Curioso por naturaleza\.<br><span>Constructor por elección\.<\/span>/);
+const hero=html.split('class="hero-copy"')[1].split('class="hero-art"')[0];
+assert.match(hero,/asistente personal con inteligencia artificial/);
+assert.match(hero,/Habla o escribe/);
+assert.match(hero,/Recuerda lo importante/);
+assert.ok(!/Una web, una aplicación, una campaña/.test(hero),'value before the tool catalogue');
+assert.match(html,/data-example="dia"/);
+assert.match(html,/¿Para qué puedo usar Boro\?/);
+assert.match(html,/data-boro-release="constructor3-20261011"/);
+console.log('PASS preserved brand, everyday value, voice/text, broad audience and release marker');
