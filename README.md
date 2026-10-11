@@ -28,3 +28,7 @@ Open `http://localhost:8000/?enfoque=perfil` for the professional journey, or `h
 This repository contains personal portfolio material. Project demonstrations, pilots, academic work and professional experience have different scopes; consult the linked engineering cases for those distinctions. Portraits and project media are presentation assets, not generic stock assets.
 
 For professional opportunities: [LinkedIn](https://www.linkedin.com/in/angel-garz%C3%B3n-sarzosa-334014337/) · [Email](mailto:angelgarzonsarzosa@gmail.com).
+
+## Boro AIOS
+
+[Boro AIOS](https://angelszs.site/boroaios/) lives in `boroaios/`. The previous `/jarvis3d/` URL redirects here; its media remain available for existing shared links.
