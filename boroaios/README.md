@@ -1,6 +1,6 @@
 # Boro AIOS — de la idea a la acción
 
-Public presentation: https://angelszs.site/jarvis3d/. Renamed from Jarvis by Ángel on 2026-10-11; existing URL retained. Static HTML/CSS/JS; GitHub Pages publishes the portfolio repository.
+Public presentation: https://angelszs.site/boroaios/. Renamed from Jarvis by Ángel on 2026-10-11; old URL redirects to the new path. Static HTML/CSS/JS; GitHub Pages publishes the portfolio repository.
 
 ## Current experience
 
@@ -16,7 +16,7 @@ The animation illustrates possibilities; it does not execute tasks. Commercial s
 
 ## Validation and rollback
 
-Preview: `python3 -m http.server 8768` from repository root, open `/jarvis3d/`.
+Preview: `python3 -m http.server 8768` from repository root, open `/boroaios/`.
 
 Check at 360/390/768/1440 px: overflow, images, navigation, six capability buttons, automatic cycle, drag, pause, reduced motion, no-WebGL fallback, marquee direction and pause, computed text contrast, video playback, original example tabs and contact preparation without sending. Real Safari/iPhone remains a separate acceptance test.
 
