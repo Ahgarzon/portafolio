@@ -2,7 +2,9 @@
 
 Public presentation: https://angelszs.site/boroaios/. Renamed from Jarvis by Ángel on 2026-10-11; old URL redirects to the new path. Static HTML/CSS/JS; GitHub Pages publishes the portfolio repository.
 
-## Current experience — animated workstation V10
+## Current experience — animated workstation V11
+
+Release `constructor11-20261012` retains the corrected V10 character unchanged. The talking mouth now clones its material before enabling opacity: the source asset shares the former pupil material with the mouth, so hiding the redundant pupils had also hidden the mouth. Its bounded chin morph opens behind, not over, the two unchanged incisors. The public animation regression now checks actual material visibility in addition to the audio envelope. No model/voice-provider change or microphone capture.
 
 Release `constructor10-20261012` makes the scene itself the interaction. The large template form and rigid visitor are no longer mounted; their old modules remain only for rollback. Drag the real idea piece to the monitor (mouse/touch), activate it with a keyboard, touch Boro to greet or the monitor to build, or use the equivalent Construir/Saludar buttons. The native body/hand/head respond, and the brain builds inside the computer. A wider framing and darker workstation leave the character readable on phones.
 
