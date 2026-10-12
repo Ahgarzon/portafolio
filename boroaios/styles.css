@@ -102,3 +102,13 @@
 /* Final cascade: optional animation controls must remain legible on small phones. */
 .scene-replay-controls button{font-size:12px;min-height:48px}
 @media(max-width:760px){.scene-replay-controls button{font-size:12px;padding:8px 4px;line-height:1.35}.workshop .builder-action{top:118px}.idea-result textarea{min-height:130px}}
+
+/* V10: the animation is the interaction, not a separate template form. */
+.workshop .visual{height:620px;background:radial-gradient(ellipse at 48% 55%,#12313d55,transparent 70%)}
+.workshop #scene{top:98px;bottom:100px;left:0;right:0}
+.workshop .builder-action{top:76px;font-size:13px;max-width:90%}
+.scene-shortcuts{bottom:34px;gap:8px}.scene-shortcuts button{font-size:14px;padding:10px 8px;min-height:48px;background:#102532e8}
+.scene-shortcuts button:last-child{border-color:var(--accent);color:var(--accent)}
+.boro-open-app{display:inline-block;margin-top:12px;min-height:44px;line-height:44px;font-size:15px}
+.scene-help{font-size:15px;line-height:1.7}.scene-disclaimer{font-size:13px}
+@media(max-width:760px){.workshop .visual{height:590px}.workshop #scene{top:134px;bottom:100px}.workshop .builder-action{top:108px;left:16px;right:16px;max-width:none;font-size:12px}.scene-shortcuts{left:12px;right:12px}.scene-shortcuts button{font-size:13px;padding:10px 4px}.visual-top .scene-replay-controls button{font-size:12px}.build-controls{gap:0}.scene-help{font-size:15px}}

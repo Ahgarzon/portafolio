@@ -1,0 +1,2 @@
+export function samplesToEnvelope(samples,rate){const size=Math.max(1,Math.round(rate*.025)),out=new Float32Array(Math.ceil(samples.length/size));for(let i=0;i<out.length;i++){let sum=0,n=0;for(let k=i*size;k<Math.min(samples.length,(i+1)*size);k++){sum+=samples[k]*samples[k];n++}out[i]=Math.min(1,Math.max(0,(Math.sqrt(sum/Math.max(1,n))-.008)*12))}return {values:out,step:.025}}
+export function envelopeAt(envelope,time){if(!envelope||!Number.isFinite(time)||time<0)return 0;return envelope.values[Math.floor(time/envelope.step)]||0}

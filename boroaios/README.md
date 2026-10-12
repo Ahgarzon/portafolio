@@ -2,9 +2,19 @@
 
 Public presentation: https://angelszs.site/boroaios/. Renamed from Jarvis by Ángel on 2026-10-11; old URL redirects to the new path. Static HTML/CSS/JS; GitHub Pages publishes the portfolio repository.
 
-## Current experience — volumetric workstation V7
+## Current experience — animated workstation V10
 
-### Direct manipulation V9 (2026-10-12)
+Release `constructor10-20261012` makes the scene itself the interaction. The large template form and rigid visitor are no longer mounted; their old modules remain only for rollback. Drag the real idea piece to the monitor (mouse/touch), activate it with a keyboard, touch Boro to greet or the monitor to build, or use the equivalent Construir/Saludar buttons. The native body/hand/head respond, and the brain builds inside the computer. A wider framing and darker workstation leave the character readable on phones.
+
+Escuchar a Boro plays a generated male Spanish introduction only after a user gesture. Its actual decoded waveform drives the same native chin/mouth as the authenticated application. There is no microphone, recording, public AI request or private-owner session in this demonstration. Audio stops when the scene leaves the screen or the page is hidden; voice and six capability controls remain available without WebGL. The application link opens the separate authenticated Boro for actual conversations.
+
+V10 corrects the native eye surface as well as the previously added optics: local native protrusions are flattened, the duplicated cyan halo is subdued with vertex colors, and a dark pupil lives on the iris surface rather than intersecting reflective spheres. Textures, reference, glasses, body, skeleton and baked animation are preserved. `tools/soften-native-eyes.mjs` reproduces the change from immutable V7. No raster editing or different beaver. Visual inspection is not an assertion of pixel-exact fidelity or final owner acceptance.
+
+Additive head/wrist gestures restore the previous native pose before each mixer sample. Without that baseline, Three's unchanged-track optimisation let rotations accumulate into an unnatural pose. The new regression repeats a frozen pose 150 times at each width and checks it cannot drift. `tests/animation-qa.cjs` covers direct touch/mouse delivery, greeting, actual audio/mouth, pause/reduced motion, no mic requests and offscreen stop; `workstation-qa.cjs` retains native geometry/cavity/failure/retry coverage. `eyes-v10.test.mjs` protects skeleton, animation, textures and all non-eye buffers. Historical form tests below are not the V10 acceptance suite.
+
+### Previous direct manipulation V9
+
+#### Direct manipulation V9 (2026-10-12)
 
 Release `constructor9-20261012` integrates the published V8 visitor/plan without overwriting it. With an idea entered, the visitor's physical idea piece gains an accessible «Tu idea» handle. Drag it to the monitor with a mouse or touch, press Enter/Space on the handle, or use the form. Boro reuses his validated native gesture to receive it, transfer it into the monitor and build the brain. Checklist changes illuminate the corresponding four monitor markers and trigger a brief head response. The V7 character/eye GLB is unchanged.
 

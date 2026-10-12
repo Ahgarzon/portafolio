@@ -1,0 +1,5 @@
+import fs from 'node:fs/promises';
+const b=await fs.readFile(new URL('../assets/boro-workstation-v7.glb',import.meta.url)),size=b.readUInt32LE(12),j=JSON.parse(b.subarray(20,20+size)),bin=b.subarray(28+size),rows=[];
+function points(index){const a=j.accessors[index],v=j.bufferViews[a.bufferView],offset=(v.byteOffset||0)+(a.byteOffset||0),stride=v.byteStride||12;return Array.from({length:a.count},(_,i)=>[0,4,8].map(k=>bin.readFloatLE(offset+i*stride+k)))}
+for(const n of j.nodes){if(n.mesh===undefined)continue;for(const p of j.meshes[n.mesh].primitives){const pts=points(p.attributes.POSITION),min=[0,1,2].map(k=>Math.min(...pts.map(v=>v[k]))),max=[0,1,2].map(k=>Math.max(...pts.map(v=>v[k])));if(/eye|iris|pupil|spectacle|glass/i.test(n.name)||min[1]>2&&max[1]>2.5){rows.push({name:n.name,material:j.materials[p.material]?.name,min,max,vertices:pts.length,faceSamples:pts.filter(v=>Math.abs(v[0])>.07&&Math.abs(v[0])<.16&&v[1]>2.42&&v[1]<2.51).slice(0,5)})}}}
+console.log(JSON.stringify(rows,null,2));
