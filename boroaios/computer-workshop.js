@@ -4,8 +4,8 @@ import {mergeGeometries} from './assets/three-addons/utils/BufferGeometryUtils.j
 const V=(x=0,y=0,z=0)=>new THREE.Vector3(x,y,z);
 export function createComputerWorkshop(){
   const root=new THREE.Group(),computer=new THREE.Group();root.add(computer);
-  const graphite=new THREE.MeshStandardMaterial({color:0x243846,metalness:.35,roughness:.4});
-  const edge=new THREE.MeshStandardMaterial({color:0x426276,metalness:.45,roughness:.3});
+  const graphite=new THREE.MeshStandardMaterial({color:0x101a24,metalness:.25,roughness:.58});
+  const edge=new THREE.MeshStandardMaterial({color:0x283b49,metalness:.35,roughness:.48});
   const cyan=new THREE.MeshBasicMaterial({color:0x69dfed});
   const dark=new THREE.MeshStandardMaterial({color:0x07101a,metalness:.3,roughness:.65});
   const geometries=[];

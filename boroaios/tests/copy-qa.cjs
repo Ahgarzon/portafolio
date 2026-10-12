@@ -10,5 +10,5 @@ assert.match(hero,/Recuerda lo importante/);
 assert.ok(!/Una web, una aplicación, una campaña/.test(hero),'value before the tool catalogue');
 assert.match(html,/data-example="dia"/);
 assert.match(html,/¿Para qué puedo usar Boro\?/);
-assert.match(html,/data-boro-release="constructor9-20261012"/);
+assert.match(html,/data-boro-release="constructor10-20261012"/);
 console.log('PASS preserved brand, everyday value, voice/text, broad audience and release marker');

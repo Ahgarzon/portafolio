@@ -1,0 +1,17 @@
+{
+  "release": "constructor10-20261012",
+  "canonical_sha256": "0240be0cfe3689cc01f4c90e70b338918889a9246862f2b4edb6d189e5243cfe",
+  "method": "Native continuous PBR reconstruction from provided multiview artwork; manual eyes, glasses, separate incisors, flat paddle, cyan geometry and anatomical skin.",
+  "scope": "Reconstructed model, not an original authored or pixel-exact 3D master. No view-dependent projection or mascot billboard.",
+  "eye_revision": "Native eye protrusions flattened into the face, duplicated cyan eye halo subdued with native vertex colors; iris surface contains its dark pupil without a reflective intersecting sphere, original glasses/rig/UVs/images retained.",
+  "visual_status": "Inspected in browser front/three-quarter/profile and mobile; owner acceptance and pixel-exact fidelity are not certified.",
+  "asset": "boro-workstation-v10.glb",
+  "sha256": "92b63502b06294d44102876c464a4f3e5f14321fa309ed900abff22ebd770664",
+  "bytes": 8515264,
+  "baseline_sha256": "477f08f69183d06902f80b119079b18309eeb259aab454e2bfb03e2a86bbf423",
+  "changes": [
+    {
+      "nativeEyeVertices": 1267
+    }
+  ]
+}

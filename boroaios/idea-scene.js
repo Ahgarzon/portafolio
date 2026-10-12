@@ -19,7 +19,7 @@ export function createIdeaScene({host,world,camera,model,shop,partner,request,su
  function progress(n,t,clock,animate){done=n;total=t;nodAt=animate?clock:-100;request()}
  function clear(){valid=false;delivered=false;started=null;staticDelivery=false;done=0;drag=null;token.hidden=true;target.hidden=true;resetPiece();host.dataset.ideaPhase='empty';request()}
  function beforePaint(t){const elapsed=started===null?null:staticDelivery?5:t-started,active=elapsed!==null&&elapsed<4.5;
-  return {poseTime:active?3.2+Math.min(1,elapsed/4.5)*3.3:null,amount:elapsed===null?null:active?Math.min(1,elapsed/4.5):1,label:active?(elapsed<1.2?'Boro recibe tu idea':'Boro conecta los siguientes pasos'):delivered?'Tu plan está listo para editar':null};
+  return {poseTime:active?3.2+Math.min(1,elapsed/4.5)*3.3:null,amount:elapsed===null?null:active?Math.min(1,elapsed/4.5):1,label:active?(elapsed<1.2?'Boro recibe tu idea':'Boro conecta las piezas en el cerebro'):delivered?'Tu idea ya está en el monitor':null};
  }
  function afterPaint(t){
   const elapsed=started===null?null:staticDelivery?5:t-started,active=elapsed!==null&&elapsed<4.5;
@@ -42,7 +42,7 @@ export function createIdeaScene({host,world,camera,model,shop,partner,request,su
  token.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;const r=host.getBoundingClientRect();if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>6)drag.moved=true;if(!drag.moved)return;
   ray.setFromCamera(new THREE.Vector2((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1),camera);if(ray.ray.intersectPlane(plane,point))piece.position.copy(world.worldToLocal(point));target.classList.toggle('is-over',inside(e.clientX,e.clientY));request();
  });
- token.addEventListener('pointerup',e=>{if(!drag||drag.id!==e.pointerId)return;const moved=drag.moved,hit=inside(e.clientX,e.clientY);drag=null;target.hidden=true;target.classList.remove('is-over');if(moved){suppressClick=true;setTimeout(()=>suppressClick=false,0);if(hit)submit();else{resetPiece();feedback('Acerca «Tu idea» al centro del monitor o usa «Crear mi plan».')}}request()});
+ token.addEventListener('pointerup',e=>{if(!drag||drag.id!==e.pointerId)return;const moved=drag.moved,hit=inside(e.clientX,e.clientY);drag=null;target.hidden=true;target.classList.remove('is-over');if(moved){suppressClick=true;setTimeout(()=>suppressClick=false,0);if(hit)submit();else{resetPiece();feedback('Acerca «Tu idea» al monitor o pulsa «Construir».')}}request()});
  for(const event of ['pointercancel','lostpointercapture'])token.addEventListener(event,()=>{if(drag){drag=null;target.hidden=true;resetPiece();request()}});
  clear();return {preview,deliver,progress,clear,beforePaint,afterPaint,dispose(){token.remove();target.remove();piece.removeFromParent();piece.geometry.dispose();piece.material.dispose()}};
 }
