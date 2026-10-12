@@ -72,6 +72,32 @@
 .scene-replay-controls button:disabled{opacity:.5;cursor:wait}
 .fallback-note button{display:inline-block;margin:8px 0 0;min-height:44px;padding:8px 14px;border:1px solid #6dc9da;border-radius:6px;background:#0b2735;color:var(--text)}
 .builder-action{max-width:55%;line-height:1.5}
+
+/* Useful workshop: readable controls and results are independent of WebGL. */
+.idea-demo,.idea-result{border:1px solid var(--border);border-radius:16px;background:var(--surface);padding:32px;margin:24px 0;scroll-margin-top:110px;min-width:0}
+.idea-intro h3{font-size:clamp(26px,3vw,36px);margin-bottom:16px}.idea-intro>p{color:var(--text);font-size:16px}
+.idea-demo form{max-width:700px}.idea-demo label{font-size:16px}.idea-demo input,.idea-demo select,.idea-result textarea{font-size:16px;min-height:48px}
+.idea-demo button,.idea-result button,.scene-shortcuts button{min-height:48px;border:1px solid #58768a;border-radius:10px;padding:12px 18px;background:#132c3c;color:var(--text);font-size:16px;line-height:1.4}
+.idea-demo button:active,.idea-result button:active,.scene-shortcuts button:active{transform:scale(.98)}
+.idea-demo .idea-primary,#idea-download{width:100%;background:var(--accent);color:#07141d;font-weight:650;border-color:var(--accent)}
+.idea-examples{display:flex;gap:8px;flex-wrap:wrap;margin:-8px 0 24px}.idea-examples button{font-size:14px;padding:10px 14px}
+.idea-privacy{font-size:14px;margin:20px 0 0;max-width:75ch;color:#b9c9d7}.idea-feedback{color:var(--accent);margin:16px 0 0;font-size:16px}
+.idea-result h3{overflow-wrap:anywhere;font-size:28px;margin-bottom:16px}.idea-result>p{font-size:16px}
+#idea-steps{list-style:none;padding:0;margin:24px 0;display:grid;gap:16px}#idea-steps li{padding:16px;background:#0a1724;border:1px solid var(--border);border-radius:12px;min-width:0}
+.idea-check{display:flex;align-items:center;gap:12px;min-height:48px;cursor:pointer;font-size:16px;font-weight:650;color:var(--text)}
+.idea-check input{width:24px;height:24px;min-height:24px;flex:none;margin:0;accent-color:var(--accent)}
+#idea-steps textarea{margin:8px 0 0;min-height:110px;line-height:1.6;resize:vertical}.completed .idea-check span:after{content:' · completado';color:var(--accent);font-weight:400}
+.idea-result-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}.idea-result-actions button{flex:1;min-width:190px}
+#idea-progress{display:block;width:100%;height:14px;accent-color:var(--accent);margin-top:20px}
+.scene-shortcuts{position:absolute;left:20px;right:20px;bottom:30px;display:flex;gap:12px;z-index:2}.scene-shortcuts button{flex:1;font-size:14px;background:#0a2133ed;padding:10px;min-height:48px}
+.scene-replay-controls{flex-wrap:wrap}.scene-replay-controls button{font-size:12px;min-height:48px;min-width:110px}
+.workshop .scene-outputs{display:none}.workshop .visual-bottom{bottom:8px}.builder-action{font-size:14px;max-width:80%;top:86px}
+.workshop #scene{top:110px;bottom:86px}.scene-help,.scene-disclaimer{font-size:14px}.build-step small{font-size:14px}
+@media(max-width:760px){.idea-demo,.idea-result{padding:22px 18px;scroll-margin-top:90px}.idea-result-actions{flex-direction:column}.idea-result-actions button{width:100%;min-width:0}.workshop .visual{height:540px}.workshop #scene{top:150px;bottom:90px}.workshop .builder-action{top:118px;font-size:13px;max-width:92%}.scene-replay-controls button{font-size:12px;min-width:0;padding:9px 6px}.scene-shortcuts{left:12px;right:12px;gap:8px;bottom:32px}.scene-shortcuts button{font-size:14px}.build-controls{grid-template-columns:1fr}.build-step small{font-size:14px}.scene-help,.scene-disclaimer{font-size:14px}}
 #scene{top:60px;bottom:24px;height:auto}
 @media(min-width:1001px){.workshop .visual{height:620px}.visual-top{left:24px;right:24px}.visual-top>span{max-width:30%;font-size:9.5px}.scene-replay-controls{gap:6px}.scene-replay-controls button{min-width:76px;padding:8px;font-size:10px}}
 @media(max-width:760px){.workshop .visual{height:520px}.visual-top{top:16px;left:16px;right:16px;display:flex;flex-direction:column;align-items:stretch;gap:8px}.visual-top>span{max-width:none}.scene-replay-controls{flex-direction:row;gap:5px}.scene-replay-controls button{flex:1;min-width:0;font-size:9.5px;padding:7px 3px}.builder-action{top:94px;max-width:90%}#scene{top:110px;bottom:82px}.scene-outputs{bottom:42px}.visual-bottom{bottom:14px}.fallback-note{bottom:84px}}
+
+/* Final cascade: optional animation controls must remain legible on small phones. */
+.scene-replay-controls button{font-size:12px;min-height:48px}
+@media(max-width:760px){.scene-replay-controls button{font-size:12px;padding:8px 4px;line-height:1.35}.workshop .builder-action{top:118px}.idea-result textarea{min-height:130px}}
