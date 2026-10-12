@@ -1,9 +1,9 @@
 import * as THREE from './assets/three.module.min.js';
-import {capabilities} from './capabilities.js?v=constructor6-20261012';
-import {createComputerWorkshop} from './computer-workshop.js?v=constructor6-20261012';
+import {capabilities} from './capabilities.js?v=constructor7-20261012';
+import {createComputerWorkshop} from './computer-workshop.js?v=constructor7-20261012';
 
 // A real skinned character, computer and volumetric brain. No camera-facing mascot plane.
-const RELEASE='constructor6-20261012',BUILD_SECONDS=8;
+const RELEASE='constructor7-20261012',BUILD_SECONDS=8;
 const host=document.querySelector('#scene'),visual=document.querySelector('.visual');
 const motion=document.querySelector('#motion'),replay=document.querySelector('#replay-build');
 const turn=document.querySelector('#turn-scene'),retry=document.querySelector('#retry-scene');
@@ -72,7 +72,7 @@ async function start(){
     const {GLTFLoader}=await import('./assets/three-addons/loaders/GLTFLoader.js');
     abort=new AbortController();const timeout=setTimeout(()=>abort.abort(),45000);let gltf;
     try{
-      const response=await fetch('./assets/boro-workstation-v6.glb',{signal:abort.signal});if(!response.ok)throw Error('model-http-'+response.status);
+      const response=await fetch('./assets/boro-workstation-v7.glb',{signal:abort.signal});if(!response.ok)throw Error('model-http-'+response.status);
       const buffer=await response.arrayBuffer();if(buffer.byteLength<1000||buffer.byteLength>20000000)throw Error('model-size');
       gltf=await new GLTFLoader().parseAsync(buffer,new URL('./assets/',location.href).href);
     }finally{clearTimeout(timeout)}

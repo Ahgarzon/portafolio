@@ -1,0 +1,17 @@
+{
+  "release": "constructor7-20261012",
+  "asset": "boro-workstation-v7.glb",
+  "bytes": 8089828,
+  "sha256": "477f08f69183d06902f80b119079b18309eeb259aab454e2bfb03e2a86bbf423",
+  "canonical_original_png_sha256": "0240be0cfe3689cc01f4c90e70b338918889a9246862f2b4edb6d189e5243cfe",
+  "reference": "Owner-provided six-view Boro artwork; original retained unchanged by the owner. boro-reference.jpg is only the compressed web preview.",
+  "method": "Native continuous PBR reconstruction from four views, manually repaired eyes, rectangular smart glasses, separate ivory incisors, cyan armour paths and one flat crosshatched paddle. Anatomical skin with continuous influences and baked keyboard/monitor gestures.",
+  "character_plane_or_view_dependent_projection": false,
+  "rig_joints": 54,
+  "animation": "Boro_builds_at_computer",
+  "scope": "Reconstructed prototype, not a pixel-exact original authored 3D master. Head, breathing, arms, wrists, eyes and tail move. Finger and jaw bones are prepared, not independently driven by speech/gesture in this marketing scene.",
+  "environment": "Real keyboard, cut-away desk, monitor cavity, volumetric brain and floor. Marketing illustration only; no microphone, PC-agent or messaging access.",
+  "validation_limit": "Browser emulation is not physical Safari/iPhone or device FPS certification.",
+  "eye_revision": "Owner correction: recessed 0.035 model units; depth 28%, width 80%, height 60%; outward cant reduced from 20 to 8 degrees; dark/subdued eye surround like the beaver reference. Same character, native face, joint hierarchy and animation. No added eyelid rings or discs.",
+  "baseline_sha256": "5f3ae7adf643c08e1f31a0de89abf407bb671f96367d5aca16531fd88cb623f6"
+}

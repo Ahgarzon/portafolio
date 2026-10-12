@@ -2,17 +2,19 @@
 
 Public presentation: https://angelszs.site/boroaios/. Renamed from Jarvis by Ángel on 2026-10-11; old URL redirects to the new path. Static HTML/CSS/JS; GitHub Pages publishes the portfolio repository.
 
-## Current experience — volumetric workstation V6
+## Current experience — volumetric workstation V7
 
-Release `constructor6-20261012` replaces the hybrid mascot plane with a native GLB skin reconstructed from the owner's six-view artwork. Boro works at a physical keyboard, gestures towards a monitor, breathes, blinks and moves his head/tail. A volumetric brain builds inside the monitor cavity; its bounds are checked throughout the animation. Drag/keyboard/360° controls rotate the complete scene. This is an inferred and manually repaired reconstruction, **not a pixel-exact original authored 3D master**. The approved logo, copy and film are unchanged. No camera-dependent photo projection is used.
+Release `constructor7-20261012` corrects the V6 protruding-eye complaint: the same eye assembly is recessed, its depth reduced to 28%, width to 80%, height to 60%, and outward cant from 20° to 8°. A subdued dark eye surround replaces the bright spherical surround. The original native face, blue irises, glasses, skin weights, joint hierarchy and animation are retained. Extra eyelid rings/discs and an over-recessed candidate were visually rejected; they are not published. `tools/recess-eyes.mjs` reproduces the correction from the immutable V6 asset. `tests/eyes-qa.cjs` captures front, three-quarter and profile views/close-ups for visual review; `tests/eyes-contract.test.mjs` checks that non-eye geometry and articulation remain unchanged.
 
-`workstation-scene.js`, `computer-workshop.js`, `capabilities.js` and `assets/boro-workstation-v6.glb` implement the current experience. The official Three.js r169 GLTF loader and geometry utility are vendored under `assets/three-addons/` with relative imports (no import-map dependency); their existing MIT notice is `assets/THREE-LICENSE.txt`.
+V6 replaced the hybrid mascot plane with a native GLB skin reconstructed from the owner's six-view artwork. Boro works at a physical keyboard, gestures towards a monitor, breathes, blinks and moves his head/tail. A volumetric brain builds inside the monitor cavity; its bounds are checked throughout the animation. Drag/keyboard/360° controls rotate the complete scene. This is an inferred and manually repaired reconstruction, **not a pixel-exact original authored 3D master**. The approved logo, copy and film are unchanged. No camera-dependent photo projection is used.
+
+`workstation-scene.js`, `computer-workshop.js`, `capabilities.js` and `assets/boro-workstation-v7.glb` implement the current experience. The official Three.js r169 GLTF loader and geometry utility are vendored under `assets/three-addons/` with relative imports (no import-map dependency); their existing MIT notice is `assets/THREE-LICENSE.txt`.
 
 The model loads near the section, with a bounded request, explicit failure/retry and a static alternative. Pausing freezes animation, while view rotation remains usable. Reduced motion starts paused; offscreen/background rendering stops. The character, monitor and brain are real geometry, but the animation illustrates capabilities: it does not access a microphone, PC agent, account or messaging API. Finger/jaw bones are prepared in the rig; this marketing scene does not implement independent finger gestures or audio-driven speech.
 
 Validation: `node boroaios/tests/copy-qa.cjs`; set `BORO_NODE_MODULES` to a directory containing Playwright, then `node boroaios/tests/workstation-qa.cjs <baseURL> <absolute-report-directory>`. This suite checks native skins/joints, gross mesh deformation, anchored boots, all-angle snapshots, four widths, monitor containment, pause, rotation, reduced motion, offscreen suspension, model error/retry, missing/lost WebGL, video and contact preparation without sending. Historical `character-motion.test.mjs`/`browser-qa.cjs` below only validate V3, **not V6**. Physical Safari/iPhone and device FPS remain unverified.
 
-Rollback: revert the scoped V6 commit on updated main and republish GitHub Pages. Legacy V3 modules/assets remain available; never reset the repository or overwrite concurrent portfolio/Cora changes. No operational Jarvis/Boro runtime is changed by this marketing release.
+Rollback: revert the scoped V7 commit on updated main and republish GitHub Pages to restore V6. Its model is retained unchanged. Legacy V3 modules/assets also remain available; never reset the repository or overwrite concurrent portfolio/Cora changes. No operational Jarvis/Boro runtime is changed by this marketing release.
 
 ## Previous V3 experience (retained for rollback)
 
