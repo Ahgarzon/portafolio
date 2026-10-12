@@ -1,12 +1,12 @@
 import * as THREE from './assets/three.module.min.js';
-import {capabilities} from './capabilities.js?v=constructor8-20261012';
-import {createComputerWorkshop} from './computer-workshop.js?v=constructor8-20261012';
-import {createWorkshopPartner} from './workshop-partner.js?v=constructor8-20261012';
-import {mountIdeaDemo} from './workshop-interaction.js?v=constructor8-20261012';
-import {createIdeaScene} from './idea-scene.js?v=constructor8-20261012';
+import {capabilities} from './capabilities.js?v=constructor9-20261012';
+import {createComputerWorkshop} from './computer-workshop.js?v=constructor9-20261012';
+import {createWorkshopPartner} from './workshop-partner.js?v=constructor9-20261012';
+import {mountIdeaDemo} from './workshop-interaction.js?v=constructor9-20261012';
+import {createIdeaScene} from './idea-scene.js?v=constructor9-20261012';
 
 // A real skinned character, computer and volumetric brain. No camera-facing mascot plane.
-const RELEASE='constructor8-20261012',BUILD_SECONDS=8;
+const RELEASE='constructor9-20261012',BUILD_SECONDS=8;
 const host=document.querySelector('#scene'),visual=document.querySelector('.visual');
 const motion=document.querySelector('#motion'),replay=document.querySelector('#replay-build');
 const turn=document.querySelector('#turn-scene'),retry=document.querySelector('#retry-scene');

@@ -1,4 +1,4 @@
-import {buildPlan,cleanIdea,planAsText,planKinds} from './idea-plan.js?v=constructor8-20261012';
+import {buildPlan,cleanIdea,planAsText,planKinds} from './idea-plan.js?v=constructor9-20261012';
 
 // Local only: never send a visitor's idea, edits or checklist to any service.
 export function mountIdeaDemo({preview,deliver,progress,clear}){

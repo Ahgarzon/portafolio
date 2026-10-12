@@ -13,7 +13,7 @@ for(const width of [360,390,768,1440]){
  const page=await browser.newPage({viewport:{width,height:width>1000?1000:844},hasTouch:width<800});
  page.on('pageerror',e=>report.errors.push(String(e)));page.on('response',r=>{if(r.status()>=400)report.errors.push(r.status()+' '+r.url())});await loaded(page);
  await check(width+' real native skin and actual joint movement',async()=>{
-  const a=await state(page);assert.equal(a.release,'constructor8-20261012');assert.equal(+a.bones,54);assert.ok(+a.skins>10);
+  const a=await state(page);assert.equal(a.release,'constructor9-20261012');assert.equal(+a.bones,54);assert.ok(+a.skins>10);
   await page.waitForTimeout(600);const b=await state(page);assert.notEqual(a.pose,b.pose);assert.notEqual(a.hand,b.hand);assert.notEqual(a.build,b.build);
   const geometry=await page.evaluate(()=>{let triangles=0,depth=0;BoroWorkshop.model.traverse(o=>{if(o.isSkinnedMesh){const g=o.geometry;g.computeBoundingBox();triangles+=(g.index?.count||g.attributes.position.count)/3;depth=Math.max(depth,g.boundingBox.max.z-g.boundingBox.min.z)}});return{triangles,depth}});assert.ok(geometry.triangles>100000);assert.ok(geometry.depth>.6);report.measurements.push({width,geometry,drawCalls:b.drawCalls});
  });
