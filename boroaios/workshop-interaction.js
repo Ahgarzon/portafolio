@@ -1,0 +1,32 @@
+import {buildPlan,cleanIdea,planAsText,planKinds} from './idea-plan.js?v=constructor8-20261012';
+
+// Local only: never send a visitor's idea, edits or checklist to any service.
+export function mountIdeaDemo({preview,deliver,progress,clear}){
+ const workshop=document.querySelector('.workshop'),panel=document.createElement('section');panel.className='idea-demo';panel.id='idea-demo';panel.setAttribute('aria-labelledby','idea-heading');
+ panel.innerHTML=`<div class="idea-intro"><span class="eyebrow">PRUÉBALO AQUÍ</span><h3 id="idea-heading">Tu idea se convierte en un primer plan.</h3><p>1. Escribe una idea. 2. Pulsa «Crear mi plan». 3. Edita los pasos y guarda tu copia.</p></div><form id="idea-form"><label for="idea-text">¿Qué quieres hacer?</label><input id="idea-text" name="idea" minlength="3" maxlength="160" placeholder="Por ejemplo: organizar mi semana" required autocomplete="off"><div class="idea-examples" aria-label="Ideas para empezar"><button type="button" data-idea="Organizar mi semana" data-kind="0">Mi semana</button><button type="button" data-idea="Crear una web para mi negocio" data-kind="1">Una web</button><button type="button" data-idea="Preparar una propuesta para un cliente" data-kind="2">Una propuesta</button></div><label for="idea-kind">¿Qué tipo de ayuda necesitas?</label><select id="idea-kind"></select><button class="idea-primary" type="submit">Crear mi plan</button></form><p class="idea-privacy">Demo guiada con plantillas, sin IA conectada. Tu idea se queda en esta página. Descarga el plan antes de salir.</p><p id="idea-feedback" class="idea-feedback" role="status" aria-live="polite">Puedes empezar con uno de los ejemplos. No necesitas mover ni girar la escena.</p><a id="idea-result-link" class="text-link" href="#idea-result" hidden>Ver y editar mi plan ↓</a>`;
+ workshop.before(panel);
+ const result=document.createElement('section');result.className='idea-result';result.id='idea-result';result.hidden=true;result.setAttribute('aria-labelledby','idea-result-title');
+ result.innerHTML='<span class="eyebrow">TU PUNTO DE PARTIDA</span><h3 id="idea-result-title" tabindex="-1"></h3><p>Revisa y edita cada paso. Marca sólo lo que ya hiciste: cada casilla completa una pieza del taller.</p><ol id="idea-steps"></ol><p id="idea-count" role="status"></p><a class="text-link" href="#workshop-frame">Ver mi avance en el taller ↑</a><progress id="idea-progress" max="4" value="0" aria-label="Pasos completados"></progress><div class="idea-result-actions"><button id="idea-download" type="button">Descargar mi plan</button><button id="idea-clear" type="button">Escribir otra idea</button></div><p class="idea-privacy">Este plan es una guía editable. La demo no programa avisos ni ejecuta acciones en tu computador.</p>';
+ workshop.after(result);
+ const form=panel.querySelector('form'),input=panel.querySelector('input'),kind=panel.querySelector('select'),status=panel.querySelector('#idea-feedback'),link=panel.querySelector('#idea-result-link'),list=result.querySelector('ol'),count=result.querySelector('#idea-count');
+ let plan=null;
+ planKinds.forEach((name,i)=>{const option=document.createElement('option');option.value=String(i);option.textContent=name;kind.append(option)});
+ function feedback(text){status.textContent=text}
+ function changed(){preview(cleanIdea(input.value).length>=3,Number(kind.value));input.setCustomValidity('')}
+ input.addEventListener('input',changed);kind.addEventListener('change',changed);
+ function tally(){const done=plan.steps.filter(s=>s.done).length;count.textContent=done===plan.steps.length?'Completaste los cuatro pasos. Descarga tu plan para conservarlo.':done+' de '+plan.steps.length+' pasos completados';result.querySelector('progress').value=done;progress(done,plan.steps.length,plan.steps.map(s=>s.done))}
+ function renderPlan(){result.querySelector('h3').textContent=plan.title;list.replaceChildren();
+  for(const [i,step] of plan.steps.entries()){
+   const row=document.createElement('li'),box=document.createElement('input'),text=document.createElement('textarea');box.type='checkbox';box.checked=step.done;box.setAttribute('aria-label','Marcar paso '+(i+1)+' como completado');text.rows=2;text.maxLength=240;text.value=step.text;text.setAttribute('aria-label','Editar paso '+(i+1));
+   const label=document.createElement('label');box.id='idea-done-'+i;label.htmlFor=box.id;label.className='idea-check';const number=document.createElement('span');number.textContent='Paso '+(i+1);label.append(box,number);
+   box.addEventListener('change',()=>{step.done=box.checked;row.classList.toggle('completed',step.done);tally()});text.addEventListener('input',()=>{step.text=cleanIdea(text.value,240)});row.append(label,text);list.append(row);
+  }
+  count.textContent='0 de '+plan.steps.length+' pasos completados';result.querySelector('progress').value=0;result.hidden=false;link.hidden=false;
+ }
+ function submit(){try{plan=buildPlan(input.value,Number(kind.value));renderPlan();input.blur();deliver(plan.kind);feedback('Tu plan está listo debajo de la escena. Boro recibe la idea y conecta los siguientes pasos.');return true}catch(error){input.setCustomValidity(error.message);input.reportValidity();feedback(error.message);return false}}
+ form.addEventListener('submit',e=>{e.preventDefault();submit()});
+ result.querySelector('#idea-download').addEventListener('click',()=>{if(!plan)return;const url=URL.createObjectURL(new Blob([planAsText(plan)],{type:'text/plain;charset=utf-8'})),anchor=document.createElement('a');anchor.href=url;anchor.download='mi-plan-boro.txt';document.body.append(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);count.textContent='Descarga solicitada. En el celular, busca mi-plan-boro.txt en Descargas.'});
+ result.querySelector('#idea-clear').addEventListener('click',()=>{panel.scrollIntoView({block:'start',behavior:'instant'});input.focus({preventScroll:true});feedback('Escribe otra idea. Al crear el nuevo plan se reemplaza el anterior; descárgalo si quieres conservarlo.')});
+ panel.querySelectorAll('[data-idea]').forEach(button=>button.addEventListener('click',()=>{input.value=button.dataset.idea;kind.value=button.dataset.kind;changed();input.focus({preventScroll:true});feedback('Ejemplo listo. Puedes cambiarlo y pulsar Crear mi plan.')}));
+ return {submit,feedback,focus(){panel.scrollIntoView({block:'start',behavior:'instant'});input.focus({preventScroll:true})},get hasPlan(){return Boolean(plan)}};
+}

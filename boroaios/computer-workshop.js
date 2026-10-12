@@ -39,6 +39,9 @@ export function createComputerWorkshop(){
   const transferStart=V(-.20,1.52,.50),transferControl=V(.1,1.95,.58),transferEnd=V();
   const progressBack=box(1.05,.018,.009,0,-.54,.35,edge,monitor);
   const progress=box(1.05,.02,.01,0,-.54,.36,cyan,monitor);
+  const checklist=new THREE.Group();monitor.add(checklist);checklist.visible=false;
+  const pieces=Array.from({length:4},(_,i)=>box(.19,.055,.07,-.36+i*.24,-.46,.28,edge.clone(),checklist));
+  function setChecklist(flags){checklist.visible=Boolean(flags);pieces.forEach((p,i)=>{p.material.color.setHex(flags?.[i]?0x9cf1d5:0x345467);p.scale.y=flags?.[i]?1.8:1})}
   const brain=new THREE.Group();brain.position.set(0,.02,-.015);brain.scale.setScalar(.44);monitor.add(brain);
   const shell=new THREE.MeshPhysicalMaterial({color:0x27687d,metalness:.25,roughness:.35,transparent:true,opacity:.27,depthWrite:false,side:THREE.DoubleSide});
   const brainPoint=(side,u,v)=>{const r=1+.055*Math.sin(u*7+v*2)+.04*Math.cos(v*9-u*3);return V(side*.37+.52*Math.sin(v)*Math.cos(u)*r,.84*Math.cos(v)*r,.60*Math.sin(v)*Math.sin(u)*r)};
@@ -85,5 +88,5 @@ export function createComputerWorkshop(){
     for(let i=0;i<keyPositions.length;i++){position.copy(keyPositions[i]);if(i===Math.floor(time*7)%60)position.y-=.009;matrix.makeTranslation(...position.toArray());keys.setMatrixAt(i,matrix)}keys.instanceMatrix.needsUpdate=true;
     energy.scale.setScalar(1+(time*.55)%17);energy.material.opacity=.3;
   }
-  return {root,computer,monitor,brain,keyboard,update,typingTargets:[V(-.03,1.52,.52),V(.35,1.52,.52)]};
+  return {root,computer,monitor,brain,keyboard,update,setChecklist,typingTargets:[V(-.03,1.52,.52),V(.35,1.52,.52)]};
 }

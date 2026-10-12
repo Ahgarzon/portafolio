@@ -1,0 +1,13 @@
+// A transparent, deterministic local planning aid. No AI, account, network or PC access.
+export const planKinds=['Organizar una idea','Crear un proyecto','Preparar un documento','Preparar una campaña','Trabajar en mi PC','Simplificar una rutina'];
+export function cleanIdea(value,max=160){return String(value??'').replace(/[\u0000-\u001f\u007f]/g,' ').replace(/\s+/g,' ').trim().slice(0,max)}
+const templates=[
+ ['Anota qué quieres conseguir y qué no quieres olvidar.','Separa lo urgente de lo que puede esperar.','Elige una primera acción pequeña y una fecha para hacerla.','Revisa lo avanzado y ajusta tu siguiente paso.'],
+ ['Define a quién ayudará el proyecto y qué problema resolverá.','Elige la versión más pequeña que permita probar la idea.','Reúne el contenido, las herramientas y los permisos necesarios.','Prueba el primer resultado con alguien y anota qué mejorar.'],
+ ['Define para quién es el documento y qué debe entender al leerlo.','Reúne la información y comprueba sus fuentes.','Ordena el contenido en una introducción, los puntos principales y un cierre.','Revisa los datos, el formato y el destinatario antes de compartirlo.'],
+ ['Define el objetivo, la audiencia y el mensaje principal.','Prepara una pieza pequeña que explique el valor de tu oferta.','Revisa el canal, el presupuesto y los permisos antes de publicar.','Elige qué resultado medirás y cuándo revisarás la campaña.'],
+ ['Describe el resultado que necesitas y en qué aplicación trabajarás.','Guarda una copia de tus archivos antes de realizar cambios.','Divide el trabajo en acciones pequeñas y revisa cada resultado.','Comprueba el archivo final y su ubicación antes de darlo por terminado.'],
+ ['Escribe qué tarea se repite y qué activa su inicio.','Anota los datos, las herramientas y los permisos que necesita.','Prueba el proceso con información ficticia y contempla los posibles fallos.','Define cómo revisar el resultado, detenerlo y volver al proceso anterior.']
+];
+export function buildPlan(idea,kind=0){const title=cleanIdea(idea);if(title.length<3)throw Error('Escribe una idea de al menos tres caracteres.');const k=Number(kind);if(!Number.isInteger(k)||k<0||k>=templates.length)throw Error('Elige un tipo de ayuda válido.');return {title,kind:k,steps:templates[k].map((text,i)=>({id:'step-'+(i+1),text,done:false}))}}
+export function planAsText(plan){return ['BORO · MI PLAN',cleanIdea(plan.title),planKinds[plan.kind]||planKinds[0],'',...plan.steps.map((step,i)=>`${step.done?'[x]':'[ ]'} ${i+1}. ${cleanIdea(step.text,240)}`),'','Borrador guiado y editable, preparado en este navegador. No es una respuesta del cerebro de tu cuenta ni ejecuta tareas, recordatorios o acciones del PC.'].join('\n')}
