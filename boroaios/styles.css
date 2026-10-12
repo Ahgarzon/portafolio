@@ -64,3 +64,14 @@
 .scene-replay-controls{display:flex;gap:8px;pointer-events:auto;flex-shrink:0}.scene-replay-controls button{min-width:88px}.visual-top>span{max-width:42%;line-height:1.5}
 @media(max-width:540px){.scene-replay-controls{flex-direction:column;gap:4px}.visual-top>span{max-width:55%}.scene-replay-controls button{padding:8px;min-height:44px}}
 .example-tabs{flex-wrap:wrap;row-gap:8px}.scene-replay-controls button:active{transform:scale(.97)}
+
+/* Volumetric workstation: original brand, normal HTML controls and no page-scroll trap. */
+#scene canvas{touch-action:pan-y;outline-offset:-4px}
+#scene canvas:focus-visible{outline:2px solid var(--accent)}
+.scene-replay-controls button{min-height:44px;letter-spacing:0}
+.scene-replay-controls button:disabled{opacity:.5;cursor:wait}
+.fallback-note button{display:inline-block;margin:8px 0 0;min-height:44px;padding:8px 14px;border:1px solid #6dc9da;border-radius:6px;background:#0b2735;color:var(--text)}
+.builder-action{max-width:55%;line-height:1.5}
+#scene{top:60px;bottom:24px;height:auto}
+@media(min-width:1001px){.workshop .visual{height:620px}.visual-top{left:24px;right:24px}.visual-top>span{max-width:30%;font-size:9.5px}.scene-replay-controls{gap:6px}.scene-replay-controls button{min-width:76px;padding:8px;font-size:10px}}
+@media(max-width:760px){.workshop .visual{height:520px}.visual-top{top:16px;left:16px;right:16px;display:flex;flex-direction:column;align-items:stretch;gap:8px}.visual-top>span{max-width:none}.scene-replay-controls{flex-direction:row;gap:5px}.scene-replay-controls button{flex:1;min-width:0;font-size:9.5px;padding:7px 3px}.builder-action{top:94px;max-width:90%}#scene{top:110px;bottom:82px}.scene-outputs{bottom:42px}.visual-bottom{bottom:14px}.fallback-note{bottom:84px}}
