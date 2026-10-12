@@ -1,4 +1,4 @@
-import {buildPlan,cleanIdea,planAsText,planKinds} from './idea-plan.js?v=constructor8-20261012';
+import {buildPlan,cleanIdea,planAsText,planKinds} from './idea-plan.js?v=constructor9-20261012';
 
 // Local only: never send a visitor's idea, edits or checklist to any service.
 export function mountIdeaDemo({preview,deliver,progress,clear}){
@@ -23,7 +23,7 @@ export function mountIdeaDemo({preview,deliver,progress,clear}){
   }
   count.textContent='0 de '+plan.steps.length+' pasos completados';result.querySelector('progress').value=0;result.hidden=false;link.hidden=false;
  }
- function submit(){try{plan=buildPlan(input.value,Number(kind.value));renderPlan();input.blur();deliver(plan.kind);feedback('Tu plan está listo. La persona entrega tu idea a Boro; revisa los cuatro pasos debajo.');result.querySelector('h3').focus({preventScroll:true});result.scrollIntoView({block:'start',behavior:'instant'});return true}catch(error){input.setCustomValidity(error.message);input.reportValidity();feedback(error.message);return false}}
+ function submit(){try{plan=buildPlan(input.value,Number(kind.value));renderPlan();input.blur();deliver(plan.kind);feedback('Tu plan está listo debajo de la escena. Boro recibe la idea y conecta los siguientes pasos.');return true}catch(error){input.setCustomValidity(error.message);input.reportValidity();feedback(error.message);return false}}
  form.addEventListener('submit',e=>{e.preventDefault();submit()});
  result.querySelector('#idea-download').addEventListener('click',()=>{if(!plan)return;const url=URL.createObjectURL(new Blob([planAsText(plan)],{type:'text/plain;charset=utf-8'})),anchor=document.createElement('a');anchor.href=url;anchor.download='mi-plan-boro.txt';document.body.append(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);count.textContent='Descarga solicitada. En el celular, busca mi-plan-boro.txt en Descargas.'});
  result.querySelector('#idea-clear').addEventListener('click',()=>{panel.scrollIntoView({block:'start',behavior:'instant'});input.focus({preventScroll:true});feedback('Escribe otra idea. Al crear el nuevo plan se reemplaza el anterior; descárgalo si quieres conservarlo.')});

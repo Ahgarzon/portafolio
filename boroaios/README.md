@@ -4,6 +4,14 @@ Public presentation: https://angelszs.site/boroaios/. Renamed from Jarvis by Án
 
 ## Current experience — volumetric workstation V7
 
+### Direct manipulation V9 (2026-10-12)
+
+Release `constructor9-20261012` integrates the published V8 visitor/plan without overwriting it. With an idea entered, the visitor's physical idea piece gains an accessible «Tu idea» handle. Drag it to the monitor with a mouse or touch, press Enter/Space on the handle, or use the form. Boro reuses his validated native gesture to receive it, transfer it into the monitor and build the brain. Checklist changes illuminate the corresponding four monitor markers and trigger a brief head response. The V7 character/eye GLB is unchanged.
+
+The plan is available immediately, not gated on animation/loading. Pause/reduced motion delivers a static result; replay deliberately repeats the handoff without resetting edits/checks. Scene loss/retry preserves the in-memory plan/checklist and disposes old handles. Only the handle captures touch; the canvas retains vertical page scrolling. No visitor text leaves the page, and the UI explicitly calls this a guided template demo, not connected AI or PC execution.
+
+`idea-scene.js` owns only the piece/handles and feedback pose. `tests/interaction-qa.cjs <baseURL> <report-directory>` checks desktop and mobile widths, keyboard, real browser touch events, drag/cancel, native response, edit/check/uncheck, the downloaded UTF-8 contents, no input transmission/storage, plain-text injection safety, reduced motion, no WebGL and loss/retry. Run alongside the native workstation regression suite and unit contracts. Physical Safari/iPhone remains separate acceptance. Revert V9 and republish Pages to restore the published V8 experience.
+
 ### Interactive workshop V8 (2026-10-12)
 
 The V7 eye asset is preserved byte-for-byte. A separate articulated visitor represents the person bringing an idea to Boro. Its arms hand a visible idea into the monitor while Boro's existing native rig types and builds. Clicking the visitor opens the idea field; clicking Boro or the monitor opens the plan. Equivalent labelled HTML buttons are always available, with no need to discover 3D gestures.
