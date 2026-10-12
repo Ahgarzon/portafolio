@@ -5,7 +5,7 @@ const base=process.argv[2]||'http://127.0.0.1:8771/boroaios/',output=process.arg
 const report={base,checks:[],errors:[],measurements:[],limitations:['Chromium emulation does not certify physical Safari/iPhone or device FPS.','Inferred and manually repaired reconstruction, not an authored original 3D master.']};
 let browser;
 async function check(name,fn){await fn();report.checks.push(name);console.log('PASS '+name)}
-async function loaded(page){await page.goto(base,{waitUntil:'domcontentloaded'});await page.locator('.visual').scrollIntoViewIfNeeded();await page.waitForFunction(()=>window.BoroWorkshop&&document.querySelector('#scene').dataset.character==='loaded',{},{timeout:60000})}
+async function loaded(page){await page.goto(base,{waitUntil:'domcontentloaded'});await page.locator('#idea-form').waitFor();await page.evaluate(()=>document.fonts.ready);await page.locator('.visual').evaluate(e=>e.scrollIntoView({block:'center',behavior:'instant'}));try{await page.waitForFunction(()=>window.BoroWorkshop&&document.querySelector('#scene').dataset.character==='loaded',{},{timeout:60000})}catch(error){report.loadFailure=await page.evaluate(()=>({scene:{...document.querySelector('#scene').dataset},rect:document.querySelector('.visual').getBoundingClientRect().toJSON(),visibility:document.visibilityState}));throw error}}
 async function state(p){return p.locator('#scene').evaluate(e=>({...e.dataset}))}
 (async()=>{await fs.mkdir(output,{recursive:true});browser=await chromium.launch({channel:'chrome',headless:true});
 try{
