@@ -1,0 +1,14 @@
+{
+  "engine": "supertonic3-M1",
+  "revision": "724fb5abbf5502583fb520898d45929e62f02c0b",
+  "voice": "M1",
+  "language": "es",
+  "qualitySteps": 8,
+  "speed": 1,
+  "text": "Hola, soy Boro, tu asistente de inteligencia artificial. Te ayudo a recordar, organizar, entender y hacer. Cuéntame qué necesitas y lo resolvemos paso a paso.",
+  "modelLicense": "OpenRAIL-M",
+  "sdkLicense": "MIT",
+  "generatedWithAI": true,
+  "sha256": "27121fdee856506f08b47a048eaa9f47d3771ab40e9cefb0c44add0b0b576b6b",
+  "licenseURL": "https://huggingface.co/Supertone/supertonic-3/blob/724fb5abbf5502583fb520898d45929e62f02c0b/LICENSE"
+}
