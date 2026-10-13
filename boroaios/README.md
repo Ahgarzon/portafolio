@@ -1,4 +1,8 @@
 # Boro AIOS — de la idea a la acción
+## Voice update — 13 October 2026
+
+The public introduction now uses the owner-selected Supertonic-3 M1 preset, matching the operational Boro voice. It is generated AI speech, quality8/speed1, with pinned weights and OpenRAIL-M terms retained in assets/Supertonic-LICENSE.txt. The new MP3 and provenance are separate from the preserved Piper introduction. No microphone, private API or visitor-data connection was added. The character still follows the audio actually played and closes its mouth on stop/pause. This preset has no regional Latin-American accent selector.
+
 
 Public presentation: https://angelszs.site/boroaios/. Renamed from Jarvis by Ángel on 2026-10-11; old URL redirects to the new path. Static HTML/CSS/JS; GitHub Pages publishes the portfolio repository.
 
