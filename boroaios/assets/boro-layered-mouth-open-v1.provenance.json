@@ -1,0 +1,8 @@
+{
+  "method": "Built-in image_gen edit",
+  "source": "boro-layered-v1.png",
+  "sourceSha256": "a4d1f6c35b604017538c0d4dd742c629d245a156f3627299a15e33277809dff9",
+  "outputSha256": "fe148328faf86eb4eec84ae14bec5a3a737f01e93dfe053efb3e6c663071bbe2",
+  "scope": "Only the mouth patch is composited at runtime; body and eyes use the original.",
+  "prompt": "Edit ONLY the mouth of the provided BORO character image for a professional animation speaking pose. Keep the EXACT same 1024x1536 framing, character size, head position, blue eyes, glasses, nose, face, armor, lighting, fur, hands, boots and silhouette. Do not move or redraw the character. The beaver is speaking warmly: open its mouth naturally under its two existing upper incisors, a small rounded dark mouth interior with a subtle pink tongue and a lowered furry lower jaw. The two big white incisors stay exactly in the same position, attached to the upper muzzle. Mouth opening about 30 pixels high at this resolution, around 110 pixels wide; a natural animated film character speaking, not a huge scream. Preserve all fur surrounding the mouth; no rectangular black cutout, no flat painted polygon, no missing beard. This is a matched open-mouth animation replacement, so all other pixels and proportions should match the reference as closely as possible. Preserve transparent background and alpha. No text, no added elements."
+}

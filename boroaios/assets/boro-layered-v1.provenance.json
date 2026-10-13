@@ -1,0 +1,11 @@
+{
+  "method": "built-in image_gen",
+  "canonical": "Castor científico futurista con gafas inteligentes (1).png",
+  "canonicalSHA256": "0240be0cfe3689cc01f4c90e70b338918889a9246862f2b4edb6d189e5243cfe",
+  "pngSHA256": "a4d1f6c35b604017538c0d4dd742c629d245a156f3627299a15e33277809dff9",
+  "prompts": [
+    "Use case: identity-preserve / background-extraction. Edit target: provided canonical six-view BORO character sheet. Produce ONLY the front-facing BORO character from the TOP LEFT view, as a large high-resolution full-body isolated transparent PNG, portrait composition. Match this exact beaver's identity, shape and proportions very closely: friendly gray-brown layered fine fur, small natural seated blue eyes, graphite rectangular glasses with thin cyan temples, cream whisker pads and black triangular nose, exactly two white incisors, defined graphite/silver chevron armor with narrow cyan trim, segmented gloves and boots. Same front neutral relaxed pose with hands down, both feet visible, all silhouette included with generous transparent margins. No redesign, no enlarged eyes, no new broad cartoon smile, no blobs, no text, no labels, no checkerboard drawn in pixels, no ground plane or shadow. Preserve coherent original face and armor surface detail. Lighting soft, neutral studio clarity, no excessive glow. This is a production puppet texture to animate in layers; accurate anatomy and fixed frontal camera.",
+    "Use case: background-extraction. Edit target: attached full-body front BORO PNG. Change ONLY the background/alpha: remove ALL the gray/black/blue gradient, haze, aura and ground shadow outside the character silhouette. Make every outside-background pixel truly transparent. Keep every character pixel and the exact pose, face, fur, glasses, eye size, body proportions, two incisors, cyan/silver armor, hands and feet unchanged. Do not redraw or redesign BORO. Keep full body framing and resolution, generous transparent margins. NO backdrop, glow, fog, vignette, checkerboard graphic, text or ground plane. Real transparent alpha cutout for layered animation."
+  ],
+  "scope": "Articulated 2D character; 3D brain in monitor; not volumetric Boro or visemes."
+}
