@@ -1,4 +1,8 @@
 # Boro AIOS — de la idea a la acción
+## Voice update — 14 October 2026
+
+The public Spanish introduction now uses Piper es_MX-claude-high, the same male Spanish-Mexico voice as Boro 0.1.20. Audio and model provenance have a new dated URL to avoid reusing previous media. Both the active layered workstation and the preserved legacy scene entry point reference it. The previous M1 and Piper files remain for rollback; other languages in the authenticated application still use M1. Credits and terms are in assets/NativeVoice-NOTICE.txt. No new microphone, API, visitor-data connection or character redesign. Actual audio continues to drive the mouth, stopping when paused or offscreen. Physical Safari and the owner's listening acceptance are not inferred from Chromium tests.
+
 ## Voice update — 13 October 2026
 
 The public introduction now uses the owner-selected Supertonic-3 M1 preset, matching the operational Boro voice. It is generated AI speech, quality8/speed1, with pinned weights and OpenRAIL-M terms retained in assets/Supertonic-LICENSE.txt. The new MP3 and provenance are separate from the preserved Piper introduction. No microphone, private API or visitor-data connection was added. The character still follows the audio actually played and closes its mouth on stop/pause. This preset has no regional Latin-American accent selector.

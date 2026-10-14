@@ -1,0 +1,14 @@
+{
+  "engine": "piper-claude-es-MX",
+  "revision": "c10ece1aade47bb51c153c893d14e5bf8e5b7117",
+  "voice": "es_MX-claude-high",
+  "language": "es-MX",
+  "speed": 1,
+  "text": "Hola, soy Boro, tu asistente de inteligencia artificial. Te ayudo a recordar, organizar, entender y hacer. Cuéntame qué necesitas y lo resolvemos paso a paso.",
+  "modelRepositoryLicense": "MIT",
+  "datasetLicense": "Apache-2.0",
+  "runtimeLicense": "GPL-3.0-or-later",
+  "generatedWithAI": true,
+  "sha256": "e81d0a77ed9e88bb30ad5a557fc3da344842bc7bf83ceb38d473e837e5a36c2a",
+  "licenseURL": "https://huggingface.co/rhasspy/piper-voices/blob/c10ece1aade47bb51c153c893d14e5bf8e5b7117/es/es_MX/claude/high/MODEL_CARD"
+}
