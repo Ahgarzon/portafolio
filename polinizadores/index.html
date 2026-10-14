@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#080d18">
+  <title>Monitoreo de polinizadores · Integración sin PC</title>
+  <meta name="description" content="Diagrama y explicación de cómo integrar ESP32-CAM, Arduino Uno, inteligencia artificial y una página web sin dejar un PC encendido en la huerta.">
+  <meta property="og:title" content="Monitoreo de polinizadores · Integración sin PC">
+  <meta property="og:description" content="De la cámara a la web: Wi-Fi, HTTPS, modelo de IA, conteo de visitas y semáforo.">
+  <meta property="og:url" content="https://angelszs.site/polinizadores/">
+  <link rel="canonical" href="https://angelszs.site/polinizadores/">
+  <link rel="stylesheet" href="styles.css">
+  <script src="page.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="topbar"><a class="brand" href="/">Ángel Garzón <span>Arquitectura de soluciones</span></a><nav aria-label="Secciones"><a href="#diagrama">Diagrama</a><a href="#conexion">Wi-Fi + HTTPS</a><a href="#faltantes">Qué hace falta</a></nav></header>
+  <main id="contenido">
+    <section class="hero section">
+      <p class="eyebrow">ESTACIÓN DE MONITOREO · PROPUESTA DE INTEGRACIÓN</p>
+      <h1>De la huerta a la web.<br><span>Sin un PC encendido.</span></h1>
+      <p class="lead">La ESP32-CAM captura y transmite. El Arduino controla el semáforo. Un servidor procesa las imágenes y guarda las visitas para que la página muestre los resultados.</p>
+      <div class="actions"><a class="button primary" href="#diagrama">Explorar el diagrama <span aria-hidden="true">↗</span></a><a class="button" href="#conexion">Entender la conexión</a></div>
+      <p class="scope"><span class="status-dot" aria-hidden="true"></span> Diseño propuesto. La integración con el montaje y la web existentes debe verificarse.</p>
+      <div class="summary"><div><strong>En la huerta</strong><span>Cámara + Arduino + red + energía</span></div><div><strong>En el servidor</strong><span>API + modelo de IA + registros</span></div><div><strong>En la página</strong><span>Imágenes + visitas + controles</span></div></div>
+    </section>
+
+    <section class="section" id="diagrama">
+      <div class="section-heading"><div><p class="eyebrow">01 / EL SISTEMA COMPLETO</p><h2>Un recorrido, dos sentidos.</h2></div><a class="button" href="diagrama.html" target="_blank" rel="noopener">Abrir diagrama completo ↗</a></div>
+      <p class="intro">Las imágenes y mediciones salen de la estación. Las órdenes de monitoreo y el estado del semáforo regresan por la misma conexión a internet. El diagrama conserva sus controles de exploración y exportación.</p>
+      <div class="diagram-window" tabindex="0" role="region" aria-label="Diagrama interactivo; en móvil puede desplazarse horizontalmente"><iframe src="diagrama.html" title="Propuesta de integración autónoma sin PC, diagrama interactivo Archify" loading="eager" allow="fullscreen; clipboard-write" allowfullscreen></iframe></div>
+      <p class="caption">En el teléfono, desplazá el diagrama lateralmente o abrilo completo para ampliarlo. Sensor y LCD: conservar su conexión actual cuando funcione; la placa que los lee está por confirmar.</p>
+    </section>
+
+    <section class="section" id="conexion">
+      <p class="eyebrow">02 / QUÉ SIGNIFICA WI-FI + HTTPS</p><h2>Wi-Fi lleva la cámara a la red.<br>HTTPS lleva los datos al servicio.</h2>
+      <p class="intro">Son funciones diferentes. Tener Wi-Fi no significa que la cámara ya esté conectada a la página. Hace falta programar qué envía, a qué dirección, cómo se identifica y qué respuesta espera.</p>
+      <div class="connection-grid"><article class="card"><span class="number">A</span><h3>Wi-Fi: salir de la huerta</h3><p>La ESP32-CAM se conecta a una red Wi-Fi de 2,4 GHz con su nombre y contraseña. El router le da acceso a internet; la señal debe llegar al lugar donde está instalada.</p><p>La placa tiene radio Wi-Fi, pero necesita un router con conexión. Si no existe esa red, puede evaluarse un router celular con cobertura y plan de datos.</p></article><article class="card"><span class="number">B</span><h3>HTTPS: entregar el contenido</h3><p>Ya conectada, la placa abre una conexión cifrada con una dirección del servidor y envía una solicitud. Por ejemplo: una imagen JPEG acompañada por el identificador de captura y las mediciones.</p><p>El servidor comprueba quién envía, recibe los datos y responde. La ESP32 debe validar el certificado TLS del servidor; no basta con escribir «https» en la dirección.</p></article></div>
+      <div class="journey"><p class="small-label">SEGUÍ EL RECORRIDO</p><div class="stage-buttons" role="group" aria-label="Etapas de conexión"><button type="button" data-stage="wifi" aria-pressed="true">1. Wi-Fi</button><button type="button" data-stage="internet" aria-pressed="false">2. Internet</button><button type="button" data-stage="https" aria-pressed="false">3. HTTPS</button><button type="button" data-stage="api" aria-pressed="false">4. Servicio</button><button type="button" data-stage="web" aria-pressed="false">5. Página</button></div><div id="stage-detail" class="stage-detail" aria-live="polite"><h3>La ESP32-CAM se conecta al router</h3><p>El firmware usa el nombre y la contraseña de la red. La placa obtiene una dirección local. Estar conectada al Wi-Fi es sólo el primer paso: todavía debe comprobar que puede llegar al servidor.</p><p class="stage-check">Si falla aquí: revisar señal, credenciales, alimentación y acceso a la red.</p></div></div>
+      <aside class="callout"><h3>La conexión la inicia la estación</h3><p>La ESP32 envía solicitudes hacia el servidor. La página consulta ese mismo servidor. En este diseño no hace falta abrir puertos del router ni publicar la IP local de la cámara. Las órdenes regresan en una respuesta o mediante consultas periódicas de la placa.</p></aside>
+    </section>
+
+    <section class="section" id="servicio">
+      <p class="eyebrow">03 / CÓMO LLEGAR A LA WEB QUE YA TIENEN</p><h2>La página necesita una puerta de entrada.</h2>
+      <p class="intro">Esa puerta es una <strong>API</strong>: direcciones del servidor preparadas para recibir imágenes y datos, ejecutar tareas y devolver resultados. Enviar una foto a la dirección de inicio de la página no crea esa integración.</p>
+      <div class="options"><article><h3>Si su alojamiento ya ejecuta código</h3><p>Si admite un backend, se pueden añadir allí las rutas de recepción y consulta. Después hay que comprobar que ese entorno también soporte el modelo y el procesamiento continuo, o conectarlo a un servicio que sí lo haga.</p></article><article><h3>Si sólo publicaron HTML, CSS y JavaScript</h3><p>La página puede conservarse. Se añade un backend aparte y se configura la web para consultar su API. Si usan dominios distintos, el backend autoriza el origen de esa página mediante CORS.</p></article></div>
+      <p class="note">Esta página en angelszs.site explica la propuesta. El servidor receptor de su estación todavía debe definirse con la URL, el código y el alojamiento de su proyecto.</p>
+      <details class="technical"><summary>Ver un ejemplo de intercambio con la API</summary><div class="technical-body"><p>Rutas y valores ilustrativos: no son servicios activos de esta página.</p><div class="code-grid"><div><h3>La estación envía una captura</h3><pre><code>POST https://api.su-proyecto.example/api/estaciones/huerta-01/capturas
+Authorization: Bearer CLAVE_DE_ESTA_ESTACION
+
+Contenido multipart:
+  imagen: captura.jpg
+  captura_id: huerta-01-arranque7-000042
+  temperatura_c: 25.4
+  humedad_pct: 68</code></pre></div><div><h3>El servidor acusa recibo</h3><pre><code>HTTP 202 Accepted
+{
+  "captura_id": "huerta-01-arranque7-000042",
+  "recibido": true,
+  "procesamiento": "pendiente"
+}</code></pre><p>«Recibido» no significa «animal reconocido». La clasificación y el conteo pueden completarse después.</p></div></div><h3>Después, cada parte consulta lo que necesita</h3><ul><li><strong>ESP32-CAM:</strong> consulta el estado y las órdenes de su estación; entrega al Arduino el estado del semáforo y confirma las órdenes aplicadas.</li><li><strong>Página web:</strong> consulta resultados y últimas imágenes; envía órdenes mediante una sesión autorizada.</li><li><strong>Servidor:</strong> guarda capturas o sus referencias, clasificaciones y eventos; un mismo identificador de captura reenviado no debe generar otra visita.</li></ul><p>La credencial de la estación tiene permisos limitados. Las claves administrativas de la base de datos no van en la placa ni en el JavaScript de la página.</p></div></details>
+    </section>
+
+    <section class="section" id="procesamiento">
+      <p class="eyebrow">04 / DE UNA IMAGEN A UNA VISITA</p><h2>Reconocer y contar son tareas distintas.</h2>
+      <ol class="steps"><li><span>01</span><div><h3>Capturar</h3><p>La ESP32 obtiene imágenes con una frecuencia que debe ajustarse a la duración de las visitas, la señal y el consumo. Una frecuencia muy baja puede perder animales que pasan rápido.</p></div></li><li><span>02</span><div><h3>Clasificar</h3><p>El servidor ejecuta el modelo y devuelve clase y confianza. Si lo entrenaron en Teachable Machine, hay que revisar la exportación y probar su ejecución en ese servidor.</p></div></li><li><span>03</span><div><h3>Decidir si hay una nueva visita</h3><p>Ver una abeja durante varios fotogramas no significa varias visitas. Hay que definir presencia, salida, confianza y tiempos. Varios animales simultáneos pueden requerir detección y seguimiento, además del clasificador.</p></div></li><li><span>04</span><div><h3>Guardar y mostrar</h3><p>Se registra el evento y se actualiza el conteo. La web muestra los resultados y su hora de actualización; el semáforo usa los mismos umbrales y período de conteo.</p></div></li></ol>
+      <div class="connection-grid"><article class="card"><h3>¿Qué hace el botón «Iniciar»?</h3><p>Guarda una orden en el servidor. La estación la recibe, activa el monitoreo y confirma. La página debe mostrar «pendiente» hasta recibir esa confirmación.</p></article><article class="card"><h3>¿Qué pasa al cerrar la página?</h3><p>La estación y el servidor continúan trabajando si están activos, alimentados y conectados. Ejecutar toda la IA sólo dentro del navegador no cumple esa autonomía.</p></article></div>
+    </section>
+
+    <section class="section" id="faltantes">
+      <p class="eyebrow">05 / QUÉ CONSERVAR Y QUÉ COMPLETAR</p><h2>Primero integrar lo que ya existe.</h2>
+      <div class="table-wrap"><table><caption>Elementos para la integración propuesta</caption><thead><tr><th>Elemento</th><th>Función y condición</th></tr></thead><tbody><tr><td>ESP32-CAM</td><td>Captura y Wi-Fi. Confirmar variante, memoria, alimentación y pines disponibles antes de añadir otra placa de comunicación.</td></tr><tr><td>Arduino Uno</td><td>Puede conservar el control de los LEDs. Si ya obtiene mediciones o conteos válidos, los comparte con la ESP32 mediante un protocolo acordado.</td></tr><tr><td>Enlace UART y adaptación de niveles</td><td>Comunica las placas con tierra común y adaptación apropiada entre 5 V y 3,3 V. No conectar una salida de 5 V del Uno directamente a una entrada del ESP32.</td></tr><tr><td>Red Wi-Fi con internet</td><td>Requiere cobertura en la estación. Sin red disponible hay que resolver la conectividad; el Wi-Fi de la cámara no reemplaza al router.</td></tr><tr><td>Backend, modelo y registros</td><td>Recibe imágenes, ejecuta IA, define visitas y entrega consultas. Puede estar en el alojamiento actual o en un servicio separado.</td></tr><tr><td>Alimentación autónoma</td><td>Para usar energía solar, dimensionar panel, batería, controlador de carga y regulación. Un panel solo no garantiza operación durante la noche.</td></tr></tbody></table></div>
+      <div class="connection-grid"><article class="card"><h3>Para confirmar la solución</h3><ul><li>URL, código y tipo de alojamiento de la página.</li><li>Programas de la ESP32-CAM y del Arduino.</li><li>Modelo exportado, etiquetas y ejemplos de imágenes reales.</li><li>Foto del montaje y modelos exactos de las placas y del sensor.</li><li>Wi-Fi disponible, definición de visita y umbrales del semáforo.</li></ul></article><article class="card"><h3>Dos decisiones que cambian el alcance</h3><p><strong>Imágenes o video.</strong> Esta propuesta parte de capturas renovadas. Video continuo requiere un transporte y una prueba adicionales.</p><p><strong>Con o sin internet.</strong> La IA remota necesita red. Contar durante cortes exige guardar material para reprocesarlo o diseñar inferencia local. La web debe indicar desconexión y fecha del último dato.</p></article></div>
+    </section>
+
+    <section class="section references" id="fuentes"><p class="eyebrow">DOCUMENTACIÓN PARA PROFUNDIZAR</p><h2>Referencias técnicas.</h2><ul><li><a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/protocols/esp_http_client.html" target="_blank" rel="noopener">Espressif · Cliente HTTP/S y verificación del servidor ↗</a></li><li><a href="https://github.com/espressif/esp32-camera" target="_blank" rel="noopener">Espressif · Captura de imágenes con ESP32-CAM ↗</a></li><li><a href="https://docs.arduino.cc/retired/boards/arduino-uno-rev3-with-long-pins/" target="_blank" rel="noopener">Arduino · Uno Rev3 y comunicación serie ↗</a></li><li><a href="https://github.com/googlecreativelab/teachablemachine-community/blob/master/libraries/image/README.md" target="_blank" rel="noopener">Google · Modelos de imágenes de Teachable Machine ↗</a></li><li><a href="https://www.tensorflow.org/js/guide/nodejs" target="_blank" rel="noopener">TensorFlow · Ejecución en Node.js ↗</a></li><li><a href="https://developer.mozilla.org/es/docs/Web/HTTP/Guides/CORS" target="_blank" rel="noopener">MDN · Consultas web entre orígenes distintos ↗</a></li></ul></section>
+  </main>
+  <footer><p>Ángel Garzón · Arquitectura de soluciones IA</p><p>Propuesta de integración · 14 de octubre de 2026</p><a href="diagrama.html" target="_blank" rel="noopener">Ver diagrama completo ↗</a></footer>
+</body>
+</html>
