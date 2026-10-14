@@ -2,7 +2,7 @@ import {attachMouth} from './native-mouth.js?v=constructor11-20261012';
 import {samplesToEnvelope,envelopeAt} from './speech-envelope.js?v=constructor11-20261012';
 // A public, generated introduction only. Never records/requests a microphone.
 export function createSceneVoice({button,request,feedback}){
- const audio=new Audio(new URL('./assets/boro-intro-es-supertonic-m1.mp3',import.meta.url).href);audio.preload='none';let mouth,envelope,open=0,decoding=false;
+ const audio=new Audio(new URL('./assets/boro-intro-es-mx-20261014.mp3',import.meta.url).href);audio.preload='none';let mouth,envelope,open=0,decoding=false;
  const sync=()=>{const playing=!audio.paused&&!audio.ended;button.textContent=playing?'Detener voz':'Escuchar a Boro';button.setAttribute('aria-pressed',String(playing));request()};
  for(const event of ['playing','pause','ended','timeupdate'])audio.addEventListener(event,sync);
  audio.addEventListener('error',()=>{feedback('No pude reproducir la muestra de voz. La animación sigue disponible.');sync()});

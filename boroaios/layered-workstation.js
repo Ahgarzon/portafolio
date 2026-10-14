@@ -10,7 +10,7 @@ const puppet=createBoroPuppet(character,{imageURL:new URL('./assets/boro-layered
 const computer=document.createElement('div');computer.className='layered-computer';computer.setAttribute('aria-label','Computador con un cerebro 3D en construcción');host.append(computer);
 const piece=document.createElement('button');piece.type='button';piece.className='layered-piece';piece.innerHTML='<span aria-hidden="true">✧</span> Tu idea';piece.setAttribute('aria-label','Entregar la pieza a Boro. Arrástrala al monitor o pulsa este botón.');host.append(piece);
 const cue=document.createElement('span');cue.className='layered-cue';cue.textContent='Toca a Boro · acerca tu idea';host.append(cue);
-const audio=new Audio(new URL('./assets/boro-intro-es-supertonic-m1.mp3',import.meta.url).href);audio.preload='none';const voiceButton=document.querySelector('#listen-boro');let voiceReady=false;
+const audio=new Audio(new URL('./assets/boro-intro-es-mx-20261014.mp3',import.meta.url).href);audio.preload='none';const voiceButton=document.querySelector('#listen-boro');let voiceReady=false;
 function audible(){return voiceReady&&!audio.paused&&!audio.ended&&!audio.muted&&audio.volume>0&&audio.readyState>=2;}
 function feedback(text){label.textContent=text;host.dataset.feedback=text;}
 function request(){if(ready&&visible&&!document.hidden&&!frame)frame=requestAnimationFrame(render);}
