@@ -8,7 +8,23 @@ Catálogo para escuchar: https://angelszs.site/boroaios/voces-viables/
 
 Se descartó Edge Neural: el VPS recibió HTTP 403 y por eso no es una ruta confiable para instalar Lorenzo ni las otras muestras de Edge. Las opciones de este documento se ejecutaron localmente en el VPS, sin cuota por carácter ni conexión al proveedor durante una respuesta.
 
-## 1. Miro — recomendación colombiana
+## 1. M1 — Supertonic 3, masculino latino
+
+Escuchar: https://angelszs.site/boroaios/assets/catalogo-voces-viables-20261016/supertonic-m1.mp3
+
+Timbre más expresivo que Piper con español latino general. En dos corridas calientes de la misma frase de 5,329 segundos generó audio en 3,767 y 3,015 segundos; también hubo una primera corrida de calentamiento de 10,968 segundos. Corrió localmente en CPU y no cambió la voz activa.
+
+Su modelo se distribuye bajo OpenRAIL-M: es gratuito y local, sujeto a sus condiciones de uso. No se afirma un acento colombiano específico.
+
+## 2. M2 — Supertonic 3, masculino latino
+
+Escuchar: https://angelszs.site/boroaios/assets/catalogo-voces-viables-20261016/supertonic-m2.mp3
+
+Alternativa de timbre de la misma familia, también masculina y local. En tres corridas generó la misma frase de 5,198 segundos en 7,496 segundos de calentamiento y 3,209 / 3,046 segundos en caliente. No se afirma un acento colombiano específico.
+
+Su modelo se distribuye bajo OpenRAIL-M: es gratuito y local, sujeto a sus condiciones de uso.
+
+## 3. Miro — recomendación colombiana
 
 Escuchar: https://angelszs.site/boroaios/assets/catalogo-voces-viables-20261016/miro-co.mp3
 
@@ -16,13 +32,13 @@ Voz masculina configurada para español colombiano. Motor ONNX/CPU. En tres corr
 
 Uso sin costo para Boro personal no comercial, con atribución: su modelo es CC BY-NC-ND 4.0. No se debe usar para vender Boro, sublicenciar la voz ni modificar el modelo sin acordar otra licencia. La voz no representa la identidad de una persona colombiana real: el propio proyecto la describe como timbre de donante con pronunciación colombiana sintética.
 
-## 2. Ald — alternativa local rápida
+## 4. Ald — alternativa local rápida
 
 Escuchar: https://angelszs.site/boroaios/assets/catalogo-voces-viables-20261016/ald-mx.mp3
 
 Voz masculina mexicana de Piper. En tres corridas calientes generó la frase en 0,649, 0,314 y 0,279 segundos. Es local, gratuita y técnicamente muy rápida, pero no se presenta como colombiana.
 
-## 3. Claude — referencia activa
+## 5. Claude — referencia activa
 
 Escuchar: https://angelszs.site/boroaios/assets/catalogo-voces-viables-20261016/claude-mx-actual.mp3
 
@@ -30,6 +46,6 @@ Es la voz mexicana que Boro conserva hoy. En tres solicitudes al servicio vivo d
 
 ## Qué elegir
 
-Si quieres identidad colombiana y uso personal: Miro. Si priorizas solamente el tiempo de síntesis: Ald. La elección no instala nada todavía; al confirmar una se hace una integración reversible y se prueba contra Claude en respuestas cortas, largas y avisos antes de dejarla activa.
+Si quieres identidad colombiana y uso personal: Miro. Si priorizas solamente el tiempo de síntesis: Ald. Si quieres un timbre más natural y aceptas unos tres segundos de síntesis: escucha M1 y M2. La elección no instala nada todavía; al confirmar una se hace una integración reversible y se prueba contra Claude en respuestas cortas, largas y avisos antes de dejarla activa.
 
 Fuente de Miro: https://huggingface.co/OpenVoiceOS/phoonnx_es-CO_miro_espeak
