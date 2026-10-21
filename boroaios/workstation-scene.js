@@ -3,7 +3,7 @@ import {capabilities} from './capabilities.js?v=constructor11-20261012';
 import {createComputerWorkshop} from './computer-workshop.js?v=constructor11-20261012';
 import {createWorkshopPartner} from './workshop-partner.js?v=constructor11-20261012';
 import {createIdeaScene} from './idea-scene.js?v=constructor11-20261012';
-import {createSceneVoice} from './scene-voice.js?v=constructor11-20261012';
+import {createSceneVoice} from './scene-voice.js?v=voice-supertonic3-m1-20261020';
 
 // A real skinned character, computer and volumetric brain. No camera-facing mascot plane.
 const RELEASE='constructor11-20261012',BUILD_SECONDS=8;
