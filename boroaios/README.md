@@ -6,7 +6,8 @@ including both scene entry points, versioned module URLs, AI disclosure and the 
 OpenRAIL-M license. Alternative samples remain dated historical comparisons. The scoped
 candidate passed18 Node contracts and13 local Chromium checks, including the complete
 12.30-second MP3 and stop/mute/offscreen recovery. Publication and operational backend
-migration are separate checks; this change does not certify the AIOS installers or a
+migration are separate checks; Pages deployment39602706817 and exact HTTPS bytes
+were verified, then13 public browser checks passed. This does not certify the AIOS installers or a
 physical iPhone. [Evidence and rollback](tests/voice-m1-20261020.md).
 
 The following dated sections are historical, not the current voice selection.

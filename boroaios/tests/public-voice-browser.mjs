@@ -1,4 +1,4 @@
-// Local static-site QA. Real prerecorded M1 playback, never a microphone or authenticated API.
+// Static candidate or explicit read-only public QA. No microphone/authenticated API.
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import http from 'node:http';
@@ -8,6 +8,7 @@ import {createRequire} from 'node:module';
 
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const output=process.argv[2];
+const publicMode=process.env.BORO_VOICE_PUBLIC_QA==='1';
 if(!output || !process.env.BORO_PLAYWRIGHT_MODULES) throw Error('Provide a fresh output directory and existing BORO_PLAYWRIGHT_MODULES');
 await fs.mkdir(output); // Never overwrite a prior run's receipt.
 const {chromium}=createRequire(path.join(process.env.BORO_PLAYWRIGHT_MODULES,'package.json'))('playwright');
@@ -25,7 +26,9 @@ const server=http.createServer(async(req,res)=>{
  } catch {res.writeHead(404).end();}
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
-const origin=`http://127.0.0.1:${server.address().port}`;
+const origin=publicMode?'https://angelszs.site':`http://127.0.0.1:${server.address().port}`;
+report.origin=origin;
+report.scope=publicMode?'Read-only published Boro introduction, no private API or deployment.':'Isolated local static candidate.';
 let browser;
 async function check(name,fn){const details=await fn();report.checks.push({name,passed:true,...details});console.log('PASS '+name);}
 async function pageFor(viewport,{noWebGL=false}={}) {
@@ -33,7 +36,10 @@ async function pageFor(viewport,{noWebGL=false}={}) {
  const page=await context.newPage(),errors=[],requests=[];
  page.on('pageerror',e=>errors.push(e.message));
  page.on('request',r=>{if(/\.mp3(?:\?|$)/.test(r.url()))requests.push(r.url());});
- await page.route('**/*',route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
+ await page.route('**/*',route=>{
+  const url=new URL(route.request().url());
+  return url.origin===origin&&url.pathname.startsWith('/boroaios/')&&['GET','HEAD'].includes(route.request().method())?route.continue():route.abort();
+ });
  await page.addInitScript(({noWebGL})=>{
   window.__micCalls=0;window.__qaHidden=false;
   Object.defineProperty(document,'hidden',{configurable:true,get:()=>window.__qaHidden});
