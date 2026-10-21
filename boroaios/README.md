@@ -1,4 +1,16 @@
 # Boro AIOS — de la idea a la acción
+## Voice update — 21 October 2026
+
+The public introduction selects the existing verified Supertonic 3 M1 recording again,
+including both scene entry points, versioned module URLs, AI disclosure and the retained
+OpenRAIL-M license. Alternative samples remain dated historical comparisons. The scoped
+candidate passed18 Node contracts and13 local Chromium checks, including the complete
+12.30-second MP3 and stop/mute/offscreen recovery. Publication and operational backend
+migration are separate checks; this change does not certify the AIOS installers or a
+physical iPhone. [Evidence and rollback](tests/voice-m1-20261020.md).
+
+The following dated sections are historical, not the current voice selection.
+
 ## Voice update — 14 October 2026
 
 The public Spanish introduction now uses Piper es_MX-claude-high, the same male Spanish-Mexico voice as Boro 0.1.20. Audio and model provenance have a new dated URL to avoid reusing previous media. Both the active layered workstation and the preserved legacy scene entry point reference it. The previous M1 and Piper files remain for rollback; other languages in the authenticated application still use M1. Credits and terms are in assets/NativeVoice-NOTICE.txt. No new microphone, API, visitor-data connection or character redesign. Actual audio continues to drive the mouth, stopping when paused or offscreen. Physical Safari and the owner's listening acceptance are not inferred from Chromium tests.
