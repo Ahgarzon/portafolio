@@ -27,7 +27,7 @@
     const english=document.documentElement.lang==='en';
     const text=video.paused?(english?'▶ Watch demo':'▶ Ver demo'):(video.muted?(english?'🔇 Sound':'🔇 Sonido'):(english?'🔊 Sound':'🔊 Sonido'));
     control.textContent=text;
-    control.setAttribute('aria-label',video.paused?(english?'Play Jarvis demo':'Reproducir demostración de Jarvis'):(video.muted?(english?'Enable sound':'Activar sonido'):(english?'Mute video':'Silenciar video')));
+    control.setAttribute('aria-label',video.paused?(english?'Play Boro demo':'Reproducir demostración de Boro'):(video.muted?(english?'Enable sound':'Activar sonido'):(english?'Mute video':'Silenciar video')));
   }
   control.addEventListener('click',async()=>{
     if(video.paused){video.muted=false;try{await video.play();}catch{label();return;}}
