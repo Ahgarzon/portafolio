@@ -17,3 +17,6 @@
 
 /* Mensaje de adopción IA: jerarquía legible en móvil y escritorio. */
 #hero-title{font-size:clamp(48px,5.2vw,74px);line-height:1.07;max-width:690px}.hero-description strong{color:var(--ink);font-weight:600}@media(max-width:900px){#hero-title{font-size:clamp(42px,7.7vw,66px);max-width:660px}}
+
+/* Dos formas de iniciar la conversación, adaptables a cada pantalla. */
+.contact-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}.contact-actions .button{margin-top:0}.contact-actions .button-whatsapp{background:transparent;color:var(--on-dark);border:1px solid var(--on-dark-muted)}.contact-actions .button-whatsapp:hover{background:#ffffff14;color:var(--on-dark)}
