@@ -996,6 +996,7 @@ Object.assign(DATA.t,{"Mi propósito": "My purpose", "Más personas creando opor
   var DICT=DATA.t||{}, META=DATA.m||{};
   function norm(s){return (s||"").replace(/\u00a0/g," ").replace(/\s+/g," ").trim();}
   // capturar nodos de texto (español original) una sola vez
+  DICT["Muestra del agente de WhatsApp: consulta del menú y atención de un pedido con adiciones. Nombre del contacto oculto."]="WhatsApp agent sample: menu inquiry and assistance with an order and extras. Contact name hidden.";
   var items=[];
   var tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
     var t=n.nodeValue; if(!t||!/\S/.test(t))return NodeFilter.FILTER_REJECT;
