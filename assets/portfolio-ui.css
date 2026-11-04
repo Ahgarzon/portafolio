@@ -93,3 +93,18 @@ html[data-audience="perfil"] .final{padding-top:88px}
 .company-capital{display:block;width:76px;height:76px;border-radius:50%;background:#2000ae url('../zosa/assets/stratos-capital-group-original.jpg') 50% 41.1236% / 151.2821% auto no-repeat}
 @media(max-width:1100px){.company-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:700px){.company-grid{grid-template-columns:1fr}.company-card{display:grid;grid-template-columns:84px minmax(0,1fr);column-gap:18px;padding:20px}.company-logo{grid-row:1/3;height:84px;margin:0}.company-logo img{width:72px;height:66px}.company-capital{width:64px;height:64px}.company-card h3{align-self:end}.company-role{min-height:0}.company-card p{grid-column:1/-1;margin-top:16px}.company-experience{padding:44px 0}}
+
+/* Personal recommendations, excerpts supplied by the portfolio owner. */
+.recommendations{padding:64px 0;border-top:1px solid #dce2e8;background:#f7f8fa;color:#182235;scroll-margin-top:110px}
+.recommendations h2{max-width:780px;font-size:clamp(28px,3.2vw,42px);line-height:1.15;margin:12px 0 18px}
+.recommendations-intro{color:#526071;max-width:650px}
+.recommendations-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:36px}
+.recommendation{border-top:2px solid #224e7c;padding-top:24px;min-width:0}
+.recommendation blockquote{margin:0 0 24px;font-size:20px;line-height:1.55;font-weight:500;color:#182235}
+.recommendation-author{font-size:16px;font-weight:700;margin:0 0 6px}
+.recommendation-role{font-size:14px;line-height:1.6;color:#526071;margin:0 0 20px}
+.recommendation summary{font-size:14px;cursor:pointer;min-height:44px;padding:12px 0;color:#224e7c;text-decoration:underline;text-underline-offset:4px}
+.recommendation summary:focus-visible{outline:2px solid #224e7c;outline-offset:4px}
+.recommendation details blockquote{font-size:16px;line-height:1.65;margin:12px 0 0}
+.recommendations-source{font-size:12px;color:#526071;margin-top:24px}
+@media(max-width:800px){.recommendations-grid{grid-template-columns:1fr;gap:28px}.recommendations{padding:40px 0}.recommendation blockquote{font-size:19px}}
