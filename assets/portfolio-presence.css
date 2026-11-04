@@ -188,3 +188,9 @@ html[data-audience="perfil"] .value-card h3{margin-top:16px}
 .boro-screenshot>a{display:block;width:100%;max-width:310px}
 .boro-screenshot img{display:block;width:100%;height:auto;border-radius:20px}
 .boro-screenshot .visual-caption{max-width:310px}
+/* Balance the portrait capture with the case copy at each viewport. */
+#jarvis .boro-screenshot{justify-content:flex-start;padding:32px 24px}
+#jarvis .boro-screenshot>a{max-width:280px}
+#jarvis .boro-screenshot .visual-caption{margin:0;max-width:280px}
+@media(min-width:861px){#jarvis .boro-screenshot>a{max-width:240px}#jarvis .boro-screenshot .visual-caption{max-width:280px}}
+@media(max-width:600px){#jarvis .boro-screenshot{padding:24px 16px}}
