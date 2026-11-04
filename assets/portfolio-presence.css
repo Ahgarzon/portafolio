@@ -182,3 +182,9 @@ html[data-audience="perfil"] .value-card h3{margin-top:16px}
 .case-flow li::before{flex:0 0 24px;white-space:nowrap}
 @media(min-width:861px){.pcard .pcard-media.cuatro,.pcard .pcard-media.chats{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:20px}}
 .pcard .pcard-media a{display:block}.pcard .pcard-media a:focus-visible{outline:2px solid var(--c1);outline-offset:4px}
+
+/* Real Boro mobile screenshot, preserved in full. */
+.boro-screenshot{align-items:center;gap:16px}
+.boro-screenshot>a{display:block;width:100%;max-width:310px}
+.boro-screenshot img{display:block;width:100%;height:auto;border-radius:20px}
+.boro-screenshot .visual-caption{max-width:310px}
