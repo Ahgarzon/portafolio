@@ -1,0 +1,2 @@
+# Preserve finalized Archify artifacts byte-for-byte.
+mapas/*.html -text whitespace=-blank-at-eol
