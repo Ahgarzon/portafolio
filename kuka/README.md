@@ -19,3 +19,7 @@ Abrir index.html localmente o servir esta carpeta con un servidor estático. Se 
 Panel de consulta cerrado por defecto con 48 conceptos, cinco áreas, búsqueda sin distinguir tildes, explicación aplicada y referencia primaria por concepto. La tabla tiene desplazamiento propio para mantener la página compacta; en móvil se muestra como fichas. Una ruta de lectura precede los mapas y la base técnica aparece antes del detalle de archivos.
 
 El HTML contiene todas las definiciones: no necesita una descarga de datos para consultar el glosario. `glossary.js` añade los filtros. Para mantener definiciones y estructura, editar `actualizar-glosario.py` y ejecutar `python kuka/actualizar-glosario.py` desde la raíz (mantenimiento opcional; requiere beautifulsoup4). La web publicada sigue siendo estática.
+
+## Video de explicación
+
+Apartado #video cerca del inicio, enlace en la portada y menú. MP4 H.264/AAC, 1920×1080, 30 fps, acelerado en el archivo a 1,2× con audio atempo para conservar el tono. Reproductor nativo y botón reproducir/pausar, volumen, avance y pantalla completa; sin autoplay, carga inicial de metadatos y portada local. La grabación recorre la guía web. Se conserva el archivo original fuera del repositorio.
