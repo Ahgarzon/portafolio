@@ -13,3 +13,9 @@ Los mapas simple y técnico son propuestas; archivos.html reconstruye el código
 El logo horizontal proviene de https://www.unicauca.edu.co/la-universidad/simbolos/ ; el material es una guía preparada por el autor. La captura Unity fue entregada por el autor, sin alteración. La carpeta Drive se enlaza por solicitud del autor; no se modifican sus permisos.
 
 Abrir index.html localmente o servir esta carpeta con un servidor estático. Se conserva una copia local de las preferencias de tema y preparación. No hay backend, telemetría ni envío de comandos.
+
+## Glosario y orden de lectura
+
+Panel de consulta cerrado por defecto con 48 conceptos, cinco áreas, búsqueda sin distinguir tildes, explicación aplicada y referencia primaria por concepto. La tabla tiene desplazamiento propio para mantener la página compacta; en móvil se muestra como fichas. Una ruta de lectura precede los mapas y la base técnica aparece antes del detalle de archivos.
+
+El HTML contiene todas las definiciones: no necesita una descarga de datos para consultar el glosario. `glossary.js` añade los filtros. Para mantener definiciones y estructura, editar `actualizar-glosario.py` y ejecutar `python kuka/actualizar-glosario.py` desde la raíz (mantenimiento opcional; requiere beautifulsoup4). La web publicada sigue siendo estática.
