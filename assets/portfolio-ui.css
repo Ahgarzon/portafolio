@@ -108,3 +108,11 @@ html[data-audience="perfil"] .final{padding-top:88px}
 .recommendation details blockquote{font-size:16px;line-height:1.65;margin:12px 0 0}
 .recommendations-source{font-size:12px;color:#526071;margin-top:24px}
 @media(max-width:800px){.recommendations-grid{grid-template-columns:1fr;gap:28px}.recommendations{padding:40px 0}.recommendation blockquote{font-size:19px}}
+
+/* Expanded catalog and supplied LinkedIn recommendation, November 2026. */
+.catalog-note{max-width:840px;margin-top:32px;color:var(--muted);font-size:14px;line-height:1.7}
+.web-support{margin-top:20px;color:var(--muted);font-size:15px;line-height:1.7}
+.recommendation-link{display:inline-flex;align-items:center;min-height:44px;font-size:13px;line-height:1.6;color:#224e7c;margin-top:12px;text-underline-offset:4px}
+.recommendation-link:focus-visible{outline:2px solid #224e7c;outline-offset:4px}
+@media(min-width:1100px){.recommendations-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.recommendation blockquote{font-size:18px}}
+@media(min-width:801px) and (max-width:1099px){.recommendations-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
